@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CoStaff — 你的 AI 員工，隨時就緒</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:#faf9f7; --bg-alt:#f3f2ef; --ink:#1a1917; --ink-2:#5a5855;
+      --ink-3:#9a9895; --border:#e4e2de; --accent:#2d3a2e; --accent-2:#4a6741;
+      --serif:'Noto Serif TC',Georgia,serif;
+      --sans:'Noto Sans TC',system-ui,sans-serif;
+      --mono:'JetBrains Mono',monospace; --max:960px;
+    }
+    html { scroll-behavior:smooth; }
+    body { background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:15px; line-height:1.85; -webkit-font-smoothing:antialiased; }
+
+    /* Coming Soon banner */
+    .coming-soon-banner { position:fixed; top:0; left:0; right:0; z-index:110; height:36px; background:var(--accent-2); color:#fff; display:flex; align-items:center; justify-content:center; gap:14px; font-size:13px; padding:0 16px; }
+    .coming-soon-banner .cs-label { font-weight:500; letter-spacing:0.04em; }
+    .coming-soon-banner .cs-sub { opacity:0.82; }
+    .coming-soon-banner a { color:#fff; text-decoration:underline; font-weight:500; transition:opacity 0.2s; }
+    .coming-soon-banner a:hover { opacity:0.8; }
+    /* Disabled link style for "available at launch" */
+    .disabled-link, .disabled-link:hover { color:var(--ink-3) !important; cursor:not-allowed; border-color:var(--border) !important; background:transparent !important; pointer-events:none; opacity:0.5; text-decoration:none !important; }
+
+    nav { position:fixed; top:36px; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:0 40px; height:60px; background:rgba(250,249,247,0.88); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); }
+    .nav-logo { font-family:var(--serif); font-weight:400; font-size:17px; letter-spacing:0.04em; color:var(--ink); text-decoration:none; }
+    .nav-logo span { color:var(--accent-2); }
+    .nav-links { display:flex; gap:28px; align-items:center; }
+    .nav-links a { font-size:13px; color:var(--ink-2); text-decoration:none; transition:color 0.2s; }
+    .nav-links a:hover { color:var(--ink); }
+    .nav-right { display:flex; gap:12px; align-items:center; }
+    .nav-lang { font-size:12px; color:var(--ink-3); text-decoration:none; border:1px solid var(--border); padding:4px 10px; border-radius:3px; transition:all 0.2s; }
+    .nav-lang:hover { color:var(--ink); border-color:var(--ink-3); }
+    .nav-gh { display:flex; align-items:center; gap:6px; font-size:13px; color:var(--ink); text-decoration:none; border:1px solid var(--border); padding:5px 14px; border-radius:4px; transition:all 0.2s; }
+    .nav-gh:hover { background:var(--bg-alt); }
+
+    .hero { min-height:100vh; display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; padding:156px 24px 80px; position:relative; }
+    .hero-label { font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-3); margin-bottom:32px; display:flex; align-items:center; gap:12px; }
+    .hero-label::before,.hero-label::after { content:''; display:block; width:32px; height:1px; background:var(--border); }
+    .hero-title { font-family:var(--serif); font-weight:300; font-size:clamp(48px,8vw,84px); line-height:1.1; color:var(--ink); margin-bottom:8px; }
+    .hero-title span { color:var(--accent-2); }
+    .hero-sub { font-family:var(--serif); font-weight:300; font-size:clamp(14px,2vw,17px); color:var(--ink-3); letter-spacing:0.12em; margin-bottom:48px; }
+    .hero-desc { max-width:540px; font-size:16px; color:var(--ink-2); line-height:1.95; margin-bottom:52px; }
+    .hero-actions { display:flex; gap:12px; flex-wrap:wrap; justify-content:center; }
+    .btn-primary { background:var(--accent); color:#fff; font-size:13px; padding:12px 28px; border-radius:4px; text-decoration:none; transition:background 0.2s; }
+    .btn-primary:hover { background:var(--accent-2); }
+    .btn-ghost { background:transparent; color:var(--ink-2); font-size:13px; padding:12px 24px; border-radius:4px; text-decoration:none; border:1px solid var(--border); transition:all 0.2s; }
+    .btn-ghost:hover { border-color:var(--ink-3); color:var(--ink); }
+    .hero-scroll { position:absolute; bottom:40px; display:flex; flex-direction:column; align-items:center; gap:8px; color:var(--ink-3); font-size:11px; letter-spacing:0.1em; }
+    .hero-scroll-line { width:1px; height:40px; background:linear-gradient(to bottom,var(--border),transparent); animation:scrollLine 1.8s ease-in-out infinite; }
+    @keyframes scrollLine { 0%,100%{opacity:0.3;} 50%{opacity:1;} }
+
+    section { padding:96px 24px; }
+    .container { max-width:var(--max); margin:0 auto; }
+    .section-header { margin-bottom:64px; }
+    .section-num { font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-3); margin-bottom:16px; display:flex; align-items:center; gap:12px; }
+    .section-num::after { content:''; display:block; width:40px; height:1px; background:var(--border); }
+    .section-title { font-family:var(--serif); font-weight:400; font-size:clamp(26px,4vw,38px); line-height:1.35; color:var(--ink); margin-bottom:16px; }
+    .section-desc { font-size:15px; color:var(--ink-2); max-width:500px; line-height:1.9; }
+
+    /* PAIN POINTS */
+    #problems { background:var(--bg-alt); }
+    .problems-list { display:flex; flex-direction:column; gap:0; border:1px solid var(--border); }
+    .problem-row { display:grid; grid-template-columns:1fr 1fr; border-bottom:1px solid var(--border); }
+    .problem-row:last-child { border-bottom:none; }
+    .problem-side { padding:36px 40px; }
+    .problem-side.before { background:var(--bg-alt); border-right:1px solid var(--border); }
+    .problem-side.after { background:var(--bg); }
+    .side-label { font-size:10px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-3); margin-bottom:14px; }
+    .side-label.pain { color:#b0826a; }
+    .side-label.solve { color:var(--accent-2); }
+    .problem-text { font-size:14px; color:var(--ink-2); line-height:1.9; }
+    .problem-text strong { color:var(--ink); font-weight:500; }
+
+    /* HOW */
+    #how { background:var(--bg); }
+    .steps { display:grid; grid-template-columns:repeat(3,1fr); gap:48px; }
+    .step-num { font-family:var(--serif); font-size:48px; font-weight:300; color:var(--border); margin-bottom:20px; line-height:1; }
+    .step-name { font-size:15px; font-weight:500; color:var(--ink); margin-bottom:10px; }
+    .step-text { font-size:13px; color:var(--ink-2); line-height:1.9; }
+
+    /* CLI */
+    #cli { background:var(--bg-alt); }
+    .cli-grid { display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start; }
+    .terminal { background:#16161a; border-radius:8px; overflow:hidden; font-family:var(--mono); }
+    .terminal-bar { background:#222228; padding:12px 16px; display:flex; align-items:center; gap:8px; }
+    .dot { width:10px; height:10px; border-radius:50%; }
+    .dot-r{background:#ff5f57;} .dot-y{background:#febc2e;} .dot-g{background:#28c840;}
+    .terminal-body { padding:28px 24px; }
+    .line { display:flex; gap:12px; margin-bottom:10px; font-size:13px; }
+    .line:last-child { margin-bottom:0; }
+    .prompt{color:#4a6741;user-select:none;} .cmd{color:#e2e0d8;} .out{color:#6c6a66;margin-left:24px;font-size:12px;} .out.ok{color:#4a6741;}
+    .cli-desc p { font-size:14px; color:var(--ink-2); line-height:1.9; margin-bottom:20px; }
+    .cmd-table { width:100%; border-collapse:collapse; }
+    .cmd-table tr { border-bottom:1px solid var(--border); }
+    .cmd-table tr:last-child { border-bottom:none; }
+    .cmd-table td { padding:10px 0; vertical-align:top; }
+    .cmd-table td:first-child { font-family:var(--mono); font-size:12px; color:var(--accent-2); white-space:nowrap; padding-right:20px; width:1%; }
+    .cmd-table td:last-child { font-size:13px; color:var(--ink-2); }
+
+    /* CHANNELS */
+    #channels { background:var(--bg); }
+    .channel-grid { display:flex; gap:24px; flex-wrap:wrap; margin-top:48px; }
+    .channel-card { display:flex; flex-direction:column; align-items:center; gap:12px; padding:28px 32px; border:1px solid var(--border); border-radius:6px; min-width:120px; transition:all 0.2s; }
+    .channel-card:hover { border-color:var(--accent-2); transform:translateY(-2px); }
+    .channel-icon { width:32px; height:32px; }
+    .channel-name { font-size:13px; color:var(--ink-2); }
+
+    /* PLANS */
+    #plans { background:var(--bg-alt); }
+    .plans-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+    .plan-card { border:1px solid var(--border); border-radius:6px; overflow:hidden; background:var(--bg); }
+    .plan-card.featured { border-color:var(--accent-2); }
+    .plan-header { padding:28px 32px 24px; border-bottom:1px solid var(--border); }
+    .plan-card.featured .plan-header { background:var(--accent); }
+    .plan-name { font-family:var(--serif); font-size:22px; font-weight:400; color:var(--ink); margin-bottom:6px; }
+    .plan-card.featured .plan-name { color:#fff; }
+    .plan-tagline { font-size:13px; color:var(--ink-3); }
+    .plan-card.featured .plan-tagline { color:rgba(255,255,255,0.6); }
+    .plan-body { padding:28px 32px; }
+    .plan-limit-title { font-size:11px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-3); margin-bottom:16px; }
+    .plan-limits { list-style:none; display:flex; flex-direction:column; gap:10px; margin-bottom:28px; }
+    .plan-limits li { display:flex; align-items:center; gap:10px; font-size:13px; color:var(--ink-2); }
+    .plan-limits li::before { content:''; width:4px; height:4px; border-radius:50%; background:var(--accent-2); flex-shrink:0; }
+    .plan-cta { display:inline-block; font-size:13px; text-decoration:none; padding:10px 20px; border-radius:4px; border:1px solid var(--border); color:var(--ink-2); transition:all 0.2s; }
+    .plan-cta:hover { border-color:var(--ink-3); color:var(--ink); }
+    .plan-cta.primary { background:var(--accent-2); border-color:var(--accent-2); color:#fff; }
+    .plan-cta.primary:hover { background:var(--accent); border-color:var(--accent); }
+    .plan-note { font-size:11px; color:var(--ink-3); margin-top:28px; padding-top:24px; border-top:1px solid var(--border); line-height:1.7; }
+
+    /* PARTNERS */
+    .partners-strip { padding:56px 24px; background:var(--bg); border-top:1px solid var(--border); border-bottom:1px solid var(--border); text-align:center; }
+    .partners-label { font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-3); margin-bottom:32px; }
+    .partners-row { display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:64px; }
+    .partners-row a { display:flex; align-items:center; text-decoration:none; }
+    .partners-row img { max-height:48px; width:auto; opacity:0.75; transition:opacity 0.2s; object-fit:contain; }
+    .partners-row a:hover img { opacity:1; }
+    @media(max-width:720px){ .partners-row{gap:36px;} .partners-row img{max-height:38px;} }
+
+    /* PRIVACY */
+    #privacy { background:var(--ink); color:#e2e0d8; }
+    #privacy .section-num { color:#4a4845; }
+    #privacy .section-num::after { background:#2a2a28; }
+    #privacy .section-title { color:#e2e0d8; }
+    #privacy .section-desc { color:#8a8885; max-width:520px; }
+    .privacy-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; margin-top:52px; }
+    .privacy-item { padding:36px 32px; border:1px solid #2a2a28; display:flex; flex-direction:column; justify-content:center; }
+    .privacy-item-title { font-size:14px; font-weight:500; color:#e2e0d8; margin-bottom:8px; }
+    .privacy-item-text { font-size:13px; color:#6a6865; line-height:1.85; }
+
+    footer { background:var(--ink); border-top:1px solid #2a2a28; padding:40px 24px; }
+    .footer-inner { max-width:var(--max); margin:0 auto; display:flex; align-items:center; justify-content:space-between; }
+    .footer-logo { font-family:var(--serif); font-size:16px; color:#e2e0d8; }
+    .footer-logo span { color:var(--accent-2); }
+    .footer-text { font-size:12px; color:#4a4845; }
+    .footer-links { display:flex; gap:24px; }
+    .footer-links a, .footer-links span { font-size:12px; color:#5a5855; text-decoration:none; transition:color 0.2s; }
+    .footer-links a:hover { color:#8a8885; }
+
+    @media(max-width:720px){
+      .coming-soon-banner{font-size:11px;gap:8px;}
+      .coming-soon-banner .cs-sub{display:none;}
+      nav{padding:0 20px;} .nav-links{display:none;}
+      .problem-row{grid-template-columns:1fr;}
+      .problem-side.before{border-right:none;border-bottom:1px solid var(--border);}
+      .steps{grid-template-columns:1fr;gap:36px;}
+      .cli-grid{grid-template-columns:1fr;}
+      .plans-grid{grid-template-columns:1fr;}
+      .privacy-grid{grid-template-columns:1fr;}
+      .footer-inner{flex-direction:column;gap:16px;text-align:center;}
+      .footer-links{justify-content:center;}
+      #privacy{padding-bottom:160px;}
+    }
+
+    /* === Full-page scroll snap === */
+    html { scroll-snap-type: y mandatory; overflow-y: scroll; height: 100%; scroll-padding-top: 60px; }
+    body { height: 100%; }
+    .hero, section { scroll-snap-align: start; }
+    /* nav = 60px, so pad-top 68px pushes content into visible zone */
+    section {
+      height: 100vh; overflow: hidden;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      padding: 68px 24px 24px;
+    }
+    section > .container { width: 100%; }
+    .hero {
+      height: 100vh; padding: 80px 24px 24px;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+    }
+    #privacy { position: relative; padding-bottom: 100px; }
+    #privacy .footer-inner { position: absolute; left: 24px; right: 24px; bottom: 24px; max-width: var(--max); margin: 0 auto; border-top: 1px solid #2a2a28; padding-top: 20px; }
+
+    /* Tighter spacing so everything fits in 100vh */
+    .section-header  { margin-bottom: 24px; }
+    .section-num     { margin-bottom: 8px; }
+    .section-title   { font-size: clamp(22px, 3.2vw, 34px); margin-bottom: 8px; }
+    .section-desc    { font-size: 13px; line-height: 1.7; }
+
+    /* Problems */
+    .problems-list { border: none; }
+    .problem-side  { padding: 20px 24px; }
+    .problem-text  { font-size: 13px; line-height: 1.75; }
+    .side-label    { margin-bottom: 6px; }
+
+    /* How */
+    .steps    { gap: 24px; }
+    .step-num { font-size: 32px; margin-bottom: 8px; }
+    .step-name{ margin-bottom: 4px; }
+    .step-text{ font-size: 12px; line-height: 1.8; }
+
+    /* CLI */
+    .terminal-body { padding: 16px 18px; }
+    .line { margin-bottom: 6px; font-size: 12px; }
+    .out  { font-size: 11px; }
+    .cli-desc p { font-size: 13px; margin-bottom: 12px; }
+    .cmd-table td { padding: 7px 0; font-size: 12px; }
+
+    /* Channels */
+    .channel-grid { margin-top: 24px; gap: 16px; }
+    .channel-card { padding: 18px 22px; gap: 8px; }
+    .channel-name { font-size: 12px; }
+
+    /* Plans */
+    .plans-grid  { gap: 14px; }
+    .plan-header { padding: 16px 20px 12px; }
+    .plan-body   { padding: 14px 20px; }
+    .plan-name   { font-size: 18px; margin-bottom: 3px; }
+    .plan-tagline{ font-size: 12px; }
+    .plan-limit-title { margin-bottom: 10px; }
+    .plan-limits { gap: 6px; margin-bottom: 12px; }
+    .plan-limits li { font-size: 12px; }
+    .plan-note   { margin-top: 12px; padding-top: 10px; font-size: 10px; line-height: 1.6; }
+    .plan-cta    { font-size: 12px; padding: 8px 16px; }
+
+    /* Privacy */
+    .privacy-grid { margin-top: 28px; }
+    .privacy-item { padding: 20px 18px; }
+    .privacy-item-title { font-size: 13px; margin-bottom: 5px; }
+    .privacy-item-text  { font-size: 12px; line-height: 1.75; }
+
+    /* === Problems carousel === */
+    .problem-row { display: none; border-bottom: none; }
+    .problem-row.active { display: grid; }
+    .carousel-counter {
+      font-family: var(--mono); font-size: 11px; color: var(--ink-3);
+      letter-spacing: 0.12em; text-align: right; margin-bottom: 10px;
+    }
+    .carousel-nav {
+      display: flex; justify-content: center; align-items: center;
+      gap: 14px; margin-top: 16px;
+    }
+    .carousel-dots { display: flex; gap: 8px; align-items: center; }
+    .carousel-dot {
+      width: 4px; height: 4px; border-radius: 50%;
+      background: var(--border); border: none; cursor: pointer;
+      padding: 0; outline: none; transition: all 0.25s ease;
+    }
+    .carousel-dot.active { background: var(--ink-2); transform: scale(1.7); }
+    .carousel-prev, .carousel-next {
+      background: none; border: 1px solid var(--border); color: var(--ink-3);
+      width: 28px; height: 28px; border-radius: 3px; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0; transition: all 0.2s; padding: 0;
+    }
+    .carousel-prev:hover, .carousel-next:hover { border-color: var(--ink-3); color: var(--ink); }
+
+    /* === 右側捲動進度指示器 === */
+    .scroll-indicator {
+      position: fixed; right: 20px; top: 50%; transform: translateY(-50%);
+      z-index: 98; display: flex; flex-direction: column; align-items: flex-end; gap: 0;
+    }
+    .si-item {
+      display: flex; align-items: center; gap: 10px;
+      background: none; border: none; cursor: pointer; padding: 6px 0;
+    }
+    .si-dot {
+      width: 4px; height: 4px; border-radius: 50%; background: var(--border);
+      flex-shrink: 0; transition: background 0.3s, transform 0.3s;
+    }
+    .si-label {
+      font-family: var(--mono); font-size: 10px; color: var(--ink-3);
+      letter-spacing: 0.08em; white-space: nowrap; order: -1;
+      opacity: 0; transform: translateX(6px);
+      transition: opacity 0.2s, transform 0.2s; pointer-events: none;
+    }
+    .si-item:hover .si-label, .si-item.active .si-label { opacity: 1; transform: translateX(0); }
+    .si-item.active .si-dot { background: var(--ink); transform: scale(1.75); }
+    @media (max-width: 768px) { .scroll-indicator { display: none; } }
+  </style>
+</head>
+<body>
+
+  <!-- Coming Soon banner -->
+  <div class="coming-soon-banner">
+    <span class="cs-label">🚀 即將開放</span>
+    <span class="cs-sub">— 搶先預約名單,優先取得開放通知</span>
+    <a href="https://forms.gle/9UVdi527sYUBuqcm6" target="_blank" rel="noopener">搶先預約 →</a>
+  </div>
+
+  <aside class="scroll-indicator" aria-label="頁面導航">
+    <button class="si-item active" data-target=".hero"><span class="si-label">介紹</span><div class="si-dot"></div></button>
+    <button class="si-item" data-target="#problems"><span class="si-label">01 困擾</span><div class="si-dot"></div></button>
+    <button class="si-item" data-target="#how"><span class="si-label">02 開始</span><div class="si-dot"></div></button>
+    <button class="si-item" data-target="#cli"><span class="si-label">03 指令</span><div class="si-dot"></div></button>
+    <button class="si-item" data-target="#channels"><span class="si-label">04 管道</span><div class="si-dot"></div></button>
+    <button class="si-item" data-target="#plans"><span class="si-label">05 方案</span><div class="si-dot"></div></button>
+    <button class="si-item" data-target="#privacy"><span class="si-label">06 隱私</span><div class="si-dot"></div></button>
+  </aside>
+
+  <nav>
+    <a class="nav-logo" href="#">Co<span>Staff</span></a>
+    <div class="nav-links">
+      <a href="#">首頁</a>
+      <a href="agents.zh.html">AI 員工</a>
+    </div>
+    <div class="nav-right">
+      <a class="nav-lang" href="index.html">EN</a>
+      <span class="nav-gh disabled-link" title="原始碼將於正式上線後公開">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        上線後公開
+      </span>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-label">幫你做完事情的 AI Agent 數位員工</div>
+    <h1 class="hero-title">Co<span>Staff</span></h1>
+    <p class="hero-sub">Call Your AI Staff to Work</p>
+    <p class="hero-desc">
+      把公司做事的流程與方法，做成你的 <strong>AI 員工團隊</strong> —<br/>
+      在通訊軟體裡交辦，他們動手把事做完。
+    </p>
+    <div class="hero-actions">
+      <a class="btn-primary" href="https://forms.gle/9UVdi527sYUBuqcm6" target="_blank" rel="noopener">搶先預約</a>
+      <a class="btn-ghost" href="agents.zh.html">看看 AI 員工團隊有哪些 →</a>
+    </div>
+    <div class="hero-scroll"><div class="hero-scroll-line"></div>往下捲動</div>
+  </section>
+
+  <!-- PAIN POINTS -->
+  <section id="problems">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-num">01 &nbsp;你是不是也有這些困擾？</div>
+        <h2 class="section-title">CoStaff<br/>解決的問題。</h2>
+        <p class="section-desc">不需要搞懂它底層怎麼運作，只需要知道它能解決什麼。</p>
+      </div>
+      <div class="carousel-counter"><span id="prob-current">01</span>&ensp;/&ensp;05</div>
+      <div class="problems-list">
+
+        <div class="problem-row">
+          <div class="problem-side before">
+            <div class="side-label pain">你現在的狀況</div>
+            <div class="problem-text">想看「上個月哪個產品賣最好」「南部客戶平均下單金額多少」，<strong>自己不會寫 SQL，得排隊等工程師</strong>，等到答案時市場已經變了。</div>
+          </div>
+          <div class="problem-side after">
+            <div class="side-label solve">用了 CoStaff 之後</div>
+            <div class="problem-text">直接用白話文在你的通訊軟體裡問 — 它自己去摸你的資料庫、找出對的表、跑出結果。<strong>你不需要知道 schema 長什麼樣子。</strong></div>
+          </div>
+        </div>
+
+        <div class="problem-row">
+          <div class="problem-side before">
+            <div class="side-label pain">你現在的狀況</div>
+            <div class="problem-text">客戶寄來的 Excel 欄位順序不對、日期格式亂、還夾著空白行，<strong>你每次都要花 30 分鐘手動清完才能用</strong>，下個月又來一輪。</div>
+          </div>
+          <div class="problem-side after">
+            <div class="side-label solve">用了 CoStaff 之後</div>
+            <div class="problem-text">把檔案丟給它，說「清一下、轉成標準格式」，幾秒鐘吐回乾淨的 CSV。<strong>它記得你上次的清洗規則</strong>，下次同一份報表你連說明都不用打。</div>
+          </div>
+        </div>
+
+        <div class="problem-row">
+          <div class="problem-side before">
+            <div class="side-label pain">你現在的狀況</div>
+            <div class="problem-text">老闆要週報，<strong>你用 Excel 拉了半天圖表還是醜醜的</strong>，貼到 PPT 排版又跑掉，最後交出去的版本連自己都不想看。</div>
+          </div>
+          <div class="problem-side after">
+            <div class="side-label solve">用了 CoStaff 之後</div>
+            <div class="problem-text">把數據丟給它，它自動挑對的圖表類型、寫好敘事段落、排出<strong>支援中文字型的精美 PDF / PPT</strong>，直接交差。</div>
+          </div>
+        </div>
+
+        <div class="problem-row">
+          <div class="problem-side before">
+            <div class="side-label pain">你現在的狀況</div>
+            <div class="problem-text">老闆說「給我看一下這季南區銷售狀況」，<strong>你要先找 DBA 撈數據、再自己做圖、再寫文字、再排版</strong>，三個人接力一週才生得出來。</div>
+          </div>
+          <div class="problem-side after">
+            <div class="side-label solve">用了 CoStaff 之後</div>
+            <div class="problem-text">你只要說一句「給我這季南區銷售報告」 — 資料庫專家撈 → 商業分析專家排版，<strong>一個對話框走完整條流程</strong>，你拿到的就是 PDF。</div>
+          </div>
+        </div>
+
+        <div class="problem-row">
+          <div class="problem-side before">
+            <div class="side-label pain">你現在的狀況</div>
+            <div class="problem-text">想做一份分析：要從 Postgres 撈訂單、跟客戶寄來的 Excel 比對、再產出含中文的圖表報告。<strong>至少跨 3 個工具、找 3 種人</strong>才搞得定。</div>
+          </div>
+          <div class="problem-side after">
+            <div class="side-label solve">用了 CoStaff 之後</div>
+            <div class="problem-text">CoStaff 內部自動派工：資料庫專家撈訂單 → 工程師對比 Excel → 商業分析專家出報告。<strong>你只要丟一句話、收一份成品</strong>，中間怎麼接力你不用管。</div>
+          </div>
+        </div>
+
+      </div>
+      <div class="carousel-nav">
+        <button class="carousel-prev" aria-label="上一則">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M8 2L4 6L8 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="carousel-dots">
+          <button class="carousel-dot active" data-idx="0"></button>
+          <button class="carousel-dot" data-idx="1"></button>
+          <button class="carousel-dot" data-idx="2"></button>
+          <button class="carousel-dot" data-idx="3"></button>
+          <button class="carousel-dot" data-idx="4"></button>
+        </div>
+        <button class="carousel-next" aria-label="下一則">
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4 2L8 6L4 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section id="how">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-num">02 &nbsp;快速開始</div>
+        <h2 class="section-title">只需要 Docker。<br/>用容器隔離運行，獨立又乾淨。</h2>
+        <p class="section-desc">會跑 Docker，你就會跑 CoStaff。從 0 到能交辦工作給 AI 員工，三個指令、約 5 分鐘。</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-name">安裝 CLI</div>
+          <div class="step-text"><code>pip install costaff</code> 一行裝好。前置只需要 Python 3.10+ 和 Docker，兩個都免費，多數人開發機已經有。</div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-name">執行 <code>costaff onboard</code></div>
+          <div class="step-text">互動式問你幾個問題：要用哪個 AI 模型（Gemini / Claude / 自架）？要接哪個通訊軟體？貼上對應的 Bot Token 或 API 憑證。答完直接寫進 <code>.env</code>，不用手動編設定檔。</div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-name">執行 <code>costaff start</code></div>
+          <div class="step-text">一個指令把所有容器叫起來：CoStaff Agent、MCP Server、你選的通訊軟體通道。在通訊軟體裡交辦第一個任務，AI 員工就動手做給你看 — 全程在你自己的機器上跑。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLI -->
+  <section id="cli">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-num">03 &nbsp;管理指令</div>
+        <h2 class="section-title">透過 CoStaff CLI，<br/>快速啟動、停止、查詢服務狀態。</h2>
+        <p class="section-desc">指令命名直觀、用法一致 — 看到指令就知道要做什麼，不用查文件就能上手。</p>
+      </div>
+      <div class="cli-grid">
+        <div class="terminal">
+          <div class="terminal-bar"><div class="dot dot-r"></div><div class="dot dot-y"></div><div class="dot dot-g"></div></div>
+          <div class="terminal-body">
+            <div class="line"><span class="prompt">$</span><span class="cmd">pip install costaff</span></div>
+            <div class="line out ok">✔ costaff 安裝完成</div>
+            <div class="line" style="margin-top:12px"><span class="prompt">$</span><span class="cmd">costaff onboard</span></div>
+            <div class="line out">? 要用哪個 AI 模型？ Gemini 2.5 Flash</div>
+            <div class="line out">? Telegram bot token？ ••••••••</div>
+            <div class="line out ok">✔ 設定完成，已寫入 .env</div>
+            <div class="line" style="margin-top:12px"><span class="prompt">$</span><span class="cmd">costaff start</span></div>
+            <div class="line out ok">✔ AI Agent 已啟動</div>
+            <div class="line out ok">✔ Telegram Bot 上線</div>
+            <div class="line out ok">✔ 儀表板就緒</div>
+            <div class="line" style="margin-top:12px"><span class="prompt">$</span><span class="cmd">costaff dashboard</span></div>
+            <div class="line out">正在開啟 http://localhost:18080 ...</div>
+          </div>
+        </div>
+        <div class="cli-desc">
+          <p>所有事情都可以用終端機指令管理，也可以開啟網頁儀表板，用滑鼠操作。</p>
+          <table class="cmd-table">
+            <tr><td>costaff onboard</td><td>互動式首次設定</td></tr>
+            <tr><td>costaff start</td><td>全部啟動</td></tr>
+            <tr><td>costaff stop</td><td>全部停止</td></tr>
+            <tr><td>costaff status</td><td>查看目前狀態</td></tr>
+            <tr><td>costaff logs</td><td>查看即時日誌</td></tr>
+            <tr><td>costaff dashboard</td><td>開啟網頁儀表板</td></tr>
+            <tr><td>costaff database backup</td><td>備份你的資料</td></tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHANNELS -->
+  <section id="channels">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-num">04 &nbsp;支援的通訊軟體</div>
+        <h2 class="section-title">在你日常的通訊軟體裡，<br/>你的 AI 員工已經就位。</h2>
+        <p class="section-desc">交辦工作、收到 PDF、查資料、回報進度 — 全部都在你已經在用的對話框裡完成。</p>
+      </div>
+      <div class="channel-grid">
+        <div class="channel-card">
+          <svg class="channel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--ink-2)"><path stroke-linecap="round" stroke-linejoin="round" d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 0 1-.923 1.785A5.969 5.969 0 0 0 6 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337Z"/></svg>
+          <div class="channel-name">網頁聊天</div>
+        </div>
+        <div class="channel-card">
+          <img class="channel-icon" src="https://cdn.simpleicons.org/telegram/26A5E4" alt="Telegram" width="32" height="32">
+          <div class="channel-name">Telegram</div>
+        </div>
+        <div class="channel-card">
+          <img class="channel-icon" src="https://cdn.simpleicons.org/discord/5865F2" alt="Discord" width="32" height="32">
+          <div class="channel-name">Discord</div>
+        </div>
+        <div class="channel-card">
+          <img class="channel-icon" src="https://cdn.simpleicons.org/line/06C755" alt="LINE" width="32" height="32">
+          <div class="channel-name">LINE</div>
+        </div>
+        <div class="channel-card">
+          <svg class="channel-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-label="Slack">
+            <path fill="#E01E5A" d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523A2.528 2.528 0 0 1 0 15.165a2.527 2.527 0 0 1 2.522-2.52h2.52v2.52zM6.313 15.165a2.527 2.527 0 0 1 2.521-2.52 2.527 2.527 0 0 1 2.521 2.52v6.313A2.528 2.528 0 0 1 8.834 24a2.528 2.528 0 0 1-2.521-2.522v-6.313z"/>
+            <path fill="#36C5F0" d="M8.834 5.042a2.528 2.528 0 0 1-2.521-2.52A2.528 2.528 0 0 1 8.834 0a2.528 2.528 0 0 1 2.521 2.522v2.52H8.834zM8.834 6.313a2.528 2.528 0 0 1 2.521 2.521 2.528 2.528 0 0 1-2.521 2.521H2.522A2.528 2.528 0 0 1 0 8.834a2.528 2.528 0 0 1 2.522-2.521h6.312z"/>
+            <path fill="#2EB67D" d="M18.956 8.834a2.528 2.528 0 0 1 2.522-2.521A2.528 2.528 0 0 1 24 8.834a2.528 2.528 0 0 1-2.522 2.521h-2.522V8.834zM17.688 8.834a2.528 2.528 0 0 1-2.523 2.521 2.527 2.527 0 0 1-2.52-2.521V2.522A2.527 2.527 0 0 1 15.165 0a2.528 2.528 0 0 1 2.523 2.522v6.312z"/>
+            <path fill="#ECB22E" d="M15.165 18.956a2.528 2.528 0 0 1 2.523 2.522A2.528 2.528 0 0 1 15.165 24a2.527 2.527 0 0 1-2.52-2.522v-2.522h2.52zM15.165 17.688a2.527 2.527 0 0 1-2.52-2.523 2.526 2.526 0 0 1 2.52-2.52h6.313A2.527 2.527 0 0 1 24 15.165a2.528 2.528 0 0 1-2.522 2.523h-6.313z"/>
+          </svg>
+          <div class="channel-name">Slack</div>
+        </div>
+        <div class="channel-card" style="border-style:dashed;opacity:0.5;">
+          <svg class="channel-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="color:var(--ink-3)"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+          <div class="channel-name" style="color:var(--ink-3);">更多即將推出</div>
+        </div>
+        <div class="channel-card disabled-link" style="border-style:dashed;" title="原始碼將於正式上線後公開">
+          <svg class="channel-icon" viewBox="0 0 24 24" fill="currentColor" style="color:var(--ink-3)"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          <div class="channel-name">歡迎貢獻通訊軟體</div>
+          <div class="channel-name" style="font-size:11px;margin-top:-4px;font-weight:400;">上線後公開</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PLANS -->
+  <section id="plans">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-num">05 &nbsp;方案</div>
+        <h2 class="section-title">CoStaff 是開源 AI 員工平台</h2>
+        <p class="section-desc">個人試用免費，如有商用需求，歡迎填寫表單。<br/>CoStaff 原始碼公開、可自架、可改、可貢獻。個人使用免費，<strong>團隊使用、商業用途</strong>，請聯繫了解更多。</p>
+      </div>
+      <div class="plans-grid">
+        <div class="plan-card">
+          <div class="plan-header">
+            <div class="plan-name">開源版 (OSS)</div>
+            <div class="plan-tagline">適合個人使用</div>
+          </div>
+          <div class="plan-body">
+            <div class="plan-limit-title">試用額度</div>
+            <ul class="plan-limits">
+              <li>有限度的 Agent</li>
+              <li>有限度的使用者</li>
+              <li>有限度的 Skill</li>
+              <li>對話次數無限制</li>
+            </ul>
+            <a class="plan-cta" href="https://forms.gle/9UVdi527sYUBuqcm6" target="_blank" rel="noopener">搶先預約</a>
+            <div class="plan-note">原始碼將於正式上線後公開於 GitHub，歡迎屆時 PR / Issue 貢獻。</div>
+          </div>
+        </div>
+        <div class="plan-card featured">
+          <div class="plan-header">
+            <div class="plan-name">進階方案</div>
+            <div class="plan-tagline">Starter · Pro · Max · Enterprise</div>
+          </div>
+          <div class="plan-body">
+            <div class="plan-limit-title">OSS 全部功能，加上</div>
+            <ul class="plan-limits">
+              <li>多 Agent、多使用者、更多 Skill 額度</li>
+              <li>訂閱期間內無限更新與升級</li>
+              <li>適合團隊與商業環境使用</li>
+              <li>依使用規模彈性計價</li>
+            </ul>
+            <a class="plan-cta primary" href="mailto:simonliuyuwei@gmail.com?subject=CoStaff%20%E9%80%B2%E9%9A%8E%E6%96%B9%E6%A1%88%E8%A9%A2%E5%95%8F">聯繫了解方案</a>
+            <div class="plan-note" style="color:#5a5855;border-color:#2a2a28;">
+              社群支援：GitHub Issues / Discussions。<br/>
+              告訴我你的使用情境（預計幾位使用者、幾台機器、用途），會依照需求推薦合適的方案。
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARTNERS -->
+  <section class="partners-strip" id="partners">
+    <div class="partners-label">合作社群 · Partner Community</div>
+    <div class="partners-row">
+      <a href="https://twinkleai.tw/" target="_blank" rel="noopener" aria-label="Twinkle AI">
+        <img src="images/twinkle-title-1920x.png" alt="Twinkle AI" loading="lazy" />
+      </a>
+    </div>
+  </section>
+
+  <!-- PRIVACY -->
+  <section id="privacy">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-num">06 &nbsp;你的資料</div>
+        <h2 class="section-title">跑在你的機器上，<br/>不是我們的。</h2>
+        <p class="section-desc">大多數 AI 工具把你的對話存在它們的伺服器，還強迫你用他們指定的模型。CoStaff 不會 — 你的資料 100% 在你的機器，要不要連 AI 推論都離線，你自己決定。</p>
+      </div>
+      <div class="privacy-grid">
+        <div class="privacy-item">
+          <div class="privacy-item-title">資料只在你的機器上</div>
+          <div class="privacy-item-text">對話、提醒、任務、檔案，全部存在你自己機器的資料庫，任何情況下都不會同步到雲端。我們也碰不到。</div>
+        </div>
+        <div class="privacy-item">
+          <div class="privacy-item-title">AI 推論可以完全離線（可選）</div>
+          <div class="privacy-item-text">用 Gemini / Claude / OpenAI：prompt 會送到該家 API，但對話歷史仍只存在你本機。<br/><strong>想要 100% air-gapped？接 Ollama / vLLM / LM Studio 等本機模型，連 AI 推論都不出你的網路。</strong>選擇權在你手上。</div>
+        </div>
+        <div class="privacy-item">
+          <div class="privacy-item-title">程式碼完全公開</div>
+          <div class="privacy-item-text">正式上線後完整原始碼將公開在 GitHub，CoStaff 處理你資料的每個步驟，你都看得到。</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-inner">
+      <div class="footer-logo">Co<span>Staff</span></div>
+      <div class="footer-text">© 2026 CoStaffAI</div>
+      <div class="footer-links">
+        <span class="disabled-link" title="原始碼將於正式上線後公開">GitHub（上線後公開）</span>
+        <a href="https://forms.gle/9UVdi527sYUBuqcm6" target="_blank" rel="noopener">搶先預約</a>
+        <a href="mailto:simonliuyuwei@gmail.com">聯絡我們</a>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3/dist/ScrollTrigger.min.js"></script>
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // === Problems carousel ===
+    (function () {
+      const rows    = document.querySelectorAll('.problem-row');
+      const dots    = document.querySelectorAll('.carousel-dot');
+      const counter = document.getElementById('prob-current');
+      let current = 0;
+      let timer;
+
+      function goTo(n, dir) {
+        if (n === current) return;
+        const prev = current;
+        current = (n + rows.length) % rows.length;
+        dots[prev].classList.remove('active');
+        dots[current].classList.add('active');
+        counter.textContent = String(current + 1).padStart(2, '0');
+        gsap.to(rows[prev], {
+          opacity: 0, y: dir >= 0 ? -10 : 10, duration: 0.25, ease: 'power2.in',
+          onComplete() {
+            rows[prev].style.display = 'none';
+            rows[current].style.display = 'grid';
+            gsap.fromTo(rows[current],
+              { opacity: 0, y: dir >= 0 ? 10 : -10 },
+              { opacity: 1, y: 0,  duration: 0.35, ease: 'power2.out' }
+            );
+          }
+        });
+      }
+
+      // Show first row on init
+      rows[0].style.display = 'grid';
+      gsap.set(rows[0], { opacity: 1, y: 0 });
+
+      function startAuto() { timer = setInterval(() => goTo((current + 1) % rows.length, 1), 3500); }
+      function stopAuto()  { clearInterval(timer); }
+
+      dots.forEach((dot, i) => dot.addEventListener('click', () => {
+        stopAuto(); goTo(i, i > current ? 1 : -1); startAuto();
+      }));
+
+      document.querySelector('.carousel-prev').addEventListener('click', () => {
+        stopAuto(); goTo(current - 1, -1); startAuto();
+      });
+      document.querySelector('.carousel-next').addEventListener('click', () => {
+        stopAuto(); goTo(current + 1, 1); startAuto();
+      });
+
+      const section = document.getElementById('problems');
+      section.addEventListener('mouseenter', stopAuto);
+      section.addEventListener('mouseleave', startAuto);
+
+      startAuto();
+    })();
+
+    // === GSAP animations ===
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+
+      // Hero entrance
+      gsap.timeline({ delay: 0.1 })
+        .from('.hero-label',   { opacity: 0, y: 20, duration: 0.6, ease: 'power2.out' })
+        .from('.hero-title',   { opacity: 0, y: 32, duration: 0.8, ease: 'power2.out' }, '-=0.3')
+        .from('.hero-sub',     { opacity: 0, y: 20, duration: 0.6, ease: 'power2.out' }, '-=0.4')
+        .from('.hero-desc',    { opacity: 0, y: 20, duration: 0.6, ease: 'power2.out' }, '-=0.3')
+        .from('.hero-actions', { opacity: 0, y: 16, duration: 0.5, ease: 'power2.out' }, '-=0.3')
+        .from('.hero-scroll',  { opacity: 0, duration: 0.5 }, '-=0.1');
+
+      // Nav darken past hero
+      ScrollTrigger.create({
+        trigger: '.hero', start: 'bottom top',
+        onEnter:     () => gsap.to('nav', { background: 'rgba(250,249,247,0.97)', duration: 0.3 }),
+        onLeaveBack: () => gsap.to('nav', { background: 'rgba(250,249,247,0.88)', duration: 0.3 }),
+      });
+
+      // Scroll-snap sections: ScrollTrigger won't fire (page jumps, never passes 'top bottom').
+      // Use IntersectionObserver instead so animations trigger when section snaps into view.
+      function onceVisible(selector, fn, threshold) {
+        threshold = threshold || 0.4;
+        const el = typeof selector === 'string' ? document.querySelector(selector) : selector;
+        if (!el) return;
+        const obs = new IntersectionObserver(entries => {
+          entries.forEach(e => { if (e.isIntersecting) { fn(); obs.unobserve(el); } });
+        }, { threshold: threshold });
+        obs.observe(el);
+      }
+
+      // Section headers
+      document.querySelectorAll('.section-header').forEach(el => {
+        onceVisible(el.closest('section') || el, () =>
+          gsap.from(el, { opacity: 0, y: 24, duration: 0.6, ease: 'power2.out' })
+        );
+      });
+
+      // Problems
+      onceVisible('#problems', () => {
+        gsap.from(['#problems .carousel-counter', '#problems .carousel-nav'],
+          { opacity: 0, duration: 0.5, stagger: 0.1 });
+      });
+
+      // Steps
+      onceVisible('#how', () => {
+        gsap.from('.step', { opacity: 0, y: 24, duration: 0.55, ease: 'power2.out', stagger: 0.15 });
+      });
+
+      // CLI
+      onceVisible('#cli', () => {
+        gsap.from('.terminal', { opacity: 0, x: -28, duration: 0.65, ease: 'power2.out' });
+        gsap.from('.cli-desc', { opacity: 0, x: 28,  duration: 0.65, ease: 'power2.out' });
+      });
+
+      // Plan cards
+      onceVisible('#plans', () => {
+        gsap.from('.plan-card', { opacity: 0, y: 24, duration: 0.55, ease: 'power2.out', stagger: 0.15 });
+      });
+
+      // Privacy items
+      onceVisible('#privacy', () => {
+        gsap.from('.privacy-item', { opacity: 0, y: 20, duration: 0.45, ease: 'power2.out', stagger: 0.11 });
+      });
+
+    }
+
+    // === 右側捲動進度指示器 ===
+    (function () {
+      const items   = document.querySelectorAll('.si-item');
+      const targets = [...items].map(b => {
+        const sel = b.dataset.target;
+        return sel.startsWith('#') ? document.getElementById(sel.slice(1))
+                                   : document.querySelector(sel);
+      });
+
+      items.forEach((item, i) => {
+        item.addEventListener('click', () => targets[i]?.scrollIntoView({ behavior: 'smooth' }));
+      });
+
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            const idx = targets.indexOf(e.target);
+            if (idx >= 0) {
+              items.forEach(it => it.classList.remove('active'));
+              items[idx].classList.add('active');
+            }
+          }
+        });
+      }, { threshold: 0.4 });
+
+      targets.forEach(t => { if (t) obs.observe(t); });
+    })();
+  </script>
+
+</body>
+</html>

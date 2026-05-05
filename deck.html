@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CoStaff — 簡報</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #faf9f7;
+      --bg-alt: #f3f2ef;
+      --ink: #1a1917;
+      --ink-2: #5a5855;
+      --ink-3: #9a9895;
+      --border: #e4e2de;
+      --accent: #2d3a2e;
+      --accent-2: #4a6741;
+      --dark: #141412;
+      --dark-2: #1e1e1b;
+      --dark-border: #2a2a28;
+      --serif: 'Noto Serif TC', Georgia, serif;
+      --sans: 'Noto Sans TC', system-ui, sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+    }
+    html, body { width: 100%; height: 100%; overflow: hidden; background: var(--ink); }
+    body { font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+
+    /* ── Deck & Slides ── */
+    #deck { position: fixed; inset: 0; }
+    .slide {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      padding: 64px;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.55s ease, transform 0.55s ease;
+      transform: translateY(12px);
+    }
+    .slide.active {
+      opacity: 1; pointer-events: all;
+      transform: translateY(0);
+    }
+    .slide.exit {
+      opacity: 0; transform: translateY(-12px);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+
+    /* slide backgrounds */
+    .slide-light  { background: var(--bg); }
+    .slide-alt    { background: var(--bg-alt); }
+    .slide-dark   { background: var(--dark); }
+    .slide-dark2  { background: var(--dark-2); }
+
+    /* ── Counter ── */
+    .deck-counter {
+      position: fixed; top: 32px; right: 40px; z-index: 50;
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em;
+      color: var(--ink-3); transition: color 0.3s;
+    }
+    .deck-counter.on-dark { color: #3a3a38; }
+
+    /* ── Dots ── */
+    .deck-dots {
+      position: fixed; bottom: 32px; left: 50%; transform: translateX(-50%);
+      z-index: 50; display: flex; gap: 8px; align-items: center;
+    }
+    .dot {
+      width: 5px; height: 5px; border-radius: 50%;
+      background: var(--border); border: none; padding: 0; cursor: pointer;
+      transition: all 0.25s ease;
+    }
+    .dot.active { background: var(--ink-2); transform: scale(1.6); }
+    .dot.on-dark { background: #3a3a38; }
+    .dot.on-dark.active { background: #8a8885; }
+
+    /* ── Arrow buttons ── */
+    .deck-arrows {
+      position: fixed; bottom: 24px; right: 40px; z-index: 50;
+      display: flex; gap: 8px;
+    }
+    .arr-btn {
+      width: 36px; height: 36px; border-radius: 4px;
+      border: 1px solid var(--border); background: transparent;
+      color: var(--ink-3); cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.2s; font-size: 14px;
+    }
+    .arr-btn:hover { border-color: var(--ink-3); color: var(--ink); }
+    .arr-btn.on-dark { border-color: var(--dark-border); color: #3a3a38; }
+    .arr-btn.on-dark:hover { border-color: #5a5855; color: #8a8885; }
+
+    /* ── Shared layout helpers ── */
+    .inner { width: 100%; max-width: 900px; }
+    .section-tag {
+      font-family: var(--mono); font-size: 10px; letter-spacing: 0.18em;
+      text-transform: uppercase; color: var(--ink-3); margin-bottom: 28px;
+      display: flex; align-items: center; gap: 14px;
+    }
+    .section-tag::after { content: ''; display: block; width: 32px; height: 1px; background: var(--border); }
+    .section-tag.dark { color: #3a3a38; }
+    .section-tag.dark::after { background: var(--dark-border); }
+
+    h1, h2 { font-family: var(--serif); font-weight: 300; }
+    .slide-title { font-size: clamp(28px, 3.8vw, 44px); line-height: 1.25; color: var(--ink); margin-bottom: 16px; }
+    .slide-desc  { font-size: 15px; color: var(--ink-2); line-height: 1.9; max-width: 520px; }
+
+    /* ── S1: Cover ── */
+    #s1 { flex-direction: column; text-align: center; }
+    .cover-label {
+      font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--ink-3); margin-bottom: 40px;
+      display: flex; align-items: center; justify-content: center; gap: 16px;
+    }
+    .cover-label::before, .cover-label::after {
+      content: ''; display: block; width: 40px; height: 1px; background: var(--border);
+    }
+    .cover-logo {
+      font-family: var(--serif); font-size: clamp(56px, 9vw, 96px);
+      font-weight: 300; color: var(--ink); letter-spacing: -0.01em;
+      margin-bottom: 4px; line-height: 1;
+    }
+    .cover-logo span { color: var(--accent-2); }
+    .cover-en {
+      font-family: var(--serif); font-weight: 300;
+      font-size: clamp(16px, 2.2vw, 22px); color: var(--ink-3);
+      letter-spacing: 0.06em; margin-bottom: 36px;
+    }
+    .cover-zh {
+      font-size: 15px; color: var(--ink-2); line-height: 1.9;
+      max-width: 440px; margin: 0 auto;
+    }
+    .cover-line {
+      width: 1px; height: 60px;
+      background: linear-gradient(to bottom, var(--border), transparent);
+      margin: 40px auto 0;
+    }
+
+    /* ── S2: Big Question (dark) ── */
+    #s2 .big-q {
+      font-family: var(--serif); font-weight: 300;
+      font-size: clamp(36px, 5.5vw, 64px);
+      color: #e2e0d8; line-height: 1.2; margin-bottom: 36px;
+    }
+    #s2 .big-q em { color: var(--accent-2); font-style: normal; }
+    #s2 .q-sub { font-size: 14px; color: #5a5855; line-height: 2; max-width: 480px; }
+    #s2 .q-sub span { display: block; }
+
+    /* ── S3: Pain Points ── */
+    .pain-list { margin-top: 32px; border: 1px solid var(--border); }
+    .pain-row {
+      display: grid; grid-template-columns: 1fr 1fr;
+      border-bottom: 1px solid var(--border);
+    }
+    .pain-row:last-child { border-bottom: none; }
+    .pain-cell { padding: 18px 24px; }
+    .pain-cell.before { border-right: 1px solid var(--border); background: var(--bg-alt); }
+    .pain-cell.after  { background: var(--bg); }
+    .cell-label {
+      font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .cell-label.pain  { color: #b0826a; }
+    .cell-label.solve { color: var(--accent-2); }
+    .cell-text { font-size: 12px; color: var(--ink-2); line-height: 1.8; }
+    .cell-text strong { color: var(--ink); font-weight: 500; }
+
+    /* ── S4: Insight (dark) ── */
+    #s4 { text-align: center; flex-direction: column; gap: 24px; }
+    .insight-mark {
+      font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--dark-border);
+    }
+    .insight-top {
+      font-family: var(--serif); font-weight: 300;
+      font-size: clamp(18px, 2.5vw, 26px); color: #5a5855;
+    }
+    .insight-main {
+      font-family: var(--serif); font-weight: 300;
+      font-size: clamp(40px, 6vw, 72px); color: #e2e0d8;
+      line-height: 1.15;
+    }
+    .insight-main em { color: var(--accent-2); font-style: normal; }
+    .insight-dash { color: var(--dark-border); font-size: 24px; }
+
+    /* ── S5: What is CoStaff ── */
+    .pillars { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; margin-top: 40px; border: 1px solid var(--border); }
+    .pillar { padding: 32px 28px; }
+    .pillar + .pillar { border-left: 1px solid var(--border); }
+    .pillar-num {
+      font-family: var(--serif); font-size: 36px; font-weight: 300;
+      color: var(--border); margin-bottom: 16px; line-height: 1;
+    }
+    .pillar-title { font-size: 15px; font-weight: 500; color: var(--ink); margin-bottom: 10px; }
+    .pillar-text  { font-size: 13px; color: var(--ink-2); line-height: 1.85; }
+
+    /* ── S6: How to Start ── */
+    .steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 48px; margin-top: 48px; }
+    .step-num {
+      font-family: var(--serif); font-size: 52px; font-weight: 300;
+      color: var(--border); margin-bottom: 16px; line-height: 1;
+    }
+    .step-name { font-size: 15px; font-weight: 500; color: var(--ink); margin-bottom: 10px; }
+    .step-text { font-size: 13px; color: var(--ink-2); line-height: 1.85; }
+    .step-code {
+      margin-top: 12px; font-family: var(--mono); font-size: 12px;
+      color: var(--accent-2); background: var(--bg-alt);
+      padding: 8px 12px; border-radius: 4px; border: 1px solid var(--border);
+      display: inline-block;
+    }
+
+    /* ── S7: Agents ── */
+    .agent-grid-deck { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; margin-top: 32px; }
+    .ag-card {
+      border: 1px solid var(--border); border-radius: 6px;
+      padding: 20px 18px; background: var(--bg); transition: border-color 0.2s;
+    }
+    .ag-card.custom { border-style: dashed; background: transparent; }
+    .ag-name {
+      font-family: var(--serif); font-size: 15px; font-weight: 400;
+      color: var(--ink); margin-bottom: 4px;
+    }
+    .ag-sub  { font-size: 10px; color: var(--ink-3); letter-spacing: 0.05em; margin-bottom: 14px; }
+    .ag-caps { list-style: none; display: flex; flex-direction: column; gap: 5px; }
+    .ag-caps li { font-size: 11px; color: var(--ink-2); display: flex; align-items: flex-start; gap: 6px; }
+    .ag-caps li::before {
+      content: ''; width: 3px; height: 3px; border-radius: 50%;
+      background: var(--accent-2); flex-shrink: 0; margin-top: 5px;
+    }
+    .ag-card.custom .ag-name { color: var(--ink-2); }
+    .ag-cta {
+      margin-top: 14px; font-size: 11px; color: var(--accent-2);
+      display: flex; align-items: center; gap: 5px; text-decoration: none;
+      transition: color 0.2s;
+    }
+    .ag-cta:hover { color: var(--accent); }
+
+    /* ── S8: Channels ── */
+    .channels-grid {
+      display: flex; gap: 20px; flex-wrap: wrap;
+      margin-top: 48px; justify-content: flex-start;
+    }
+    .ch-card {
+      display: flex; flex-direction: column; align-items: center; gap: 12px;
+      padding: 28px 32px; border: 1px solid var(--border); border-radius: 6px;
+      min-width: 110px; transition: border-color 0.2s;
+    }
+    .ch-card:hover { border-color: var(--accent-2); }
+    .ch-name { font-size: 13px; color: var(--ink-2); }
+    .ch-card-more { border-style: dashed; opacity: 0.45; }
+
+    /* ── S9: Architecture (dark) ── */
+    .arch-diagram { margin-top: 40px; }
+    .arch-layer {
+      display: flex; align-items: stretch; gap: 1px;
+      margin-bottom: 1px;
+    }
+    .arch-label {
+      font-family: var(--mono); font-size: 10px; letter-spacing: 0.14em;
+      text-transform: uppercase; color: #3a3a38;
+      width: 120px; display: flex; align-items: center; flex-shrink: 0;
+    }
+    .arch-boxes { display: flex; gap: 8px; flex-wrap: wrap; }
+    .arch-box {
+      padding: 10px 16px; border: 1px solid var(--dark-border);
+      border-radius: 4px; font-size: 12px; color: #8a8885;
+    }
+    .arch-box.core { border-color: var(--accent); color: #a0b89a; }
+    .arch-box.agent { border-color: #3a4a3a; }
+    .arch-arrow {
+      width: 120px; display: flex; align-items: center;
+      padding-left: 4px; padding-top: 4px; padding-bottom: 4px;
+    }
+    .arch-arrow-line {
+      width: 1px; height: 100%; background: var(--dark-border); margin: 0 auto;
+      position: relative;
+    }
+    .arch-note {
+      font-size: 12px; color: #4a4845; line-height: 1.85;
+      max-width: 500px; margin-top: 32px;
+    }
+    .arch-note span { color: #6a6865; }
+
+    /* ── S10: Plans ── */
+    .plans-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 40px; }
+    .plan-box { border: 1px solid var(--border); border-radius: 6px; overflow: hidden; }
+    .plan-box.featured { border-color: var(--accent-2); }
+    .plan-head {
+      padding: 20px 24px 16px; border-bottom: 1px solid var(--border);
+      background: var(--bg-alt);
+    }
+    .plan-box.featured .plan-head { background: var(--accent); }
+    .plan-box-name {
+      font-family: var(--serif); font-size: 20px; font-weight: 400;
+      color: var(--ink); margin-bottom: 4px;
+    }
+    .plan-box.featured .plan-box-name { color: #fff; }
+    .plan-tagline { font-size: 12px; color: var(--ink-3); }
+    .plan-box.featured .plan-tagline { color: rgba(255,255,255,0.55); }
+    .plan-body { padding: 20px 24px; }
+    .plan-section-label {
+      font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--ink-3); margin-bottom: 12px;
+    }
+    .plan-limits { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+    .plan-limits li {
+      font-size: 13px; color: var(--ink-2);
+      display: flex; align-items: center; gap: 8px;
+    }
+    .plan-limits li::before {
+      content: ''; width: 4px; height: 4px; border-radius: 50%;
+      background: var(--accent-2); flex-shrink: 0;
+    }
+    .plan-num { font-family: var(--serif); font-size: 36px; font-weight: 300; color: var(--accent-2); margin-right: 6px; }
+
+    /* ── S11: Open Source ── */
+    .oss-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 40px; }
+    .oss-item-title { font-size: 15px; font-weight: 500; color: var(--ink); margin-bottom: 8px; }
+    .oss-item-text  { font-size: 13px; color: var(--ink-2); line-height: 1.85; }
+    .license-badge {
+      display: inline-block; font-family: var(--mono); font-size: 12px;
+      padding: 6px 14px; border: 1px solid var(--border); border-radius: 3px;
+      color: var(--ink-2); margin-top: 12px;
+    }
+
+    /* ── S12: CTA (dark) ── */
+    #s12 { flex-direction: column; text-align: center; gap: 0; }
+    .cta-pre {
+      font-family: var(--mono); font-size: 10px; letter-spacing: 0.2em;
+      text-transform: uppercase; color: var(--dark-border); margin-bottom: 32px;
+    }
+    .cta-main {
+      font-family: var(--serif); font-weight: 300;
+      font-size: clamp(32px, 4.5vw, 54px);
+      color: #e2e0d8; line-height: 1.25; margin-bottom: 16px;
+    }
+    .cta-main em { color: var(--accent-2); font-style: normal; }
+    .cta-sub { font-size: 14px; color: #5a5855; margin-bottom: 48px; }
+    .cta-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .cta-btn {
+      padding: 12px 28px; border-radius: 4px; font-size: 13px;
+      text-decoration: none; transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px;
+    }
+    .cta-btn-gh { background: var(--accent); color: #e2e0d8; border: 1px solid var(--accent); }
+    .cta-btn-gh:hover { background: var(--accent-2); border-color: var(--accent-2); }
+    .cta-btn-mail { background: transparent; color: #8a8885; border: 1px solid var(--dark-border); }
+    .cta-btn-mail:hover { border-color: #5a5855; color: #e2e0d8; }
+    .cta-footer {
+      margin-top: 64px; font-size: 11px; color: var(--dark-border);
+      font-family: var(--mono); letter-spacing: 0.1em;
+    }
+  </style>
+</head>
+<body>
+
+<div id="deck">
+
+  <!-- S1: Cover -->
+  <div class="slide slide-light active" id="s1" data-theme="light">
+    <div class="cover-label">CoStaff &nbsp;·&nbsp; 2026</div>
+    <div class="cover-logo">Co<span>Staff</span></div>
+    <div class="cover-en">Call Your AI Staff to Work</div>
+    <p class="cover-zh">
+      幫你做事的 AI 數位員工。<br/>
+      住在你的 Telegram、記得你是誰、<br/>
+      跑在你自己的機器上。
+    </p>
+    <div class="cover-line"></div>
+  </div>
+
+  <!-- S2: Big Question (dark) -->
+  <div class="slide slide-dark" id="s2" data-theme="dark">
+    <div class="inner">
+      <div class="section-tag dark">01 &nbsp; 問題</div>
+      <div class="big-q">
+        你每天<br/>
+        做了幾件<br/>
+        <em>重複的事？</em>
+      </div>
+      <p class="q-sub">
+        <span>每次開 AI，都要重新介紹自己。</span>
+        <span>提醒設了，還是在做事的時候忘了看。</span>
+        <span>報告要做，資料散落在各個地方。</span>
+      </p>
+    </div>
+  </div>
+
+  <!-- S3: Pain Points -->
+  <div class="slide slide-alt" id="s3" data-theme="light">
+    <div class="inner">
+      <div class="section-tag">01 &nbsp; 痛點</div>
+      <h2 class="slide-title">你是不是也有這些困擾？</h2>
+      <div class="pain-list">
+        <div class="pain-row">
+          <div class="pain-cell before">
+            <div class="cell-label pain">困擾</div>
+            <p class="cell-text">每次開 AI，都要<strong>重新介紹自己</strong>——叫什麼、做什麼、習慣是什麼</p>
+          </div>
+          <div class="pain-cell after">
+            <div class="cell-label solve">CoStaff 的做法</div>
+            <p class="cell-text">它記得你的名字、工作、習慣，每次對話從上次結束的地方<strong>繼續</strong></p>
+          </div>
+        </div>
+        <div class="pain-row">
+          <div class="pain-cell before">
+            <div class="cell-label pain">困擾</div>
+            <p class="cell-text">行事曆提醒設了，忙的時候還是<strong>忘記看</strong></p>
+          </div>
+          <div class="pain-cell after">
+            <div class="cell-label solve">CoStaff 的做法</div>
+            <p class="cell-text">在你已經在用的 Telegram 裡<strong>直接發訊息提醒你</strong>，不需要開新的 App</p>
+          </div>
+        </div>
+        <div class="pain-row">
+          <div class="pain-cell before">
+            <div class="cell-label pain">困擾</div>
+            <p class="cell-text">每天<strong>重複做同樣的報告</strong>、搜資料、整理摘要，感覺在浪費時間</p>
+          </div>
+          <div class="pain-cell after">
+            <div class="cell-label solve">CoStaff 的做法</div>
+            <p class="cell-text">設定一次，自動排程執行，結果<strong>直接推送給你</strong>，你睡覺它在做事</p>
+          </div>
+        </div>
+        <div class="pain-row">
+          <div class="pain-cell before">
+            <div class="cell-label pain">困擾</div>
+            <p class="cell-text">用 AI 工具要<strong>建帳號、上傳資料</strong>到別人的伺服器，不知道對話去哪了</p>
+          </div>
+          <div class="pain-cell after">
+            <div class="cell-label solve">CoStaff 的做法</div>
+            <p class="cell-text">跑在<strong>你自己的機器</strong>上，沒有帳號、沒有雲端同步，對話永遠在你手上</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S4: Insight (dark) -->
+  <div class="slide slide-dark" id="s4" data-theme="dark">
+    <div style="text-align:center;">
+      <div class="insight-mark">CoStaff &nbsp;/&nbsp; 核心理念</div>
+      <div style="height:40px;"></div>
+      <div class="insight-top">問題不是 AI 不夠強</div>
+      <div class="insight-dash">—</div>
+      <div class="insight-main">
+        是 AI 不夠<em>認識你</em>
+      </div>
+      <div style="height:32px;"></div>
+      <div class="insight-top" style="color:#3a3a38;">CoStaff 讓 AI 成為真正屬於你的員工</div>
+    </div>
+  </div>
+
+  <!-- S5: What is CoStaff -->
+  <div class="slide slide-light" id="s5" data-theme="light">
+    <div class="inner">
+      <div class="section-tag">02 &nbsp; 關於</div>
+      <h2 class="slide-title">住在你機器上的 AI 員工</h2>
+      <p class="slide-desc">自架部署、記憶你的工作習慣、透過你已有的通訊 App 與你對話。</p>
+      <div class="pillars">
+        <div class="pillar">
+          <div class="pillar-num">01</div>
+          <div class="pillar-title">記得你</div>
+          <p class="pillar-text">姓名、工作、習慣、偏好——不用每次重新說明。長期記憶讓每次對話都更有效率。</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">02</div>
+          <div class="pillar-title">住在你的 App 裡</div>
+          <p class="pillar-text">Telegram、Discord、LINE、WebChat——它出現在你已經在用的地方，不需要養成新習慣。</p>
+        </div>
+        <div class="pillar">
+          <div class="pillar-num">03</div>
+          <div class="pillar-title">跑在你的機器</div>
+          <p class="pillar-text">自架於 Mac Mini 或任何 Linux 主機。資料從不外流，你完全掌控。開源、透明。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S6: How to Start -->
+  <div class="slide slide-alt" id="s6" data-theme="light">
+    <div class="inner">
+      <div class="section-tag">03 &nbsp; 如何開始</div>
+      <h2 class="slide-title">三步上手，第一天就能用</h2>
+      <div class="steps">
+        <div>
+          <div class="step-num">01</div>
+          <div class="step-name">安裝 CLI</div>
+          <p class="step-text">一行指令完成安裝。只需要 Python 和 Docker——這兩樣大多數開發者都已經有了。</p>
+          <div class="step-code">pip install costaff</div>
+        </div>
+        <div>
+          <div class="step-num">02</div>
+          <div class="step-name">回答幾個問題</div>
+          <p class="step-text">互動式 Onboard 精靈帶你選好 AI 模型、設定通訊管道。不用手改設定檔。</p>
+          <div class="step-code">costaff onboard</div>
+        </div>
+        <div>
+          <div class="step-num">03</div>
+          <div class="step-name">開始對話</div>
+          <p class="step-text">一個指令啟動所有服務。打開 Telegram，發一句話，你的 AI 員工就在線了。</p>
+          <div class="step-code">costaff start</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S7: Agents -->
+  <div class="slide slide-light" id="s7" data-theme="light">
+    <div class="inner">
+      <div class="section-tag">04 &nbsp; AI 員工</div>
+      <h2 class="slide-title">你的 AI 員工清單</h2>
+      <p class="slide-desc">每個 Agent 都是一位專家，按需部署，隨時切換模型。</p>
+      <div class="agent-grid-deck">
+        <div class="ag-card">
+          <div class="ag-name">商業分析</div>
+          <div class="ag-sub">資料 · 報表 · 洞察</div>
+          <ul class="ag-caps">
+            <li>CSV / Excel 資料處理</li>
+            <li>圖表生成</li>
+            <li>PDF 報告輸出</li>
+            <li>自然語言追問</li>
+          </ul>
+        </div>
+        <div class="ag-card">
+          <div class="ag-name">程式開發</div>
+          <div class="ag-sub">除錯 · 審查 · 建構</div>
+          <ul class="ag-caps">
+            <li>程式碼審查與說明</li>
+            <li>除錯與修復</li>
+            <li>範本生成</li>
+            <li>工作空間讀寫</li>
+          </ul>
+        </div>
+        <div class="ag-card">
+          <div class="ag-name">資料庫</div>
+          <div class="ag-sub">查詢 · 探索 · 摘要</div>
+          <ul class="ag-caps">
+            <li>自然語言轉 SQL</li>
+            <li>PostgreSQL 整合</li>
+            <li>查詢結果摘要</li>
+            <li>資料表結構探索</li>
+          </ul>
+        </div>
+        <div class="ag-card custom">
+          <div class="ag-name">你的 Agent</div>
+          <div class="ag-sub">任何領域 · 任何流程</div>
+          <ul class="ag-caps">
+            <li>完整 MCP 工具存取</li>
+            <li>A2A 協定相容</li>
+            <li>自帶模型</li>
+            <li>與內建 Agent 並存</li>
+          </ul>
+          <a class="ag-cta" href="https://github.com/costaff-ai/costaff-agent-template" target="_blank">
+            使用 Template 自行開發 →
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S8: Channels -->
+  <div class="slide slide-alt" id="s8" data-theme="light">
+    <div class="inner">
+      <div class="section-tag">05 &nbsp; 通訊管道</div>
+      <h2 class="slide-title">它來找你，<br/>不是你去找它。</h2>
+      <p class="slide-desc">連接你已經在用的 App，不需要安裝新的東西，不需要養成新習慣。</p>
+      <div class="channels-grid">
+        <div class="ch-card">
+          <img src="https://cdn.simpleicons.org/telegram/26A5E4" width="32" height="32" alt="Telegram">
+          <div class="ch-name">Telegram</div>
+        </div>
+        <div class="ch-card">
+          <img src="https://cdn.simpleicons.org/discord/5865F2" width="32" height="32" alt="Discord">
+          <div class="ch-name">Discord</div>
+        </div>
+        <div class="ch-card">
+          <img src="https://cdn.simpleicons.org/line/06C755" width="32" height="32" alt="LINE">
+          <div class="ch-name">LINE</div>
+        </div>
+        <div class="ch-card">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#5a5855" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 20.25c4.97 0 9-3.694 9-8.25s-4.03-8.25-9-8.25S3 7.444 3 12c0 2.104.859 4.023 2.273 5.48.432.447.74 1.04.586 1.641a4.483 4.483 0 0 1-.923 1.785A5.969 5.969 0 0 0 6 21c1.282 0 2.47-.402 3.445-1.087.81.22 1.668.337 2.555.337Z"/></svg>
+          <div class="ch-name">WebChat</div>
+        </div>
+        <div class="ch-card ch-card-more">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#9a9895" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+          <div class="ch-name" style="color:var(--ink-3)">更多陸續</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S9: Architecture (dark) -->
+  <div class="slide slide-dark" id="s9" data-theme="dark">
+    <div class="inner">
+      <div class="section-tag dark">06 &nbsp; 技術架構</div>
+      <h2 class="slide-title" style="color:#e2e0d8;">模組化、可擴充</h2>
+      <div class="arch-diagram">
+        <div class="arch-layer" style="margin-bottom:20px;">
+          <div class="arch-label">通訊層</div>
+          <div class="arch-boxes">
+            <div class="arch-box">Telegram</div>
+            <div class="arch-box">Discord</div>
+            <div class="arch-box">LINE</div>
+            <div class="arch-box">WebChat</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:0;margin-bottom:20px;align-items:center;">
+          <div style="width:120px;font-family:var(--mono);font-size:9px;color:#2a2a28;letter-spacing:0.12em;">↕ Docker Network</div>
+          <div style="flex:1;height:1px;background:var(--dark-border);"></div>
+        </div>
+        <div class="arch-layer" style="margin-bottom:20px;">
+          <div class="arch-label">核心</div>
+          <div class="arch-boxes">
+            <div class="arch-box core">Manager Agent</div>
+            <div class="arch-box core">MCP Server</div>
+            <div class="arch-box core">API Server</div>
+            <div class="arch-box core">Dashboard</div>
+            <div class="arch-box core">PostgreSQL</div>
+          </div>
+        </div>
+        <div style="display:flex;gap:0;margin-bottom:20px;align-items:center;">
+          <div style="width:120px;font-family:var(--mono);font-size:9px;color:#2a2a28;letter-spacing:0.12em;">↕ A2A Protocol</div>
+          <div style="flex:1;height:1px;background:var(--dark-border);"></div>
+        </div>
+        <div class="arch-layer">
+          <div class="arch-label">Agent 插件</div>
+          <div class="arch-boxes">
+            <div class="arch-box agent">Business Analysis</div>
+            <div class="arch-box agent">Coding</div>
+            <div class="arch-box agent">Database</div>
+            <div class="arch-box agent" style="border-style:dashed;color:#3a3a38;">Custom ...</div>
+          </div>
+        </div>
+      </div>
+      <p class="arch-note" style="margin-top:24px;">
+        <span>所有容器透過共享 Volume 存取 /app/data，Agent 之間可互相讀取產出。</span><br/>
+        <span>新增 Agent 或 Channel 只需 git clone + compose fragment，不需修改核心。</span>
+      </p>
+    </div>
+  </div>
+
+  <!-- S10: Plans -->
+  <div class="slide slide-light" id="s10" data-theme="light">
+    <div class="inner">
+      <div class="section-tag">07 &nbsp; 授權方案</div>
+      <h2 class="slide-title">從免費開始，需要再擴充</h2>
+      <p class="slide-desc">個人使用完全免費。需要商業用途或更高用量時，購買授權即可解鎖。</p>
+      <div class="plans-wrap">
+        <div class="plan-box">
+          <div class="plan-head">
+            <div class="plan-box-name">OSS</div>
+            <div class="plan-tagline">個人 / 非商業用途 · AGPL v3</div>
+          </div>
+          <div class="plan-body">
+            <div class="plan-section-label">限制</div>
+            <ul class="plan-limits">
+              <li><span class="plan-num">1</span> Agent</li>
+              <li><span class="plan-num">1</span> 使用者</li>
+              <li><span class="plan-num">10</span> Skills</li>
+              <li>無限對話次數</li>
+            </ul>
+          </div>
+        </div>
+        <div class="plan-box featured">
+          <div class="plan-head">
+            <div class="plan-box-name">Licensed</div>
+            <div class="plan-tagline">Starter · Pro · Max &nbsp;·&nbsp; 聯絡取得報價</div>
+          </div>
+          <div class="plan-body">
+            <div class="plan-section-label">在 OSS 之上，還包含</div>
+            <ul class="plan-limits">
+              <li>更多 Agent 與使用者</li>
+              <li>更多 Skill 上限</li>
+              <li>商業用途授權</li>
+              <li>授權綁定機器，安全可控</li>
+            </ul>
+            <div style="margin-top:20px;font-size:12px;color:var(--ink-3);">
+              聯絡：<a href="mailto:simonliuyuwei@gmail.com" style="color:var(--accent-2);text-decoration:none;">simonliuyuwei@gmail.com</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S11: Open Source -->
+  <div class="slide slide-alt" id="s11" data-theme="light">
+    <div class="inner">
+      <div class="section-tag">08 &nbsp; 開源</div>
+      <h2 class="slide-title">透明、可驗證、<br/>你完全掌控</h2>
+      <div class="oss-grid">
+        <div>
+          <div class="oss-item-title">AGPL v3 授權</div>
+          <p class="oss-item-text">核心程式碼完全開源。你可以自己審查所有邏輯——資料如何儲存、對話如何處理，沒有黑盒子。</p>
+          <div class="license-badge">AGPL-3.0</div>
+        </div>
+        <div>
+          <div class="oss-item-title">商業授權</div>
+          <p class="oss-item-text">需要商業用途、團隊使用、或更高上限？購買授權後可解鎖更多 Agent 和使用者，同時支持持續開發。</p>
+          <div class="license-badge">Commercial License</div>
+        </div>
+        <div>
+          <div class="oss-item-title">自架，資料不外流</div>
+          <p class="oss-item-text">所有對話、提醒、任務都儲存在你本機的 PostgreSQL。使用者 ID 在入口處匿名化，任何第三方都無法存取。</p>
+        </div>
+        <div>
+          <div class="oss-item-title">插件化生態</div>
+          <p class="oss-item-text">Agent 和 Channel 都是獨立的 git 倉庫，任何人都可以按照 Template 開發並貢獻。社群共同擴充 AI 員工清單。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- S12: CTA (dark) -->
+  <div class="slide slide-dark" id="s12" data-theme="dark">
+    <div class="cta-pre">CoStaff &nbsp;·&nbsp; 準備好了嗎</div>
+    <div class="cta-main">
+      你的 AI 員工<br/>
+      <em>隨時可以上班</em>
+    </div>
+    <div class="cta-sub">開源 · 自架 · 住在你的 Telegram</div>
+    <div class="cta-btns">
+      <a class="cta-btn cta-btn-gh" href="https://github.com/costaff-ai/costaff" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
+      <a class="cta-btn cta-btn-mail" href="mailto:simonliuyuwei@gmail.com">
+        聯絡洽談授權
+      </a>
+    </div>
+    <div class="cta-footer">costaff-ai / AGPL v3 + Commercial License · © 2026 Simon Liu</div>
+  </div>
+
+</div>
+
+<!-- UI -->
+<div class="deck-counter" id="counter">01 / 12</div>
+
+<div class="deck-dots" id="dots"></div>
+
+<div class="deck-arrows" id="arrows">
+  <button class="arr-btn" id="btn-prev">←</button>
+  <button class="arr-btn" id="btn-next">→</button>
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const counter = document.getElementById('counter');
+  const dotsEl  = document.getElementById('dots');
+  const arrowsEl = document.getElementById('arrows');
+  const btnPrev = document.getElementById('btn-prev');
+  const btnNext = document.getElementById('btn-next');
+  const total = slides.length;
+  let current = 0;
+  let animating = false;
+
+  // Build dots
+  slides.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.addEventListener('click', () => goTo(i));
+    dotsEl.appendChild(d);
+  });
+  const dots = document.querySelectorAll('.dot');
+
+  function updateUI() {
+    const isDark = slides[current].dataset.theme === 'dark';
+    counter.textContent = String(current + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
+    counter.className = 'deck-counter' + (isDark ? ' on-dark' : '');
+    dots.forEach((d, i) => {
+      d.className = 'dot' + (i === current ? ' active' : '') + (isDark ? ' on-dark' : '');
+    });
+    [btnPrev, btnNext].forEach(b => {
+      b.className = 'arr-btn' + (isDark ? ' on-dark' : '');
+    });
+  }
+
+  function goTo(idx) {
+    if (animating || idx === current || idx < 0 || idx >= total) return;
+    animating = true;
+    slides[current].classList.add('exit');
+    slides[current].classList.remove('active');
+    setTimeout(() => {
+      slides[current].classList.remove('exit');
+      current = idx;
+      slides[current].classList.add('active');
+      updateUI();
+      setTimeout(() => { animating = false; }, 560);
+    }, 350);
+  }
+
+  function next() { goTo(current + 1); }
+  function prev() { goTo(current - 1); }
+
+  btnNext.addEventListener('click', next);
+  btnPrev.addEventListener('click', prev);
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') { e.preventDefault(); next(); }
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp') { e.preventDefault(); prev(); }
+  });
+
+  // Touch swipe
+  let touchX = 0;
+  document.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; }, { passive: true });
+  document.addEventListener('touchend', e => {
+    const dx = touchX - e.changedTouches[0].clientX;
+    if (Math.abs(dx) > 50) dx > 0 ? next() : prev();
+  });
+
+  // Click anywhere (excluding buttons)
+  document.getElementById('deck').addEventListener('click', e => {
+    if (!e.target.closest('a, button')) next();
+  });
+
+  updateUI();
+</script>
+</body>
+</html>
