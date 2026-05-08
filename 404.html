@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>CoStaff — Redirecting…</title>
+<style>
+  body { font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif; background:#faf9f7; color:#1a1917; padding:80px 24px; text-align:center; }
+  h1 { font-weight:300; font-size:32px; margin-bottom:12px; }
+  p { color:#5a5855; font-size:14px; line-height:1.7; }
+  a { color:#4a6741; }
+</style>
+<script>
+  // Map old URLs (.html, .zh.html) to new clean paths
+  (function () {
+    var map = {
+      '/index.html':            '/',
+      '/index.zh.html':         '/zhtw/',
+      '/agents.html':           '/agents/',
+      '/agents.zh.html':        '/zhtw/agents/',
+      '/architecture.html':     '/architecture/',
+      '/architecture.zh.html':  '/zhtw/architecture/',
+      '/user-flow.html':        '/user-flow/',
+      '/user-flow.zh.html':     '/zhtw/user-flow/',
+      '/deck.html':             '/deck.html'
+    };
+    var p = window.location.pathname;
+    if (map[p]) {
+      window.location.replace(map[p] + window.location.search + window.location.hash);
+      return;
+    }
+    // Try stripping .html if present (e.g., /agents.html → /agents/)
+    if (p.endsWith('.html') && !p.endsWith('/index.html')) {
+      var stripped = p.replace(/\.html$/, '/');
+      // Avoid infinite loop if already on a path
+      if (stripped !== p) {
+        window.location.replace(stripped + window.location.search + window.location.hash);
+        return;
+      }
+    }
+  })();
+</script>
+</head>
+<body>
+  <h1>Redirecting…</h1>
+  <p>If you are not redirected automatically, <a href="/">go to the homepage</a>.</p>
+</body>
+</html>
