@@ -84,6 +84,52 @@
     .step-name { font-size:15px; font-weight:500; color:var(--ink); margin-bottom:10px; }
     .step-text { font-size:13px; color:var(--ink-2); line-height:1.85; }
 
+    /* FLOW (4 steps) */
+    #flow { background:var(--bg-alt); }
+    #flow .steps { grid-template-columns:repeat(4,1fr); gap:24px; }
+    #flow .step-text { font-size:13px; line-height:1.65; }
+
+    /* FLOW EXAMPLE — chat-style sequence under the 4 steps */
+    .flow-example { margin-top:36px; max-width:720px; margin-left:auto; margin-right:auto; padding:18px 28px; background:#fff; border:1px solid var(--border); border-radius:8px; }
+    .flow-example-title { font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink-3); text-align:center; margin-bottom:14px; }
+    .flow-msg { display:grid; grid-template-columns:84px 1fr; gap:12px; margin-bottom:6px; align-items:start; }
+    .flow-msg:last-child { margin-bottom:0; }
+    .flow-msg-who { font-size:9px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; padding:5px 6px; border-radius:4px; text-align:center; line-height:1; white-space:nowrap; }
+    .flow-msg-who.who-user { background:var(--ink); color:#fff; }
+    .flow-msg-who.who-mgr { background:var(--accent-2); color:#fff; }
+    .flow-msg-who.who-agent { background:#fff; color:var(--ink); border:1px solid var(--ink); }
+    .flow-msg-who.who-result { background:#fff; color:var(--ink); border:1px solid var(--ink); border-radius:4px 4px 0 4px; }
+    .flow-msg-text { font-size:13px; color:var(--ink-2); line-height:1.5; padding-top:1px; }
+
+    /* ARCHITECTURE */
+    #architecture { background:var(--bg); }
+    .arch-stack { border:1px solid var(--border); border-radius:8px; overflow:hidden; background:#fff; max-width:920px; margin:0 auto; }
+    .arch-row { display:grid; grid-template-columns:140px 1fr; align-items:stretch; border-bottom:1px solid var(--border); }
+    .arch-row:last-child { border-bottom:none; }
+    .arch-row .arch-layer {
+      background:var(--ink); color:#fff;
+      display:flex; flex-direction:column; justify-content:center; align-items:center;
+      padding:11px 12px;
+      font-size:10px; letter-spacing:0.18em; text-transform:uppercase; font-weight:600;
+    }
+    .arch-row .arch-layer .arch-zh { display:none; }
+    .arch-row .arch-members { padding:11px 24px; font-size:13px; color:var(--ink-2); line-height:1.55; }
+    .arch-row .arch-members strong { font-weight:600; color:var(--ink); }
+    .arch-row .arch-members .arch-note { font-size:11px; color:var(--ink-3); margin-left:6px; }
+    .arch-row.arch-manager .arch-layer { background:var(--accent-2); }
+
+    /* "View full diagram" link — used on #architecture and #flow */
+    .diagram-link { display:inline-flex; align-items:center; gap:6px; margin-top:24px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-3); text-decoration:none; border-bottom:1px solid transparent; padding-bottom:2px; transition:color 0.2s, border-color 0.2s; }
+    .diagram-link:hover { color:var(--accent-2); border-bottom-color:var(--accent-2); }
+    .diagram-link-wrap { text-align:center; }
+
+    @media (max-width: 768px) {
+      #flow .steps { grid-template-columns:1fr; gap:32px; }
+      .arch-row { grid-template-columns:110px 1fr; }
+      .arch-row .arch-layer { padding:12px 8px; font-size:9px; }
+      .arch-row .arch-members { padding:14px 16px; font-size:13px; line-height:1.7; }
+    }
+
     /* CLI */
     #cli { background:var(--bg-alt); }
     .cli-grid { display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start; }
@@ -320,6 +366,8 @@
     <div class="nav-links">
       <a href="#">Home</a>
       <a href="agents.html">AI Staff</a>
+      <a href="architecture.html">Architecture</a>
+      <a href="user-flow.html">User Flow</a>
     </div>
     <div class="nav-right">
       <a class="nav-lang" href="index.zh.html">繁中</a>
@@ -332,12 +380,12 @@
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-label">An AI Agent digital employee that helps you get things done.</div>
+    <div class="hero-label">Build Your Own AI Agent Workforce</div>
     <h1 class="hero-title">Co<span>Staff</span></h1>
     <p class="hero-sub">Call Your AI Staff to Work</p>
     <p class="hero-desc">
-      Turn your company's workflows into your <strong>AI staff team</strong> —<br/>
-      hand the work over in your chat app, and they get it done.
+      Hand it off to me and my <strong>team</strong> in chat —<br/>
+      we'll get the work done for you.
     </p>
     <div class="hero-actions">
       <a class="btn-primary" href="https://forms.gle/9UVdi527sYUBuqcm6" target="_blank" rel="noopener">Get early access</a>
@@ -431,11 +479,118 @@
     </div>
   </section>
 
-  <!-- HOW IT WORKS -->
+  <!-- HOW IT WORKS — 4-step user flow -->
+  <section id="flow">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-num">02 &nbsp;How it works</div>
+        <h2 class="section-title">Hand it off,<br/>your AI Agent team takes it from there.</h2>
+        <p class="section-desc">In your chat app, hand the work to Manager Agent — it parses intent and dispatches to the right specialists. You give the brief, you get the result.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-name">Hand off</div>
+          <div class="step-text">Just chat in Telegram, LINE, or WebChat — for example "Show me Q3 sales, make it a PDF." No new system, no new UI to learn.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-name">Dispatch</div>
+          <div class="step-text">Manager Agent parses your intent and routes work to the right specialist combination — DB Agent first if data lookup, then BA Agent for the report. Multi-agent handoff happens automatically, no manual wiring.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-name">Specialists</div>
+          <div class="step-text">Business, Coding, Database and other specialist Agents each work in their own domain, calling MCP tools as needed. Each Agent runs in its own container — independently scalable or replaceable.</div>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div class="step-name">Done</div>
+          <div class="step-text">PDF, Excel, query results — back in your chat. You don't switch tools; everything happens in the chat window you were already using.</div>
+        </div>
+      </div>
+
+      <!-- Concrete user flow example: a chat conversation -->
+      <div class="flow-example">
+        <div class="flow-example-title">─── A complete conversation example ───</div>
+        <div class="flow-msg">
+          <div class="flow-msg-who who-user">YOU</div>
+          <div class="flow-msg-text">Show me Q3 sales, make it a PDF.</div>
+        </div>
+        <div class="flow-msg">
+          <div class="flow-msg-who who-mgr">MANAGER</div>
+          <div class="flow-msg-text">Got it. DB Agent first, then BA Agent.</div>
+        </div>
+        <div class="flow-msg">
+          <div class="flow-msg-who who-agent">DB AGENT</div>
+          <div class="flow-msg-text">SQL query → 12,345 rows.</div>
+        </div>
+        <div class="flow-msg">
+          <div class="flow-msg-who who-agent">BA AGENT</div>
+          <div class="flow-msg-text">Charts + narrative → final PDF.</div>
+        </div>
+        <div class="flow-msg">
+          <div class="flow-msg-who who-result">YOU ◀</div>
+          <div class="flow-msg-text">📎 Q3-report.pdf — Done, back in your chat.</div>
+        </div>
+      </div>
+      <div class="diagram-link-wrap">
+        <a class="diagram-link" href="user-flow.html" target="_blank" rel="noopener">
+          View full user flow sequence diagram
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARCHITECTURE -->
+  <section id="architecture">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-num">03 &nbsp;System architecture</div>
+        <h2 class="section-title">Six layers,<br/>each independently replaceable.</h2>
+        <p class="section-desc">CoStaff is not a single monolithic AI — it's a multi-agent + tool system stitched together. Each layer runs in its own container, does one thing, and can be swapped or extended independently.</p>
+      </div>
+      <div class="arch-stack">
+        <div class="arch-row">
+          <div class="arch-layer">USER</div>
+          <div class="arch-members">Hand off a task in a single chat message — you give the brief, you get the result.</div>
+        </div>
+        <div class="arch-row">
+          <div class="arch-layer">CHANNELS</div>
+          <div class="arch-members">WebChat ・ Telegram ・ LINE ・ Discord ・ Slack <span class="arch-note">(Docker container per channel)</span></div>
+        </div>
+        <div class="arch-row arch-manager">
+          <div class="arch-layer">MANAGER</div>
+          <div class="arch-members"><strong>Manager Agent</strong> — parses intent, remembers conversation, dispatches multi-agent work via A2A Protocol.</div>
+        </div>
+        <div class="arch-row">
+          <div class="arch-layer">SPECIALISTS</div>
+          <div class="arch-members">Business ・ Coding ・ Database ・ Twinkle Hub ・ <strong>Custom Agent with MCP Server</strong> <span class="arch-note">(each in its own container)</span></div>
+        </div>
+        <div class="arch-row">
+          <div class="arch-layer">DATA</div>
+          <div class="arch-members">PostgreSQL + Shared Workspace <span class="arch-note">(per-agent persistent storage)</span></div>
+        </div>
+        <div class="arch-row">
+          <div class="arch-layer">LLM</div>
+          <div class="arch-members">Gemini ・ Gemma ・ Twinkle T1 ・ 3rd-party models <span class="arch-note">(per-agent configurable)</span></div>
+        </div>
+      </div>
+      <div class="diagram-link-wrap">
+        <a class="diagram-link" href="architecture.html" target="_blank" rel="noopener">
+          View full technical architecture
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEPLOY -->
   <section id="how">
     <div class="container">
       <div class="section-header">
-        <div class="section-num">02 &nbsp;Getting started</div>
+        <div class="section-num">04 &nbsp;Getting started</div>
         <h2 class="section-title">Just Docker.<br/>Runs isolated in a container — clean and self-contained.</h2>
         <p class="section-desc">If you can run a Docker app, you can run CoStaff. From zero to handing work over to your AI staff: three commands, about 5 minutes.</p>
       </div>
@@ -463,7 +618,7 @@
   <section id="cli">
     <div class="container">
       <div class="section-header">
-        <div class="section-num">03 &nbsp;One command for everything</div>
+        <div class="section-num">05 &nbsp;One command for everything</div>
         <h2 class="section-title">Through the CoStaff CLI,<br/>start, stop, and check service status quickly.</h2>
         <p class="section-desc">Commands are intuitively named and consistent — you know what they do at a glance, no docs lookup required.</p>
       </div>
@@ -505,7 +660,7 @@
   <section id="channels">
     <div class="container">
       <div class="section-header">
-        <div class="section-num">04 &nbsp;Where it lives</div>
+        <div class="section-num">06 &nbsp;Where it lives</div>
         <h2 class="section-title">In the chat apps you use every day,<br/>your AI staff is ready and waiting.</h2>
         <p class="section-desc">Hand over tasks, receive PDFs, query data, get progress updates — all in the chat you already live in.</p>
       </div>
@@ -552,7 +707,7 @@
   <section id="plans">
     <div class="container">
       <div class="section-header">
-        <div class="section-num">05 &nbsp;Plans</div>
+        <div class="section-num">07 &nbsp;Plans</div>
         <h2 class="section-title">CoStaff is an open-source AI staff platform</h2>
         <p class="section-desc">Free for personal use. For commercial inquiries, please fill out the form.<br/>CoStaff source code is open, self-hostable, modifiable, and contributions are welcome. Personal use is free; <strong>for team or commercial use</strong>, please get in touch to learn more.</p>
       </div>
@@ -612,7 +767,7 @@
   <section id="privacy">
     <div class="container">
       <div class="section-header">
-        <div class="section-num">06 &nbsp;Your data</div>
+        <div class="section-num">08 &nbsp;Your data</div>
         <h2 class="section-title">It runs on your machine.<br/>Not ours.</h2>
         <p class="section-desc">Most AI tools store your conversations on their servers and lock you into their model. CoStaff doesn't — your data lives 100% on your machine, and you decide whether AI inference goes offline too.</p>
       </div>

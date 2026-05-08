@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 960" width="1280" height="960">
+  <defs>
+    <style>
+      .paper { fill: #F6F3EC; }
+      .paper-2 { fill: #EFEBE1; }
+      .ink { fill: #2B2B2B; }
+      .ink-soft { fill: #5A5A57; }
+      .ink-mute { fill: #8E8B83; }
+      .rule { fill: #D7D2C5; }
+      .accent { fill: #C8553D; }
+      .accent-soft { fill: #E9C9BF; }
+      .white { fill: #ffffff; }
+
+      .stroke-ink { stroke: #2B2B2B; stroke-width: 1.2; fill: none; }
+      .stroke-ink-bold { stroke: #2B2B2B; stroke-width: 2; fill: none; }
+      .stroke-rule { stroke: #D7D2C5; stroke-width: 1; fill: none; }
+      .stroke-accent { stroke: #C8553D; stroke-width: 1.5; fill: none; }
+
+      text {
+        font-family: 'Inter', 'Noto Sans TC', 'PingFang TC', 'Helvetica Neue', sans-serif;
+        fill: #2B2B2B;
+      }
+      .t-serif { font-family: 'Noto Serif TC', 'Songti TC', serif; }
+
+      .t-eyebrow { font-size: 11px; fill: #C8553D; font-weight: 500; letter-spacing: 0.32em; text-transform: uppercase; }
+      .t-title { font-size: 36px; font-weight: 600; letter-spacing: -0.005em; }
+      .t-sub { font-size: 13px; fill: #5A5A57; letter-spacing: 0.05em; font-weight: 300; }
+
+      .t-section { font-size: 14px; font-weight: 600; letter-spacing: 0.05em; }
+      .t-section-en { font-size: 9px; fill: #8E8B83; letter-spacing: 0.32em; text-transform: uppercase; font-weight: 500; }
+
+      .t-num { font-family: 'Noto Serif TC', serif; font-size: 22px; font-weight: 600; fill: #C8553D; font-style: italic; }
+      .t-layer { font-size: 16px; font-weight: 600; letter-spacing: 0.05em; }
+      .t-layer-en { font-size: 9px; fill: #8E8B83; letter-spacing: 0.32em; text-transform: uppercase; font-weight: 500; }
+      .t-resp { font-size: 11px; fill: #2B2B2B; }
+      .t-resp-en { font-size: 9px; fill: #8E8B83; }
+
+      .t-step { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 700; fill: #fff; }
+      .t-step-zh { font-size: 12px; font-weight: 600; }
+      .t-step-en { font-size: 8px; fill: #8E8B83; }
+      .t-quote { font-size: 13px; font-weight: 400; font-style: italic; }
+      .t-tag { font-size: 10px; fill: #C8553D; font-weight: 600; letter-spacing: 0.15em; }
+      .t-tiny { font-size: 9px; fill: #8E8B83; }
+      .t-pill { font-size: 9px; fill: #fff; letter-spacing: 0.18em; font-weight: 500; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1280" height="960" fill="#F6F3EC"/>
+
+  <!-- Top URL only -->
+  <text x="1220" y="36" class="t-tiny" text-anchor="end">costaff-ai.github.io</text>
+  <line x1="60" y1="46" x2="1220" y2="46" class="stroke-rule"/>
+
+  <!-- Title -->
+  <text x="60" y="88" class="t-eyebrow">APPLICATION ARCHITECTURE</text>
+  <text x="60" y="128" class="t-title t-serif">應用架構圖</text>
+  <text x="240" y="128" class="t-sub">分層職責 ・ 請求流程 ・ 設計原則</text>
+
+  <!-- ========== LEFT: LAYERED ARCHITECTURE (60-720) ========== -->
+  <text x="60" y="160" class="t-section-en">LAYERED RESPONSIBILITIES</text>
+  <text x="60" y="180" class="t-section">分層架構</text>
+  <line x1="60" y1="188" x2="720" y2="188" class="stroke-rule"/>
+
+  <!-- L1 Presentation -->
+  <g transform="translate(60, 192)">
+    <rect width="660" height="60" class="white" stroke="#2B2B2B" stroke-width="0.8"/>
+    <rect x="0" y="0" width="44" height="60" class="paper-2"/>
+    <text x="22" y="36" text-anchor="middle" class="t-num">01</text>
+    <text x="58" y="26" class="t-layer">介面層</text>
+    <text x="120" y="26" class="t-layer-en">PRESENTATION · CHANNEL ADAPTERS</text>
+    <text x="58" y="46" class="t-resp">使用者訊息進入點、回應派送回原通訊軟體</text>
+  </g>
+
+  <line x1="390" y1="258" x2="390" y2="272" class="stroke-accent"/>
+  <polygon points="386,270 394,270 390,280" class="accent"/>
+
+  <!-- L2 Orchestration -->
+  <g transform="translate(60, 286)">
+    <rect width="660" height="60" class="white" stroke="#2B2B2B" stroke-width="0.8"/>
+    <rect x="0" y="0" width="44" height="60" class="paper-2"/>
+    <text x="22" y="36" text-anchor="middle" class="t-num">02</text>
+    <text x="58" y="26" class="t-layer">編排層</text>
+    <text x="120" y="26" class="t-layer-en">ORCHESTRATION · MANAGER AGENT</text>
+    <text x="58" y="46" class="t-resp">意圖判讀 · 專家路由 · 對話記憶 · 工具協調</text>
+  </g>
+
+  <line x1="390" y1="352" x2="390" y2="366" class="stroke-accent"/>
+  <polygon points="386,364 394,364 390,374" class="accent"/>
+  <text x="402" y="368" class="t-tag">A2A</text>
+
+  <!-- L3 Specialist -->
+  <g transform="translate(60, 380)">
+    <rect width="660" height="60" class="white" stroke="#2B2B2B" stroke-width="0.8"/>
+    <rect x="0" y="0" width="44" height="60" class="paper-2"/>
+    <text x="22" y="36" text-anchor="middle" class="t-num">03</text>
+    <text x="58" y="26" class="t-layer">專家層</text>
+    <text x="120" y="26" class="t-layer-en">SPECIALIST · DOMAIN-SPECIFIC AGENTS</text>
+    <text x="58" y="46" class="t-resp">獨立專家 Agent，各司其職、彼此可透過 A2A 互轉工作</text>
+  </g>
+
+  <line x1="390" y1="446" x2="390" y2="460" class="stroke-accent"/>
+  <polygon points="386,458 394,458 390,468" class="accent"/>
+  <text x="402" y="462" class="t-tag">MCP</text>
+
+  <!-- L4 Tool -->
+  <g transform="translate(60, 474)">
+    <rect width="660" height="60" class="white" stroke="#2B2B2B" stroke-width="0.8"/>
+    <rect x="0" y="0" width="44" height="60" class="paper-2"/>
+    <text x="22" y="36" text-anchor="middle" class="t-num">04</text>
+    <text x="58" y="26" class="t-layer">工具層</text>
+    <text x="120" y="26" class="t-layer-en">TOOL · MCP SERVERS · ISOLATED PER AGENT</text>
+    <text x="58" y="46" class="t-resp">執行外部呼叫：DB query · API · 檔案 I/O · PDF/PPT 產生</text>
+  </g>
+
+  <line x1="390" y1="540" x2="390" y2="554" class="stroke-ink-bold"/>
+  <polygon points="386,552 394,552 390,562" class="ink"/>
+
+  <!-- L5 Data -->
+  <g transform="translate(60, 568)">
+    <rect width="660" height="60" class="white" stroke="#2B2B2B" stroke-width="0.8"/>
+    <rect x="0" y="0" width="44" height="60" class="paper-2"/>
+    <text x="22" y="36" text-anchor="middle" class="t-num">05</text>
+    <text x="58" y="26" class="t-layer">資料層</text>
+    <text x="120" y="26" class="t-layer-en">DATA · PERSISTENT STATE</text>
+    <text x="58" y="46" class="t-resp">PostgreSQL：對話狀態 / 設定　│　Shared Workspace：跨 Agent 檔案交換</text>
+  </g>
+
+  <!-- ========== RIGHT: USER FLOW (760-1220) ========== -->
+  <text x="760" y="160" class="t-section-en">END-TO-END USER FLOW</text>
+  <text x="760" y="180" class="t-section">使用者流程範例</text>
+  <line x1="760" y1="188" x2="1220" y2="188" class="stroke-rule"/>
+
+  <!-- Prompt bubble -->
+  <g transform="translate(760, 192)">
+    <rect width="460" height="56" class="paper-2" stroke="#2B2B2B" stroke-width="0.8"/>
+    <text x="14" y="18" class="t-tiny">USER PROMPT</text>
+    <text x="14" y="38" class="t-quote t-serif">「幫我看 Q3 銷售，做成 PDF 報告。」</text>
+  </g>
+
+  <!-- Steps -->
+  <g transform="translate(760, 264)">
+    <rect width="44" height="38" class="ink"/>
+    <text x="22" y="24" text-anchor="middle" class="t-step">01</text>
+    <rect x="44" y="0" width="416" height="38" class="white" stroke="#2B2B2B" stroke-width="0.8"/>
+    <text x="58" y="24" class="t-step-zh">Telegram 訊息進站</text>
+  </g>
+
+  <line x1="782" y1="302" x2="782" y2="316" class="stroke-accent"/>
+  <polygon points="778,314 786,314 782,324" class="accent"/>
+
+  <g transform="translate(760, 326)">
+    <rect width="44" height="38" class="accent"/>
+    <text x="22" y="24" text-anchor="middle" class="t-step">02</text>
+    <rect x="44" y="0" width="416" height="38" class="white" stroke="#2B2B2B" stroke-width="0.8"/>
+    <text x="58" y="24" class="t-step-zh">Manager 解析意圖：DB + BA 任務</text>
+  </g>
+
+  <line x1="782" y1="364" x2="782" y2="378" class="stroke-accent"/>
+  <polygon points="778,376 786,376 782,386" class="accent"/>
+
+  <g transform="translate(760, 388)">
+    <rect width="44" height="38" class="ink"/>
+    <text x="22" y="24" text-anchor="middle" class="t-step">03</text>
+    <rect x="44" y="0" width="416" height="38" class="paper-2" stroke="#2B2B2B" stroke-width="0.8"/>
+    <text x="58" y="24" class="t-step-zh">DB Agent 用 MCP 查 PostgreSQL</text>
+  </g>
+
+  <line x1="782" y1="426" x2="782" y2="440" class="stroke-accent"/>
+  <polygon points="778,438 786,438 782,448" class="accent"/>
+
+  <g transform="translate(760, 450)">
+    <rect width="44" height="38" class="ink"/>
+    <text x="22" y="24" text-anchor="middle" class="t-step">04</text>
+    <rect x="44" y="0" width="416" height="38" class="paper-2" stroke="#2B2B2B" stroke-width="0.8"/>
+    <text x="58" y="24" class="t-step-zh">BA Agent 接力：選圖、敘述、產 PDF</text>
+  </g>
+
+  <line x1="782" y1="488" x2="782" y2="502" class="stroke-accent"/>
+  <polygon points="778,500 786,500 782,510" class="accent"/>
+
+  <g transform="translate(760, 512)">
+    <rect width="44" height="38" class="accent"/>
+    <text x="22" y="24" text-anchor="middle" class="t-step">05</text>
+    <rect x="44" y="0" width="416" height="38" class="white" stroke="#2B2B2B" stroke-width="0.8"/>
+    <text x="58" y="24" class="t-step-zh">Manager 收回成果，組合最終回應</text>
+  </g>
+
+  <line x1="782" y1="550" x2="782" y2="564" class="stroke-accent"/>
+  <polygon points="778,562 786,562 782,572" class="accent"/>
+
+  <g transform="translate(760, 574)">
+    <rect width="44" height="38" class="ink"/>
+    <text x="22" y="24" text-anchor="middle" class="t-step">06</text>
+    <rect x="44" y="0" width="416" height="38" class="white" stroke="#2B2B2B" stroke-width="0.8"/>
+    <text x="58" y="24" class="t-step-zh">Telegram 將 PDF 送回給使用者</text>
+  </g>
+
+  <!-- Result bubble -->
+  <g transform="translate(760, 632)">
+    <rect width="460" height="56" class="paper-2" stroke="#2B2B2B" stroke-width="1.5"/>
+    <rect x="0" y="0" width="6" height="56" class="accent"/>
+    <text x="20" y="18" style="font-size:9px;letter-spacing:0.18em;font-weight:600;fill:#C8553D">DELIVERED IN ~1 MIN</text>
+    <text x="20" y="40" class="t-quote t-serif">「Q3 報告.pdf 已送達，含長條圖、敘述、財務摘要。」</text>
+  </g>
+
+  <!-- ========== BOTTOM: DESIGN PRINCIPLES ========== -->
+  <text x="60" y="720" class="t-section-en">DESIGN PRINCIPLES</text>
+  <text x="60" y="740" class="t-section">設計原則</text>
+  <line x1="60" y1="748" x2="1220" y2="748" class="stroke-rule"/>
+
+  <g transform="translate(60, 762)">
+    <rect width="275" height="120" class="white" stroke="#2B2B2B" stroke-width="0.8"/>
+    <text x="16" y="32" class="t-num">①</text>
+    <text x="44" y="28" class="t-step-zh">可支援多項通訊軟體</text>
+    <text x="44" y="42" class="t-step-en">MULTI-CHANNEL</text>
+    <line x1="16" y1="56" x2="44" y2="56" class="stroke-accent"/>
+    <text x="16" y="84" class="t-resp">同一邏輯橫跨所有通訊軟體，</text>
+    <text x="16" y="102" class="t-resp">新增通訊軟體不需重寫 Agent。</text>
+  </g>
+
+  <g transform="translate(355, 762)">
+    <rect width="275" height="120" class="white" stroke="#2B2B2B" stroke-width="0.8"/>
+    <text x="16" y="32" class="t-num">②</text>
+    <text x="44" y="28" class="t-step-zh">專家隔離</text>
+    <text x="44" y="42" class="t-step-en">AGENT ISOLATION</text>
+    <line x1="16" y1="56" x2="44" y2="56" class="stroke-accent"/>
+    <text x="16" y="84" class="t-resp">每個 Agent 自己一個容器、</text>
+    <text x="16" y="102" class="t-resp">自己的 MCP 工具、自己的工作區。</text>
+  </g>
+
+  <g transform="translate(650, 762)">
+    <rect width="275" height="120" class="white" stroke="#2B2B2B" stroke-width="0.8"/>
+    <text x="16" y="32" class="t-num">③</text>
+    <text x="44" y="28" class="t-step-zh">A2A 自動接棒</text>
+    <text x="44" y="42" class="t-step-en">A2A HANDOFF</text>
+    <line x1="16" y1="56" x2="44" y2="56" class="stroke-accent"/>
+    <text x="16" y="84" class="t-resp">Agent 之間自動互轉工作，</text>
+    <text x="16" y="102" class="t-resp">無需手動串接 pipeline。</text>
+  </g>
+
+  <g transform="translate(945, 762)">
+    <rect width="275" height="120" class="white" stroke="#C8553D" stroke-width="1.2"/>
+    <text x="16" y="32" class="t-num">④</text>
+    <text x="44" y="28" class="t-step-zh">資料留本機</text>
+    <text x="44" y="42" class="t-step-en">DATA SOVEREIGNTY</text>
+    <line x1="16" y1="56" x2="44" y2="56" class="stroke-accent"/>
+    <text x="16" y="84" class="t-resp">100% 跑在自家機器，搭配</text>
+    <text x="16" y="102" class="t-resp">地端模型即可全程不上雲。</text>
+  </g>
+
+  <!-- Footer -->
+  <line x1="60" y1="918" x2="1220" y2="918" class="stroke-rule"/>
+  <text x="60" y="940" class="t-tiny">© CoStaff · Open-Source AI Staff Platform</text>
+</svg>

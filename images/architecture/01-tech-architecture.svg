@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 960" width="1280" height="960">
+  <defs>
+    <style>
+      /* Palette aligned with costaff-deck */
+      .paper { fill: #F6F3EC; }
+      .paper-2 { fill: #EFEBE1; }
+      .ink { fill: #2B2B2B; }
+      .ink-soft { fill: #5A5A57; }
+      .ink-mute { fill: #8E8B83; }
+      .rule { fill: #D7D2C5; }
+      .accent { fill: #C8553D; }
+      .accent-soft { fill: #E9C9BF; }
+      .white { fill: #ffffff; }
+
+      .stroke-ink { stroke: #2B2B2B; stroke-width: 1.2; fill: none; }
+      .stroke-ink-bold { stroke: #2B2B2B; stroke-width: 2; fill: none; }
+      .stroke-rule { stroke: #D7D2C5; stroke-width: 1; fill: none; }
+      .stroke-accent { stroke: #C8553D; stroke-width: 1.5; fill: none; }
+
+      text {
+        font-family: 'Inter', 'Noto Sans TC', 'PingFang TC', 'Helvetica Neue', sans-serif;
+        fill: #2B2B2B;
+      }
+      .t-serif { font-family: 'Noto Serif TC', 'Songti TC', serif; }
+
+      .t-eyebrow { font-size: 11px; fill: #C8553D; font-weight: 500; letter-spacing: 0.32em; text-transform: uppercase; }
+      .t-title { font-size: 36px; font-weight: 600; letter-spacing: -0.005em; }
+      .t-sub { font-size: 13px; fill: #5A5A57; letter-spacing: 0.05em; font-weight: 300; }
+
+      .t-num { font-family: 'Noto Serif TC', serif; font-size: 26px; font-weight: 600; fill: #C8553D; font-style: italic; }
+      .t-layer { font-size: 16px; font-weight: 600; letter-spacing: 0.05em; }
+      .t-layer-en { font-size: 9px; fill: #8E8B83; letter-spacing: 0.32em; text-transform: uppercase; font-weight: 500; }
+
+      .t-box { font-size: 12px; font-weight: 500; }
+      .t-box-en { font-size: 9px; fill: #8E8B83; letter-spacing: 0.05em; }
+      .t-pill { font-size: 10px; fill: #C8553D; font-weight: 600; letter-spacing: 0.15em; }
+      .t-tiny { font-size: 9px; fill: #8E8B83; }
+      .t-bar { font-size: 10px; fill: #fff; letter-spacing: 0.25em; font-weight: 500; }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1280" height="960" fill="#F6F3EC"/>
+
+  <!-- Top URL only -->
+  <text x="1220" y="36" class="t-tiny" text-anchor="end">costaff-ai.github.io</text>
+  <line x1="60" y1="46" x2="1220" y2="46" class="stroke-rule"/>
+
+  <!-- Title -->
+  <text x="60" y="88" class="t-eyebrow">TECHNICAL ARCHITECTURE</text>
+  <text x="60" y="128" class="t-title t-serif">技術架構圖</text>
+  <text x="272" y="128" class="t-sub">Self-hosted ・ Open-source ・ Docker Compose</text>
+
+  <!-- ============ LAYER 1: USERS ============ -->
+  <g transform="translate(60, 170)">
+    <text x="0" y="-2" class="t-num">01</text>
+    <text x="40" y="-4" class="t-layer">使用者層</text>
+    <text x="138" y="-4" class="t-layer-en">USER LAYER</text>
+
+    <rect x="0" y="8" width="1160" height="64" class="white" stroke="#D7D2C5" stroke-width="1"/>
+    <g transform="translate(8, 22)">
+      <rect width="216" height="36" class="paper-2" stroke="#2B2B2B" stroke-width="0.8"/>
+      <text x="108" y="23" text-anchor="middle" class="t-box">WebChat</text>
+    </g>
+    <g transform="translate(240, 22)">
+      <rect width="216" height="36" class="paper-2" stroke="#2B2B2B" stroke-width="0.8"/>
+      <text x="108" y="23" text-anchor="middle" class="t-box">Telegram</text>
+    </g>
+    <g transform="translate(472, 22)">
+      <rect width="216" height="36" class="paper-2" stroke="#2B2B2B" stroke-width="0.8"/>
+      <text x="108" y="23" text-anchor="middle" class="t-box">LINE</text>
+    </g>
+    <g transform="translate(704, 22)">
+      <rect width="216" height="36" class="paper-2" stroke="#2B2B2B" stroke-width="0.8"/>
+      <text x="108" y="23" text-anchor="middle" class="t-box">Discord</text>
+    </g>
+    <g transform="translate(936, 22)">
+      <rect width="216" height="36" class="paper-2" stroke="#2B2B2B" stroke-width="0.8"/>
+      <text x="108" y="23" text-anchor="middle" class="t-box">Slack</text>
+    </g>
+  </g>
+
+  <!-- Arrow 1 -->
+  <g transform="translate(640, 256)">
+    <line x1="0" y1="0" x2="0" y2="22" class="stroke-accent"/>
+    <polygon points="-4,20 4,20 0,28" class="accent"/>
+    <text x="14" y="20" class="t-pill">HTTPS / WEBHOOK</text>
+  </g>
+
+  <!-- ============ LAYER 2: CHANNEL ADAPTERS ============ -->
+  <g transform="translate(60, 310)">
+    <text x="0" y="-2" class="t-num">02</text>
+    <text x="40" y="-4" class="t-layer">通訊軟體適配器</text>
+    <text x="188" y="-4" class="t-layer-en">CHANNEL ADAPTERS</text>
+
+    <rect x="0" y="8" width="1160" height="64" class="white" stroke="#D7D2C5" stroke-width="1"/>
+    <g transform="translate(8, 22)">
+      <rect width="216" height="36" class="white" stroke="#2B2B2B" stroke-width="0.8"/>
+      <text x="108" y="23" text-anchor="middle" class="t-box">channel-webchat</text>
+    </g>
+    <g transform="translate(240, 22)">
+      <rect width="216" height="36" class="white" stroke="#2B2B2B" stroke-width="0.8"/>
+      <text x="108" y="23" text-anchor="middle" class="t-box">channel-telegram</text>
+    </g>
+    <g transform="translate(472, 22)">
+      <rect width="216" height="36" class="white" stroke="#2B2B2B" stroke-width="0.8"/>
+      <text x="108" y="23" text-anchor="middle" class="t-box">channel-line</text>
+    </g>
+    <g transform="translate(704, 22)">
+      <rect width="216" height="36" class="white" stroke="#2B2B2B" stroke-width="0.8"/>
+      <text x="108" y="23" text-anchor="middle" class="t-box">channel-discord</text>
+    </g>
+    <g transform="translate(936, 22)">
+      <rect width="216" height="36" class="white" stroke="#2B2B2B" stroke-width="0.8"/>
+      <text x="108" y="23" text-anchor="middle" class="t-box">channel-slack</text>
+    </g>
+  </g>
+
+  <!-- Arrow 2 -->
+  <g transform="translate(640, 396)">
+    <line x1="0" y1="0" x2="0" y2="22" class="stroke-accent"/>
+    <polygon points="-4,20 4,20 0,28" class="accent"/>
+    <text x="14" y="20" class="t-pill">ADK SERVER API</text>
+  </g>
+
+  <!-- ============ LAYER 3: MANAGER ============ -->
+  <g transform="translate(60, 450)">
+    <text x="0" y="-2" class="t-num">03</text>
+    <text x="40" y="-4" class="t-layer">編排層</text>
+    <text x="120" y="-4" class="t-layer-en">MANAGER AGENT · ORCHESTRATION</text>
+
+    <rect x="0" y="8" width="1160" height="56" class="paper-2" stroke="#2B2B2B" stroke-width="1.2"/>
+    <rect x="0" y="8" width="6" height="56" class="accent"/>
+    <text x="22" y="32" style="font-size:14px;font-weight:700;letter-spacing:0.05em" fill="#2B2B2B">Manager Agent</text>
+    <text x="22" y="50" style="font-size:10px;letter-spacing:0.05em" fill="#5A5A57">Intent Routing　·　Memory　·　Multi-Agent Orchestration　·　Tool Coordination</text>
+  </g>
+
+  <!-- Arrow 3 -->
+  <g transform="translate(640, 528)">
+    <line x1="0" y1="0" x2="0" y2="22" class="stroke-accent"/>
+    <polygon points="-4,20 4,20 0,28" class="accent"/>
+    <text x="14" y="20" class="t-pill">A2A PROTOCOL</text>
+  </g>
+
+  <!-- ============ LAYER 4: SPECIALIST AGENTS ============ -->
+  <g transform="translate(60, 582)">
+    <text x="0" y="-2" class="t-num">04</text>
+    <text x="40" y="-4" class="t-layer">專家層</text>
+    <text x="120" y="-4" class="t-layer-en">SPECIALIST AGENTS · EACH IN ITS OWN CONTAINER + MCP SERVER</text>
+
+    <rect x="0" y="8" width="1160" height="120" class="paper-2" stroke="#D7D2C5" stroke-width="1"/>
+
+    <!-- Agent + MCP pairs -->
+    <g transform="translate(8, 22)">
+      <rect width="216" height="40" class="white" stroke="#2B2B2B" stroke-width="0.8"/>
+      <text x="108" y="18" text-anchor="middle" class="t-box">商業分析 Agent</text>
+      <text x="108" y="32" text-anchor="middle" class="t-box-en">Business Analysis</text>
+      <line x1="108" y1="40" x2="108" y2="52" class="stroke-ink"/>
+      <rect x="20" y="52" width="176" height="34" class="white" stroke="#D7D2C5" stroke-width="0.8"/>
+      <text x="108" y="66" text-anchor="middle" class="t-box-en">MCP Server</text>
+      <text x="108" y="79" text-anchor="middle" class="t-tiny">PDF · PPT · Charts</text>
+    </g>
+
+    <g transform="translate(240, 22)">
+      <rect width="216" height="40" class="white" stroke="#2B2B2B" stroke-width="0.8"/>
+      <text x="108" y="18" text-anchor="middle" class="t-box">程式開發 Agent</text>
+      <text x="108" y="32" text-anchor="middle" class="t-box-en">Coding Agent</text>
+      <line x1="108" y1="40" x2="108" y2="52" class="stroke-ink"/>
+      <rect x="20" y="52" width="176" height="34" class="white" stroke="#D7D2C5" stroke-width="0.8"/>
+      <text x="108" y="66" text-anchor="middle" class="t-box-en">MCP Server</text>
+      <text x="108" y="79" text-anchor="middle" class="t-tiny">CSV · Excel · Python</text>
+    </g>
+
+    <g transform="translate(472, 22)">
+      <rect width="216" height="40" class="white" stroke="#2B2B2B" stroke-width="0.8"/>
+      <text x="108" y="18" text-anchor="middle" class="t-box">資料庫 Agent</text>
+      <text x="108" y="32" text-anchor="middle" class="t-box-en">Database Agent</text>
+      <line x1="108" y1="40" x2="108" y2="52" class="stroke-ink"/>
+      <rect x="20" y="52" width="176" height="34" class="white" stroke="#D7D2C5" stroke-width="0.8"/>
+      <text x="108" y="66" text-anchor="middle" class="t-box-en">MCP Server</text>
+      <text x="108" y="79" text-anchor="middle" class="t-tiny">Postgres · MySQL</text>
+    </g>
+
+    <g transform="translate(704, 22)">
+      <rect width="216" height="40" class="white" stroke="#2B2B2B" stroke-width="0.8"/>
+      <text x="108" y="18" text-anchor="middle" class="t-box">Twinkle Hub</text>
+      <text x="108" y="32" text-anchor="middle" class="t-box-en">Taiwan Open Data</text>
+      <line x1="108" y1="40" x2="108" y2="52" class="stroke-ink"/>
+      <rect x="20" y="52" width="176" height="34" class="white" stroke="#D7D2C5" stroke-width="0.8"/>
+      <text x="108" y="66" text-anchor="middle" class="t-box-en">MCP Server</text>
+      <text x="108" y="79" text-anchor="middle" class="t-tiny">52,960+ datasets</text>
+    </g>
+
+    <g transform="translate(936, 22)">
+      <rect width="216" height="40" class="white" stroke="#C8553D" stroke-width="1.2" stroke-dasharray="3 2"/>
+      <text x="108" y="18" text-anchor="middle" class="t-box">自製 Agent</text>
+      <text x="108" y="32" text-anchor="middle" class="t-box-en" fill="#C8553D">Custom Agent</text>
+      <line x1="108" y1="40" x2="108" y2="52" class="stroke-accent" stroke-dasharray="2 2"/>
+      <rect x="20" y="52" width="176" height="34" class="white" stroke="#C8553D" stroke-width="0.8" stroke-dasharray="3 2"/>
+      <text x="108" y="66" text-anchor="middle" class="t-box-en">Your MCP</text>
+      <text x="108" y="79" text-anchor="middle" class="t-tiny">按照範本快速建構工具</text>
+    </g>
+  </g>
+
+  <!-- Arrow 4 -->
+  <g transform="translate(640, 724)">
+    <line x1="0" y1="0" x2="0" y2="22" class="stroke-ink-bold"/>
+    <polygon points="-4,20 4,20 0,28" class="ink"/>
+  </g>
+
+  <!-- ============ LAYER 5: DATA ============ -->
+  <g transform="translate(60, 764)">
+    <text x="0" y="0" class="t-num">05</text>
+    <text x="40" y="-2" class="t-layer">資料層</text>
+    <text x="120" y="-2" class="t-layer-en">DATA · PERSISTENT VOLUMES</text>
+
+    <rect x="0" y="22" width="568" height="50" class="white" stroke="#2B2B2B" stroke-width="0.8"/>
+    <text x="20" y="44" class="t-box">PostgreSQL</text>
+    <text x="20" y="60" class="t-box-en">Conversation state · User memory · Settings</text>
+
+    <rect x="592" y="22" width="568" height="50" class="white" stroke="#2B2B2B" stroke-width="0.8"/>
+    <text x="612" y="44" class="t-box">Shared Workspace Volume</text>
+    <text x="612" y="60" class="t-box-en">/app/data/agent-{id}/ — cross-agent file exchange</text>
+  </g>
+
+  <!-- ============ LAYER 6: EXTERNAL LLM ============ -->
+  <g transform="translate(60, 868)">
+    <text x="0" y="0" class="t-num">06</text>
+    <text x="40" y="-2" class="t-layer">外部 LLM</text>
+    <text x="146" y="-2" class="t-layer-en">EXTERNAL LLM API · PLUGGABLE PER AGENT</text>
+
+    <rect x="0" y="14" width="1160" height="32" class="paper-2" stroke="#D7D2C5" stroke-width="1" stroke-dasharray="4 3"/>
+    <text x="20" y="34" class="t-box">Google Gemini Model　·　Google Gemma Model　·　Twinkle T1 Model　·　Third-Party Models</text>
+  </g>
+
+  <!-- Footer -->
+  <line x1="60" y1="930" x2="1220" y2="930" class="stroke-rule"/>
+  <text x="60" y="950" class="t-tiny">© CoStaff · Open-Source AI Staff Platform</text>
+</svg>

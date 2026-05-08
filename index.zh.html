@@ -85,6 +85,56 @@
     .step-name { font-size:15px; font-weight:500; color:var(--ink); margin-bottom:10px; }
     .step-text { font-size:13px; color:var(--ink-2); line-height:1.9; }
 
+    /* FLOW (4 steps) — also uses .steps but adapt for 4 columns */
+    #flow { background:var(--bg-alt); }
+    #flow .steps { grid-template-columns:repeat(4,1fr); gap:24px; }
+    #flow .step-text { font-size:13px; line-height:1.65; }
+
+    /* FLOW EXAMPLE — chat-style sequence under the 4 steps */
+    .flow-example { margin-top:36px; max-width:720px; margin-left:auto; margin-right:auto; padding:18px 28px; background:#fff; border:1px solid var(--border); border-radius:8px; }
+    .flow-example-title { font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink-3); text-align:center; margin-bottom:14px; }
+    .flow-msg { display:grid; grid-template-columns:84px 1fr; gap:12px; margin-bottom:6px; align-items:start; }
+    .flow-msg:last-child { margin-bottom:0; }
+    .flow-msg-who { font-size:9px; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; padding:5px 6px; border-radius:4px; text-align:center; line-height:1; white-space:nowrap; }
+    .flow-msg-who.who-user { background:var(--ink); color:#fff; }
+    .flow-msg-who.who-mgr { background:var(--accent-2); color:#fff; }
+    .flow-msg-who.who-agent { background:#fff; color:var(--ink); border:1px solid var(--ink); }
+    .flow-msg-who.who-result { background:#fff; color:var(--ink); border:1px solid var(--ink); border-radius:4px 4px 0 4px; }
+    .flow-msg-text { font-size:13px; color:var(--ink-2); line-height:1.5; padding-top:1px; }
+
+    /* ARCHITECTURE */
+    #architecture { background:var(--bg); }
+    .arch-stack { border:1px solid var(--border); border-radius:8px; overflow:hidden; background:#fff; max-width:920px; margin:0 auto; }
+    .arch-row { display:grid; grid-template-columns:140px 1fr; align-items:stretch; border-bottom:1px solid var(--border); }
+    .arch-row:last-child { border-bottom:none; }
+    .arch-row .arch-layer {
+      background:var(--ink); color:#fff;
+      display:flex; flex-direction:column; justify-content:center; align-items:center;
+      padding:11px 12px;
+      font-size:10px; letter-spacing:0.18em; text-transform:uppercase; font-weight:600;
+    }
+    .arch-row .arch-layer .arch-zh {
+      font-family:var(--sans); font-size:12px; letter-spacing:0.05em; font-weight:400;
+      margin-bottom:3px; text-transform:none;
+    }
+    .arch-row .arch-members { padding:11px 24px; font-size:13px; color:var(--ink-2); line-height:1.55; }
+    .arch-row .arch-members strong { font-weight:600; color:var(--ink); }
+    .arch-row .arch-members .arch-note { font-size:11px; color:var(--ink-3); margin-left:6px; }
+    .arch-row.arch-manager .arch-layer { background:var(--accent-2); }
+
+    /* "View full diagram" link — used on #architecture and #flow */
+    .diagram-link { display:inline-flex; align-items:center; gap:6px; margin-top:24px; font-size:12px; letter-spacing:0.1em; text-transform:uppercase; color:var(--ink-3); text-decoration:none; border-bottom:1px solid transparent; padding-bottom:2px; transition:color 0.2s, border-color 0.2s; }
+    .diagram-link:hover { color:var(--accent-2); border-bottom-color:var(--accent-2); }
+    .diagram-link-wrap { text-align:center; }
+
+    @media (max-width: 768px) {
+      #flow .steps { grid-template-columns:1fr; gap:32px; }
+      .arch-row { grid-template-columns:110px 1fr; }
+      .arch-row .arch-layer { padding:12px 8px; font-size:9px; }
+      .arch-row .arch-layer .arch-zh { font-size:12px; margin-bottom:3px; }
+      .arch-row .arch-members { padding:14px 16px; font-size:13px; line-height:1.7; }
+    }
+
     /* CLI */
     #cli { background:var(--bg-alt); }
     .cli-grid { display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:start; }
@@ -320,6 +370,8 @@
     <div class="nav-links">
       <a href="#">首頁</a>
       <a href="agents.zh.html">AI 員工</a>
+      <a href="architecture.zh.html">技術架構</a>
+      <a href="user-flow.zh.html">使用者流程</a>
     </div>
     <div class="nav-right">
       <a class="nav-lang" href="index.html">EN</a>
@@ -332,12 +384,12 @@
 
   <!-- HERO -->
   <section class="hero">
-    <div class="hero-label">幫你做完事情的 AI Agent 數位員工</div>
+    <div class="hero-label">打造屬於自己的 AI Agent 工作團隊</div>
     <h1 class="hero-title">Co<span>Staff</span></h1>
     <p class="hero-sub">Call Your AI Staff to Work</p>
     <p class="hero-desc">
-      把公司做事的流程與方法，做成你的 <strong>AI 員工團隊</strong> —<br/>
-      在通訊軟體裡交辦，他們動手把事做完。
+      在通訊軟體中，把事情交代給我與我的<strong>團隊們</strong>，<br/>
+      讓我們幫你把你指派的事情做完。
     </p>
     <div class="hero-actions">
       <a class="btn-primary" href="https://forms.gle/9UVdi527sYUBuqcm6" target="_blank" rel="noopener">搶先預約</a>
@@ -431,11 +483,118 @@
     </div>
   </section>
 
-  <!-- HOW IT WORKS -->
+  <!-- HOW IT WORKS — 4-step user flow -->
+  <section id="flow">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-num">02 &nbsp;怎麼運作</div>
+        <h2 class="section-title">你交辦之後，<br/>AI Agent 團隊會分工合作。</h2>
+        <p class="section-desc">在通訊軟體中，把事情交代給 Manager Agent，由它解析意圖、分派給對的專家 — 你只負責下指令、收成品。</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div class="step-name">你交辦</div>
+          <div class="step-text">在 Telegram、LINE、WebChat 裡用一句話派工。例如「幫我看 Q3 銷售，做成 PDF」— 不用打開任何系統、不用學新介面。</div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div class="step-name">我派工</div>
+          <div class="step-text">Manager Agent 解析你的意圖，分派給對的專家組合：要看資料庫先找 DB Agent，要做報表接 BA Agent — 多個 agent 自動接力，不用手動串接。</div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div class="step-name">專家動手</div>
+          <div class="step-text">商業分析、程式、資料庫等專家 Agent 各司其職、呼叫 MCP 工具完成各自的任務 — 每個 Agent 都跑在獨立容器、可單獨擴展或替換。</div>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div class="step-name">完成</div>
+          <div class="step-text">PDF、Excel、SQL 結果直接回到你的聊天視窗 — 你不需要切換工具，所有交辦與成果都在原本的對話框裡。</div>
+        </div>
+      </div>
+
+      <!-- Concrete user flow example: a chat conversation -->
+      <div class="flow-example">
+        <div class="flow-example-title">─── 一次完整對話的範例 ───</div>
+        <div class="flow-msg">
+          <div class="flow-msg-who who-user">YOU</div>
+          <div class="flow-msg-text">幫我看 Q3 銷售，做成 PDF 給我</div>
+        </div>
+        <div class="flow-msg">
+          <div class="flow-msg-who who-mgr">MANAGER</div>
+          <div class="flow-msg-text">收到。我先請 DB Agent 查資料，再請 BA Agent 做 PDF。</div>
+        </div>
+        <div class="flow-msg">
+          <div class="flow-msg-who who-agent">DB AGENT</div>
+          <div class="flow-msg-text">SQL 查 Q3 銷售 → 取回 12,345 筆。</div>
+        </div>
+        <div class="flow-msg">
+          <div class="flow-msg-who who-agent">BA AGENT</div>
+          <div class="flow-msg-text">產出圖表 + 寫敘述 → 排版成 PDF。</div>
+        </div>
+        <div class="flow-msg">
+          <div class="flow-msg-who who-result">YOU ◀</div>
+          <div class="flow-msg-text">📎 Q3-report.pdf — 完成，回到聊天視窗。</div>
+        </div>
+      </div>
+      <div class="diagram-link-wrap">
+        <a class="diagram-link" href="user-flow.zh.html" target="_blank" rel="noopener">
+          查看完整使用者流程序列圖
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ARCHITECTURE -->
+  <section id="architecture">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-num">03 &nbsp;系統架構</div>
+        <h2 class="section-title">六層分工，<br/>每層都可獨立替換或擴展。</h2>
+        <p class="section-desc">CoStaff 不是單一巨型 AI，而是多個 Agent + 工具串接而成的協作系統。每層都跑在自己的容器、各自負責一件事，可以獨立替換或加新組件。</p>
+      </div>
+      <div class="arch-stack">
+        <div class="arch-row">
+          <div class="arch-layer"><div class="arch-zh">使用者</div>USER</div>
+          <div class="arch-members">在通訊軟體裡用一句話交辦任務 — 你只負責下指令、收成品。</div>
+        </div>
+        <div class="arch-row">
+          <div class="arch-layer"><div class="arch-zh">通訊軟體</div>CHANNELS</div>
+          <div class="arch-members">WebChat ・ Telegram ・ LINE ・ Discord ・ Slack <span class="arch-note">(每個 channel 跑在獨立 Docker 容器)</span></div>
+        </div>
+        <div class="arch-row arch-manager">
+          <div class="arch-layer"><div class="arch-zh">編排層</div>MANAGER</div>
+          <div class="arch-members"><strong>Manager Agent</strong> — 解析意圖、記憶對話、分派多 agent 工作 <span class="arch-note">(A2A Protocol)</span></div>
+        </div>
+        <div class="arch-row">
+          <div class="arch-layer"><div class="arch-zh">專家</div>SPECIALISTS</div>
+          <div class="arch-members">商業分析 ・ 程式 ・ 資料庫 ・ Twinkle Hub ・ <strong>Custom Agent with MCP Server</strong> <span class="arch-note">(每個 agent 跑在獨立容器)</span></div>
+        </div>
+        <div class="arch-row">
+          <div class="arch-layer"><div class="arch-zh">資料</div>DATA</div>
+          <div class="arch-members">PostgreSQL + Shared Workspace <span class="arch-note">(per-agent 永續儲存)</span></div>
+        </div>
+        <div class="arch-row">
+          <div class="arch-layer"><div class="arch-zh">LLM</div>LLM</div>
+          <div class="arch-members">Gemini ・ Gemma ・ Twinkle T1 ・ 第三方模型 <span class="arch-note">(每個 agent 可獨立配置)</span></div>
+        </div>
+      </div>
+      <div class="diagram-link-wrap">
+        <a class="diagram-link" href="architecture.zh.html" target="_blank" rel="noopener">
+          查看完整技術架構圖
+          <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- DEPLOY -->
   <section id="how">
     <div class="container">
       <div class="section-header">
-        <div class="section-num">02 &nbsp;快速開始</div>
+        <div class="section-num">04 &nbsp;快速開始</div>
         <h2 class="section-title">只需要 Docker。<br/>用容器隔離運行，獨立又乾淨。</h2>
         <p class="section-desc">會跑 Docker，你就會跑 CoStaff。從 0 到能交辦工作給 AI 員工，三個指令、約 5 分鐘。</p>
       </div>
@@ -463,7 +622,7 @@
   <section id="cli">
     <div class="container">
       <div class="section-header">
-        <div class="section-num">03 &nbsp;管理指令</div>
+        <div class="section-num">05 &nbsp;管理指令</div>
         <h2 class="section-title">透過 CoStaff CLI，<br/>快速啟動、停止、查詢服務狀態。</h2>
         <p class="section-desc">指令命名直觀、用法一致 — 看到指令就知道要做什麼，不用查文件就能上手。</p>
       </div>
@@ -505,7 +664,7 @@
   <section id="channels">
     <div class="container">
       <div class="section-header">
-        <div class="section-num">04 &nbsp;支援的通訊軟體</div>
+        <div class="section-num">06 &nbsp;支援的通訊軟體</div>
         <h2 class="section-title">在你日常的通訊軟體裡，<br/>你的 AI 員工已經就位。</h2>
         <p class="section-desc">交辦工作、收到 PDF、查資料、回報進度 — 全部都在你已經在用的對話框裡完成。</p>
       </div>
@@ -552,7 +711,7 @@
   <section id="plans">
     <div class="container">
       <div class="section-header">
-        <div class="section-num">05 &nbsp;方案</div>
+        <div class="section-num">07 &nbsp;方案</div>
         <h2 class="section-title">CoStaff 是開源 AI 員工平台</h2>
         <p class="section-desc">個人試用免費，如有商用需求，歡迎填寫表單。<br/>CoStaff 原始碼公開、可自架、可改、可貢獻。個人使用免費，<strong>團隊使用、商業用途</strong>，請聯繫了解更多。</p>
       </div>
@@ -612,7 +771,7 @@
   <section id="privacy">
     <div class="container">
       <div class="section-header">
-        <div class="section-num">06 &nbsp;你的資料</div>
+        <div class="section-num">08 &nbsp;你的資料</div>
         <h2 class="section-title">跑在你的機器上，<br/>不是我們的。</h2>
         <p class="section-desc">大多數 AI 工具把你的對話存在它們的伺服器，還強迫你用他們指定的模型。CoStaff 不會 — 你的資料 100% 在你的機器，要不要連 AI 推論都離線，你自己決定。</p>
       </div>
