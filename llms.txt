@@ -1,0 +1,51 @@
+# CoStaff
+
+> Open-source, self-hosted multi-agent system. Build your own AI Agent workforce — hand off tasks in your chat app, your specialist agents collaborate to get the work done, all running on your own machine.
+
+CoStaff orchestrates multiple specialist AI agents through a Manager Agent. Each specialist runs in its own Docker container, **uses MCP (Model Context Protocol) for tool integration**, and communicates with other agents via **A2A (Agent-to-Agent) Protocol**. Data, conversations, and (optionally) inference all stay on the user's hardware.
+
+## Key facts
+
+- **Self-hosted**: 100% on your own machine via Docker. No data leaves your network unless you choose a hosted LLM.
+- **Multi-agent**: Manager Agent dispatches work to specialists (Business Analysis, Coding, Database, Twinkle Hub, Custom Agents).
+- **Multi-channel**: Hand off tasks via Telegram, WebChat (deployed); LINE / Discord / Slack (planned). Same agents, multiple chat apps.
+- **License**: AGPL v3 (open-source) + commercial license available.
+- **Stack**: Google ADK · MCP · A2A · Docker · PostgreSQL.
+- **LLM choice**: Gemini, Gemma, Twinkle T1, third-party — per-agent configurable.
+
+## Documentation (English)
+
+- [Home](https://costaffs.app/): Product overview, hero messaging, key features
+- [AI Staff](https://costaffs.app/agents/): The 5 specialist agents — Business Analysis, Coding, Database, Twinkle Hub, Custom Agent
+- [Architecture](https://costaffs.app/architecture/): 6-layer system diagram (USER → CHANNELS → MANAGER → SPECIALISTS → DATA → LLM)
+- [User Flow](https://costaffs.app/user-flow/): Sequence diagram showing how a user request flows through all 5 layers, end to end
+
+## 中文文件
+
+- [首頁](https://costaffs.app/zhtw/): 產品概覽
+- [AI 員工](https://costaffs.app/zhtw/agents/): 5 個專家 Agent
+- [技術架構](https://costaffs.app/zhtw/architecture/): 六層系統架構
+- [使用者流程](https://costaffs.app/zhtw/user-flow/): 使用者請求的端到端序列圖
+
+## What CoStaff is NOT
+
+- ❌ Not a hosted SaaS or cloud service — it runs on your machine.
+- ❌ Not a single monolithic AI agent — it's an orchestrator of specialists.
+- ❌ Not an MCP server marketplace — CoStaff *uses* MCP internally to call tools, but doesn't host MCP servers for others.
+- ❌ Not locked to one LLM vendor — swap Gemini / Gemma / Twinkle T1 / third-party per agent.
+
+## Source code
+
+- GitHub Org: https://github.com/costaff-ai
+- Twinkle Hub Agent (open): https://github.com/costaff-ai/costaff-agent-twinkle-hub
+- Other repos: public when launched
+
+## Contact
+
+- Email: simonliuyuwei@gmail.com
+- Early access form: https://forms.gle/9UVdi527sYUBuqcm6
+- Website: https://costaffs.app
+
+## Optional
+
+- [Pitch deck](https://costaffs.app/deck.html): For investors / partners
