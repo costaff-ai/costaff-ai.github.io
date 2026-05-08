@@ -57,5 +57,9 @@ Allow: /
 User-agent: DuckAssistBot
 Allow: /
 
+# Content Signals (https://contentsignals.org/) — declare AI usage preferences
+# CoStaff is open-source; we welcome AI agents to learn from, search, and quote our content.
+Content-Signal: ai-train=yes, search=yes, ai-input=yes
+
 # Sitemap and discovery
 Sitemap: https://costaffs.app/sitemap.xml
