@@ -191,6 +191,7 @@
     /* PLANS */
     #plans { background:var(--bg-alt); }
     .plans-grid { display:grid; grid-template-columns:1fr 1fr; gap:24px; }
+    .services-grid { display:grid; grid-template-columns:1fr 1fr 1fr; gap:24px; }
     .plan-card { border:1px solid var(--border); border-radius:6px; overflow:hidden; background:var(--bg); }
     .plan-card.featured { border-color:var(--accent-2); }
     .plan-header { padding:28px 32px 24px; border-bottom:1px solid var(--border); }
@@ -260,6 +261,7 @@
       .steps{grid-template-columns:1fr;gap:36px;}
       .cli-grid{grid-template-columns:1fr;}
       .plans-grid{grid-template-columns:1fr;}
+      .services-grid{grid-template-columns:1fr;}
       .privacy-grid{grid-template-columns:1fr;}
       .footer-inner{flex-direction:column;gap:16px;text-align:center;}
       .footer-links{justify-content:center;}
@@ -319,6 +321,7 @@
 
     /* Plans */
     .plans-grid  { gap: 14px; }
+    .services-grid { gap: 14px; }
     .plan-header { padding: 16px 20px 12px; }
     .plan-body   { padding: 14px 20px; }
     .plan-name   { font-size: 18px; margin-bottom: 3px; }
@@ -778,21 +781,20 @@
         </div>
         <div class="plan-card featured">
           <div class="plan-header">
-            <div class="plan-name">進階方案</div>
-            <div class="plan-tagline">Starter · Pro · Max · Enterprise</div>
+            <div class="plan-name">Advance</div>
+            <div class="plan-tagline">適合團隊與商業使用</div>
           </div>
           <div class="plan-body">
             <div class="plan-limit-title">OSS 全部功能，加上</div>
             <ul class="plan-limits">
-              <li>多 Agent、多使用者、更多 Skill 額度</li>
-              <li>訂閱期間內無限更新與升級</li>
-              <li>適合團隊與商業環境使用</li>
+              <li>更高額度：更多 agent、使用者、skill</li>
+              <li>訂閱期間持續更新與升級</li>
+              <li>專為團隊與商業環境設計</li>
               <li>依使用規模彈性計價</li>
             </ul>
-            <a class="plan-cta primary" href="mailto:simonliuyuwei@gmail.com?subject=CoStaff%20%E9%80%B2%E9%9A%8E%E6%96%B9%E6%A1%88%E8%A9%A2%E5%95%8F">聯繫了解方案</a>
+            <a class="plan-cta primary" href="mailto:simonliuyuwei@gmail.com?subject=CoStaff%20Advance%20Plan%20Inquiry">聯繫了解</a>
             <div class="plan-note" style="color:#5a5855;border-color:#2a2a28;">
-              社群支援：GitHub Issues / Discussions。<br/>
-              告訴我你的使用情境（預計幾位使用者、幾台機器、用途），會依照需求推薦合適的方案。
+              告訴我你的使用情境（團隊規模、機器、用途），會依需求推薦合適方案。
             </div>
           </div>
         </div>
@@ -801,12 +803,18 @@
   </section>
 
   <!-- PARTNERS -->
-  <section class="partners-strip" id="partners">
-    <div class="partners-label">合作社群 · Partner Community</div>
-    <div class="partners-row">
-      <a href="https://twinkleai.tw/" target="_blank" rel="noopener" aria-label="Twinkle AI">
-        <img src="/images/twinkle-title-1920x.png" alt="Twinkle AI" loading="lazy" />
-      </a>
+  <section id="partners">
+    <div class="container">
+      <div class="section-header">
+        <div class="section-num">08 &nbsp;合作夥伴</div>
+        <h2 class="section-title">和台灣 AI 社群<br/>一起建構。</h2>
+        <p class="section-desc">CoStaff 是開源專案。我們與認同「開源 agentic AI 生態系」這份願景的夥伴一起建構。</p>
+      </div>
+      <div class="partners-row">
+        <a href="https://twinkleai.tw/" target="_blank" rel="noopener" aria-label="Twinkle AI">
+          <img src="/images/twinkle-title-1920x.png" alt="Twinkle AI" loading="lazy" />
+        </a>
+      </div>
     </div>
   </section>
 
@@ -814,7 +822,7 @@
   <section id="privacy">
     <div class="container">
       <div class="section-header">
-        <div class="section-num">08 &nbsp;你的資料</div>
+        <div class="section-num">09 &nbsp;你的資料</div>
         <h2 class="section-title">跑在你的機器上，<br/>不是我們的。</h2>
         <p class="section-desc">大多數 AI 工具把你的對話存在它們的伺服器，還強迫你用他們指定的模型。CoStaff 不會 — 你的資料 100% 在你的機器，要不要連 AI 推論都離線，你自己決定。</p>
       </div>
