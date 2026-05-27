@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CoStaff — 專家 Agent</title>
+  <meta name="description" content="Agent 是 Manager 透過 A2A 派工的容器化專家。從 GitHub、本地路徑、遠端 URL 都能加。" />
+  <meta name="robots" content="index, follow, all, max-image-preview:large" />
+  <link rel="describedby" href="/llms.txt" type="text/markdown" />
+  <link rel="alternate" type="text/markdown" href="/zhtw/docs.md" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&family=Inter:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/docs/docs.css" />
+</head>
+<body>
+
+  <div class="coming-soon-banner">
+    <span class="cs-label">🎉 已開源 · v0.1.0-alpha-1</span>
+    <span class="cs-sub">— 加入候補名單，正式版上線第一時間通知</span>
+    <a href="https://forms.gle/9UVdi527sYUBuqcm6" target="_blank" rel="noopener">加入候補 →</a>
+  </div>
+
+  <nav class="site">
+    <a class="nav-logo" href="/">Co<span>Staff</span></a>
+    <div class="nav-links" id="primary-nav">
+      <a href="/zhtw/">首頁</a>
+      <a href="/zhtw/agents/">AI 員工</a>
+      <a href="/zhtw/channels/">通訊軟體</a>
+      <a href="/zhtw/architecture/">技術架構</a>
+      <a href="/zhtw/user-flow/">應用架構</a>
+      <a href="/zhtw/docs/" class="active">文件</a>
+    </div>
+    <div class="nav-right">
+      <a class="nav-lang" href="/docs/agents/">EN</a>
+      <a class="nav-gh" href="https://github.com/costaff-ai/costaff" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
+      <button class="nav-toggle" aria-label="切換選單" aria-expanded="false" aria-controls="primary-nav">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="docs-shell">
+
+      <aside class="docs-side" data-open="false">
+        <button class="side-mobile" type="button" aria-expanded="false">
+          <span>本頁目錄</span>
+          <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <nav class="side-nav" aria-label="Docs">
+          <div class="side-group">
+            <h4>入門</h4>
+            <ul>
+              <li><a href="/zhtw/docs/">總覽</a></li>
+              <li><a href="/zhtw/docs/requirements/">系統需求</a></li>
+              <li><a href="/zhtw/docs/install/">安裝</a></li>
+            </ul>
+          </div>
+          <div class="side-group">
+            <h4>設定與啟動</h4>
+            <ul>
+              <li><a href="/zhtw/docs/onboard/">首次設定</a></li>
+              <li><a href="/zhtw/docs/start/">啟動 CoStaff</a></li>
+            </ul>
+          </div>
+          <div class="side-group">
+            <h4>擴充</h4>
+            <ul>
+              <li><a href="/zhtw/docs/agents/" class="active">專家 Agent</a></li>
+              <li><a href="/zhtw/docs/channels/">通訊軟體</a></li>
+            </ul>
+          </div>
+          <div class="side-group">
+            <h4>營運</h4>
+            <ul>
+              <li><a href="/zhtw/docs/verify/">驗證安裝</a></li>
+              <li><a href="/zhtw/docs/cli/">CLI 指令</a></li>
+              <li><a href="/zhtw/docs/troubleshooting/">問題排解</a></li>
+            </ul>
+          </div>
+        </nav>
+      </aside>
+
+      <main class="docs-main">
+        <header class="docs-header">
+          <div class="docs-eyebrow">05 — 擴充</div>
+          <h1 class="docs-title">專家 Agent</h1>
+          <p class="docs-lede">Agent 是 Manager 透過 A2A 派工的容器化專家。從 GitHub、本地路徑、遠端 URL 都能加。</p>
+        </header>
+
+
+<h2>從 GitHub 安裝（官方與社群）</h2>
+<p>官方 Agent 放在 <code>costaff-ai</code> 組織。用 repo URL 加：</p>
+<pre class="code"><span class="c"># 商業分析專家</span>
+costaff agent add business-analysis \
+  --github https://github.com/costaff-ai/costaff-agent-business-analysis
+
+<span class="c"># 程式開發專家</span>
+costaff agent add coding \
+  --github https://github.com/costaff-ai/costaff-agent-coding</pre>
+
+<p>CLI 會把 repo clone 到 <code>~/.costaff/costaff-agent/&lt;name&gt;/src/</code>，驗證 manifest，build image 並起容器，然後重啟 Manager 讓它看到新 Agent。</p>
+
+<h2>從本地路徑（開發用）</h2>
+<pre class="code">costaff agent add my-agent --local /path/to/my-agent</pre>
+<p>適合 fork 之後在本機改、或自己寫一個 Agent 的時候。CLI 直接用該目錄，不會 copy。</p>
+
+<h2>註冊遠端 A2A endpoint</h2>
+<p>已經有 A2A server 跑在別處？跳過 clone，直接用 URL：</p>
+<pre class="code">costaff agent add partner-agent --url http://partner.example.com:8081</pre>
+
+<h2>管理 Agent</h2>
+<table class="spec">
+  <thead><tr><th>指令</th><th>作用</th></tr></thead>
+  <tbody>
+    <tr><td><code>costaff agent list</code></td><td>列出所有已註冊 Agent、A2A URL、健康檢查結果。</td></tr>
+    <tr><td><code>costaff agent restart &lt;name&gt;</code></td><td>重啟容器，不 rebuild image，快。</td></tr>
+    <tr><td><code>costaff agent rebuild &lt;name&gt;</code></td><td>Rebuild image 並重啟。改 code 或 <code>.env</code> 後需要。</td></tr>
+    <tr><td><code>costaff agent remove &lt;name&gt;</code></td><td>停掉、移除、unregister。</td></tr>
+    <tr><td><code>costaff agent model &lt;name&gt;</code></td><td>查詢或設定某個 Agent 的 LLM model。</td></tr>
+  </tbody>
+</table>
+
+<h2>Pin 版本</h2>
+<p>把 Agent 釘在某個 git tag / branch / SHA，<code>rebuild</code> 就不會偷偷拉到最新。上 production 之後想讓每次發版都是刻意的，就用這個。</p>
+<pre class="code"><span class="c"># 裝的時候直接 pin</span>
+costaff agent add coding \
+  --github https://github.com/costaff-ai/costaff-agent-coding \
+  --tag v0.1.0-alpha-1
+
+<span class="c"># 之後 rebuild 會停在 pin 的 ref</span>
+costaff agent rebuild coding
+
+<span class="c"># 換 pin</span>
+costaff agent rebuild coding --tag v0.2.0
+
+<span class="c"># 跳過 git，直接用工作樹現有內容 build</span>
+costaff agent rebuild coding --no-pull</pre>
+<p><code>costaff agent list</code> 的 <code>Ref</code> 欄會顯示目前的 ref。完整說明見 <a href="/zhtw/docs/cli/#version-pin">CLI &rarr; 版本 pin</a>。</p>
+
+<div class="callout">
+  <div class="label">每個 Agent 用不同 model</div>
+  <p>每個專家可以跑不同 model。把 coding agent 指到 <code>gemini-3-flash-preview</code>、BA agent 留在比較小的 model，或把某個 Agent 接到本機 Ollama 透過 LiteLLM。</p>
+</div>
+
+
+        <nav class="docs-pager" aria-label="Pager">
+        <a class="prev" href="/zhtw/docs/start/"><span class="pager-label">← 上一頁</span><span class="pager-title">啟動 CoStaff</span></a>
+        <a class="next" href="/zhtw/docs/channels/"><span class="pager-label">下一頁 →</span><span class="pager-title">通訊軟體</span></a>
+      </nav>
+      </main>
+
+  </div>
+
+  <footer class="site">
+    <div class="footer-inner">
+      <div class="footer-logo">Co<span>Staff</span></div>
+      <div class="footer-text">© 2026 CoStaffAI</div>
+      <div class="footer-links">
+        <a href="/zhtw/">首頁</a>
+        <a href="https://github.com/costaff-ai/costaff" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://forms.gle/9UVdi527sYUBuqcm6" target="_blank" rel="noopener">搶先預約</a>
+        <a href="mailto:simonliuyuwei@gmail.com">聯絡</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const toggle = document.querySelector('.nav-toggle');
+      const menu   = document.getElementById('primary-nav');
+      if (toggle && menu) {
+        toggle.addEventListener('click', () => {
+          const open = menu.classList.toggle('open');
+          toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+        menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+          menu.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        }));
+      }
+
+      const side = document.querySelector('.docs-side');
+      const sideBtn = side && side.querySelector('.side-mobile');
+      if (side && sideBtn) {
+        sideBtn.addEventListener('click', () => {
+          const open = side.getAttribute('data-open') !== 'true';
+          side.setAttribute('data-open', open ? 'true' : 'false');
+          sideBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

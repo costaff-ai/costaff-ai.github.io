@@ -17,15 +17,21 @@ CoStaff orchestrates multiple specialist AI agents through a Manager Agent. Each
 
 - [Home](https://costaffs.app/): Product overview, hero messaging, key features
 - [AI Staff](https://costaffs.app/agents/): The 5 specialist agents — Business Analysis, Coding, Database, Twinkle Hub, Custom Agent
+- [Channels](https://costaffs.app/channels/): Front-door chat apps — WebChat (OSS), Telegram (OSS), WebChat Enterprise (contact for access)
 - [Architecture](https://costaffs.app/architecture/): 6-layer system diagram (USER → CHANNELS → MANAGER → SPECIALISTS → DATA → LLM)
 - [User Flow](https://costaffs.app/user-flow/): Sequence diagram showing how a user request flows through all 5 layers, end to end
+- [Install & Setup](https://costaffs.app/docs/): One-command installer for macOS / Ubuntu, plus how to add specialist agents and chat channels
+- [CLI reference](https://costaffs.app/docs/cli/): Complete `costaff` CLI command reference — lifecycle, agent, channel, database, doctor
 
 ## 中文文件
 
 - [首頁](https://costaffs.app/zhtw/): 產品概覽
 - [AI 員工](https://costaffs.app/zhtw/agents/): 5 個專家 Agent
+- [通訊軟體](https://costaffs.app/zhtw/channels/): 使用者派工入口 — WebChat（開源）、Telegram（開源）、WebChat Enterprise（聯絡取得）
 - [技術架構](https://costaffs.app/zhtw/architecture/): 六層系統架構
 - [使用者流程](https://costaffs.app/zhtw/user-flow/): 使用者請求的端到端序列圖
+- [安裝與設定](https://costaffs.app/zhtw/docs/): macOS / Ubuntu 一行指令安裝，含加入專家 Agent 與通訊軟體
+- [CLI 指令參考](https://costaffs.app/zhtw/docs/cli/): 完整 `costaff` CLI 指令參考 — 生命週期、Agent、通訊軟體、資料庫、診斷
 
 ## What CoStaff is NOT
 
@@ -36,9 +42,12 @@ CoStaff orchestrates multiple specialist AI agents through a Manager Agent. Each
 
 ## Source code
 
-- GitHub Org: https://github.com/costaff-ai
-- Twinkle Hub Agent (open): https://github.com/costaff-ai/costaff-agent-twinkle-hub
-- Other repos: public when launched
+All public on https://github.com/costaff-ai (v0.1.0-alpha-1). Sole exception: `costaff-channel-webchat-enterprise` (paid tier, private — contact for access).
+
+- Core: https://github.com/costaff-ai/costaff
+- Channels: https://github.com/costaff-ai/costaff-channel-webchat-oss · https://github.com/costaff-ai/costaff-channel-telegram
+- Agents: https://github.com/costaff-ai/costaff-agent-business-analysis · https://github.com/costaff-ai/costaff-agent-coding · https://github.com/costaff-ai/costaff-agent-database · https://github.com/costaff-ai/costaff-agent-twinkle-hub · https://github.com/costaff-ai/costaff-agent-wrenai-oss
+- Agent template: https://github.com/costaff-ai/costaff-agent-template
 
 ## Contact
 

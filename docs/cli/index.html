@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CoStaff — CLI reference</title>
+  <meta name="description" content="Complete reference for the `costaff` CLI: lifecycle, agent and channel management, database, doctor, config, and direct interaction commands." />
+  <meta name="robots" content="index, follow, all, max-image-preview:large" />
+  <link rel="describedby" href="/llms.txt" type="text/markdown" />
+  <link rel="alternate" type="text/markdown" href="/docs.md" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&family=Inter:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/docs/docs.css" />
+</head>
+<body>
+
+  <div class="coming-soon-banner">
+    <span class="cs-label">🎉 Now open source · v0.1.0-alpha-1</span>
+    <span class="cs-sub">— Join the waitlist for GA notifications</span>
+    <a href="https://forms.gle/9UVdi527sYUBuqcm6" target="_blank" rel="noopener">Join waitlist →</a>
+  </div>
+
+  <nav class="site">
+    <a class="nav-logo" href="/">Co<span>Staff</span></a>
+    <div class="nav-links" id="primary-nav">
+      <a href="/">Home</a>
+      <a href="/agents/">AI Staff</a>
+      <a href="/channels/">Channels</a>
+      <a href="/architecture/">Architecture</a>
+      <a href="/user-flow/">User Flow</a>
+      <a href="/docs/" class="active">Docs</a>
+    </div>
+    <div class="nav-right">
+      <a class="nav-lang" href="/zhtw/docs/cli/">繁中</a>
+      <a class="nav-gh" href="https://github.com/costaff-ai/costaff" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-nav">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="docs-shell">
+
+      <aside class="docs-side" data-open="false">
+        <button class="side-mobile" type="button" aria-expanded="false">
+          <span>On this page</span>
+          <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <nav class="side-nav" aria-label="Docs">
+          <div class="side-group">
+            <h4>Getting started</h4>
+            <ul>
+              <li><a href="/docs/">Overview</a></li>
+              <li><a href="/docs/requirements/">System requirements</a></li>
+              <li><a href="/docs/install/">Install</a></li>
+            </ul>
+          </div>
+          <div class="side-group">
+            <h4>Configure &amp; run</h4>
+            <ul>
+              <li><a href="/docs/onboard/">First-run setup</a></li>
+              <li><a href="/docs/start/">Start CoStaff</a></li>
+            </ul>
+          </div>
+          <div class="side-group">
+            <h4>Extend</h4>
+            <ul>
+              <li><a href="/docs/agents/">Specialist agents</a></li>
+              <li><a href="/docs/channels/">Chat channels</a></li>
+            </ul>
+          </div>
+          <div class="side-group">
+            <h4>Operate</h4>
+            <ul>
+              <li><a href="/docs/verify/">Verify the install</a></li>
+              <li><a href="/docs/cli/" class="active">CLI reference</a></li>
+              <li><a href="/docs/troubleshooting/">Troubleshooting</a></li>
+            </ul>
+          </div>
+        </nav>
+      </aside>
+
+      <main class="docs-main">
+        <header class="docs-header">
+          <div class="docs-eyebrow">Operate</div>
+          <h1 class="docs-title">CLI <span>reference</span></h1>
+          <p class="docs-lede">Every <code>costaff</code> subcommand in one place. Lifecycle, agent and channel management, database, doctor, and direct interaction.</p>
+        </header>
+
+<h2>Global</h2>
+<table class="spec">
+  <thead><tr><th>Command</th><th>What it does</th></tr></thead>
+  <tbody>
+    <tr><td><code>costaff --help</code></td><td>Show the top-level command list.</td></tr>
+    <tr><td><code>costaff &lt;command&gt; --help</code></td><td>Show options and arguments for a specific command.</td></tr>
+    <tr><td><code>costaff --install-completion</code></td><td>Install shell completion for your shell.</td></tr>
+  </tbody>
+</table>
+
+<h2>First-time setup</h2>
+<table class="spec">
+  <thead><tr><th>Command</th><th>What it does</th></tr></thead>
+  <tbody>
+    <tr><td><code>costaff onboard</code></td><td>Interactive wizard — writes <code>~/.costaff/costaff/.env</code> with model provider, language, timezone, and any channels you pick. See <a href="/docs/onboard/">First-run setup</a>.</td></tr>
+    <tr><td><code>costaff bootstrap -k &lt;gemini-key&gt;</code></td><td>Non-interactive one-shot deploy for CI / automation. Writes minimum env (Gemini key, model, language) then chains into <code>costaff start</code>. Falls back to <code>$GOOGLE_API_KEY</code> if <code>-k</code> is omitted.</td></tr>
+  </tbody>
+</table>
+
+<h2>Lifecycle</h2>
+<p>Bring the stack up, take it down, watch logs.</p>
+<table class="spec">
+  <thead><tr><th>Command</th><th>What it does</th></tr></thead>
+  <tbody>
+    <tr><td><code>costaff start</code></td><td>Layered start: Postgres → registered agents → Manager → channels. Builds images if missing.</td></tr>
+    <tr><td><code>costaff start --no-build</code></td><td>Same, but skip image build (fast restart).</td></tr>
+    <tr><td><code>costaff stop</code></td><td>Stop all containers; volumes retained.</td></tr>
+    <tr><td><code>costaff restart</code></td><td>Equivalent to <code>stop</code> + <code>start</code>.</td></tr>
+    <tr><td><code>costaff core-rebuild</code></td><td>Rebuild the Manager + core MCP server image and force-recreate them, then reconnect every plugin agent (whose MCP session to the core would otherwise be stale).</td></tr>
+    <tr><td><code>costaff status</code></td><td>Show all services' container status.</td></tr>
+    <tr><td><code>costaff logs [service]</code></td><td>Tail logs (last 100 lines). With no argument, shows all services.</td></tr>
+  </tbody>
+</table>
+
+<h2>Agent management</h2>
+<p>Add, remove, restart, and tune specialist agents. See <a href="/docs/agents/">Specialist agents</a> for the full workflow.</p>
+<table class="spec">
+  <thead><tr><th>Command</th><th>What it does</th></tr></thead>
+  <tbody>
+    <tr><td><code>costaff agent add &lt;name&gt; --github &lt;url&gt;</code></td><td>Clone a public GitHub repo, validate the manifest, build + start the agent.</td></tr>
+    <tr><td><code>costaff agent add &lt;name&gt; --local &lt;path&gt;</code></td><td>Deploy an agent from a local directory (no clone).</td></tr>
+    <tr><td><code>costaff agent add &lt;name&gt; --url &lt;a2a-url&gt;</code></td><td>Register a remote A2A endpoint — no local container.</td></tr>
+    <tr><td><code>costaff agent add ... -e KEY=VAL</code></td><td>Pre-supply env vars (skips the interactive prompt).</td></tr>
+    <tr><td><code>costaff agent add ... --strict</code></td><td>Reject the manifest if it doesn't pass the full Agent Protocol JSON Schema (otherwise warns).</td></tr>
+    <tr><td><code>costaff agent add ... --enable-transfer [-y]</code></td><td>Wire this agent via <code>sub_agents</code> + <code>transfer_to_agent</code> instead of the default <code>AgentTool</code>. Flips the Manager into transfer mode globally — needs confirmation unless <code>-y</code>.</td></tr>
+    <tr><td><code>costaff agent list</code></td><td>List every registered agent with its A2A URL, a health check, and (if pinned) the <code>Ref</code> column.</td></tr>
+    <tr><td><code>costaff agent restart &lt;name&gt;</code></td><td>Restart the agent's container; no rebuild — fast.</td></tr>
+    <tr><td><code>costaff agent rebuild &lt;name&gt;</code></td><td>Rebuild the image and restart. Needed after code or env-var changes. If the agent was added with <code>--tag</code>, sticks to that ref via <code>git fetch --tags &amp;&amp; git checkout &lt;ref&gt;</code>; otherwise <code>git pull --ff-only</code>.</td></tr>
+    <tr><td><code>costaff agent add ... --tag &lt;ref&gt;</code></td><td>Pin to a git tag, branch, or SHA at install time. Clones with <code>--branch &lt;ref&gt;</code> + full history; ref persisted to <code>config.json</code>.</td></tr>
+    <tr><td><code>costaff agent rebuild ... --tag &lt;ref&gt;</code></td><td>Bump (or set) the pin. Persists the new ref to <code>config.json</code>.</td></tr>
+    <tr><td><code>costaff agent rebuild ... --no-pull</code></td><td>Skip git entirely — build from the current working tree (useful when you've hand-edited <code>~/.costaff/costaff-agent/&lt;name&gt;/src/</code>).</td></tr>
+    <tr><td><code>costaff agent remove &lt;name&gt;</code></td><td>Stop, remove, and unregister.</td></tr>
+    <tr><td><code>costaff agent enable &lt;name&gt;</code> / <code>disable &lt;name&gt;</code></td><td>Toggle whether the Manager dispatches to the agent (without removing it).</td></tr>
+    <tr><td><code>costaff agent model &lt;name&gt;</code></td><td>Query or set the LLM model for one agent.</td></tr>
+    <tr><td><code>costaff agent transfer &lt;name&gt; --enable</code> / <code>--disable</code></td><td>Switch an existing agent between AgentTool (default) and transfer mode.</td></tr>
+  </tbody>
+</table>
+
+<div class="callout warn">
+  <div class="label">restart vs rebuild</div>
+  <p><code>restart</code> uses the existing image and is the right call for clearing a stuck container. <code>rebuild</code> is needed whenever you've changed agent source code or its <code>.env</code> — otherwise the new code or env vars won't take effect.</p>
+</div>
+
+<h2>Channel management</h2>
+<p>Add and manage the front-door chat surfaces. See <a href="/docs/channels/">Chat channels</a> for the full workflow.</p>
+<table class="spec">
+  <thead><tr><th>Command</th><th>What it does</th></tr></thead>
+  <tbody>
+    <tr><td><code>costaff channel add &lt;name&gt;</code></td><td>For an official channel name (<code>webchat</code>, <code>telegram</code>, <code>discord</code>, <code>line</code>), auto-resolves to the GitHub repo.</td></tr>
+    <tr><td><code>costaff channel add &lt;name&gt; --github &lt;url&gt;</code></td><td>Clone a custom channel repo and deploy.</td></tr>
+    <tr><td><code>costaff channel add &lt;name&gt; --local &lt;path&gt;</code></td><td>Deploy a channel from a local directory.</td></tr>
+    <tr><td><code>costaff channel add ... -e KEY=VAL</code></td><td>Pre-supply env vars (e.g. <code>TELEGRAM_BOT_TOKEN</code>).</td></tr>
+    <tr><td><code>costaff channel list</code></td><td>List registered channels with port, health, and (if pinned) the <code>Ref</code> column.</td></tr>
+    <tr><td><code>costaff channel rebuild &lt;name&gt;</code></td><td>Rebuild image and restart. If the channel was added with <code>--tag</code>, sticks to that ref; otherwise <code>git pull --ff-only</code>.</td></tr>
+    <tr><td><code>costaff channel add ... --tag &lt;ref&gt;</code></td><td>Pin to a git tag, branch, or SHA at install time.</td></tr>
+    <tr><td><code>costaff channel rebuild ... --tag &lt;ref&gt;</code></td><td>Bump (or set) the pin.</td></tr>
+    <tr><td><code>costaff channel rebuild ... --no-pull</code></td><td>Skip git entirely; build from current working tree.</td></tr>
+    <tr><td><code>costaff channel remove &lt;name&gt;</code></td><td>Stop, remove, unregister.</td></tr>
+  </tbody>
+</table>
+
+<h2>Database</h2>
+<p>The bundled Postgres holds sessions, project tasks, and identity tables.</p>
+<table class="spec">
+  <thead><tr><th>Command</th><th>What it does</th></tr></thead>
+  <tbody>
+    <tr><td><code>costaff database info</code></td><td>Show connection info and table summary.</td></tr>
+    <tr><td><code>costaff database backup [output]</code></td><td>Dump to a file (default path used if no argument).</td></tr>
+    <tr><td><code>costaff database restore &lt;file&gt;</code></td><td>Restore from a backup file.</td></tr>
+    <tr><td><code>costaff database clean</code></td><td>Truncate all CoStaff tables — destructive, asks first.</td></tr>
+  </tbody>
+</table>
+
+<h2>Doctor &amp; maintenance</h2>
+<table class="spec">
+  <thead><tr><th>Command</th><th>What it does</th></tr></thead>
+  <tbody>
+    <tr><td><code>costaff doctor</code></td><td>One-shot diagnostic — checks env vars, Docker, container health, model reachability. The first thing to attach when asking for help.</td></tr>
+    <tr><td><code>costaff update</code></td><td>Pull latest <code>costaff</code> repo and reinstall the CLI.</td></tr>
+    <tr><td><code>costaff update --tag &lt;ref&gt;</code></td><td>Pin the core repo itself to a specific tag, branch, or SHA, then reinstall.</td></tr>
+    <tr><td><code>costaff license</code></td><td>Show the installed license and feature gates.</td></tr>
+    <tr><td><code>costaff config validate</code></td><td>Lint <code>~/.costaff/costaff/config.json</code> against the expected schema.</td></tr>
+  </tbody>
+</table>
+
+<h2>Direct interaction</h2>
+<p>Useful for scripting and inspecting the Manager without going through a channel.</p>
+<table class="spec">
+  <thead><tr><th>Command</th><th>What it does</th></tr></thead>
+  <tbody>
+    <tr><td><code>costaff dashboard [--port 8501]</code></td><td>Launch the host-side FastAPI dashboard (separate from the agent containers).</td></tr>
+    <tr><td><code>costaff chat [app_name]</code></td><td>Interactive REPL with the Manager (default <code>costaff_agent</code>).</td></tr>
+    <tr><td><code>costaff invoke "&lt;prompt&gt;"</code></td><td>Send a single prompt to the Manager and print the response.</td></tr>
+  </tbody>
+</table>
+
+<h2 id="version-pinning" style="scroll-margin-top:120px;">Version pinning</h2>
+<p>Agents, channels, and the core itself can all be pinned to a specific git tag, branch, or SHA. Once pinned, <code>rebuild</code> stays on that ref instead of pulling the latest <code>main</code>.</p>
+<pre class="code"><span class="c"># Install pinned to a specific tag</span>
+costaff agent add ba --github https://github.com/costaff-ai/costaff-agent-business-analysis \
+  --tag v0.1.0-alpha-1
+
+costaff channel add telegram --tag v0.1.0-alpha-1
+costaff update --tag v0.1.0-alpha-1   <span class="c"># pin the core too</span>
+
+<span class="c"># Subsequent rebuilds stay on the pinned ref</span>
+costaff agent rebuild ba
+
+<span class="c"># Bump the pin to a new version</span>
+costaff agent rebuild ba --tag v0.2.0
+
+<span class="c"># Skip git entirely — build from the working tree as-is</span>
+costaff agent rebuild ba --no-pull
+
+<span class="c"># See what's pinned</span>
+costaff agent list      <span class="c"># Ref column shows the active ref</span>
+costaff channel list</pre>
+
+<div class="callout warn">
+  <div class="label">Don't manually git pull on a pinned repo</div>
+  <p>If an agent is ref-pinned, <code>git pull</code> in <code>~/.costaff/costaff-agent/&lt;name&gt;/src/</code> will detach HEAD and drift from what the next <code>rebuild</code> expects. Use <code>rebuild --tag</code> to change versions.</p>
+</div>
+
+<p>Entries written before tag pinning shipped have no <code>ref</code> field in <code>config.json</code> and continue to follow the default branch via <code>git pull --ff-only</code>.</p>
+
+<h2>Where the CLI lives on disk</h2>
+<table class="spec">
+  <thead><tr><th>Path</th><th>What it is</th></tr></thead>
+  <tbody>
+    <tr><td><code>~/.costaff/.venv/bin/costaff</code></td><td>The installed CLI entry point.</td></tr>
+    <tr><td><code>~/.costaff/costaff/</code></td><td>The git checkout the CLI runs from. <code>git pull</code> + <code>pip install -e .</code> is what <code>costaff update</code> does.</td></tr>
+    <tr><td><code>~/.costaff/costaff/.env</code></td><td>Core env: model provider, secrets, DB URI. Edited by <code>onboard</code>.</td></tr>
+    <tr><td><code>~/.costaff/costaff/config.json</code></td><td>Registered agents and channels. Edited by <code>agent add</code> / <code>channel add</code>.</td></tr>
+    <tr><td><code>~/.costaff/costaff-agent/&lt;name&gt;/</code></td><td>Per-agent source and <code>.env</code>.</td></tr>
+    <tr><td><code>~/.costaff/costaff-channel/&lt;name&gt;/</code></td><td>Per-channel source and <code>.env</code>.</td></tr>
+    <tr><td><code>~/.costaff/workspace/</code></td><td>Shared workspace bind-mounted into every container as <code>/app/data</code>.</td></tr>
+  </tbody>
+</table>
+
+        <nav class="docs-pager" aria-label="Pager">
+        <a class="prev" href="/docs/verify/"><span class="pager-label">← Previous</span><span class="pager-title">Verify the install</span></a>
+        <a class="next" href="/docs/troubleshooting/"><span class="pager-label">Next →</span><span class="pager-title">Troubleshooting</span></a>
+      </nav>
+      </main>
+
+  </div>
+
+  <footer class="site">
+    <div class="footer-inner">
+      <div class="footer-logo">Co<span>Staff</span></div>
+      <div class="footer-text">© 2026 CoStaffAI</div>
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="https://github.com/costaff-ai/costaff" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://forms.gle/9UVdi527sYUBuqcm6" target="_blank" rel="noopener">Get early access</a>
+        <a href="mailto:simonliuyuwei@gmail.com">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const toggle = document.querySelector('.nav-toggle');
+      const menu   = document.getElementById('primary-nav');
+      if (toggle && menu) {
+        toggle.addEventListener('click', () => {
+          const open = menu.classList.toggle('open');
+          toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+        menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+          menu.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        }));
+      }
+
+      const side = document.querySelector('.docs-side');
+      const sideBtn = side && side.querySelector('.side-mobile');
+      if (side && sideBtn) {
+        sideBtn.addEventListener('click', () => {
+          const open = side.getAttribute('data-open') !== 'true';
+          side.setAttribute('data-open', open ? 'true' : 'false');
+          sideBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

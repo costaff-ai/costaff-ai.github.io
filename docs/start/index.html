@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CoStaff — Start CoStaff</title>
+  <meta name="description" content="Bring the full stack up with one command. First run builds images; later runs reuse the cache." />
+  <meta name="robots" content="index, follow, all, max-image-preview:large" />
+  <link rel="describedby" href="/llms.txt" type="text/markdown" />
+  <link rel="alternate" type="text/markdown" href="/docs.md" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&family=Inter:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/docs/docs.css" />
+</head>
+<body>
+
+  <div class="coming-soon-banner">
+    <span class="cs-label">🎉 Now open source · v0.1.0-alpha-1</span>
+    <span class="cs-sub">— Join the waitlist for GA notifications</span>
+    <a href="https://forms.gle/9UVdi527sYUBuqcm6" target="_blank" rel="noopener">Join waitlist →</a>
+  </div>
+
+  <nav class="site">
+    <a class="nav-logo" href="/">Co<span>Staff</span></a>
+    <div class="nav-links" id="primary-nav">
+      <a href="/">Home</a>
+      <a href="/agents/">AI Staff</a>
+      <a href="/channels/">Channels</a>
+      <a href="/architecture/">Architecture</a>
+      <a href="/user-flow/">User Flow</a>
+      <a href="/docs/" class="active">Docs</a>
+    </div>
+    <div class="nav-right">
+      <a class="nav-lang" href="/zhtw/docs/start/">繁中</a>
+      <a class="nav-gh" href="https://github.com/costaff-ai/costaff" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-nav">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="docs-shell">
+
+      <aside class="docs-side" data-open="false">
+        <button class="side-mobile" type="button" aria-expanded="false">
+          <span>On this page</span>
+          <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <nav class="side-nav" aria-label="Docs">
+          <div class="side-group">
+            <h4>Getting started</h4>
+            <ul>
+              <li><a href="/docs/">Overview</a></li>
+              <li><a href="/docs/requirements/">System requirements</a></li>
+              <li><a href="/docs/install/">Install</a></li>
+            </ul>
+          </div>
+          <div class="side-group">
+            <h4>Configure & run</h4>
+            <ul>
+              <li><a href="/docs/onboard/">First-run setup</a></li>
+              <li><a href="/docs/start/" class="active">Start CoStaff</a></li>
+            </ul>
+          </div>
+          <div class="side-group">
+            <h4>Extend</h4>
+            <ul>
+              <li><a href="/docs/agents/">Specialist agents</a></li>
+              <li><a href="/docs/channels/">Chat channels</a></li>
+            </ul>
+          </div>
+          <div class="side-group">
+            <h4>Operate</h4>
+            <ul>
+              <li><a href="/docs/verify/">Verify the install</a></li>
+              <li><a href="/docs/cli/">CLI reference</a></li>
+              <li><a href="/docs/troubleshooting/">Troubleshooting</a></li>
+            </ul>
+          </div>
+        </nav>
+      </aside>
+
+      <main class="docs-main">
+        <header class="docs-header">
+          <div class="docs-eyebrow">04 — Configure & run</div>
+          <h1 class="docs-title">Start CoStaff</h1>
+          <p class="docs-lede">Bring the full stack up with one command. First run builds images; later runs reuse the cache.</p>
+        </header>
+
+
+<pre class="code">costaff start</pre>
+
+<h2>What happens</h2>
+<p>Layered start, in this order:</p>
+<ol>
+  <li><strong>Postgres</strong> — bundled <code>postgres:16</code> container holding sessions, project tasks, and identity tables.</li>
+  <li><strong>Registered agents</strong> — each agent's A2A endpoint + MCP server come up.</li>
+  <li><strong>Manager Agent</strong> — the orchestrator, on port <code>18080</code>.</li>
+  <li><strong>Channels</strong> — WebChat, Telegram, etc.</li>
+</ol>
+
+<p>The first run also builds the Docker images, which takes a few minutes. Later starts hit the build cache and finish in seconds.</p>
+
+<h2>Other lifecycle commands</h2>
+<table class="spec">
+  <thead><tr><th>Command</th><th>What it does</th></tr></thead>
+  <tbody>
+    <tr><td><code>costaff start</code></td><td>Layered up. Builds images if missing.</td></tr>
+    <tr><td><code>costaff start --no-build</code></td><td>Start without rebuilding — fast.</td></tr>
+    <tr><td><code>costaff stop</code></td><td>Stop all containers; volumes retained.</td></tr>
+    <tr><td><code>costaff restart</code></td><td>Stop, then start. Equivalent to <code>stop</code> + <code>start</code>.</td></tr>
+  </tbody>
+</table>
+
+<h2>Default ports</h2>
+<table class="spec">
+  <thead><tr><th>Service</th><th>Host port</th></tr></thead>
+  <tbody>
+    <tr><td>Manager Agent</td><td><code>18080</code></td></tr>
+    <tr><td>WebChat</td><td><code>18090</code></td></tr>
+    <tr><td>First specialist agent A2A</td><td><code>18100</code> (each new agent picks the next free)</td></tr>
+    <tr><td>Postgres</td><td><code>5432</code></td></tr>
+  </tbody>
+</table>
+<p>Override <code>COSTAFF_AGENT_PORT</code> or <code>WEBCHAT_PORT</code> in <code>~/.costaff/costaff/.env</code> if you have conflicts.</p>
+
+
+        <nav class="docs-pager" aria-label="Pager">
+        <a class="prev" href="/docs/onboard/"><span class="pager-label">← Previous</span><span class="pager-title">First-run setup</span></a>
+        <a class="next" href="/docs/agents/"><span class="pager-label">Next →</span><span class="pager-title">Specialist agents</span></a>
+      </nav>
+      </main>
+
+  </div>
+
+  <footer class="site">
+    <div class="footer-inner">
+      <div class="footer-logo">Co<span>Staff</span></div>
+      <div class="footer-text">© 2026 CoStaffAI</div>
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="https://github.com/costaff-ai/costaff" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://forms.gle/9UVdi527sYUBuqcm6" target="_blank" rel="noopener">Get early access</a>
+        <a href="mailto:simonliuyuwei@gmail.com">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const toggle = document.querySelector('.nav-toggle');
+      const menu   = document.getElementById('primary-nav');
+      if (toggle && menu) {
+        toggle.addEventListener('click', () => {
+          const open = menu.classList.toggle('open');
+          toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+        menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+          menu.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        }));
+      }
+
+      const side = document.querySelector('.docs-side');
+      const sideBtn = side && side.querySelector('.side-mobile');
+      if (side && sideBtn) {
+        sideBtn.addEventListener('click', () => {
+          const open = side.getAttribute('data-open') !== 'true';
+          side.setAttribute('data-open', open ? 'true' : 'false');
+          sideBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

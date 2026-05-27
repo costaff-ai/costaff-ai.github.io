@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CoStaff — CoStaff 文件</title>
+  <meta name="description" content="在你自己的機器上自架多代理 AI 系統。文件帶你跑完安裝、設定、加入專家 Agent 與通訊軟體。" />
+  <meta name="robots" content="index, follow, all, max-image-preview:large" />
+  <link rel="describedby" href="/llms.txt" type="text/markdown" />
+  <link rel="alternate" type="text/markdown" href="/zhtw/docs.md" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&family=Inter:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/docs/docs.css" />
+</head>
+<body>
+
+  <div class="coming-soon-banner">
+    <span class="cs-label">🎉 已開源 · v0.1.0-alpha-1</span>
+    <span class="cs-sub">— 加入候補名單，正式版上線第一時間通知</span>
+    <a href="https://forms.gle/9UVdi527sYUBuqcm6" target="_blank" rel="noopener">加入候補 →</a>
+  </div>
+
+  <nav class="site">
+    <a class="nav-logo" href="/">Co<span>Staff</span></a>
+    <div class="nav-links" id="primary-nav">
+      <a href="/zhtw/">首頁</a>
+      <a href="/zhtw/agents/">AI 員工</a>
+      <a href="/zhtw/channels/">通訊軟體</a>
+      <a href="/zhtw/architecture/">技術架構</a>
+      <a href="/zhtw/user-flow/">應用架構</a>
+      <a href="/zhtw/docs/" class="active">文件</a>
+    </div>
+    <div class="nav-right">
+      <a class="nav-lang" href="/docs/">EN</a>
+      <a class="nav-gh" href="https://github.com/costaff-ai/costaff" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
+      <button class="nav-toggle" aria-label="切換選單" aria-expanded="false" aria-controls="primary-nav">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="docs-shell">
+
+      <aside class="docs-side" data-open="false">
+        <button class="side-mobile" type="button" aria-expanded="false">
+          <span>本頁目錄</span>
+          <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <nav class="side-nav" aria-label="Docs">
+          <div class="side-group">
+            <h4>入門</h4>
+            <ul>
+              <li><a href="/zhtw/docs/" class="active">總覽</a></li>
+              <li><a href="/zhtw/docs/requirements/">系統需求</a></li>
+              <li><a href="/zhtw/docs/install/">安裝</a></li>
+            </ul>
+          </div>
+          <div class="side-group">
+            <h4>設定與啟動</h4>
+            <ul>
+              <li><a href="/zhtw/docs/onboard/">首次設定</a></li>
+              <li><a href="/zhtw/docs/start/">啟動 CoStaff</a></li>
+            </ul>
+          </div>
+          <div class="side-group">
+            <h4>擴充</h4>
+            <ul>
+              <li><a href="/zhtw/docs/agents/">專家 Agent</a></li>
+              <li><a href="/zhtw/docs/channels/">通訊軟體</a></li>
+            </ul>
+          </div>
+          <div class="side-group">
+            <h4>營運</h4>
+            <ul>
+              <li><a href="/zhtw/docs/verify/">驗證安裝</a></li>
+              <li><a href="/zhtw/docs/cli/">CLI 指令</a></li>
+              <li><a href="/zhtw/docs/troubleshooting/">問題排解</a></li>
+            </ul>
+          </div>
+        </nav>
+      </aside>
+
+      <main class="docs-main">
+        <header class="docs-header">
+          <div class="docs-eyebrow">文件</div>
+          <h1 class="docs-title">CoStaff <span>文件</span></h1>
+          <p class="docs-lede">在你自己的機器上自架多代理 AI 系統。文件帶你跑完安裝、設定、加入專家 Agent 與通訊軟體。</p>
+        </header>
+
+
+<p>CoStaff 是多代理協作系統：Manager Agent 透過 A2A 派工給專家 Agent（商業分析、程式開發、資料庫、自訂等），專家再用 MCP 呼叫工具完成工作。整套跑在你機器上的 Docker。</p>
+
+<p>想趕快動手？直接到 <a href="/zhtw/docs/install/">安裝</a>。想先看大圖？<a href="/zhtw/architecture/">技術架構</a>頁說明六層架構。</p>
+
+<div class="overview-grid">
+  <a class="ov-card" href="/zhtw/docs/requirements/"><div class="num">01</div><h3>系統需求</h3><p>安裝前你需要準備的硬體與軟體。</p></a>
+  <a class="ov-card" href="/zhtw/docs/install/"><div class="num">02</div><h3>安裝</h3><p>macOS 與 Ubuntu 共用同一行 curl 指令。</p></a>
+  <a class="ov-card" href="/zhtw/docs/onboard/"><div class="num">03</div><h3>首次設定</h3><p><code>costaff onboard</code> 精靈：model、語言、channel。</p></a>
+  <a class="ov-card" href="/zhtw/docs/start/"><div class="num">04</div><h3>啟動 CoStaff</h3><p>用 <code>costaff start</code> 把整個分層 stack 拉起來。</p></a>
+  <a class="ov-card" href="/zhtw/docs/agents/"><div class="num">05</div><h3>專家 Agent</h3><p>加入處理各種工作的專家容器。</p></a>
+  <a class="ov-card" href="/zhtw/docs/channels/"><div class="num">06</div><h3>通訊軟體</h3><p>使用者入口：WebChat、Telegram 等。</p></a>
+  <a class="ov-card" href="/zhtw/docs/verify/"><div class="num">07</div><h3>驗證安裝</h3><p>確認每個容器都健康。</p></a>
+  <a class="ov-card" href="/zhtw/docs/troubleshooting/"><div class="num">08</div><h3>問題排解</h3><p>常見地雷與復原方式。</p></a>
+</div>
+
+<h2>三行快速上手</h2>
+<p>已經熟 stack，就是這三行：</p>
+<pre class="code"><span class="c"># 1. 安裝</span>
+curl -fsSL https://raw.githubusercontent.com/costaff-ai/costaff/main/install.sh | bash
+
+<span class="c"># 2. 設定（互動式精靈）</span>
+source ~/.zshrc  <span class="c"># Ubuntu 改 ~/.bashrc</span>
+costaff onboard
+
+<span class="c"># 3. 啟動全部</span>
+costaff start</pre>
+<p>接著加 Agent 與 channel — 看 <a href="/zhtw/docs/agents/">專家 Agent</a> 與 <a href="/zhtw/docs/channels/">通訊軟體</a>。</p>
+
+
+        <nav class="docs-pager" aria-label="Pager">
+        <span class="empty"></span>
+        <a class="next" href="/zhtw/docs/requirements/"><span class="pager-label">下一頁 →</span><span class="pager-title">系統需求</span></a>
+      </nav>
+      </main>
+
+  </div>
+
+  <footer class="site">
+    <div class="footer-inner">
+      <div class="footer-logo">Co<span>Staff</span></div>
+      <div class="footer-text">© 2026 CoStaffAI</div>
+      <div class="footer-links">
+        <a href="/zhtw/">首頁</a>
+        <a href="https://github.com/costaff-ai/costaff" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://forms.gle/9UVdi527sYUBuqcm6" target="_blank" rel="noopener">搶先預約</a>
+        <a href="mailto:simonliuyuwei@gmail.com">聯絡</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const toggle = document.querySelector('.nav-toggle');
+      const menu   = document.getElementById('primary-nav');
+      if (toggle && menu) {
+        toggle.addEventListener('click', () => {
+          const open = menu.classList.toggle('open');
+          toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+        menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+          menu.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        }));
+      }
+
+      const side = document.querySelector('.docs-side');
+      const sideBtn = side && side.querySelector('.side-mobile');
+      if (side && sideBtn) {
+        sideBtn.addEventListener('click', () => {
+          const open = side.getAttribute('data-open') !== 'true';
+          side.setAttribute('data-open', open ? 'true' : 'false');
+          sideBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

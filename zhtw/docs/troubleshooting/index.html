@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CoStaff — 問題排解</title>
+  <meta name="description" content="常見地雷與復原方式。" />
+  <meta name="robots" content="index, follow, all, max-image-preview:large" />
+  <link rel="describedby" href="/llms.txt" type="text/markdown" />
+  <link rel="alternate" type="text/markdown" href="/zhtw/docs.md" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&family=Inter:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/docs/docs.css" />
+</head>
+<body>
+
+  <div class="coming-soon-banner">
+    <span class="cs-label">🎉 已開源 · v0.1.0-alpha-1</span>
+    <span class="cs-sub">— 加入候補名單，正式版上線第一時間通知</span>
+    <a href="https://forms.gle/9UVdi527sYUBuqcm6" target="_blank" rel="noopener">加入候補 →</a>
+  </div>
+
+  <nav class="site">
+    <a class="nav-logo" href="/">Co<span>Staff</span></a>
+    <div class="nav-links" id="primary-nav">
+      <a href="/zhtw/">首頁</a>
+      <a href="/zhtw/agents/">AI 員工</a>
+      <a href="/zhtw/channels/">通訊軟體</a>
+      <a href="/zhtw/architecture/">技術架構</a>
+      <a href="/zhtw/user-flow/">應用架構</a>
+      <a href="/zhtw/docs/" class="active">文件</a>
+    </div>
+    <div class="nav-right">
+      <a class="nav-lang" href="/docs/troubleshooting/">EN</a>
+      <a class="nav-gh" href="https://github.com/costaff-ai/costaff" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
+      <button class="nav-toggle" aria-label="切換選單" aria-expanded="false" aria-controls="primary-nav">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="docs-shell">
+
+      <aside class="docs-side" data-open="false">
+        <button class="side-mobile" type="button" aria-expanded="false">
+          <span>本頁目錄</span>
+          <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <nav class="side-nav" aria-label="Docs">
+          <div class="side-group">
+            <h4>入門</h4>
+            <ul>
+              <li><a href="/zhtw/docs/">總覽</a></li>
+              <li><a href="/zhtw/docs/requirements/">系統需求</a></li>
+              <li><a href="/zhtw/docs/install/">安裝</a></li>
+            </ul>
+          </div>
+          <div class="side-group">
+            <h4>設定與啟動</h4>
+            <ul>
+              <li><a href="/zhtw/docs/onboard/">首次設定</a></li>
+              <li><a href="/zhtw/docs/start/">啟動 CoStaff</a></li>
+            </ul>
+          </div>
+          <div class="side-group">
+            <h4>擴充</h4>
+            <ul>
+              <li><a href="/zhtw/docs/agents/">專家 Agent</a></li>
+              <li><a href="/zhtw/docs/channels/">通訊軟體</a></li>
+            </ul>
+          </div>
+          <div class="side-group">
+            <h4>營運</h4>
+            <ul>
+              <li><a href="/zhtw/docs/verify/">驗證安裝</a></li>
+              <li><a href="/zhtw/docs/cli/">CLI 指令</a></li>
+              <li><a href="/zhtw/docs/troubleshooting/" class="active">問題排解</a></li>
+            </ul>
+          </div>
+        </nav>
+      </aside>
+
+      <main class="docs-main">
+        <header class="docs-header">
+          <div class="docs-eyebrow">08 — 營運</div>
+          <h1 class="docs-title">問題排解</h1>
+          <p class="docs-lede">常見地雷與復原方式。</p>
+        </header>
+
+
+<h2>Docker permission denied（Ubuntu）</h2>
+<p>症狀：<code>docker: Got permission denied while trying to connect to the Docker daemon socket</code>。</p>
+<p>原因：當下 shell 還沒生效 <code>docker</code> group。</p>
+<p>修法：先登出再登入，或開新 shell 跑 <code>newgrp docker</code>。</p>
+
+<h2>Port 18080 / 18090 被佔用</h2>
+<p>別的服務佔走了。停掉那個服務，或在 <code>~/.costaff/costaff/.env</code> 改 port：</p>
+<pre class="code">COSTAFF_AGENT_PORT=18180
+WEBCHAT_PORT=18190</pre>
+<p>接著 <code>costaff restart</code>。</p>
+
+<h2><code>costaff agent list</code> 顯示 Agent 不健康</h2>
+<p>看容器 log：</p>
+<pre class="code">docker logs costaff-agent-&lt;name&gt; --tail 50</pre>
+<p>常見原因：</p>
+<ul>
+  <li><strong>缺 API key</strong> — 編 <code>~/.costaff/costaff-agent/&lt;name&gt;/.env</code> 設好之後跑 <code>costaff agent rebuild &lt;name&gt;</code>。</li>
+  <li><strong>Model 名稱錯</strong> — 用 <code>costaff agent model &lt;name&gt;</code> 查，改成已知可用的 model，再 rebuild。</li>
+  <li><strong>Port 衝突</strong> — Agent 自動分配的 port 被佔了；先 remove 再 add。</li>
+</ul>
+
+<h2>Manager 沒抓到新 Agent</h2>
+<p>跑完 <code>costaff agent add</code> 後 Manager 會被重啟以重新讀取子 Agent 清單。如果沒成功，強制一次：</p>
+<pre class="code">costaff agent restart costaff
+<span class="c"># 或如果你改過 env var，整個 rebuild manager</span>
+docker compose -f ~/.costaff/costaff/docker-compose.yaml \
+  up -d --build --force-recreate costaff-agent-costaff</pre>
+
+<h2>整個重來</h2>
+<pre class="code">costaff stop
+docker compose -f ~/.costaff/costaff/docker-compose.yaml down -v
+rm -rf ~/.costaff/workspace/*
+costaff start</pre>
+<p>這會清掉 Postgres volume 與所有 Agent 工作目錄，但 <code>.env</code>、已註冊的 Agent、channel 設定都會留下。</p>
+
+<h2>還是卡住</h2>
+<p>到 <a href="https://github.com/costaff-ai/costaff/issues" target="_blank" rel="noopener">主 repo</a> 開 issue，附上 <code>costaff doctor</code> 輸出，或寄信到 <a href="mailto:simonliuyuwei@gmail.com">simonliuyuwei@gmail.com</a>。</p>
+
+
+        <nav class="docs-pager" aria-label="Pager">
+        <a class="prev" href="/zhtw/docs/cli/"><span class="pager-label">← 上一頁</span><span class="pager-title">CLI 指令</span></a>
+        <span class="empty"></span>
+      </nav>
+      </main>
+
+  </div>
+
+  <footer class="site">
+    <div class="footer-inner">
+      <div class="footer-logo">Co<span>Staff</span></div>
+      <div class="footer-text">© 2026 CoStaffAI</div>
+      <div class="footer-links">
+        <a href="/zhtw/">首頁</a>
+        <a href="https://github.com/costaff-ai/costaff" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://forms.gle/9UVdi527sYUBuqcm6" target="_blank" rel="noopener">搶先預約</a>
+        <a href="mailto:simonliuyuwei@gmail.com">聯絡</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const toggle = document.querySelector('.nav-toggle');
+      const menu   = document.getElementById('primary-nav');
+      if (toggle && menu) {
+        toggle.addEventListener('click', () => {
+          const open = menu.classList.toggle('open');
+          toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+        menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+          menu.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        }));
+      }
+
+      const side = document.querySelector('.docs-side');
+      const sideBtn = side && side.querySelector('.side-mobile');
+      if (side && sideBtn) {
+        sideBtn.addEventListener('click', () => {
+          const open = side.getAttribute('data-open') !== 'true';
+          side.setAttribute('data-open', open ? 'true' : 'false');
+          sideBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

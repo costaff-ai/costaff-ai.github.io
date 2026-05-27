@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CoStaff — 系統需求</title>
+  <meta name="description" content="安裝 CoStaff 前主機上需要準備的東西。" />
+  <meta name="robots" content="index, follow, all, max-image-preview:large" />
+  <link rel="describedby" href="/llms.txt" type="text/markdown" />
+  <link rel="alternate" type="text/markdown" href="/zhtw/docs.md" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&family=Inter:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/docs/docs.css" />
+</head>
+<body>
+
+  <div class="coming-soon-banner">
+    <span class="cs-label">🎉 已開源 · v0.1.0-alpha-1</span>
+    <span class="cs-sub">— 加入候補名單，正式版上線第一時間通知</span>
+    <a href="https://forms.gle/9UVdi527sYUBuqcm6" target="_blank" rel="noopener">加入候補 →</a>
+  </div>
+
+  <nav class="site">
+    <a class="nav-logo" href="/">Co<span>Staff</span></a>
+    <div class="nav-links" id="primary-nav">
+      <a href="/zhtw/">首頁</a>
+      <a href="/zhtw/agents/">AI 員工</a>
+      <a href="/zhtw/channels/">通訊軟體</a>
+      <a href="/zhtw/architecture/">技術架構</a>
+      <a href="/zhtw/user-flow/">應用架構</a>
+      <a href="/zhtw/docs/" class="active">文件</a>
+    </div>
+    <div class="nav-right">
+      <a class="nav-lang" href="/docs/requirements/">EN</a>
+      <a class="nav-gh" href="https://github.com/costaff-ai/costaff" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
+      <button class="nav-toggle" aria-label="切換選單" aria-expanded="false" aria-controls="primary-nav">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="docs-shell">
+
+      <aside class="docs-side" data-open="false">
+        <button class="side-mobile" type="button" aria-expanded="false">
+          <span>本頁目錄</span>
+          <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <nav class="side-nav" aria-label="Docs">
+          <div class="side-group">
+            <h4>入門</h4>
+            <ul>
+              <li><a href="/zhtw/docs/">總覽</a></li>
+              <li><a href="/zhtw/docs/requirements/" class="active">系統需求</a></li>
+              <li><a href="/zhtw/docs/install/">安裝</a></li>
+            </ul>
+          </div>
+          <div class="side-group">
+            <h4>設定與啟動</h4>
+            <ul>
+              <li><a href="/zhtw/docs/onboard/">首次設定</a></li>
+              <li><a href="/zhtw/docs/start/">啟動 CoStaff</a></li>
+            </ul>
+          </div>
+          <div class="side-group">
+            <h4>擴充</h4>
+            <ul>
+              <li><a href="/zhtw/docs/agents/">專家 Agent</a></li>
+              <li><a href="/zhtw/docs/channels/">通訊軟體</a></li>
+            </ul>
+          </div>
+          <div class="side-group">
+            <h4>營運</h4>
+            <ul>
+              <li><a href="/zhtw/docs/verify/">驗證安裝</a></li>
+              <li><a href="/zhtw/docs/cli/">CLI 指令</a></li>
+              <li><a href="/zhtw/docs/troubleshooting/">問題排解</a></li>
+            </ul>
+          </div>
+        </nav>
+      </aside>
+
+      <main class="docs-main">
+        <header class="docs-header">
+          <div class="docs-eyebrow">01 — 入門</div>
+          <h1 class="docs-title">系統需求</h1>
+          <p class="docs-lede">安裝 CoStaff 前主機上需要準備的東西。</p>
+        </header>
+
+
+<table class="spec">
+  <thead><tr><th>項目</th><th>最低</th><th>建議</th></tr></thead>
+  <tbody>
+    <tr><td>作業系統</td><td>macOS 12+ / Ubuntu 20.04+</td><td>macOS 14+ / Ubuntu 22.04+</td></tr>
+    <tr><td>CPU</td><td>2 vCPU（x86_64 或 ARM64）</td><td>4 vCPU</td></tr>
+    <tr><td>記憶體</td><td>8 GB</td><td>16 GB</td></tr>
+    <tr><td>硬碟</td><td>20 GB 可用</td><td>50 GB（保留給 Agent 工作目錄與 Docker image）</td></tr>
+    <tr><td>Python</td><td>3.12（安裝程式會處理）</td><td>—</td></tr>
+    <tr><td>Docker</td><td>Engine 24+ / Desktop 4.30+</td><td>—</td></tr>
+    <tr><td>LLM</td><td>Google API key、OpenAI 相容 endpoint，或本機 Ollama</td><td>—</td></tr>
+  </tbody>
+</table>
+
+<h2>主機上會被裝進去的東西</h2>
+<ul>
+  <li><strong>Python 3.12</strong> — macOS 用 Homebrew，Ubuntu 用 <code>deadsnakes</code> PPA。只有 <code>costaff</code> CLI 自己會用。</li>
+  <li><strong>Docker</strong> — macOS Docker Desktop、Ubuntu Docker Engine。所有 Agent 與 channel 都跑在容器裡。</li>
+  <li><strong>虛擬環境</strong> — <code>~/.costaff/.venv/</code>，裡面 <code>pip install -e</code> 裝好 CLI。</li>
+</ul>
+
+<h2>檔案在哪</h2>
+<ul>
+  <li><code>~/.costaff/costaff/</code> — 主 repo 的 git clone（CLI、Manager Agent、MCP core）。</li>
+  <li><code>~/.costaff/costaff-agent/&lt;name&gt;/</code> — 每個 Agent 的原始碼與 <code>.env</code>。</li>
+  <li><code>~/.costaff/costaff-channel/&lt;name&gt;/</code> — 每個 channel 的原始碼與 <code>.env</code>。</li>
+  <li><code>~/.costaff/workspace/</code> — bind mount 到容器的 <code>/app/data</code>。Agent 讀寫使用者檔案都在這。</li>
+</ul>
+
+<div class="callout">
+  <div class="label">完全本機跑</div>
+  <p>CoStaff 不會偷偷打 API 回家。對外的網路請求只有你設定的 LLM 服務 — 而且只要把 LLM 換成 Ollama 或其他本機 endpoint，連這通都免了。</p>
+</div>
+
+
+        <nav class="docs-pager" aria-label="Pager">
+        <a class="prev" href="/zhtw/docs/"><span class="pager-label">← 上一頁</span><span class="pager-title">總覽</span></a>
+        <a class="next" href="/zhtw/docs/install/"><span class="pager-label">下一頁 →</span><span class="pager-title">安裝</span></a>
+      </nav>
+      </main>
+
+  </div>
+
+  <footer class="site">
+    <div class="footer-inner">
+      <div class="footer-logo">Co<span>Staff</span></div>
+      <div class="footer-text">© 2026 CoStaffAI</div>
+      <div class="footer-links">
+        <a href="/zhtw/">首頁</a>
+        <a href="https://github.com/costaff-ai/costaff" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://forms.gle/9UVdi527sYUBuqcm6" target="_blank" rel="noopener">搶先預約</a>
+        <a href="mailto:simonliuyuwei@gmail.com">聯絡</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const toggle = document.querySelector('.nav-toggle');
+      const menu   = document.getElementById('primary-nav');
+      if (toggle && menu) {
+        toggle.addEventListener('click', () => {
+          const open = menu.classList.toggle('open');
+          toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+        menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+          menu.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        }));
+      }
+
+      const side = document.querySelector('.docs-side');
+      const sideBtn = side && side.querySelector('.side-mobile');
+      if (side && sideBtn) {
+        sideBtn.addEventListener('click', () => {
+          const open = side.getAttribute('data-open') !== 'true';
+          side.setAttribute('data-open', open ? 'true' : 'false');
+          sideBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

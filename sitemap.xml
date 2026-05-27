@@ -19,6 +19,14 @@
   </url>
 
   <url>
+    <loc>https://costaffs.app/channels/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://costaffs.app/channels/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://costaffs.app/zhtw/channels/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
     <loc>https://costaffs.app/architecture/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://costaffs.app/architecture/" />
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://costaffs.app/zhtw/architecture/" />
@@ -32,6 +40,86 @@
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://costaffs.app/zhtw/user-flow/" />
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://costaffs.app/docs/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://costaffs.app/docs/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://costaffs.app/zhtw/docs/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://costaffs.app/docs/requirements/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://costaffs.app/docs/requirements/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://costaffs.app/zhtw/docs/requirements/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://costaffs.app/docs/install/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://costaffs.app/docs/install/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://costaffs.app/zhtw/docs/install/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://costaffs.app/docs/onboard/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://costaffs.app/docs/onboard/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://costaffs.app/zhtw/docs/onboard/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://costaffs.app/docs/start/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://costaffs.app/docs/start/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://costaffs.app/zhtw/docs/start/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://costaffs.app/docs/agents/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://costaffs.app/docs/agents/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://costaffs.app/zhtw/docs/agents/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://costaffs.app/docs/channels/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://costaffs.app/docs/channels/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://costaffs.app/zhtw/docs/channels/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://costaffs.app/docs/verify/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://costaffs.app/docs/verify/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://costaffs.app/zhtw/docs/verify/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://costaffs.app/docs/cli/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://costaffs.app/docs/cli/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://costaffs.app/zhtw/docs/cli/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://costaffs.app/docs/troubleshooting/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://costaffs.app/docs/troubleshooting/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://costaffs.app/zhtw/docs/troubleshooting/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
 
   <url>
@@ -51,6 +139,14 @@
   </url>
 
   <url>
+    <loc>https://costaffs.app/zhtw/channels/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://costaffs.app/channels/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://costaffs.app/zhtw/channels/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
     <loc>https://costaffs.app/zhtw/architecture/</loc>
     <xhtml:link rel="alternate" hreflang="en" href="https://costaffs.app/architecture/" />
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://costaffs.app/zhtw/architecture/" />
@@ -64,6 +160,86 @@
     <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://costaffs.app/zhtw/user-flow/" />
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://costaffs.app/zhtw/docs/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://costaffs.app/docs/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://costaffs.app/zhtw/docs/" />
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://costaffs.app/zhtw/docs/requirements/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://costaffs.app/docs/requirements/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://costaffs.app/zhtw/docs/requirements/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://costaffs.app/zhtw/docs/install/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://costaffs.app/docs/install/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://costaffs.app/zhtw/docs/install/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://costaffs.app/zhtw/docs/onboard/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://costaffs.app/docs/onboard/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://costaffs.app/zhtw/docs/onboard/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://costaffs.app/zhtw/docs/start/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://costaffs.app/docs/start/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://costaffs.app/zhtw/docs/start/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://costaffs.app/zhtw/docs/agents/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://costaffs.app/docs/agents/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://costaffs.app/zhtw/docs/agents/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://costaffs.app/zhtw/docs/channels/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://costaffs.app/docs/channels/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://costaffs.app/zhtw/docs/channels/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://costaffs.app/zhtw/docs/verify/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://costaffs.app/docs/verify/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://costaffs.app/zhtw/docs/verify/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://costaffs.app/zhtw/docs/cli/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://costaffs.app/docs/cli/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://costaffs.app/zhtw/docs/cli/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://costaffs.app/zhtw/docs/troubleshooting/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://costaffs.app/docs/troubleshooting/" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://costaffs.app/zhtw/docs/troubleshooting/" />
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
 
 </urlset>

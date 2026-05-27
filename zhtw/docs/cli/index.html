@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CoStaff — CLI 指令參考</title>
+  <meta name="description" content="`costaff` CLI 完整指令參考：生命週期、Agent、通訊軟體、資料庫、診斷、設定、直接互動。" />
+  <meta name="robots" content="index, follow, all, max-image-preview:large" />
+  <link rel="describedby" href="/llms.txt" type="text/markdown" />
+  <link rel="alternate" type="text/markdown" href="/zhtw/docs.md" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&family=Inter:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/docs/docs.css" />
+</head>
+<body>
+
+  <div class="coming-soon-banner">
+    <span class="cs-label">🎉 已開源 · v0.1.0-alpha-1</span>
+    <span class="cs-sub">— 加入候補名單，正式版上線第一時間通知</span>
+    <a href="https://forms.gle/9UVdi527sYUBuqcm6" target="_blank" rel="noopener">加入候補 →</a>
+  </div>
+
+  <nav class="site">
+    <a class="nav-logo" href="/">Co<span>Staff</span></a>
+    <div class="nav-links" id="primary-nav">
+      <a href="/zhtw/">首頁</a>
+      <a href="/zhtw/agents/">AI 員工</a>
+      <a href="/zhtw/channels/">通訊軟體</a>
+      <a href="/zhtw/architecture/">技術架構</a>
+      <a href="/zhtw/user-flow/">應用架構</a>
+      <a href="/zhtw/docs/" class="active">文件</a>
+    </div>
+    <div class="nav-right">
+      <a class="nav-lang" href="/docs/cli/">EN</a>
+      <a class="nav-gh" href="https://github.com/costaff-ai/costaff" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
+      <button class="nav-toggle" aria-label="切換選單" aria-expanded="false" aria-controls="primary-nav">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="docs-shell">
+
+      <aside class="docs-side" data-open="false">
+        <button class="side-mobile" type="button" aria-expanded="false">
+          <span>本頁目錄</span>
+          <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <nav class="side-nav" aria-label="Docs">
+          <div class="side-group">
+            <h4>入門</h4>
+            <ul>
+              <li><a href="/zhtw/docs/">總覽</a></li>
+              <li><a href="/zhtw/docs/requirements/">系統需求</a></li>
+              <li><a href="/zhtw/docs/install/">安裝</a></li>
+            </ul>
+          </div>
+          <div class="side-group">
+            <h4>設定與啟動</h4>
+            <ul>
+              <li><a href="/zhtw/docs/onboard/">首次設定</a></li>
+              <li><a href="/zhtw/docs/start/">啟動 CoStaff</a></li>
+            </ul>
+          </div>
+          <div class="side-group">
+            <h4>擴充</h4>
+            <ul>
+              <li><a href="/zhtw/docs/agents/">專家 Agent</a></li>
+              <li><a href="/zhtw/docs/channels/">通訊軟體</a></li>
+            </ul>
+          </div>
+          <div class="side-group">
+            <h4>營運</h4>
+            <ul>
+              <li><a href="/zhtw/docs/verify/">驗證安裝</a></li>
+              <li><a href="/zhtw/docs/cli/" class="active">CLI 指令</a></li>
+              <li><a href="/zhtw/docs/troubleshooting/">問題排解</a></li>
+            </ul>
+          </div>
+        </nav>
+      </aside>
+
+      <main class="docs-main">
+        <header class="docs-header">
+          <div class="docs-eyebrow">營運</div>
+          <h1 class="docs-title">CLI <span>指令參考</span></h1>
+          <p class="docs-lede">所有 <code>costaff</code> 子指令一頁看完。生命週期、Agent / 通訊軟體管理、資料庫、診斷、直接互動。</p>
+        </header>
+
+<h2>全域</h2>
+<table class="spec">
+  <thead><tr><th>指令</th><th>作用</th></tr></thead>
+  <tbody>
+    <tr><td><code>costaff --help</code></td><td>列出所有頂層指令。</td></tr>
+    <tr><td><code>costaff &lt;command&gt; --help</code></td><td>看某個指令的選項與參數。</td></tr>
+    <tr><td><code>costaff --install-completion</code></td><td>安裝 shell 自動補完。</td></tr>
+  </tbody>
+</table>
+
+<h2>首次設定</h2>
+<table class="spec">
+  <thead><tr><th>指令</th><th>作用</th></tr></thead>
+  <tbody>
+    <tr><td><code>costaff onboard</code></td><td>互動式精靈 — 寫 <code>~/.costaff/costaff/.env</code>（model、語言、時區、要啟用的 channel）。詳見<a href="/zhtw/docs/onboard/">首次設定</a>。</td></tr>
+    <tr><td><code>costaff bootstrap -k &lt;gemini-key&gt;</code></td><td>給 CI / 自動化用的非互動式一鍵部署。寫最小 env（Gemini key、model、語言）然後直接接 <code>costaff start</code>。沒帶 <code>-k</code> 會 fallback 讀 <code>$GOOGLE_API_KEY</code>。</td></tr>
+  </tbody>
+</table>
+
+<h2>生命週期</h2>
+<p>把整套 stack 拉起來、關掉、看 log。</p>
+<table class="spec">
+  <thead><tr><th>指令</th><th>作用</th></tr></thead>
+  <tbody>
+    <tr><td><code>costaff start</code></td><td>分層啟動：Postgres → 已註冊 Agent → Manager → channel。沒 image 會 build。</td></tr>
+    <tr><td><code>costaff start --no-build</code></td><td>同上但跳過 build（快速重啟）。</td></tr>
+    <tr><td><code>costaff stop</code></td><td>停所有容器，volume 留著。</td></tr>
+    <tr><td><code>costaff restart</code></td><td>等同 <code>stop</code> + <code>start</code>。</td></tr>
+    <tr><td><code>costaff core-rebuild</code></td><td>重新 build Manager + 核心 MCP server，並 force-recreate，然後讓每個 plugin agent 重連（不然它們連 core 的 MCP session 會 stale）。</td></tr>
+    <tr><td><code>costaff status</code></td><td>顯示所有服務的容器狀態。</td></tr>
+    <tr><td><code>costaff logs [service]</code></td><td>看 log（最後 100 行）。沒帶參數就看全部服務。</td></tr>
+  </tbody>
+</table>
+
+<h2>Agent 管理</h2>
+<p>加 / 移除 / 重啟 / 調整專家 Agent。完整流程見<a href="/zhtw/docs/agents/">專家 Agent</a>。</p>
+<table class="spec">
+  <thead><tr><th>指令</th><th>作用</th></tr></thead>
+  <tbody>
+    <tr><td><code>costaff agent add &lt;name&gt; --github &lt;url&gt;</code></td><td>Clone 公開 GitHub repo、驗證 manifest、build 並起 Agent。</td></tr>
+    <tr><td><code>costaff agent add &lt;name&gt; --local &lt;path&gt;</code></td><td>從本地路徑部署 Agent（不 clone）。</td></tr>
+    <tr><td><code>costaff agent add &lt;name&gt; --url &lt;a2a-url&gt;</code></td><td>註冊遠端 A2A endpoint — 不起本地容器。</td></tr>
+    <tr><td><code>costaff agent add ... -e KEY=VAL</code></td><td>預先帶 env var（跳過互動式提問）。</td></tr>
+    <tr><td><code>costaff agent add ... --strict</code></td><td>Manifest 不過完整 Agent Protocol JSON Schema 就拒（預設只 warn）。</td></tr>
+    <tr><td><code>costaff agent add ... --enable-transfer [-y]</code></td><td>用 <code>sub_agents</code> + <code>transfer_to_agent</code> 接線而非預設的 <code>AgentTool</code>。會讓 Manager 全域進 transfer 模式 — 沒 <code>-y</code> 會要求確認。</td></tr>
+    <tr><td><code>costaff agent list</code></td><td>列出所有已註冊 Agent，含 A2A URL、健康檢查，以及（若有 pin）<code>Ref</code> 欄。</td></tr>
+    <tr><td><code>costaff agent restart &lt;name&gt;</code></td><td>重啟容器，不 rebuild image，快。</td></tr>
+    <tr><td><code>costaff agent rebuild &lt;name&gt;</code></td><td>Rebuild image 並重啟。改 code 或 env var 後需要。如果這個 agent 是用 <code>--tag</code> 加進來的，會走 <code>git fetch --tags &amp;&amp; git checkout &lt;ref&gt;</code> 維持那個 ref；否則就是 <code>git pull --ff-only</code>。</td></tr>
+    <tr><td><code>costaff agent add ... --tag &lt;ref&gt;</code></td><td>裝的時候 pin 到某個 git tag、branch 或 SHA。Clone 時帶 <code>--branch &lt;ref&gt;</code> 與完整 history，ref 寫進 <code>config.json</code>。</td></tr>
+    <tr><td><code>costaff agent rebuild ... --tag &lt;ref&gt;</code></td><td>換 pin（或第一次 pin）。新 ref 會持久化到 <code>config.json</code>。</td></tr>
+    <tr><td><code>costaff agent rebuild ... --no-pull</code></td><td>完全跳過 git — 直接用工作樹現有內容 build（適合你手動改過 <code>~/.costaff/costaff-agent/&lt;name&gt;/src/</code> 之後）。</td></tr>
+    <tr><td><code>costaff agent remove &lt;name&gt;</code></td><td>停掉、移除、unregister。</td></tr>
+    <tr><td><code>costaff agent enable &lt;name&gt;</code> / <code>disable &lt;name&gt;</code></td><td>切換 Manager 要不要派工到該 Agent（不移除）。</td></tr>
+    <tr><td><code>costaff agent model &lt;name&gt;</code></td><td>查詢或設定某 Agent 的 LLM model。</td></tr>
+    <tr><td><code>costaff agent transfer &lt;name&gt; --enable</code> / <code>--disable</code></td><td>把已有 Agent 在 AgentTool（預設）與 transfer 模式之間切換。</td></tr>
+  </tbody>
+</table>
+
+<div class="callout warn">
+  <div class="label">restart vs rebuild</div>
+  <p><code>restart</code> 用現有 image — 適合清掉卡住的容器。<code>rebuild</code> 在你改了 Agent 程式碼或 <code>.env</code> 時才需要 — 不然新的 code 或 env var 不會生效。</p>
+</div>
+
+<h2>通訊軟體管理</h2>
+<p>加 / 管理使用者派工入口。完整流程見<a href="/zhtw/docs/channels/">通訊軟體</a>。</p>
+<table class="spec">
+  <thead><tr><th>指令</th><th>作用</th></tr></thead>
+  <tbody>
+    <tr><td><code>costaff channel add &lt;name&gt;</code></td><td>官方 channel 名稱（<code>webchat</code>、<code>telegram</code>、<code>discord</code>、<code>line</code>）會自動解析到對應 GitHub repo。</td></tr>
+    <tr><td><code>costaff channel add &lt;name&gt; --github &lt;url&gt;</code></td><td>Clone 自訂 channel repo 並部署。</td></tr>
+    <tr><td><code>costaff channel add &lt;name&gt; --local &lt;path&gt;</code></td><td>從本地路徑部署 channel。</td></tr>
+    <tr><td><code>costaff channel add ... -e KEY=VAL</code></td><td>預先帶 env var（例如 <code>TELEGRAM_BOT_TOKEN</code>）。</td></tr>
+    <tr><td><code>costaff channel list</code></td><td>列出已註冊 channel 與 port、健康狀態，以及（若有 pin）<code>Ref</code> 欄。</td></tr>
+    <tr><td><code>costaff channel rebuild &lt;name&gt;</code></td><td>Rebuild image 並重啟。如果是用 <code>--tag</code> 加進來的就停在該 ref；否則 <code>git pull --ff-only</code>。</td></tr>
+    <tr><td><code>costaff channel add ... --tag &lt;ref&gt;</code></td><td>裝的時候 pin 到某個 git tag、branch 或 SHA。</td></tr>
+    <tr><td><code>costaff channel rebuild ... --tag &lt;ref&gt;</code></td><td>換 pin（或第一次 pin）。</td></tr>
+    <tr><td><code>costaff channel rebuild ... --no-pull</code></td><td>跳過 git — 用工作樹現有內容 build。</td></tr>
+    <tr><td><code>costaff channel remove &lt;name&gt;</code></td><td>停掉、移除、unregister。</td></tr>
+  </tbody>
+</table>
+
+<h2>資料庫</h2>
+<p>內建的 Postgres 存 session、project task、identity 表。</p>
+<table class="spec">
+  <thead><tr><th>指令</th><th>作用</th></tr></thead>
+  <tbody>
+    <tr><td><code>costaff database info</code></td><td>顯示連線資訊與資料表摘要。</td></tr>
+    <tr><td><code>costaff database backup [output]</code></td><td>Dump 到檔案（沒帶參數會用預設路徑）。</td></tr>
+    <tr><td><code>costaff database restore &lt;file&gt;</code></td><td>從備份檔還原。</td></tr>
+    <tr><td><code>costaff database clean</code></td><td>清空所有 CoStaff 資料表 — 破壞性操作，會先問。</td></tr>
+  </tbody>
+</table>
+
+<h2>診斷與維運</h2>
+<table class="spec">
+  <thead><tr><th>指令</th><th>作用</th></tr></thead>
+  <tbody>
+    <tr><td><code>costaff doctor</code></td><td>一鍵診斷 — 檢查 env var、Docker、容器健康、model 可達性。請求協助時第一個要附的輸出。</td></tr>
+    <tr><td><code>costaff update</code></td><td>把 <code>costaff</code> repo 拉到最新並重新安裝 CLI。</td></tr>
+    <tr><td><code>costaff update --tag &lt;ref&gt;</code></td><td>把 core 自己 pin 到某個 tag / branch / SHA，然後重新安裝。</td></tr>
+    <tr><td><code>costaff license</code></td><td>顯示已安裝的 license 與 feature gate 狀態。</td></tr>
+    <tr><td><code>costaff config validate</code></td><td>檢查 <code>~/.costaff/costaff/config.json</code> 是否符合 schema。</td></tr>
+  </tbody>
+</table>
+
+<h2>直接互動</h2>
+<p>適合 scripting 或不走 channel 直接看 Manager 行為時用。</p>
+<table class="spec">
+  <thead><tr><th>指令</th><th>作用</th></tr></thead>
+  <tbody>
+    <tr><td><code>costaff dashboard [--port 8501]</code></td><td>啟動 host 端的 FastAPI dashboard（跟 Agent 容器分開）。</td></tr>
+    <tr><td><code>costaff chat [app_name]</code></td><td>跟 Manager 開互動式 REPL（預設 <code>costaff_agent</code>）。</td></tr>
+    <tr><td><code>costaff invoke "&lt;prompt&gt;"</code></td><td>送一個 prompt 給 Manager 並印出回應。</td></tr>
+  </tbody>
+</table>
+
+<h2 id="version-pin" style="scroll-margin-top:120px;">版本 pin</h2>
+<p>Agent、channel、以及 core 本身都能 pin 到指定的 git tag / branch / SHA。Pin 之後 <code>rebuild</code> 會停在那個 ref，不會自動拉 <code>main</code> 的最新。</p>
+<pre class="code"><span class="c"># 裝的時候 pin 到指定 tag</span>
+costaff agent add ba --github https://github.com/costaff-ai/costaff-agent-business-analysis \
+  --tag v0.1.0-alpha-1
+
+costaff channel add telegram --tag v0.1.0-alpha-1
+costaff update --tag v0.1.0-alpha-1   <span class="c"># core 也 pin</span>
+
+<span class="c"># 之後的 rebuild 都會停在 pin 的 ref</span>
+costaff agent rebuild ba
+
+<span class="c"># 把 pin 換成新版本</span>
+costaff agent rebuild ba --tag v0.2.0
+
+<span class="c"># 完全跳過 git — 直接用工作樹現有內容 build</span>
+costaff agent rebuild ba --no-pull
+
+<span class="c"># 看現在 pin 到什麼</span>
+costaff agent list      <span class="c"># Ref 欄會顯示目前的 ref</span>
+costaff channel list</pre>
+
+<div class="callout warn">
+  <div class="label">已 pin 的 repo 不要手動 git pull</div>
+  <p>Agent ref-pinned 之後，在 <code>~/.costaff/costaff-agent/&lt;name&gt;/src/</code> 裡手動 <code>git pull</code> 會 detach HEAD，跟下次 <code>rebuild</code> 期望的狀態漂移。要換版本就用 <code>rebuild --tag</code>。</p>
+</div>
+
+<p>Tag pinning 上線之前就已經註冊的 entry 沒有 <code>ref</code> 欄位，<code>rebuild</code> 還是走 <code>git pull --ff-only</code> 老路，行為不變。</p>
+
+<h2>CLI 在硬碟上的位置</h2>
+<table class="spec">
+  <thead><tr><th>路徑</th><th>是什麼</th></tr></thead>
+  <tbody>
+    <tr><td><code>~/.costaff/.venv/bin/costaff</code></td><td>安裝好的 CLI entry point。</td></tr>
+    <tr><td><code>~/.costaff/costaff/</code></td><td>CLI 跑的 git checkout。<code>git pull</code> + <code>pip install -e .</code> 就是 <code>costaff update</code> 做的事。</td></tr>
+    <tr><td><code>~/.costaff/costaff/.env</code></td><td>核心 env：model provider、secret、DB URI。<code>onboard</code> 編這個檔。</td></tr>
+    <tr><td><code>~/.costaff/costaff/config.json</code></td><td>已註冊的 Agent 與 channel。<code>agent add</code> / <code>channel add</code> 編這個檔。</td></tr>
+    <tr><td><code>~/.costaff/costaff-agent/&lt;name&gt;/</code></td><td>每個 Agent 的原始碼與 <code>.env</code>。</td></tr>
+    <tr><td><code>~/.costaff/costaff-channel/&lt;name&gt;/</code></td><td>每個 channel 的原始碼與 <code>.env</code>。</td></tr>
+    <tr><td><code>~/.costaff/workspace/</code></td><td>共享 workspace，bind mount 到每個容器的 <code>/app/data</code>。</td></tr>
+  </tbody>
+</table>
+
+        <nav class="docs-pager" aria-label="Pager">
+        <a class="prev" href="/zhtw/docs/verify/"><span class="pager-label">← 上一頁</span><span class="pager-title">驗證安裝</span></a>
+        <a class="next" href="/zhtw/docs/troubleshooting/"><span class="pager-label">下一頁 →</span><span class="pager-title">問題排解</span></a>
+      </nav>
+      </main>
+
+  </div>
+
+  <footer class="site">
+    <div class="footer-inner">
+      <div class="footer-logo">Co<span>Staff</span></div>
+      <div class="footer-text">© 2026 CoStaffAI</div>
+      <div class="footer-links">
+        <a href="/zhtw/">首頁</a>
+        <a href="https://github.com/costaff-ai/costaff" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://forms.gle/9UVdi527sYUBuqcm6" target="_blank" rel="noopener">搶先預約</a>
+        <a href="mailto:simonliuyuwei@gmail.com">聯絡</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const toggle = document.querySelector('.nav-toggle');
+      const menu   = document.getElementById('primary-nav');
+      if (toggle && menu) {
+        toggle.addEventListener('click', () => {
+          const open = menu.classList.toggle('open');
+          toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+        menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+          menu.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        }));
+      }
+
+      const side = document.querySelector('.docs-side');
+      const sideBtn = side && side.querySelector('.side-mobile');
+      if (side && sideBtn) {
+        sideBtn.addEventListener('click', () => {
+          const open = side.getAttribute('data-open') !== 'true';
+          side.setAttribute('data-open', open ? 'true' : 'false');
+          sideBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

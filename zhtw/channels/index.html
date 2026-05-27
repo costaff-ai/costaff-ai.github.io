@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CoStaff — 通訊軟體</title>
+  <meta name="description" content="使用者派工給 CoStaff 的入口：WebChat、Telegram、WebChat Enterprise。同一批 Agent，多個聊天介面。" />
+  <meta name="robots" content="index, follow, all, max-image-preview:large" />
+  <link rel="describedby" href="/llms.txt" type="text/markdown" />
+  <link rel="alternate" type="text/markdown" href="/zhtw/channels.md" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "CoStaff",
+    "alternateName": "CoStaff AI",
+    "description": "Open-source, self-hosted multi-agent system. Build your own AI Agent workforce — hand off tasks in chat, specialist agents collaborate to get work done. Uses MCP for tool integration and A2A for inter-agent communication.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Cross-platform (Docker)",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "url": "https://costaffs.app",
+    "license": "https://www.gnu.org/licenses/agpl-3.0.html",
+    "softwareVersion": "0.2.4",
+    "author": { "@type": "Organization", "name": "CoStaff", "url": "https://github.com/costaff-ai" }
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:#faf9f7; --bg-alt:#f3f2ef; --ink:#1a1917; --ink-2:#5a5855;
+      --ink-3:#9a9895; --border:#e4e2de; --accent:#2d3a2e; --accent-2:#4a6741;
+      --serif:'Noto Serif TC',Georgia,serif;
+      --sans:'Noto Sans TC',system-ui,sans-serif;
+      --mono:'JetBrains Mono',monospace; --max:1040px;
+    }
+    html { scroll-behavior:smooth; }
+    body { background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:15px; line-height:1.85; -webkit-font-smoothing:antialiased; }
+
+    .coming-soon-banner { position:fixed; top:0; left:0; right:0; z-index:110; height:36px; background:var(--accent-2); color:#fff; display:flex; align-items:center; justify-content:center; gap:14px; font-size:13px; padding:0 16px; }
+    .coming-soon-banner .cs-label { font-weight:500; letter-spacing:0.04em; }
+    .coming-soon-banner .cs-sub { opacity:0.82; }
+    .coming-soon-banner a { color:#fff; text-decoration:underline; font-weight:500; transition:opacity 0.2s; }
+    .coming-soon-banner a:hover { opacity:0.8; }
+    .disabled-link, .disabled-link:hover { color:var(--ink-3) !important; cursor:not-allowed; border-color:var(--border) !important; background:transparent !important; pointer-events:none; opacity:0.5; text-decoration:none !important; }
+
+    nav { position:fixed; top:36px; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:0 40px; height:60px; background:rgba(250,249,247,0.92); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); }
+    .nav-logo { font-family:var(--serif); font-weight:400; font-size:17px; letter-spacing:0.04em; color:var(--ink); text-decoration:none; }
+    .nav-logo span { color:var(--accent-2); }
+    .nav-links { display:flex; gap:28px; align-items:center; }
+    .nav-links a { font-size:13px; color:var(--ink-2); text-decoration:none; transition:color 0.2s; }
+    .nav-links a:hover { color:var(--ink); }
+    .nav-links a.active { color:var(--ink); font-weight:500; }
+    .nav-right { display:flex; gap:12px; align-items:center; }
+    .nav-lang { font-size:12px; color:var(--ink-3); text-decoration:none; border:1px solid var(--border); padding:4px 10px; border-radius:3px; transition:all 0.2s; }
+    .nav-lang:hover { color:var(--ink); border-color:var(--ink-3); }
+    .nav-gh { display:flex; align-items:center; gap:6px; font-size:13px; color:var(--ink); text-decoration:none; border:1px solid var(--border); padding:5px 14px; border-radius:4px; transition:all 0.2s; }
+    .nav-gh:hover { background:var(--bg-alt); }
+
+    .nav-toggle { display:none; background:none; border:none; cursor:pointer; width:40px; height:40px; padding:8px; flex-direction:column; align-items:center; justify-content:center; gap:5px; }
+    .nav-toggle .bar { display:block; width:22px; height:2px; background:var(--ink); transition:transform 0.25s ease, opacity 0.2s ease; }
+    .nav-toggle[aria-expanded="true"] .bar:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+    .nav-toggle[aria-expanded="true"] .bar:nth-child(2) { opacity:0; }
+    .nav-toggle[aria-expanded="true"] .bar:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+
+    @media(max-width:720px) {
+      nav { padding:0 16px; }
+      .nav-toggle { display:flex; }
+      .nav-gh { display:none; }
+      .nav-links {
+        display:none; position:fixed; top:96px; left:0; right:0;
+        flex-direction:column; gap:0;
+        background:rgba(250,249,247,0.98); backdrop-filter:blur(12px);
+        border-bottom:1px solid var(--border);
+        padding:8px 20px 16px;
+      }
+      .nav-links.open { display:flex; }
+      .nav-links a { padding:14px 0; font-size:15px; border-bottom:1px solid var(--border); }
+      .nav-links a:last-child { border-bottom:none; }
+    }
+
+    .page-header { padding: 156px 24px 64px; text-align:center; border-bottom:1px solid var(--border); }
+    .page-label { font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-3); margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:12px; }
+    .page-label::before,.page-label::after { content:''; display:block; width:32px; height:1px; background:var(--border); }
+    .page-title { font-family:var(--serif); font-weight:300; font-size:clamp(32px,5vw,52px); line-height:1.2; color:var(--ink); margin-bottom:16px; }
+    .page-title span { color:var(--accent-2); }
+    .page-desc { font-size:15px; color:var(--ink-2); max-width:520px; margin:0 auto; line-height:1.95; }
+
+    .agents-main { max-width:var(--max); margin:0 auto; padding:48px 24px 80px; }
+    .agent-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+
+    .agent-card { border:1px solid var(--border); border-radius:8px; overflow:hidden; background:var(--bg); transition:border-color 0.2s, box-shadow 0.2s; display:flex; flex-direction:column; }
+    .agent-card:hover { border-color:var(--accent-2); box-shadow:0 4px 20px rgba(0,0,0,0.06); }
+    .agent-card-header { padding:22px 24px 18px; border-bottom:1px solid var(--border); }
+    .agent-name { font-family:var(--serif); font-size:17px; font-weight:400; color:var(--ink); margin-bottom:4px; }
+    .agent-sub { font-size:11px; color:var(--ink-3); letter-spacing:0.06em; }
+    .agent-card-body { padding:20px 24px; flex:1; display:flex; flex-direction:column; }
+    .agent-desc { font-size:13px; color:var(--ink-2); line-height:1.95; margin-bottom:18px; flex:1; }
+    .agent-caps { list-style:none; display:flex; flex-direction:column; gap:7px; }
+    .agent-caps li { display:flex; align-items:flex-start; gap:8px; font-size:12px; color:var(--ink-2); }
+    .agent-caps li::before { content:''; width:4px; height:4px; border-radius:50%; background:var(--accent-2); flex-shrink:0; margin-top:7px; }
+    .agent-card-footer { padding:16px 24px; border-top:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; }
+    .agent-tag { display:inline-block; font-size:10px; letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-3); padding:3px 8px; border:1px solid var(--border); border-radius:3px; }
+    .agent-link { font-size:12px; color:var(--accent-2); text-decoration:none; display:flex; align-items:center; gap:4px; transition:color 0.2s; }
+    .agent-link:hover { color:var(--accent); }
+
+    footer { background:var(--ink); padding:40px 24px; }
+    .footer-inner { max-width:var(--max); margin:0 auto; display:flex; align-items:center; justify-content:space-between; }
+    .footer-logo { font-family:var(--serif); font-size:16px; color:#e2e0d8; }
+    .footer-logo span { color:var(--accent-2); }
+    .footer-text { font-size:12px; color:#4a4845; }
+    .footer-links { display:flex; gap:24px; }
+    .footer-links a, .footer-links span { font-size:12px; color:#5a5855; text-decoration:none; transition:color 0.2s; }
+    .footer-links a:hover { color:#8a8885; }
+
+    @media(max-width:860px) { .agent-grid { grid-template-columns:repeat(2,1fr); } }
+    @media(max-width:560px) {
+      .agent-grid { grid-template-columns:1fr; }
+      .page-header { padding:130px 20px 48px; }
+      .coming-soon-banner{font-size:11px;gap:8px;}
+      .coming-soon-banner .cs-sub{display:none;}
+      .footer-inner { flex-direction:column; gap:16px; text-align:center; }
+      .footer-links { justify-content:center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="coming-soon-banner">
+    <span class="cs-label">🎉 已開源 · v0.1.0-alpha-1</span>
+    <span class="cs-sub">— 加入候補名單，正式版上線第一時間通知</span>
+    <a href="https://forms.gle/9UVdi527sYUBuqcm6" target="_blank" rel="noopener">加入候補 →</a>
+  </div>
+
+  <nav>
+    <a class="nav-logo" href="/zhtw/">Co<span>Staff</span></a>
+    <div class="nav-links" id="primary-nav">
+      <a href="/zhtw/">首頁</a>
+      <a href="/zhtw/agents/">AI 員工</a>
+      <a href="/zhtw/channels/" class="active">通訊軟體</a>
+      <a href="/zhtw/architecture/">技術架構</a>
+      <a href="/zhtw/user-flow/">應用架構</a>
+      <a href="/zhtw/docs/">文件</a>
+    </div>
+    <div class="nav-right">
+      <a class="nav-lang" href="/channels/">EN</a>
+      <a class="nav-gh" href="https://github.com/costaff-ai/costaff" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
+      <button class="nav-toggle" aria-label="切換選單" aria-expanded="false" aria-controls="primary-nav">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+    </div>
+  </nav>
+
+  <header class="page-header">
+    <div class="page-label">CoStaff Channels</div>
+    <h1 class="page-title">使用者跟你的員工<span>對話的地方</span></h1>
+    <p class="page-desc">通訊軟體就是使用者派工給 Manager 的入口。<strong>同一批 Agent，多個聊天介面</strong> — 選你的團隊本來就在用的那個。</p>
+  </header>
+
+  <main class="agents-main">
+    <div class="agent-grid">
+
+      <!-- WebChat (OSS) -->
+      <div class="agent-card">
+        <div class="agent-card-header">
+          <div class="agent-name">WebChat</div>
+          <div class="agent-sub">角色：瀏覽器版聊天介面（開源）</div>
+        </div>
+        <div class="agent-card-body">
+          <p class="agent-desc">輕量瀏覽器介面 — 不用 Telegram、Discord、LINE 帳號。內建 Email + 密碼登入，身份雜湊處理好。<strong>掛到自己的子網域，團隊用瀏覽器就能直接跟 Agent 對話</strong>。</p>
+          <ul class="agent-caps">
+            <li>純瀏覽器 — 不依賴任何第三方聊天 App</li>
+            <li>Email + 密碼登入（JWT、bcrypt）</li>
+            <li>身份雜湊成 16 字元 SHA-256，不存原始 ID</li>
+            <li>nginx + FastAPI，單 Docker image</li>
+          </ul>
+        </div>
+        <div class="agent-card-footer">
+          <span class="agent-tag">開源</span>
+          <a class="agent-link" href="https://github.com/costaff-ai/costaff-channel-webchat-oss" target="_blank" rel="noopener">
+            查看原始碼
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Telegram -->
+      <div class="agent-card">
+        <div class="agent-card-header">
+          <div class="agent-name">Telegram</div>
+          <div class="agent-sub">角色：Telegram Bot 橋接</div>
+        </div>
+        <div class="agent-card-body">
+          <p class="agent-desc">把 CoStaff 接進團隊本來就在用的 Telegram。<strong>文字、圖片、檔案附件雙向往返</strong> — Agent 產出的 PDF、CSV、圖片會自動以 Telegram 附件送回。新使用者進到審核佇列由你控制。</p>
+          <ul class="agent-caps">
+            <li>文字、圖片、文件雙向支援</li>
+            <li>Agent 產出檔案自動派送回對話</li>
+            <li>身份審核流程 + 速率限制</li>
+            <li><code style="font-family:var(--mono);font-size:11px;background:var(--bg-alt);padding:1px 5px;border-radius:3px;">/start</code> · <code style="font-family:var(--mono);font-size:11px;background:var(--bg-alt);padding:1px 5px;border-radius:3px;">/reset</code> · <code style="font-family:var(--mono);font-size:11px;background:var(--bg-alt);padding:1px 5px;border-radius:3px;">/help</code> 指令</li>
+          </ul>
+        </div>
+        <div class="agent-card-footer">
+          <span class="agent-tag">開源</span>
+          <a class="agent-link" href="https://github.com/costaff-ai/costaff-channel-telegram" target="_blank" rel="noopener">
+            查看原始碼
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- WebChat Enterprise -->
+      <div class="agent-card">
+        <div class="agent-card-header">
+          <div class="agent-name">WebChat Enterprise</div>
+          <div class="agent-sub">角色：商用級瀏覽器版</div>
+        </div>
+        <div class="agent-card-body">
+          <p class="agent-desc">和 WebChat 一樣的瀏覽器入口 — 但跑在完整的 chatbot runtime 上，所以 <strong>Agent 能派送檔案、推進度、去重、限流</strong>。多租戶 Org / SSO / RBAC / 稽核 log 在 roadmap 上。要把這套搬給實際付費客戶用的團隊適用。</p>
+          <ul class="agent-caps">
+            <li>WebSocket 傳輸，含重連與 ping/pong</li>
+            <li>透過短期 download token 派送 Agent 產出檔案</li>
+            <li>非同步 callback 推送、訊息去重、每用戶限流</li>
+            <li>Roadmap：多租戶 Org · OIDC/SAML · RBAC · 稽核日誌</li>
+          </ul>
+        </div>
+        <div class="agent-card-footer">
+          <span class="agent-tag">企業版</span>
+          <a class="agent-link" href="mailto:simonliuyuwei@gmail.com?subject=CoStaff%20WebChat%20Enterprise%20%E8%A9%A2%E5%95%8F">
+            聯絡我們
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8.25V18a2.25 2.25 0 0 0 2.25 2.25h13.5A2.25 2.25 0 0 0 21 18V8.25m-18 0V6a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 6v2.25m-18 0 9 5.25 9-5.25"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="margin-top:64px;padding:40px 32px;border:1px solid var(--border);border-radius:8px;background:var(--bg-alt);max-width:780px;margin-left:auto;margin-right:auto;">
+      <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:14px;">一個 Manager，所有 channel</div>
+      <h3 style="font-family:var(--serif);font-weight:300;font-size:24px;color:var(--ink);margin:0 0 14px;line-height:1.4;">使用者就是使用者。<br/>從哪個 App 傳訊息都不影響。</h3>
+      <p style="font-size:14px;color:var(--ink-2);line-height:1.95;margin:0;">
+        從 Telegram 傳的訊息與從 WebChat 傳的訊息，都會走到同一個 Manager Agent 與同一批專家團隊。<br/>
+        <strong style="color:var(--accent-2);">跨 channel 的使用者身份會被自動正規化</strong> — 一個審核佇列、一份對話歷史、一批 Agent。<br/>
+        <span style="color:var(--ink-3);font-size:13px;">可同時跑任意多個 channel — costaff channel add &lt;name&gt;。</span>
+      </p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">Co<span>Staff</span></div>
+      <div class="footer-text">© 2026 CoStaffAI</div>
+      <div class="footer-links">
+        <a href="/zhtw/">首頁</a>
+        <a href="https://github.com/costaff-ai/costaff" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://forms.gle/9UVdi527sYUBuqcm6" target="_blank" rel="noopener">搶先預約</a>
+        <a href="mailto:simonliuyuwei@gmail.com">聯絡</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const toggle = document.querySelector('.nav-toggle');
+      const menu   = document.getElementById('primary-nav');
+      if (!toggle || !menu) return;
+      toggle.addEventListener('click', () => {
+        const open = menu.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+        menu.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }));
+    })();
+  </script>
+</body>
+</html>

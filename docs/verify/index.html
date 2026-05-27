@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CoStaff — Verify the install</title>
+  <meta name="description" content="Confirm every container is healthy and the Manager is reachable." />
+  <meta name="robots" content="index, follow, all, max-image-preview:large" />
+  <link rel="describedby" href="/llms.txt" type="text/markdown" />
+  <link rel="alternate" type="text/markdown" href="/docs.md" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&family=Inter:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/docs/docs.css" />
+</head>
+<body>
+
+  <div class="coming-soon-banner">
+    <span class="cs-label">🎉 Now open source · v0.1.0-alpha-1</span>
+    <span class="cs-sub">— Join the waitlist for GA notifications</span>
+    <a href="https://forms.gle/9UVdi527sYUBuqcm6" target="_blank" rel="noopener">Join waitlist →</a>
+  </div>
+
+  <nav class="site">
+    <a class="nav-logo" href="/">Co<span>Staff</span></a>
+    <div class="nav-links" id="primary-nav">
+      <a href="/">Home</a>
+      <a href="/agents/">AI Staff</a>
+      <a href="/channels/">Channels</a>
+      <a href="/architecture/">Architecture</a>
+      <a href="/user-flow/">User Flow</a>
+      <a href="/docs/" class="active">Docs</a>
+    </div>
+    <div class="nav-right">
+      <a class="nav-lang" href="/zhtw/docs/verify/">繁中</a>
+      <a class="nav-gh" href="https://github.com/costaff-ai/costaff" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-nav">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="docs-shell">
+
+      <aside class="docs-side" data-open="false">
+        <button class="side-mobile" type="button" aria-expanded="false">
+          <span>On this page</span>
+          <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <nav class="side-nav" aria-label="Docs">
+          <div class="side-group">
+            <h4>Getting started</h4>
+            <ul>
+              <li><a href="/docs/">Overview</a></li>
+              <li><a href="/docs/requirements/">System requirements</a></li>
+              <li><a href="/docs/install/">Install</a></li>
+            </ul>
+          </div>
+          <div class="side-group">
+            <h4>Configure & run</h4>
+            <ul>
+              <li><a href="/docs/onboard/">First-run setup</a></li>
+              <li><a href="/docs/start/">Start CoStaff</a></li>
+            </ul>
+          </div>
+          <div class="side-group">
+            <h4>Extend</h4>
+            <ul>
+              <li><a href="/docs/agents/">Specialist agents</a></li>
+              <li><a href="/docs/channels/">Chat channels</a></li>
+            </ul>
+          </div>
+          <div class="side-group">
+            <h4>Operate</h4>
+            <ul>
+              <li><a href="/docs/verify/" class="active">Verify the install</a></li>
+              <li><a href="/docs/cli/">CLI reference</a></li>
+              <li><a href="/docs/troubleshooting/">Troubleshooting</a></li>
+            </ul>
+          </div>
+        </nav>
+      </aside>
+
+      <main class="docs-main">
+        <header class="docs-header">
+          <div class="docs-eyebrow">07 — Operate</div>
+          <h1 class="docs-title">Verify the install</h1>
+          <p class="docs-lede">Confirm every container is healthy and the Manager is reachable.</p>
+        </header>
+
+
+<h2>List running containers</h2>
+<pre class="code">docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'</pre>
+
+<p>You should see, at minimum:</p>
+<ul>
+  <li><code>costaff-postgres</code></li>
+  <li><code>costaff-mcp-costaff</code> — the Manager's MCP server</li>
+  <li><code>costaff-agent-costaff</code> — the Manager itself, bound to <code>0.0.0.0:18080</code></li>
+  <li>One <code>costaff-agent-&lt;name&gt;</code> and one <code>costaff-mcp-&lt;name&gt;</code> per registered specialist</li>
+  <li>One <code>costaff-channel-&lt;name&gt;</code> per registered channel</li>
+</ul>
+
+<h2>Health endpoints</h2>
+<pre class="code"><span class="c"># Manager Agent (ADK web server)</span>
+curl http://localhost:18080/health
+<span class="c"># → HTTP 200</span>
+
+<span class="c"># WebChat (if installed)</span>
+curl http://localhost:18090/.well-known/agent-card.json
+<span class="c"># → WebChat agent card JSON</span></pre>
+
+<h2>Open the chat UI</h2>
+<p>Browse to <a href="http://localhost:18090" target="_blank" rel="noopener">http://localhost:18090</a> and start a conversation. The Manager will route your message to the right specialist agent and stream its progress back.</p>
+
+<h2>Run the doctor</h2>
+<p>For a one-shot diagnostic that checks all of the above plus environment variables:</p>
+<pre class="code">costaff doctor</pre>
+<p>If something's off, this is the easiest output to share when you ask for help.</p>
+
+
+        <nav class="docs-pager" aria-label="Pager">
+        <a class="prev" href="/docs/channels/"><span class="pager-label">← Previous</span><span class="pager-title">Chat channels</span></a>
+        <a class="next" href="/docs/cli/"><span class="pager-label">Next →</span><span class="pager-title">CLI reference</span></a>
+      </nav>
+      </main>
+
+  </div>
+
+  <footer class="site">
+    <div class="footer-inner">
+      <div class="footer-logo">Co<span>Staff</span></div>
+      <div class="footer-text">© 2026 CoStaffAI</div>
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="https://github.com/costaff-ai/costaff" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://forms.gle/9UVdi527sYUBuqcm6" target="_blank" rel="noopener">Get early access</a>
+        <a href="mailto:simonliuyuwei@gmail.com">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const toggle = document.querySelector('.nav-toggle');
+      const menu   = document.getElementById('primary-nav');
+      if (toggle && menu) {
+        toggle.addEventListener('click', () => {
+          const open = menu.classList.toggle('open');
+          toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+        menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+          menu.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        }));
+      }
+
+      const side = document.querySelector('.docs-side');
+      const sideBtn = side && side.querySelector('.side-mobile');
+      if (side && sideBtn) {
+        sideBtn.addEventListener('click', () => {
+          const open = side.getAttribute('data-open') !== 'true';
+          side.setAttribute('data-open', open ? 'true' : 'false');
+          sideBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+      }
+    })();
+  </script>
+</body>
+</html>
