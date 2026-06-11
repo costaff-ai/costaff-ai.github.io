@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CoStaff — 企業平台</title>
+  <meta name="description" content="一個帳號，11 套自架企業系統 — ERP、CRM、HRM、SCM、PLM、會計、KMS、專案、報銷、客服、帳號中心。每套平台都內建 MCP server，CoStaff Agent 直接替你操作。" />
+  <meta name="robots" content="index, follow, all, max-image-preview:large" />
+  <link rel="describedby" href="/llms.txt" type="text/markdown" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "CoStaff",
+    "alternateName": "CoStaff AI",
+    "description": "Open-source, self-hosted multi-agent system. Build your own AI Agent workforce — hand off tasks in chat, specialist agents collaborate to get work done. Uses MCP for tool integration and A2A for inter-agent communication.",
+    "applicationCategory": "DeveloperApplication",
+    "operatingSystem": "Cross-platform (Docker)",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+    "url": "https://costaffs.app",
+    "license": "https://www.gnu.org/licenses/agpl-3.0.html",
+    "softwareVersion": "0.2.4",
+    "author": { "@type": "Organization", "name": "CoStaff", "url": "https://github.com/costaff-ai" }
+  }
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:#faf9f7; --bg-alt:#f3f2ef; --ink:#1a1917; --ink-2:#5a5855;
+      --ink-3:#9a9895; --border:#e4e2de; --accent:#2d3a2e; --accent-2:#4a6741;
+      --serif:'Noto Serif TC',Georgia,serif;
+      --sans:'Noto Sans TC',system-ui,sans-serif;
+      --mono:'JetBrains Mono',monospace; --max:1040px;
+    }
+    html { scroll-behavior:smooth; }
+    body { background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:15px; line-height:1.85; -webkit-font-smoothing:antialiased; }
+
+    .coming-soon-banner { position:fixed; top:0; left:0; right:0; z-index:110; height:36px; background:var(--accent-2); color:#fff; display:flex; align-items:center; justify-content:center; gap:14px; font-size:13px; padding:0 16px; }
+    .coming-soon-banner .cs-label { font-weight:500; letter-spacing:0.04em; }
+    .coming-soon-banner .cs-sub { opacity:0.82; }
+    .coming-soon-banner a { color:#fff; text-decoration:underline; font-weight:500; transition:opacity 0.2s; }
+    .coming-soon-banner a:hover { opacity:0.8; }
+    .disabled-link, .disabled-link:hover { color:var(--ink-3) !important; cursor:not-allowed; border-color:var(--border) !important; background:transparent !important; pointer-events:none; opacity:0.5; text-decoration:none !important; }
+
+    nav { position:fixed; top:36px; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:0 40px; height:60px; background:rgba(250,249,247,0.92); backdrop-filter:blur(12px); border-bottom:1px solid var(--border); }
+    .nav-logo { font-family:var(--serif); font-weight:400; font-size:17px; letter-spacing:0.04em; color:var(--ink); text-decoration:none; }
+    .nav-logo span { color:var(--accent-2); }
+    .nav-links { display:flex; gap:28px; align-items:center; }
+    .nav-links a { font-size:13px; color:var(--ink-2); text-decoration:none; transition:color 0.2s; }
+    .nav-links a:hover { color:var(--ink); }
+    .nav-links a.active { color:var(--ink); font-weight:500; }
+    .nav-right { display:flex; gap:12px; align-items:center; }
+    .nav-lang { font-size:12px; color:var(--ink-3); text-decoration:none; border:1px solid var(--border); padding:4px 10px; border-radius:3px; transition:all 0.2s; }
+    .nav-lang:hover { color:var(--ink); border-color:var(--ink-3); }
+    .nav-gh { display:flex; align-items:center; gap:6px; font-size:13px; color:var(--ink); text-decoration:none; border:1px solid var(--border); padding:5px 14px; border-radius:4px; transition:all 0.2s; }
+    .nav-gh:hover { background:var(--bg-alt); }
+
+    .nav-toggle { display:none; background:none; border:none; cursor:pointer; width:40px; height:40px; padding:8px; flex-direction:column; align-items:center; justify-content:center; gap:5px; }
+    .nav-toggle .bar { display:block; width:22px; height:2px; background:var(--ink); transition:transform 0.25s ease, opacity 0.2s ease; }
+    .nav-toggle[aria-expanded="true"] .bar:nth-child(1) { transform:translateY(7px) rotate(45deg); }
+    .nav-toggle[aria-expanded="true"] .bar:nth-child(2) { opacity:0; }
+    .nav-toggle[aria-expanded="true"] .bar:nth-child(3) { transform:translateY(-7px) rotate(-45deg); }
+
+    @media(max-width:720px) {
+      nav { padding:0 16px; }
+      .nav-toggle { display:flex; }
+      .nav-gh { display:none; }
+      .nav-links {
+        display:none; position:fixed; top:96px; left:0; right:0;
+        flex-direction:column; gap:0;
+        background:rgba(250,249,247,0.98); backdrop-filter:blur(12px);
+        border-bottom:1px solid var(--border);
+        padding:8px 20px 16px;
+      }
+      .nav-links.open { display:flex; }
+      .nav-links a { padding:14px 0; font-size:15px; border-bottom:1px solid var(--border); }
+      .nav-links a:last-child { border-bottom:none; }
+    }
+
+    .page-header { padding: 156px 24px 64px; text-align:center; border-bottom:1px solid var(--border); }
+    .page-label { font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--ink-3); margin-bottom:20px; display:flex; align-items:center; justify-content:center; gap:12px; }
+    .page-label::before,.page-label::after { content:''; display:block; width:32px; height:1px; background:var(--border); }
+    .page-title { font-family:var(--serif); font-weight:300; font-size:clamp(30px,5vw,50px); line-height:1.25; color:var(--ink); margin-bottom:16px; }
+    .page-title span { color:var(--accent-2); }
+    .page-desc { font-size:15px; color:var(--ink-2); max-width:560px; margin:0 auto; line-height:1.95; }
+
+    /* 治理能力帶 */
+    .gov-band { max-width:var(--max); margin:0 auto; padding:48px 24px 8px; }
+    .gov-label { font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:var(--ink-3); margin-bottom:18px; text-align:center; }
+    .gov-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+    .gov-item { border:1px solid var(--border); border-radius:6px; padding:18px 20px; background:var(--bg-alt); }
+    .gov-item h4 { font-size:13px; font-weight:500; color:var(--ink); margin-bottom:6px; }
+    .gov-item p { font-size:12px; color:var(--ink-2); line-height:1.85; }
+    @media(max-width:860px) { .gov-grid { grid-template-columns:repeat(2,1fr); } }
+    @media(max-width:560px) { .gov-grid { grid-template-columns:1fr; } }
+
+    /* 產品卡（沿用 agent-card 樣式，與 AI 員工頁一致） */
+    .agents-main { max-width:var(--max); margin:0 auto; padding:48px 24px 80px; }
+    .agent-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+
+    .agent-card { border:1px solid var(--border); border-radius:8px; overflow:hidden; background:var(--bg); transition:border-color 0.2s, box-shadow 0.2s; display:flex; flex-direction:column; }
+    .agent-card:hover { border-color:var(--accent-2); box-shadow:0 4px 20px rgba(0,0,0,0.06); }
+    .agent-card-header { padding:22px 24px 18px; border-bottom:1px solid var(--border); }
+    .agent-name { font-family:var(--serif); font-size:17px; font-weight:400; color:var(--ink); margin-bottom:4px; }
+    .agent-sub { font-size:11px; color:var(--ink-3); letter-spacing:0.04em; }
+    .agent-card-body { padding:20px 24px; flex:1; display:flex; flex-direction:column; }
+    .agent-desc { font-size:13px; color:var(--ink-2); line-height:1.95; margin-bottom:18px; flex:1; }
+    .agent-caps { list-style:none; display:flex; flex-direction:column; gap:7px; }
+    .agent-caps li { display:flex; align-items:flex-start; gap:8px; font-size:12px; color:var(--ink-2); }
+    .agent-caps li::before { content:''; width:4px; height:4px; border-radius:50%; background:var(--accent-2); flex-shrink:0; margin-top:7px; }
+    .agent-card-footer { padding:16px 24px; border-top:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; }
+    .agent-tag { display:inline-block; font-size:10px; letter-spacing:0.06em; text-transform:uppercase; color:var(--ink-3); padding:3px 8px; border:1px solid var(--border); border-radius:3px; }
+    .agent-link { font-size:12px; color:var(--accent-2); text-decoration:none; display:flex; align-items:center; gap:4px; transition:color 0.2s; }
+    .agent-link:hover { color:var(--accent); }
+
+    footer { background:var(--ink); padding:40px 24px; }
+    .footer-inner { max-width:var(--max); margin:0 auto; display:flex; align-items:center; justify-content:space-between; }
+    .footer-logo { font-family:var(--serif); font-size:16px; color:#e2e0d8; }
+    .footer-logo span { color:var(--accent-2); }
+    .footer-text { font-size:12px; color:#4a4845; }
+    .footer-links { display:flex; gap:24px; }
+    .footer-links a, .footer-links span { font-size:12px; color:#5a5855; text-decoration:none; transition:color 0.2s; }
+    .footer-links a:hover { color:#8a8885; }
+
+    @media(max-width:860px) { .agent-grid { grid-template-columns:repeat(2,1fr); } }
+    @media(max-width:560px) {
+      .agent-grid { grid-template-columns:1fr; }
+      .page-header { padding:130px 20px 48px; }
+      .coming-soon-banner{font-size:11px;gap:8px;}
+      .coming-soon-banner .cs-sub{display:none;}
+      .footer-inner { flex-direction:column; gap:16px; text-align:center; }
+      .footer-links { justify-content:center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="coming-soon-banner">
+    <span class="cs-label">🎉 已開源 · v0.1.0-alpha-1</span>
+    <span class="cs-sub">— 加入候補名單，正式版上線第一時間通知</span>
+    <a href="https://forms.gle/9UVdi527sYUBuqcm6" target="_blank" rel="noopener">加入候補 →</a>
+  </div>
+
+  <nav>
+    <a class="nav-logo" href="/zhtw/">Co<span>Staff</span></a>
+    <div class="nav-links" id="primary-nav">
+      <a href="/zhtw/">首頁</a>
+      <a href="/zhtw/agents/">AI 員工</a>
+      <a href="/zhtw/channels/">通訊軟體</a>
+      <a href="/zhtw/platforms/" class="active">企業平台</a>
+      <a href="/zhtw/architecture/">技術架構</a>
+      <a href="/zhtw/user-flow/">應用架構</a>
+      <a href="/zhtw/docs/">文件</a>
+    </div>
+    <div class="nav-right">
+      <a class="nav-lang" href="/platforms/">EN</a>
+      <a class="nav-gh" href="https://github.com/costaff-ai/costaff" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
+      <button class="nav-toggle" aria-label="切換選單" aria-expanded="false" aria-controls="primary-nav">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+    </div>
+  </nav>
+
+  <header class="page-header">
+    <div class="page-label">CoStaff Platforms</div>
+    <h1 class="page-title">一個帳號，11 套企業系統，<br/><span>AI Agent 都會操作</span></h1>
+    <p class="page-desc">自架的企業套件，與 CoStaff Agent 生態深度整合 — <strong>每套平台都內建 MCP server</strong>，你的 AI 員工能直接替你在 ERP 過傳票、查 CRM 客戶、開客服工單。全套為私有原始碼，聯絡取得。</p>
+  </header>
+
+  <section class="gov-band">
+    <div class="gov-label">全套件共通的治理能力</div>
+    <div class="gov-grid">
+      <div class="gov-item">
+        <h4>單一登入 SSO</h4>
+        <p>Keycloak 級的自建身分中心 — OIDC、PKCE、MFA、Passkey。登入一次，全套系統通行。</p>
+      </div>
+      <div class="gov-item">
+        <h4>Per-app 角色</h4>
+        <p>同一個人在 ERP 是業務、在 CRM 唯讀 — 全部集中在一個地方指派。</p>
+      </div>
+      <div class="gov-item">
+        <h4>三 Portal 介面</h4>
+        <p>員工、主管、管理三種視角，每套平台依照權限自動呈現對的畫面。</p>
+      </div>
+      <div class="gov-item">
+        <h4>可編輯權限矩陣</h4>
+        <p>角色 × 模組的讀寫權限，直接在介面上調整、即時生效 — 不必重新部署。</p>
+      </div>
+      <div class="gov-item">
+        <h4>通知中心 + 個人 API Token</h4>
+        <p>簽核與指派即時通知；個人 token 只帶本人權限，不多不少。</p>
+      </div>
+      <div class="gov-item">
+        <h4>Agent-operable</h4>
+        <p>每套平台一個 MCP server 加一個配對 Agent，AI 員工用跟你一樣的方式操作系統。</p>
+      </div>
+    </div>
+  </section>
+
+  <main class="agents-main">
+    <div class="agent-grid">
+
+      <!-- Account Manager -->
+      <div class="agent-card">
+        <div class="agent-card-header">
+          <div class="agent-name">Account Manager</div>
+          <div class="agent-sub">定位：身分中心 / SSO 樞紐</div>
+        </div>
+        <div class="agent-card-body">
+          <p class="agent-desc">Keycloak 風格的身分提供者，全套系統登入一次搞定。<strong>一個帳號、一張權限矩陣、所有應用</strong> — 稽核需要的紀錄也都齊全。</p>
+          <ul class="agent-caps">
+            <li>OIDC + PKCE 授權流程</li>
+            <li>MFA、Passkey、Google 登入</li>
+            <li>users × apps 應用權限矩陣</li>
+            <li>SSO 工作階段管理、稽核匯出、Webhooks</li>
+          </ul>
+        </div>
+        <div class="agent-card-footer">
+          <span class="agent-tag">Private</span>
+          <a class="agent-link" href="mailto:simonliuyuwei@gmail.com?subject=CoStaff%20Account%20Manager%20Inquiry">
+            聯絡取得
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8.25V18a2.25 2.25 0 0 0 2.25 2.25h13.5A2.25 2.25 0 0 0 21 18V8.25m-18 0V6a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 6v2.25m-18 0 9 5.25 9-5.25"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- ERP -->
+      <div class="agent-card">
+        <div class="agent-card-header">
+          <div class="agent-name">ERP</div>
+          <div class="agent-sub">定位：企業營運核心</div>
+        </div>
+        <div class="agent-card-body">
+          <p class="agent-desc">鼎新風格的 ERP，<strong>11 個模組把採購到付款、接單到收款一條龍走完</strong> — 從報價到總帳、跨多公司別，關鍵單據都有簽核鏈把關。</p>
+          <ul class="agent-caps">
+            <li>採購 / 銷售 / 庫存 / BOM-MRP</li>
+            <li>AR-AP、總帳、電子發票、多公司別</li>
+            <li>報價轉單 + 信用額度管控</li>
+            <li>委外加工、品檢、簽核鏈、自動化規則</li>
+          </ul>
+        </div>
+        <div class="agent-card-footer">
+          <span class="agent-tag">Private</span>
+          <a class="agent-link" href="mailto:simonliuyuwei@gmail.com?subject=CoStaff%20ERP%20Platform%20Inquiry">
+            聯絡取得
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8.25V18a2.25 2.25 0 0 0 2.25 2.25h13.5A2.25 2.25 0 0 0 21 18V8.25m-18 0V6a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 6v2.25m-18 0 9 5.25 9-5.25"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- CRM -->
+      <div class="agent-card">
+        <div class="agent-card-header">
+          <div class="agent-name">CRM</div>
+          <div class="agent-sub">定位：銷售管線 / 客戶 360</div>
+        </div>
+        <div class="agent-card-body">
+          <p class="agent-desc">從第一次進站到簽約：<strong>潛客評分、商機看板拖拉推進、加權銷售預測</strong> — 客戶完整歷史就在一條時間軸上。</p>
+          <ul class="agent-caps">
+            <li>潛客評分 + 商機看板</li>
+            <li>報價 / 訂單 / 合約、加權銷售預測</li>
+            <li>客戶 360 時間軸 + Email 範本</li>
+            <li>Web-to-Lead、行銷活動、客服案件</li>
+          </ul>
+        </div>
+        <div class="agent-card-footer">
+          <span class="agent-tag">Private</span>
+          <a class="agent-link" href="mailto:simonliuyuwei@gmail.com?subject=CoStaff%20CRM%20Platform%20Inquiry">
+            聯絡取得
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8.25V18a2.25 2.25 0 0 0 2.25 2.25h13.5A2.25 2.25 0 0 0 21 18V8.25m-18 0V6a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 6v2.25m-18 0 9 5.25 9-5.25"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- HRM -->
+      <div class="agent-card">
+        <div class="agent-card-header">
+          <div class="agent-name">HRM</div>
+          <div class="agent-sub">定位：人資營運</div>
+        </div>
+        <div class="agent-card-body">
+          <p class="agent-desc">出勤、薪資、績效一站搞定 — 內建<strong>法規申報試算</strong>（勞退、二代健保、扣繳憑單），月底不用再回 Excel 算一遍。</p>
+          <ul class="agent-caps">
+            <li>出勤 / 排班 / 請假 / 薪資</li>
+            <li>績效 OKR 360、招募 ATS、訓練、福利資產</li>
+            <li>法規申報試算（勞退 / 二代健保 / 扣繳憑單）</li>
+            <li>三 Portal 含員工自助 ESS、出差申請、匿名滿意度調查</li>
+          </ul>
+        </div>
+        <div class="agent-card-footer">
+          <span class="agent-tag">Private</span>
+          <a class="agent-link" href="mailto:simonliuyuwei@gmail.com?subject=CoStaff%20HRM%20Platform%20Inquiry">
+            聯絡取得
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8.25V18a2.25 2.25 0 0 0 2.25 2.25h13.5A2.25 2.25 0 0 0 21 18V8.25m-18 0V6a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 6v2.25m-18 0 9 5.25 9-5.25"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- SCM -->
+      <div class="agent-card">
+        <div class="agent-card-header">
+          <div class="agent-name">SCM</div>
+          <div class="agent-sub">定位：供應鏈控制塔</div>
+        </div>
+        <div class="agent-card-body">
+          <p class="agent-desc">把供應商拉進同一套流程：<strong>RFQ 詢比議價到三方比對、需求預測自動補貨</strong>，供應商入口網讓對帳變成協同作業。</p>
+          <ul class="agent-caps">
+            <li>RFQ 詢比議價 + 三方比對</li>
+            <li>需求預測補貨、批號效期、儲位盤點</li>
+            <li>供應商入口網、對帳協同、ASN</li>
+            <li>控制塔儀表板 + 供應商計分卡</li>
+          </ul>
+        </div>
+        <div class="agent-card-footer">
+          <span class="agent-tag">Private</span>
+          <a class="agent-link" href="mailto:simonliuyuwei@gmail.com?subject=CoStaff%20SCM%20Platform%20Inquiry">
+            聯絡取得
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8.25V18a2.25 2.25 0 0 0 2.25 2.25h13.5A2.25 2.25 0 0 0 21 18V8.25m-18 0V6a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 6v2.25m-18 0 9 5.25 9-5.25"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- PLM -->
+      <div class="agent-card">
+        <div class="agent-card-header">
+          <div class="agent-name">PLM</div>
+          <div class="agent-sub">定位：產品生命週期管理</div>
+        </div>
+        <div class="agent-card-body">
+          <p class="agent-desc">讓工程的事實只有一份：<strong>BOM 樹含成本與版本比較、ECO 工程變更附影響分析</strong>，從 NPI 啟動到法規簽核，文件全程有版本。</p>
+          <ul class="agent-caps">
+            <li>BOM 樹 / 成本 / 版本比較</li>
+            <li>ECO 工程變更 + 影響分析、NPI 流程</li>
+            <li>文件簽入簽出 + 版本管理</li>
+            <li>需求管理 + 追溯矩陣、RoHS / REACH</li>
+          </ul>
+        </div>
+        <div class="agent-card-footer">
+          <span class="agent-tag">Private</span>
+          <a class="agent-link" href="mailto:simonliuyuwei@gmail.com?subject=CoStaff%20PLM%20Platform%20Inquiry">
+            聯絡取得
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8.25V18a2.25 2.25 0 0 0 2.25 2.25h13.5A2.25 2.25 0 0 0 21 18V8.25m-18 0V6a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 6v2.25m-18 0 9 5.25 9-5.25"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Accounting -->
+      <div class="agent-card">
+        <div class="agent-card-header">
+          <div class="agent-name">Accounting</div>
+          <div class="agent-sub">定位：複式記帳會計</div>
+        </div>
+        <div class="agent-card-body">
+          <p class="agent-desc">完整的複式記帳系統：<strong>科目、傳票、總帳到三大報表</strong>一路串起來，401 申報與統一發票原生支援。</p>
+          <ul class="agent-caps">
+            <li>科目 / 傳票 / 總帳 / 試算表 / 三大報表</li>
+            <li>401 申報 + 統一發票</li>
+            <li>固定資產 + 銀行對帳</li>
+            <li>AR/AP 帳齡、部門別損益、預算</li>
+          </ul>
+        </div>
+        <div class="agent-card-footer">
+          <span class="agent-tag">Private</span>
+          <a class="agent-link" href="mailto:simonliuyuwei@gmail.com?subject=CoStaff%20Accounting%20Platform%20Inquiry">
+            聯絡取得
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8.25V18a2.25 2.25 0 0 0 2.25 2.25h13.5A2.25 2.25 0 0 0 21 18V8.25m-18 0V6a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 6v2.25m-18 0 9 5.25 9-5.25"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- KMS -->
+      <div class="agent-card">
+        <div class="agent-card-header">
+          <div class="agent-name">KMS</div>
+          <div class="agent-sub">定位：公司知識庫</div>
+        </div>
+        <div class="agent-card-body">
+          <p class="agent-desc">Confluence 風格的知識管理系統：<strong>空間 + markdown 樹狀文章</strong>，版本、評論、草稿發佈流齊備 — 公司知識不再埋在聊天紀錄裡。</p>
+          <ul class="agent-caps">
+            <li>空間 + markdown 樹狀文章、版本與評論</li>
+            <li>頁面模板，常用文件一鍵套</li>
+            <li>Space 層級權限 + 草稿發佈流</li>
+            <li>PDF 匯出（CJK 完整支援）</li>
+          </ul>
+        </div>
+        <div class="agent-card-footer">
+          <span class="agent-tag">Private</span>
+          <a class="agent-link" href="mailto:simonliuyuwei@gmail.com?subject=CoStaff%20KMS%20Platform%20Inquiry">
+            聯絡取得
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8.25V18a2.25 2.25 0 0 0 2.25 2.25h13.5A2.25 2.25 0 0 0 21 18V8.25m-18 0V6a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 6v2.25m-18 0 9 5.25 9-5.25"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Project -->
+      <div class="agent-card">
+        <div class="agent-card-header">
+          <div class="agent-name">Project</div>
+          <div class="agent-sub">定位：專案 / 衝刺管理</div>
+        </div>
+        <div class="agent-card-body">
+          <p class="agent-desc">Jira 風格、但全團隊都看得懂的專案管理：<strong>執行的人看看板和衝刺，規劃的人看甘特和燃盡</strong> — 中間是同一份事實。</p>
+          <ul class="agent-caps">
+            <li>看板 / 衝刺 / Epic 子任務</li>
+            <li>甘特時間軸 + 依賴關係</li>
+            <li>燃盡圖 + 自訂工作流</li>
+            <li>里程碑 + 工時記錄</li>
+          </ul>
+        </div>
+        <div class="agent-card-footer">
+          <span class="agent-tag">Private</span>
+          <a class="agent-link" href="mailto:simonliuyuwei@gmail.com?subject=CoStaff%20Project%20Platform%20Inquiry">
+            聯絡取得
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8.25V18a2.25 2.25 0 0 0 2.25 2.25h13.5A2.25 2.25 0 0 0 21 18V8.25m-18 0V6a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 6v2.25m-18 0 9 5.25 9-5.25"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Expense -->
+      <div class="agent-card">
+        <div class="agent-card-header">
+          <div class="agent-name">Expense</div>
+          <div class="agent-sub">定位：費用報銷</div>
+        </div>
+        <div class="agent-card-body">
+          <p class="agent-desc">收據拍張照，剩下交給系統：<strong>LLM 收據 OCR 自動填好報銷單</strong>，簽核鏈自動跑，預算一路有人看著。</p>
+          <ul class="agent-caps">
+            <li>報銷簽核鏈</li>
+            <li>LLM 收據 OCR 自動填單</li>
+            <li>差旅申請 + 預借款沖銷</li>
+            <li>預算控管、多幣別、信用卡對帳、發票合規</li>
+          </ul>
+        </div>
+        <div class="agent-card-footer">
+          <span class="agent-tag">Private</span>
+          <a class="agent-link" href="mailto:simonliuyuwei@gmail.com?subject=CoStaff%20Expense%20Platform%20Inquiry">
+            聯絡取得
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8.25V18a2.25 2.25 0 0 0 2.25 2.25h13.5A2.25 2.25 0 0 0 21 18V8.25m-18 0V6a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 6v2.25m-18 0 9 5.25 9-5.25"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Helpdesk -->
+      <div class="agent-card">
+        <div class="agent-card-header">
+          <div class="agent-name">Helpdesk</div>
+          <div class="agent-sub">定位：客服工單中心</div>
+        </div>
+        <div class="agent-card-body">
+          <p class="agent-desc">Zendesk 風格的客服系統：<strong>工單進佇列、SLA 計時、自動化派工</strong>，CSAT 滿意度告訴你服務做得怎麼樣。</p>
+          <ul class="agent-caps">
+            <li>工單 / 佇列 / SLA / 自動化 / KB</li>
+            <li>CSAT 滿意度調查</li>
+            <li>常見案件回覆範本</li>
+            <li>Email 轉工單 + 工單合併</li>
+          </ul>
+        </div>
+        <div class="agent-card-footer">
+          <span class="agent-tag">Private</span>
+          <a class="agent-link" href="mailto:simonliuyuwei@gmail.com?subject=CoStaff%20Helpdesk%20Platform%20Inquiry">
+            聯絡取得
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8.25V18a2.25 2.25 0 0 0 2.25 2.25h13.5A2.25 2.25 0 0 0 21 18V8.25m-18 0V6a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 6v2.25m-18 0 9 5.25 9-5.25"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <div style="margin-top:64px;padding:40px 32px;border:1px solid var(--border);border-radius:8px;background:var(--bg-alt);max-width:780px;margin-left:auto;margin-right:auto;">
+      <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:14px;">整套採購與 PoC</div>
+      <h3 style="font-family:var(--serif);font-weight:300;font-size:24px;color:var(--ink);margin:0 0 14px;line-height:1.4;">想導入整套系統，<br/>或先在自家機器上跑一輪 PoC？</h3>
+      <p style="font-size:14px;color:var(--ink-2);line-height:1.95;margin:0 0 20px;">
+        企業平台套件為私有原始碼，可整套或按產品授權。<br/>
+        <strong style="color:var(--accent-2);">告訴我們你需要哪幾套，我們幫你架 PoC</strong> — 自架、跑在你的機器上、由你的 AI 員工操作。
+      </p>
+      <p style="font-size:13px;margin:0;">
+        <a href="mailto:simonliuyuwei@gmail.com?subject=CoStaff%20Platform%20Suite%20Inquiry" style="color:var(--accent-2);font-weight:500;">聯絡我們談整套導入 →</a>
+        <span style="color:var(--ink-3);margin:0 10px;">·</span>
+        <a href="/zhtw/agents/" style="color:var(--ink-2);">公開的 Agent 生態請見 AI 員工頁 →</a>
+      </p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">Co<span>Staff</span></div>
+      <div class="footer-text">© 2026 CoStaffAI</div>
+      <div class="footer-links">
+        <a href="/zhtw/">首頁</a>
+        <a href="https://github.com/costaff-ai/costaff" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://forms.gle/9UVdi527sYUBuqcm6" target="_blank" rel="noopener">搶先預約</a>
+        <a href="mailto:simonliuyuwei@gmail.com">聯絡</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const toggle = document.querySelector('.nav-toggle');
+      const menu   = document.getElementById('primary-nav');
+      if (!toggle || !menu) return;
+      toggle.addEventListener('click', () => {
+        const open = menu.classList.toggle('open');
+        toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
+      menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+        menu.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }));
+    })();
+  </script>
+</body>
+</html>

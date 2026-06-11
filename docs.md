@@ -67,7 +67,7 @@ The Manager Agent listens on `http://localhost:18080`. Channel host ports are au
 
 ## Add specialist agents
 
-Official agents (in the `costaff-ai` GitHub org): `costaff-agent-business-analysis` (charts + PDF/PPT reports), `costaff-agent-coding` (sandboxed Python), `costaff-agent-database` (plain-language SQL), `costaff-agent-twinkle-hub` (Taiwan open data), and `costaff-agent-template` (starting point for your own).
+Official agents (in the `costaff-ai` GitHub org): `costaff-agent-business-analysis` (charts + PDF/PPT reports), `costaff-agent-coding` (sandboxed Python), `costaff-agent-database` (plain-language SQL), `costaff-agent-twinkle-hub` (open government data), and `costaff-agent-template` (starting point for your own).
 
 ### From GitHub (official + community)
 
@@ -146,6 +146,6 @@ Open your WebChat port in a browser and log in, or run `costaff dashboard` (http
 
 ## Next
 
-- [AI Staff](https://costaffs.app/agents/) — the 5 specialist agents you can hire
+- [AI Staff](https://costaffs.app/agents/) — the specialist agents you can hire
 - [Architecture](https://costaffs.app/architecture/) — the 6-layer system diagram
 - [User Flow](https://costaffs.app/user-flow/) — what happens end-to-end when you hand off a task

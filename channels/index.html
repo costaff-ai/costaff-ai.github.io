@@ -143,6 +143,7 @@
       <a href="/">Home</a>
       <a href="/agents/">AI Staff</a>
       <a href="/channels/" class="active">Channels</a>
+      <a href="/platforms/">Platforms</a>
       <a href="/architecture/">Architecture</a>
       <a href="/user-flow/">User Flow</a>
       <a href="/docs/">Docs</a>
@@ -236,6 +237,98 @@
           <a class="agent-link" href="mailto:simonliuyuwei@gmail.com?subject=CoStaff%20WebChat%20Enterprise%20Inquiry">
             Contact us
             <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8.25V18a2.25 2.25 0 0 0 2.25 2.25h13.5A2.25 2.25 0 0 0 21 18V8.25m-18 0V6a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 6v2.25m-18 0 9 5.25 9-5.25"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Discord -->
+      <div class="agent-card">
+        <div class="agent-card-header">
+          <div class="agent-name">Discord</div>
+          <div class="agent-sub">Role: Discord bot bridge</div>
+        </div>
+        <div class="agent-card-body">
+          <p class="agent-desc">A Discord bot that brings CoStaff into your server. <strong>Slash commands and plain messages both work, in both directions</strong> — and it runs on the same chatbot runtime as the Telegram channel, so behavior stays consistent across apps.</p>
+          <ul class="agent-caps">
+            <li>Discord bot — commands + messages, both directions</li>
+            <li>Same chatbot runtime as the Telegram channel</li>
+            <li>Same Manager, same agents, same identity handling</li>
+          </ul>
+        </div>
+        <div class="agent-card-footer">
+          <span class="agent-tag">Private</span>
+          <a class="agent-link" href="mailto:simonliuyuwei@gmail.com?subject=CoStaff%20Discord%20Channel%20Inquiry">
+            Contact for access
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8.25V18a2.25 2.25 0 0 0 2.25 2.25h13.5A2.25 2.25 0 0 0 21 18V8.25m-18 0V6a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 6v2.25m-18 0 9 5.25 9-5.25"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- LINE -->
+      <div class="agent-card">
+        <div class="agent-card-header">
+          <div class="agent-name">LINE</div>
+          <div class="agent-sub">Role: LINE official-account bridge</div>
+        </div>
+        <div class="agent-card-body">
+          <p class="agent-desc">Meet your users in the app already on their phone. <strong>Built on the LINE Messaging API webhook</strong> — hand tasks to your AI staff from the app that's already on everyone's phone.</p>
+          <ul class="agent-caps">
+            <li>LINE Messaging API webhook integration</li>
+            <li>A mainstream chat app across Asian markets</li>
+            <li>Same Manager, same agents, same identity handling</li>
+          </ul>
+        </div>
+        <div class="agent-card-footer">
+          <span class="agent-tag">Private</span>
+          <a class="agent-link" href="mailto:simonliuyuwei@gmail.com?subject=CoStaff%20LINE%20Channel%20Inquiry">
+            Contact for access
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8.25V18a2.25 2.25 0 0 0 2.25 2.25h13.5A2.25 2.25 0 0 0 21 18V8.25m-18 0V6a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 6v2.25m-18 0 9 5.25 9-5.25"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Slack -->
+      <div class="agent-card">
+        <div class="agent-card-header">
+          <div class="agent-name">Slack</div>
+          <div class="agent-sub">Role: Slack workspace bridge</div>
+        </div>
+        <div class="agent-card-body">
+          <p class="agent-desc">CoStaff inside your Slack workspace. <strong>Runs over Socket Mode, so there's no public IP or inbound webhook to expose</strong> — a natural fit for self-hosted deployments behind a firewall.</p>
+          <ul class="agent-caps">
+            <li>Socket Mode — no public IP required</li>
+            <li>Firewall-friendly for self-hosted setups</li>
+            <li>Same Manager, same agents, same identity handling</li>
+          </ul>
+        </div>
+        <div class="agent-card-footer">
+          <span class="agent-tag">Private</span>
+          <a class="agent-link" href="mailto:simonliuyuwei@gmail.com?subject=CoStaff%20Slack%20Channel%20Inquiry">
+            Contact for access
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8.25V18a2.25 2.25 0 0 0 2.25 2.25h13.5A2.25 2.25 0 0 0 21 18V8.25m-18 0V6a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 6v2.25m-18 0 9 5.25 9-5.25"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Chatbot SDK -->
+      <div class="agent-card">
+        <div class="agent-card-header">
+          <div class="agent-name">Chatbot SDK</div>
+          <div class="agent-sub">Role: shared channel runtime</div>
+        </div>
+        <div class="agent-card-body">
+          <p class="agent-desc">The runtime SDK every channel above is built on. Identity, sessions, file delivery, and async callbacks come for free — <strong>wiring up a new chat platform takes roughly 150 lines of adapter code</strong>.</p>
+          <ul class="agent-caps">
+            <li>Shared runtime SDK behind all channels</li>
+            <li>Identity, sessions, file delivery, async callbacks built in</li>
+            <li>New platform adapter in ~150 lines</li>
+          </ul>
+        </div>
+        <div class="agent-card-footer">
+          <span class="agent-tag">Open source</span>
+          <a class="agent-link" href="https://github.com/costaff-ai/costaff-channel-chatbot" target="_blank" rel="noopener">
+            View on GitHub
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
           </a>
         </div>
       </div>

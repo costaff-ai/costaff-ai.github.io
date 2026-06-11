@@ -159,6 +159,7 @@
       <a href="/zhtw/">首頁</a>
       <a href="/zhtw/agents/" class="active">AI 員工</a>
       <a href="/zhtw/channels/">通訊軟體</a>
+      <a href="/zhtw/platforms/">企業平台</a>
       <a href="/zhtw/architecture/">技術架構</a>
       <a href="/zhtw/user-flow/">應用架構</a>
       <a href="/zhtw/docs/">文件</a>
@@ -260,12 +261,12 @@
       <div class="agent-card">
         <div class="agent-card-header">
           <div class="agent-name">Twinkle Hub</div>
-          <div class="agent-sub">對應職位:台灣開放資料專員</div>
+          <div class="agent-sub">對應職位:政府開放資料專員</div>
         </div>
         <div class="agent-card-body">
-          <p class="agent-desc">想撈台灣政府開放資料?<strong>不用再翻 19 個部會的網站</strong>。用白話文問,它幫你找對的資料集(超過 52,960 筆),用 DuckDB SQL 在來源端撈剛好夠用的切片,存成乾淨的 CSV 還附上資料溯源,下游 Agent 直接接著用。</p>
+          <p class="agent-desc">想撈政府開放資料?<strong>不用再翻 19 個部會的網站</strong>。用白話文問,它幫你找對的資料集(超過 52,960 筆),用 DuckDB SQL 在來源端撈剛好夠用的切片,存成乾淨的 CSV 還附上資料溯源,下游 Agent 直接接著用。</p>
           <ul class="agent-caps">
-            <li>超過 52,960 筆台灣政府資料、19 個領域</li>
+            <li>超過 52,960 筆政府開放資料、19 個領域</li>
             <li>DuckDB SQL 在資料來源端過濾</li>
             <li>資料溯源 sidecar(機關、查詢、時間)</li>
             <li>整理好的 CSV 自動交棒給商業分析 / 程式開發</li>
@@ -544,6 +545,98 @@
         </div>
       </div>
 
+      <!-- Fill-Table -->
+      <div class="agent-card">
+        <div class="agent-card-header">
+          <div class="agent-name">表格填寫</div>
+          <div class="agent-sub">對應職位：表單文件填寫專員</div>
+        </div>
+        <div class="agent-card-body">
+          <p class="agent-desc">給它一份 .docx 範本，加上裝著答案的 PDF 附件 — <strong>它回給你一份填好、可以直接送出的 PDF</strong>。實測 17 個欄位的真實表單，中文內容也沒問題。</p>
+          <ul class="agent-caps">
+            <li>輸入 .docx 範本 + PDF 附件</li>
+            <li>輸出填好、可直接送出的 PDF</li>
+            <li>17 個欄位實測通過</li>
+            <li>中文（CJK）完整支援</li>
+          </ul>
+        </div>
+        <div class="agent-card-footer">
+          <span class="agent-tag">效率</span>
+          <a class="agent-link" href="mailto:simonliuyuwei@gmail.com?subject=CoStaff%20Fill-Table%20Agent%20Inquiry">
+            聯絡取得
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8.25V18a2.25 2.25 0 0 0 2.25 2.25h13.5A2.25 2.25 0 0 0 21 18V8.25m-18 0V6a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 6v2.25m-18 0 9 5.25 9-5.25"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Browser Operator -->
+      <div class="agent-card">
+        <div class="agent-card-header">
+          <div class="agent-name">瀏覽器操作</div>
+          <div class="agent-sub">對應職位：網頁操作員</div>
+        </div>
+        <div class="agent-card-body">
+          <p class="agent-desc">操作 Playwright 無頭瀏覽器的真實上網專員。<strong>巡檢政府網站、追蹤標案</strong> — 那些永遠不會有 API 的網頁，交給它。</p>
+          <ul class="agent-caps">
+            <li>Playwright 無頭瀏覽器自動化</li>
+            <li>政府網站例行巡檢</li>
+            <li>標案 / 採購公告追蹤</li>
+          </ul>
+        </div>
+        <div class="agent-card-footer">
+          <span class="agent-tag">研究</span>
+          <a class="agent-link" href="mailto:simonliuyuwei@gmail.com?subject=CoStaff%20Browser%20Operator%20Agent%20Inquiry">
+            聯絡取得
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8.25V18a2.25 2.25 0 0 0 2.25 2.25h13.5A2.25 2.25 0 0 0 21 18V8.25m-18 0V6a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 6v2.25m-18 0 9 5.25 9-5.25"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Builder -->
+      <div class="agent-card">
+        <div class="agent-card-header">
+          <div class="agent-name">Builder</div>
+          <div class="agent-sub">對應職位：Agent 產生器</div>
+        </div>
+        <div class="agent-card-body">
+          <p class="agent-desc">會做 Agent 的 Agent。<strong>一句話描述你要的 Agent</strong> — 它自己 scaffold 出 repo、驗證、推上 GitHub：clone → 產生 → 驗證 → push 全自動。</p>
+          <ul class="agent-caps">
+            <li>一句話需求進、可運作的 Agent repo 出</li>
+            <li>完整流水線：clone → 產生 → 驗證 → push</li>
+            <li>不用手寫任何 boilerplate</li>
+          </ul>
+        </div>
+        <div class="agent-card-footer">
+          <span class="agent-tag">維運</span>
+          <a class="agent-link" href="mailto:simonliuyuwei@gmail.com?subject=CoStaff%20Builder%20Agent%20Inquiry">
+            聯絡取得
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8.25V18a2.25 2.25 0 0 0 2.25 2.25h13.5A2.25 2.25 0 0 0 21 18V8.25m-18 0V6a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 6v2.25m-18 0 9 5.25 9-5.25"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Medical -->
+      <div class="agent-card">
+        <div class="agent-card-header">
+          <div class="agent-name">醫療助理</div>
+          <div class="agent-sub">對應職位：醫療領域問答助手</div>
+        </div>
+        <div class="agent-card-body">
+          <p class="agent-desc">醫療領域的問答助手 — <strong>用白話文問健康與醫療相關問題</strong>，直接在你的通訊軟體裡。</p>
+          <ul class="agent-caps">
+            <li>醫療領域問答</li>
+            <li>在通訊軟體裡用白話文對談</li>
+          </ul>
+        </div>
+        <div class="agent-card-footer">
+          <span class="agent-tag">健康</span>
+          <a class="agent-link" href="mailto:simonliuyuwei@gmail.com?subject=CoStaff%20Medical%20Agent%20Inquiry">
+            聯絡取得
+            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8.25V18a2.25 2.25 0 0 0 2.25 2.25h13.5A2.25 2.25 0 0 0 21 18V8.25m-18 0V6a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 6v2.25m-18 0 9 5.25 9-5.25"/></svg>
+          </a>
+        </div>
+      </div>
+
 <!-- 自訂 Agent -->
       <div class="agent-card agent-card-custom">
         <div class="agent-card-header">
@@ -574,6 +667,10 @@
       </div>
 
     </div>
+
+    <p style="margin-top:32px;text-align:center;font-size:13px;color:var(--ink-2);">
+      企業平台（ERP / CRM / HRM…）各有配對的操作 Agent — 詳見<a href="/zhtw/platforms/" style="color:var(--accent-2);">企業平台</a>頁。
+    </p>
 
     <div style="margin-top:64px;padding:40px 32px;border:1px solid var(--border);border-radius:8px;background:var(--bg-alt);max-width:780px;margin-left:auto;margin-right:auto;">
       <div style="font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-3);margin-bottom:14px;">他們會自動分工</div>
