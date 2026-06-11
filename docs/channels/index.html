@@ -55,6 +55,7 @@
             <h4>Getting started</h4>
             <ul>
               <li><a href="/docs/">Overview</a></li>
+              <li><a href="/docs/tutorial/">Beginner tutorial</a></li>
               <li><a href="/docs/requirements/">System requirements</a></li>
               <li><a href="/docs/install/">Install</a></li>
             </ul>
@@ -92,35 +93,83 @@
         </header>
 
 
-<pre class="code"><span class="c"># Browser-based chat UI (no extra credentials)</span>
+<pre class="code"><span class="c"># Browser-based chat UI (no bot token — just pick a login)</span>
 costaff channel add webchat
 
 <span class="c"># Telegram bot — prompts for TELEGRAM_BOT_TOKEN</span>
 costaff channel add telegram</pre>
 
 <h2>Official channels</h2>
+<p>These four names auto-resolve to their GitHub repos — no URL needed:</p>
 <table class="spec">
-  <thead><tr><th>Name</th><th>Default port</th><th>What you need</th></tr></thead>
+  <thead><tr><th>Name</th><th>What you need</th></tr></thead>
   <tbody>
-    <tr><td><code>webchat</code></td><td><code>18090</code></td><td>Nothing — open <a href="http://localhost:18090" target="_blank" rel="noopener">http://localhost:18090</a> and chat.</td></tr>
-    <tr><td><code>telegram</code></td><td>—</td><td>A <code>TELEGRAM_BOT_TOKEN</code> from <a href="https://t.me/BotFather" target="_blank" rel="noopener">@BotFather</a>.</td></tr>
-    <tr><td><code>discord</code></td><td>—</td><td>Discord bot token + guild config.</td></tr>
-    <tr><td><code>line</code></td><td>—</td><td>LINE channel access token + secret.</td></tr>
+    <tr><td><code>webchat</code></td><td>No third-party service. The CLI prompts for a login email + password (and a JWT secret) at deploy time; then open the channel's port in a browser and chat.</td></tr>
+    <tr><td><code>telegram</code></td><td>A <code>TELEGRAM_BOT_TOKEN</code> from <a href="https://t.me/BotFather" target="_blank" rel="noopener">@BotFather</a>.</td></tr>
+    <tr><td><code>discord</code></td><td>A <code>DISCORD_BOT_TOKEN</code> from the Discord developer portal.</td></tr>
+    <tr><td><code>line</code></td><td>A <code>LINE_CHANNEL_ACCESS_TOKEN</code> + <code>LINE_CHANNEL_SECRET</code>.</td></tr>
   </tbody>
 </table>
+<p>Host ports are auto-assigned from <code>18090</code>–<code>18099</code> in the order channels are added — <code>costaff channel list</code> shows each channel's port and health. If WebChat is your first channel, it lands on <a href="http://localhost:18090" target="_blank" rel="noopener">http://localhost:18090</a>.</p>
+
+<h2>Step-by-step: setting up each channel</h2>
+
+<h3>WebChat (easiest — fully local)</h3>
+<ol>
+  <li><code>costaff channel add webchat</code></li>
+  <li>When prompted, choose a <strong>login email + password</strong> (these are <em>your</em> credentials for the chat page — any values you like) and a <strong>JWT secret</strong> (any long random string).</li>
+  <li>Open the port from <code>costaff channel list</code> in a browser, log in, chat. No third-party account, works offline from the internet's point of view.</li>
+</ol>
+
+<h3>Telegram (≈ 5 min — works on a laptop, no public IP needed)</h3>
+<ol>
+  <li>In Telegram, open <a href="https://t.me/BotFather" target="_blank" rel="noopener">@BotFather</a> and send <code>/newbot</code>.</li>
+  <li>Give the bot a display name, then a username ending in <code>bot</code> (e.g. <code>my_costaff_bot</code>).</li>
+  <li>BotFather replies with a token like <code>123456789:AAH…</code> — copy it.</li>
+  <li><code>costaff channel add telegram</code> and paste the token when prompted.</li>
+  <li>Open your bot in Telegram, send <code>/start</code> and then any message. The first message creates a <em>pending</em> identity — see the approval note below.</li>
+</ol>
+<p>Telegram uses long polling (your machine calls Telegram, not the other way around), so it works behind home routers and firewalls with zero network setup.</p>
+
+<h3>Discord (≈ 10 min)</h3>
+<ol>
+  <li>Go to the <a href="https://discord.com/developers/applications" target="_blank" rel="noopener">Discord Developer Portal</a> → <strong>New Application</strong>.</li>
+  <li>Under <strong>Bot</strong>: click <strong>Reset Token</strong> and copy it.</li>
+  <li>Still under Bot, scroll to <em>Privileged Gateway Intents</em> and <strong>enable Message Content Intent</strong> — without it the bot connects but never sees your messages. This is the #1 Discord gotcha.</li>
+  <li>Under <strong>OAuth2 → URL Generator</strong>: tick the <code>bot</code> scope, give it <em>Send Messages</em> + <em>Read Message History</em> permissions, open the generated URL, and invite the bot to your server.</li>
+  <li><code>costaff channel add discord</code> and paste the token.</li>
+</ol>
+
+<h3>LINE (⚠ requires a public HTTPS URL)</h3>
+<p>Unlike Telegram, LINE delivers messages by <strong>webhook</strong> — LINE's servers must be able to reach your machine over public HTTPS at <code>/callback</code>. On a laptop behind a home router that means a tunnel (e.g. Cloudflare Tunnel or ngrok) or a reverse proxy with TLS. <strong>If you're just trying CoStaff out locally, use WebChat or Telegram instead and come back to LINE when you have a server.</strong></p>
+<ol>
+  <li>In the <a href="https://developers.line.biz/" target="_blank" rel="noopener">LINE Developers Console</a>, create a Provider and a <strong>Messaging API</strong> channel.</li>
+  <li>Copy the <strong>Channel access token</strong> and <strong>Channel secret</strong>.</li>
+  <li><code>costaff channel add line</code> and paste both.</li>
+  <li>In the LINE console, set the webhook URL to <code>https://&lt;your-public-domain&gt;/callback</code> (pointing at this channel's port) and enable webhooks.</li>
+</ol>
+
+<div class="callout warn">
+  <div class="label">First message → approval required</div>
+  <p>By default, the first message from any new chat account creates a <em>pending</em> identity and the assistant replies that the account <em>"has not been approved"</em>. Approve yourself: <code>costaff dashboard</code> → <strong>Users</strong> → approve the new row, then message again. This gate is what stops a stranger who stumbles onto your bot from using your AI — keep it on.</p>
+</div>
 
 <h2>Custom channels</h2>
-<p>Same flags as agents:</p>
-<pre class="code">costaff channel add my-channel --github https://github.com/you/my-channel
+<p>Same flags as agents. Slack, for example, is a first-party repo added by URL:</p>
+<pre class="code"><span class="c"># Slack bot (Socket Mode — needs SLACK_BOT_TOKEN + SLACK_APP_TOKEN)</span>
+costaff channel add slack --github https://github.com/costaff-ai/costaff-channel-slack
+
+costaff channel add my-channel --github https://github.com/you/my-channel
 costaff channel add my-channel --local /path/to/my-channel</pre>
 
 <h2>Manage channels</h2>
 <table class="spec">
   <thead><tr><th>Command</th><th>What it does</th></tr></thead>
   <tbody>
-    <tr><td><code>costaff channel list</code></td><td>Registered channels + health.</td></tr>
+    <tr><td><code>costaff channel list</code></td><td>Registered channels + port + health.</td></tr>
     <tr><td><code>costaff channel rebuild &lt;name&gt;</code></td><td>Rebuild image and restart.</td></tr>
     <tr><td><code>costaff channel remove &lt;name&gt;</code></td><td>Stop, remove, unregister.</td></tr>
+    <tr><td><code>costaff channel tags &lt;name&gt;</code></td><td>List release tags available in the channel's repo (for pinning).</td></tr>
   </tbody>
 </table>
 

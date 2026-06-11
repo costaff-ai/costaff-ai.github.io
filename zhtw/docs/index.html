@@ -55,6 +55,7 @@
             <h4>入門</h4>
             <ul>
               <li><a href="/zhtw/docs/" class="active">總覽</a></li>
+              <li><a href="/zhtw/docs/tutorial/">新手教學</a></li>
               <li><a href="/zhtw/docs/requirements/">系統需求</a></li>
               <li><a href="/zhtw/docs/install/">安裝</a></li>
             </ul>
@@ -96,6 +97,11 @@
 
 <p>想趕快動手？直接到 <a href="/zhtw/docs/install/">安裝</a>。想先看大圖？<a href="/zhtw/architecture/">技術架構</a>頁說明六層架構。</p>
 
+<div class="callout">
+  <div class="label">第一次來？</div>
+  <p>走<a href="/zhtw/docs/tutorial/"><strong>新手教學</strong></a> — 從零到第一次對話的手把手流程，每一步都附預期輸出。下面的頁面是同一段旅程的參考書版本。</p>
+</div>
+
 <div class="overview-grid">
   <a class="ov-card" href="/zhtw/docs/requirements/"><div class="num">01</div><h3>系統需求</h3><p>安裝前你需要準備的硬體與軟體。</p></a>
   <a class="ov-card" href="/zhtw/docs/install/"><div class="num">02</div><h3>安裝</h3><p>macOS 與 Ubuntu 共用同一行 curl 指令。</p></a>
@@ -107,23 +113,26 @@
   <a class="ov-card" href="/zhtw/docs/troubleshooting/"><div class="num">08</div><h3>問題排解</h3><p>常見地雷與復原方式。</p></a>
 </div>
 
-<h2>三行快速上手</h2>
-<p>已經熟 stack，就是這三行：</p>
+<h2>四行快速上手</h2>
+<p>已經熟 stack，就是這四行：</p>
 <pre class="code"><span class="c"># 1. 安裝</span>
 curl -fsSL https://raw.githubusercontent.com/costaff-ai/costaff/main/install.sh | bash
 
-<span class="c"># 2. 設定（互動式精靈）</span>
+<span class="c"># 2. 設定（互動式精靈 — 沒有手動步驟時安裝程式會自動接著跑）</span>
 source ~/.zshrc  <span class="c"># Ubuntu 改 ~/.bashrc</span>
 costaff onboard
 
-<span class="c"># 3. 啟動全部</span>
-costaff start</pre>
+<span class="c"># 3. 啟動全部（會先 preflight 檢查 .env）</span>
+costaff start
+
+<span class="c"># 4. 開 dashboard，點 Chat 開聊</span>
+costaff dashboard</pre>
 <p>接著加 Agent 與 channel — 看 <a href="/zhtw/docs/agents/">專家 Agent</a> 與 <a href="/zhtw/docs/channels/">通訊軟體</a>。</p>
 
 
         <nav class="docs-pager" aria-label="Pager">
         <span class="empty"></span>
-        <a class="next" href="/zhtw/docs/requirements/"><span class="pager-label">下一頁 →</span><span class="pager-title">系統需求</span></a>
+        <a class="next" href="/zhtw/docs/tutorial/"><span class="pager-label">下一頁 →</span><span class="pager-title">新手教學</span></a>
       </nav>
       </main>
 

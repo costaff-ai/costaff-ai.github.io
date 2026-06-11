@@ -55,6 +55,7 @@
             <h4>入門</h4>
             <ul>
               <li><a href="/zhtw/docs/">總覽</a></li>
+              <li><a href="/zhtw/docs/tutorial/">新手教學</a></li>
               <li><a href="/zhtw/docs/requirements/">系統需求</a></li>
               <li><a href="/zhtw/docs/install/" class="active">安裝</a></li>
             </ul>
@@ -99,11 +100,12 @@ curl -fsSL https://raw.githubusercontent.com/costaff-ai/costaff/main/install.sh 
 <ul>
   <li><strong>偵測作業系統</strong> — 只支援 macOS 與 Ubuntu/Debian，其他直接退出。</li>
   <li><strong>系統套件</strong> — macOS 裝 Xcode CLT 與 Homebrew；Ubuntu 跑 <code>apt</code>。</li>
-  <li><strong>Python 3.12</strong> — macOS Homebrew、Ubuntu <code>deadsnakes</code> PPA。</li>
-  <li><strong>Docker</strong> — macOS Docker Desktop、Ubuntu Docker Engine。</li>
+  <li><strong>Python 3.12</strong> — macOS Homebrew、Ubuntu <code>deadsnakes</code> PPA（Ubuntu 24.04+ 已處理 — 退役的 <code>distutils</code> 套件會自動跳過）。</li>
+  <li><strong>Docker</strong> — macOS Docker Desktop、Ubuntu Docker Engine。macOS 上安裝程式會自動啟動 Docker Desktop 並等 daemon 就緒（最多 90 秒）；Ubuntu 上若 daemon 沒在跑會用 systemd 拉起來。</li>
   <li><strong>Repo</strong> — 把 <code>costaff-ai/costaff</code> clone 到 <code>~/.costaff/costaff/</code>。</li>
   <li><strong>虛擬環境</strong> — 建 <code>~/.costaff/.venv/</code>，跑 <code>pip install -e</code>。</li>
   <li><strong>PATH</strong> — 把 venv 寫進 <code>~/.zshrc</code>（macOS）或 <code>~/.bashrc</code>（Ubuntu）。</li>
+  <li><strong>設定精靈</strong> — 沒有剩餘手動步驟時（例如不需要重新登入 docker group），安裝程式會直接接著跑 <code>costaff onboard</code>。</li>
 </ul>
 
 <div class="callout warn">

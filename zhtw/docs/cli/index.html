@@ -55,6 +55,7 @@
             <h4>入門</h4>
             <ul>
               <li><a href="/zhtw/docs/">總覽</a></li>
+              <li><a href="/zhtw/docs/tutorial/">新手教學</a></li>
               <li><a href="/zhtw/docs/requirements/">系統需求</a></li>
               <li><a href="/zhtw/docs/install/">安裝</a></li>
             </ul>
@@ -115,8 +116,9 @@
 <table class="spec">
   <thead><tr><th>指令</th><th>作用</th></tr></thead>
   <tbody>
-    <tr><td><code>costaff start</code></td><td>分層啟動：Postgres → 已註冊 Agent → Manager → channel。沒 image 會 build。</td></tr>
+    <tr><td><code>costaff start</code></td><td>先 preflight 驗證 <code>.env</code>（model key、DB URI、secret — 致命問題直接中止並印出修法），再分層啟動：Postgres → 已註冊 Agent → Manager → channel。沒 image 會 build。</td></tr>
     <tr><td><code>costaff start --no-build</code></td><td>同上但跳過 build（快速重啟）。</td></tr>
+    <tr><td><code>costaff start --no-preflight</code></td><td>跳過 <code>.env</code> preflight 驗證。</td></tr>
     <tr><td><code>costaff stop</code></td><td>停所有容器，volume 留著。</td></tr>
     <tr><td><code>costaff restart</code></td><td>等同 <code>stop</code> + <code>start</code>。</td></tr>
     <tr><td><code>costaff core-rebuild</code></td><td>重新 build Manager + 核心 MCP server，並 force-recreate，然後讓每個 plugin agent 重連（不然它們連 core 的 MCP session 會 stale）。</td></tr>
@@ -146,6 +148,7 @@
     <tr><td><code>costaff agent enable &lt;name&gt;</code> / <code>disable &lt;name&gt;</code></td><td>切換 Manager 要不要派工到該 Agent（不移除）。</td></tr>
     <tr><td><code>costaff agent model &lt;name&gt;</code></td><td>查詢或設定某 Agent 的 LLM model。</td></tr>
     <tr><td><code>costaff agent transfer &lt;name&gt; --enable</code> / <code>--disable</code></td><td>把已有 Agent 在 AgentTool（預設）與 transfer 模式之間切換。</td></tr>
+    <tr><td><code>costaff agent tags &lt;name&gt;</code></td><td>列出該 Agent repo 可用的 release tag（<code>--tag</code> 的候選值）。</td></tr>
   </tbody>
 </table>
 
@@ -169,6 +172,7 @@
     <tr><td><code>costaff channel rebuild ... --tag &lt;ref&gt;</code></td><td>換 pin（或第一次 pin）。</td></tr>
     <tr><td><code>costaff channel rebuild ... --no-pull</code></td><td>跳過 git — 用工作樹現有內容 build。</td></tr>
     <tr><td><code>costaff channel remove &lt;name&gt;</code></td><td>停掉、移除、unregister。</td></tr>
+    <tr><td><code>costaff channel tags &lt;name&gt;</code></td><td>列出該 channel repo 可用的 release tag（<code>--tag</code> 的候選值）。</td></tr>
   </tbody>
 </table>
 
@@ -188,7 +192,7 @@
 <table class="spec">
   <thead><tr><th>指令</th><th>作用</th></tr></thead>
   <tbody>
-    <tr><td><code>costaff doctor</code></td><td>一鍵診斷 — 檢查 env var、Docker、容器健康、model 可達性。請求協助時第一個要附的輸出。</td></tr>
+    <tr><td><code>costaff doctor</code></td><td>一鍵診斷 — 檢查 env var、Docker、容器健康、網路、資料庫，結尾列出<strong>建議修復步驟</strong>並存帶時間戳的報告。請求協助時第一個要跑（並附上）的指令。</td></tr>
     <tr><td><code>costaff update</code></td><td>把 <code>costaff</code> repo 拉到最新並重新安裝 CLI。</td></tr>
     <tr><td><code>costaff update --tag &lt;ref&gt;</code></td><td>把 core 自己 pin 到某個 tag / branch / SHA，然後重新安裝。</td></tr>
     <tr><td><code>costaff license</code></td><td>顯示已安裝的 license 與 feature gate 狀態。</td></tr>
@@ -249,6 +253,20 @@ costaff channel list</pre>
     <tr><td><code>~/.costaff/workspace/</code></td><td>共享 workspace，bind mount 到每個容器的 <code>/app/data</code>。</td></tr>
   </tbody>
 </table>
+
+<h2>完整移除</h2>
+<pre class="code"><span class="c"># 先全部停掉</span>
+costaff stop
+
+<span class="c"># 移除容器、image、docker network</span>
+docker compose -f ~/.costaff/costaff/docker-compose.yaml down --rmi local --volumes
+
+<span class="c"># （可選）清掉 Postgres 資料 volume</span>
+docker volume rm costaff_postgres_data
+
+<span class="c"># （可選）刪掉安裝目錄與所有資料</span>
+rm -rf ~/.costaff</pre>
+<p>想要完全乾淨，再把 <code>~/.zshrc</code> / <code>~/.bashrc</code> 裡的 <code># CoStaff Agent CLI</code> PATH 那行刪掉。做完就回到安裝前的狀態。</p>
 
         <nav class="docs-pager" aria-label="Pager">
         <a class="prev" href="/zhtw/docs/verify/"><span class="pager-label">← 上一頁</span><span class="pager-title">驗證安裝</span></a>

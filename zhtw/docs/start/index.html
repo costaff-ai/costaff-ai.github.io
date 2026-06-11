@@ -55,6 +55,7 @@
             <h4>入門</h4>
             <ul>
               <li><a href="/zhtw/docs/">總覽</a></li>
+              <li><a href="/zhtw/docs/tutorial/">新手教學</a></li>
               <li><a href="/zhtw/docs/requirements/">系統需求</a></li>
               <li><a href="/zhtw/docs/install/">安裝</a></li>
             </ul>
@@ -94,10 +95,13 @@
 
 <pre class="code">costaff start</pre>
 
+<h2>Preflight 檢查</h2>
+<p>動到 Docker 之前，<code>costaff start</code> 會先驗證 <code>.env</code>：model API key、資料庫 URI、安全 secret、workspace 目錄。致命問題（例如沒設 <code>GOOGLE_API_KEY</code>）會直接中止並印出確切修法 — 而不是讓容器無聲地 crash-loop。確定要跳過就加 <code>--no-preflight</code>。</p>
+
 <h2>背後做什麼</h2>
 <p>分層啟動順序：</p>
 <ol>
-  <li><strong>Postgres</strong> — 內建 <code>postgres:16</code> 容器，存 session、project task、identity 表。</li>
+  <li><strong>Postgres</strong> — 內建 <code>postgres:15</code> 容器，存 session、project task、identity 表。</li>
   <li><strong>已註冊的 Agent</strong> — 每個 Agent 的 A2A endpoint 與 MCP server 起來。</li>
   <li><strong>Manager Agent</strong> — 協調者，預設 port <code>18080</code>。</li>
   <li><strong>Channels</strong> — WebChat、Telegram 之類的。</li>
@@ -111,6 +115,7 @@
   <tbody>
     <tr><td><code>costaff start</code></td><td>分層啟動。沒有 image 會 build。</td></tr>
     <tr><td><code>costaff start --no-build</code></td><td>啟動但不 build，快。</td></tr>
+    <tr><td><code>costaff start --no-preflight</code></td><td>跳過 <code>.env</code> preflight 驗證。</td></tr>
     <tr><td><code>costaff stop</code></td><td>停所有容器，volume 留著。</td></tr>
     <tr><td><code>costaff restart</code></td><td>等同 <code>stop</code> + <code>start</code>。</td></tr>
   </tbody>
@@ -121,12 +126,12 @@
   <thead><tr><th>服務</th><th>Host port</th></tr></thead>
   <tbody>
     <tr><td>Manager Agent</td><td><code>18080</code></td></tr>
-    <tr><td>WebChat</td><td><code>18090</code></td></tr>
-    <tr><td>第一個專家 Agent A2A</td><td><code>18100</code>（之後每個新 Agent 取下一個空的）</td></tr>
+    <tr><td>Channel（WebChat 等）</td><td><code>18090</code>–<code>18099</code>，依加入順序自動分配 — <code>costaff channel list</code> 會列出各 channel 的 port</td></tr>
+    <tr><td>專家 Agent（A2A 健康檢查）</td><td><code>18100</code>–<code>18199</code>，自動分配，只綁 <code>127.0.0.1</code></td></tr>
     <tr><td>Postgres</td><td><code>5432</code></td></tr>
   </tbody>
 </table>
-<p>如果衝突，在 <code>~/.costaff/costaff/.env</code> 改 <code>COSTAFF_AGENT_PORT</code> 或 <code>WEBCHAT_PORT</code>。</p>
+<p>Manager port 跟別的服務衝突時，在 <code>~/.costaff/costaff/.env</code> 改 <code>COSTAFF_AGENT_PORT</code>。</p>
 
 
         <nav class="docs-pager" aria-label="Pager">

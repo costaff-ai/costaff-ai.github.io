@@ -55,6 +55,7 @@
             <h4>Getting started</h4>
             <ul>
               <li><a href="/docs/">Overview</a></li>
+              <li><a href="/docs/tutorial/">Beginner tutorial</a></li>
               <li><a href="/docs/requirements/">System requirements</a></li>
               <li><a href="/docs/install/">Install</a></li>
             </ul>
@@ -115,8 +116,9 @@
 <table class="spec">
   <thead><tr><th>Command</th><th>What it does</th></tr></thead>
   <tbody>
-    <tr><td><code>costaff start</code></td><td>Layered start: Postgres → registered agents → Manager → channels. Builds images if missing.</td></tr>
+    <tr><td><code>costaff start</code></td><td>Preflight-validates <code>.env</code> (model key, DB URI, secrets — fatal issues abort with the exact fix), then layered start: Postgres → registered agents → Manager → channels. Builds images if missing.</td></tr>
     <tr><td><code>costaff start --no-build</code></td><td>Same, but skip image build (fast restart).</td></tr>
+    <tr><td><code>costaff start --no-preflight</code></td><td>Skip the <code>.env</code> preflight validation.</td></tr>
     <tr><td><code>costaff stop</code></td><td>Stop all containers; volumes retained.</td></tr>
     <tr><td><code>costaff restart</code></td><td>Equivalent to <code>stop</code> + <code>start</code>.</td></tr>
     <tr><td><code>costaff core-rebuild</code></td><td>Rebuild the Manager + core MCP server image and force-recreate them, then reconnect every plugin agent (whose MCP session to the core would otherwise be stale).</td></tr>
@@ -146,6 +148,7 @@
     <tr><td><code>costaff agent enable &lt;name&gt;</code> / <code>disable &lt;name&gt;</code></td><td>Toggle whether the Manager dispatches to the agent (without removing it).</td></tr>
     <tr><td><code>costaff agent model &lt;name&gt;</code></td><td>Query or set the LLM model for one agent.</td></tr>
     <tr><td><code>costaff agent transfer &lt;name&gt; --enable</code> / <code>--disable</code></td><td>Switch an existing agent between AgentTool (default) and transfer mode.</td></tr>
+    <tr><td><code>costaff agent tags &lt;name&gt;</code></td><td>List release tags available in the agent's repo (candidates for <code>--tag</code>).</td></tr>
   </tbody>
 </table>
 
@@ -169,6 +172,7 @@
     <tr><td><code>costaff channel rebuild ... --tag &lt;ref&gt;</code></td><td>Bump (or set) the pin.</td></tr>
     <tr><td><code>costaff channel rebuild ... --no-pull</code></td><td>Skip git entirely; build from current working tree.</td></tr>
     <tr><td><code>costaff channel remove &lt;name&gt;</code></td><td>Stop, remove, unregister.</td></tr>
+    <tr><td><code>costaff channel tags &lt;name&gt;</code></td><td>List release tags available in the channel's repo (candidates for <code>--tag</code>).</td></tr>
   </tbody>
 </table>
 
@@ -188,7 +192,7 @@
 <table class="spec">
   <thead><tr><th>Command</th><th>What it does</th></tr></thead>
   <tbody>
-    <tr><td><code>costaff doctor</code></td><td>One-shot diagnostic — checks env vars, Docker, container health, model reachability. The first thing to attach when asking for help.</td></tr>
+    <tr><td><code>costaff doctor</code></td><td>One-shot diagnostic — checks env vars, Docker, container health, network, and the database, then ends with a <strong>Suggested fixes</strong> list and saves a timestamped report. The first thing to run (and attach) when asking for help.</td></tr>
     <tr><td><code>costaff update</code></td><td>Pull latest <code>costaff</code> repo and reinstall the CLI.</td></tr>
     <tr><td><code>costaff update --tag &lt;ref&gt;</code></td><td>Pin the core repo itself to a specific tag, branch, or SHA, then reinstall.</td></tr>
     <tr><td><code>costaff license</code></td><td>Show the installed license and feature gates.</td></tr>
@@ -249,6 +253,20 @@ costaff channel list</pre>
     <tr><td><code>~/.costaff/workspace/</code></td><td>Shared workspace bind-mounted into every container as <code>/app/data</code>.</td></tr>
   </tbody>
 </table>
+
+<h2>Uninstall completely</h2>
+<pre class="code"><span class="c"># stop everything</span>
+costaff stop
+
+<span class="c"># remove containers, images, and the docker network</span>
+docker compose -f ~/.costaff/costaff/docker-compose.yaml down --rmi local --volumes
+
+<span class="c"># (optional) wipe the Postgres data volume</span>
+docker volume rm costaff_postgres_data
+
+<span class="c"># (optional) delete the install directory and all your data</span>
+rm -rf ~/.costaff</pre>
+<p>Also remove the <code># CoStaff Agent CLI</code> PATH line from <code>~/.zshrc</code> / <code>~/.bashrc</code> if you want a fully clean shell. After this you're back to the state before installing.</p>
 
         <nav class="docs-pager" aria-label="Pager">
         <a class="prev" href="/docs/verify/"><span class="pager-label">← Previous</span><span class="pager-title">Verify the install</span></a>

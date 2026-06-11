@@ -55,6 +55,7 @@
             <h4>Getting started</h4>
             <ul>
               <li><a href="/docs/">Overview</a></li>
+              <li><a href="/docs/tutorial/">Beginner tutorial</a></li>
               <li><a href="/docs/requirements/">System requirements</a></li>
               <li><a href="/docs/install/">Install</a></li>
             </ul>
@@ -98,11 +99,12 @@ costaff onboard</pre>
 <h2>What the wizard asks for</h2>
 <ul>
   <li><strong>PostgreSQL URI</strong> — keep the default to use the bundled Postgres container. CoStaff requires Postgres; SQLite isn't supported.</li>
-  <li><strong>Model provider</strong> — <em>Google Gemini</em> (needs a <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio key</a>) or <em>LiteLLM</em> (OpenAI, Anthropic, Ollama, anything OpenAI-compatible).</li>
+  <li><strong>Model provider</strong> — <em>Google Gemini</em> (needs a <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio key</a>) or <em>LiteLLM</em> (OpenAI, Anthropic, Ollama, anything OpenAI-compatible). The Gemini key is <strong>verified live</strong> against the Gemini API — a bad key is flagged immediately, not at first chat.</li>
   <li><strong>Model name</strong> — defaults to <code>gemini-3-flash-preview</code> for Gemini, free-text for LiteLLM.</li>
   <li><strong>Language</strong> — Traditional Chinese, English, Japanese, or Simplified Chinese. Drives the language the agents reply in.</li>
   <li><strong>Timezone</strong> — used for scheduling and timestamps. E.g. <code>Asia/Taipei</code>, <code>America/Los_Angeles</code>.</li>
-  <li><strong>Channels</strong> — pick zero or more of Telegram, Discord, LINE, WebChat, Email. You can always add more later with <code>costaff channel add</code>.</li>
+  <li><strong>Channels</strong> — <strong>WebChat is pre-selected</strong> (browser chat, no bot token needed); optionally add Telegram, Discord, LINE, Email. You can always add more later with <code>costaff channel add</code>. Channels you've already deployed are kept, not re-cloned.</li>
+  <li><strong>Dashboard admin account</strong> — username + password for the operator dashboard (<code>costaff dashboard</code>). Skippable — the dashboard also prompts on first visit.</li>
 </ul>
 
 <h2>What gets generated</h2>
@@ -128,7 +130,15 @@ POSTGRES_PASSWORD=costaff_pass
 POSTGRES_DB=costaff_db</pre>
 
 <h2>Re-running onboard</h2>
-<p>Safe to re-run any time. The wizard reads your existing <code>.env</code> as defaults and only overwrites keys you explicitly change.</p>
+<p>Safe to re-run any time. The wizard reads your existing <code>.env</code> as defaults and only overwrites keys you explicitly change. Already-deployed channels stay untouched.</p>
+
+<h2>When the wizard finishes</h2>
+<p>A "next steps" panel sums it up: <code>costaff start</code>, then <code>costaff dashboard</code> (opens <code>http://localhost:8501</code> — click <strong>Chat</strong>). If anything looks off later, <code>costaff doctor</code> writes a full diagnostic report ending with a <em>Suggested fixes</em> list.</p>
+
+<div class="callout">
+  <div class="label">Scripted installs</div>
+  <p>For CI or unattended deploys, skip the wizard: <code>costaff bootstrap -k &lt;gemini-key&gt;</code> writes the minimum env (and generates the same security secrets), then chains into <code>costaff start</code>.</p>
+</div>
 
 
         <nav class="docs-pager" aria-label="Pager">

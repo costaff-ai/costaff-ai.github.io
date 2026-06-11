@@ -20,6 +20,7 @@ CoStaff orchestrates multiple specialist AI agents through a Manager Agent. Each
 - [Channels](https://costaffs.app/channels/): Front-door chat apps — WebChat (OSS), Telegram (OSS), WebChat Enterprise (contact for access)
 - [Architecture](https://costaffs.app/architecture/): 6-layer system diagram (USER → CHANNELS → MANAGER → SPECIALISTS → DATA → LLM)
 - [User Flow](https://costaffs.app/user-flow/): Sequence diagram showing how a user request flows through all 5 layers, end to end
+- [Beginner tutorial](https://costaffs.app/docs/tutorial/): Hand-held zero-to-first-chat walkthrough — every prompt, expected outputs, durations, approval gate
 - [Install & Setup](https://costaffs.app/docs/): One-command installer for macOS / Ubuntu, plus how to add specialist agents and chat channels
 - [CLI reference](https://costaffs.app/docs/cli/): Complete `costaff` CLI command reference — lifecycle, agent, channel, database, doctor
 
@@ -30,6 +31,7 @@ CoStaff orchestrates multiple specialist AI agents through a Manager Agent. Each
 - [通訊軟體](https://costaffs.app/zhtw/channels/): 使用者派工入口 — WebChat（開源）、Telegram（開源）、WebChat Enterprise（聯絡取得）
 - [技術架構](https://costaffs.app/zhtw/architecture/): 六層系統架構
 - [使用者流程](https://costaffs.app/zhtw/user-flow/): 使用者請求的端到端序列圖
+- [新手教學](https://costaffs.app/zhtw/docs/tutorial/): 從零到第一次對話的手把手流程 — 每個提問、預期輸出、耗時、審核門檻
 - [安裝與設定](https://costaffs.app/zhtw/docs/): macOS / Ubuntu 一行指令安裝，含加入專家 Agent 與通訊軟體
 - [CLI 指令參考](https://costaffs.app/zhtw/docs/cli/): 完整 `costaff` CLI 指令參考 — 生命週期、Agent、通訊軟體、資料庫、診斷
 

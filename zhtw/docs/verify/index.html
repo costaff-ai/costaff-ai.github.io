@@ -55,6 +55,7 @@
             <h4>入門</h4>
             <ul>
               <li><a href="/zhtw/docs/">總覽</a></li>
+              <li><a href="/zhtw/docs/tutorial/">新手教學</a></li>
               <li><a href="/zhtw/docs/requirements/">系統需求</a></li>
               <li><a href="/zhtw/docs/install/">安裝</a></li>
             </ul>
@@ -93,7 +94,9 @@
 
 
 <h2>列出運行中的容器</h2>
-<pre class="code">docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'</pre>
+<pre class="code">costaff status
+<span class="c"># 或直接用 docker：</span>
+docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'</pre>
 
 <p>至少應該看到：</p>
 <ul>
@@ -105,21 +108,44 @@
 </ul>
 
 <h2>健康檢查 endpoint</h2>
-<pre class="code"><span class="c"># Manager Agent（ADK web server）</span>
-curl http://localhost:18080/health
-<span class="c"># → HTTP 200</span>
+<pre class="code"><span class="c"># Manager Agent（ADK web server）— 回非 5xx 就代表活著</span>
+curl -I http://localhost:18080/
 
-<span class="c"># WebChat（如果有裝）</span>
-curl http://localhost:18090/.well-known/agent-card.json
-<span class="c"># → WebChat agent card JSON</span></pre>
+<span class="c"># 專家 Agent 與 channel 都在各自的自動分配 port 上
+# 提供 A2A agent card（port 看 costaff agent list / channel list）</span>
+curl http://localhost:&lt;port&gt;/.well-known/agent-card.json
+<span class="c"># → agent card JSON</span></pre>
+<p><code>costaff agent list</code> 與 <code>costaff channel list</code> 會自動幫你跑同樣的健康檢查，每列直接顯示結果。</p>
 
 <h2>打開聊天介面</h2>
-<p>瀏覽器開 <a href="http://localhost:18090" target="_blank" rel="noopener">http://localhost:18090</a> 開始對話。Manager 會把你的訊息路由到對的專家 Agent，並串回專家的處理進度。</p>
+<p>瀏覽器開你 WebChat channel 的 port（看 <code>costaff channel list</code>；如果它是你加的第一個 channel 就是 <a href="http://localhost:18090" target="_blank" rel="noopener">http://localhost:18090</a>），用部署時設定的 email + 密碼登入，開始對話。Manager 會把你的訊息路由到對的專家 Agent，並串回專家的處理進度。</p>
+<p>或者跑 <code>costaff dashboard</code> 開操作後台（<code>http://localhost:8501</code>）— <strong>Chat</strong> 分頁不用任何 channel 就能直接跟 Manager 對話。</p>
+
+<div class="callout warn">
+  <div class="label">「Your account has not been approved」</div>
+  <p>任何聊天介面傳來的第一句話會建立<em>待核准</em>身份，核准前助理會拒絕執行實際工作（預設開啟）。修法：dashboard → <strong>Users</strong> → 核准新的那一列 → 再傳一次訊息。</p>
+</div>
+
+<h2>Dashboard 怎麼逛</h2>
+<p>dashboard 左側選單，按新手需要的順序：</p>
+<table class="spec">
+  <thead><tr><th>模組</th><th>在這裡做什麼</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Chat</strong></td><td>直接跟 Manager 對話 — 不需要任何 channel。</td></tr>
+    <tr><td><strong>Users</strong></td><td><strong>核准新身份</strong>（上面那道門檻）、編輯每位使用者的個人資料。</td></tr>
+    <tr><td><strong>Channels</strong></td><td>不用重啟就能新增或更換 Telegram / Discord / LINE 的 bot token。</td></tr>
+    <tr><td><strong>Agents</strong></td><td>每個專家的健康狀態；每個 Agent 的 MCP / API / skill 指派。</td></tr>
+    <tr><td><strong>Reminders / Tasks</strong></td><td>助理排好的所有提醒、週期任務的執行歷史。</td></tr>
+    <tr><td><strong>Sessions</strong></td><td>瀏覽過往對話，含完整的工具呼叫軌跡。</td></tr>
+    <tr><td><strong>Logs</strong></td><td>任何服務的即時容器日誌 — 怪怪的時候先來這裡。</td></tr>
+    <tr><td><strong>Config</strong></td><td>Model provider、審核門檻開關、主題。</td></tr>
+  </tbody>
+</table>
 
 <h2>跑 doctor</h2>
 <p>想一次檢查全部、含環境變數，用：</p>
 <pre class="code">costaff doctor</pre>
-<p>有問題時最方便附給別人看的輸出就是它。</p>
+<p>它會驗證容器、網路、<code>.env</code>、資料庫，結尾列出<strong>建議修復步驟</strong>（每個偵測到的問題都配好對應的修復指令），並存一份帶時間戳的報告 — 請求協助時附這份最方便。</p>
 
 
         <nav class="docs-pager" aria-label="Pager">

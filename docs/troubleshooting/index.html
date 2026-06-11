@@ -55,6 +55,7 @@
             <h4>Getting started</h4>
             <ul>
               <li><a href="/docs/">Overview</a></li>
+              <li><a href="/docs/tutorial/">Beginner tutorial</a></li>
               <li><a href="/docs/requirements/">System requirements</a></li>
               <li><a href="/docs/install/">Install</a></li>
             </ul>
@@ -92,16 +93,29 @@
         </header>
 
 
+<div class="callout">
+  <div class="label">First reflex: costaff doctor</div>
+  <p>It checks containers, network, <code>.env</code>, and the database in one shot, ends with a <strong>Suggested fixes</strong> list (each problem paired with the command that fixes it), and saves a timestamped report you can attach to a GitHub issue.</p>
+</div>
+
+<h2><code>costaff start</code> aborts with config errors</h2>
+<p>That's the preflight check working as intended — it found something fatal in <code>.env</code> (missing API key, missing DB URI) and printed the exact fix. Most issues resolve with <code>costaff onboard</code>, which keeps your existing settings as defaults. If you really need to start anyway: <code>costaff start --no-preflight</code>.</p>
+
+<h2>The bot replies "your account has not been approved"</h2>
+<p>Not a bug — the approval gate (on by default). The first message from any chat account creates a <em>pending</em> identity. Fix: <code>costaff dashboard</code> → <strong>Users</strong> → approve the new row → message again.</p>
+
+<h2>The assistant mentions "quota", "429", or "RESOURCE_EXHAUSTED"</h2>
+<p>You hit the Gemini free tier's per-minute or per-day rate limit. Nothing is broken and nothing is being charged — wait a minute (or until the daily reset) and try again. If you hit it constantly, switch to a paid Gemini key or another provider via <code>costaff onboard</code>.</p>
+
 <h2>Docker permission denied (Ubuntu)</h2>
 <p>Symptom: <code>docker: Got permission denied while trying to connect to the Docker daemon socket</code>.</p>
 <p>Cause: your shell hasn't picked up the <code>docker</code> group yet.</p>
 <p>Fix: log out and back in, or run <code>newgrp docker</code> in a fresh shell.</p>
 
-<h2>Port 18080 / 18090 already in use</h2>
-<p>Another service is bound to the port. Either stop the other service, or override the port in <code>~/.costaff/costaff/.env</code>:</p>
-<pre class="code">COSTAFF_AGENT_PORT=18180
-WEBCHAT_PORT=18190</pre>
-<p>Then <code>costaff restart</code>.</p>
+<h2>Port 18080 already in use</h2>
+<p>Another service is bound to the Manager's port. Either stop the other service, or override the port in <code>~/.costaff/costaff/.env</code>:</p>
+<pre class="code">COSTAFF_AGENT_PORT=18180</pre>
+<p>Then <code>costaff restart</code>. Channel and agent ports are auto-assigned from free slots (<code>18090</code>–<code>18099</code> / <code>18100</code>–<code>18199</code>), so they dodge collisions on their own.</p>
 
 <h2>Agent shows unhealthy in <code>costaff agent list</code></h2>
 <p>Check the container's logs:</p>

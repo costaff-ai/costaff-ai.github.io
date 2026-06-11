@@ -55,6 +55,7 @@
             <h4>入門</h4>
             <ul>
               <li><a href="/zhtw/docs/">總覽</a></li>
+              <li><a href="/zhtw/docs/tutorial/">新手教學</a></li>
               <li><a href="/zhtw/docs/requirements/">系統需求</a></li>
               <li><a href="/zhtw/docs/install/">安裝</a></li>
             </ul>
@@ -92,16 +93,29 @@
         </header>
 
 
+<div class="callout">
+  <div class="label">第一反應：costaff doctor</div>
+  <p>一次檢查容器、網路、<code>.env</code>、資料庫，結尾列出<strong>建議修復步驟</strong>（每個問題都配好對應的修復指令），並存一份帶時間戳的報告，開 GitHub issue 直接附上。</p>
+</div>
+
+<h2><code>costaff start</code> 因設定錯誤中止</h2>
+<p>這是 preflight 檢查在正常運作 — 它在 <code>.env</code> 找到致命問題（缺 API key、缺 DB URI）並印出確切修法。多數情況跑 <code>costaff onboard</code> 就能解（既有設定會保留為預設值）。真的要硬啟動：<code>costaff start --no-preflight</code>。</p>
+
+<h2>Bot 回「your account has not been approved」</h2>
+<p>不是壞掉 — 這是預設開啟的審核門檻。任何聊天帳號的第一句話會建立<em>待核准</em>身份。修法：<code>costaff dashboard</code> → <strong>Users</strong> → 核准新的那一列 → 再傳一次。</p>
+
+<h2>助理提到「quota」、「429」或「RESOURCE_EXHAUSTED」</h2>
+<p>撞到 Gemini 免費額度的每分鐘或每日上限了。沒壞、也不會被收錢 — 等一分鐘（或等每日重置）再試。常常撞到的話，用 <code>costaff onboard</code> 換成付費 Gemini key 或其他 provider。</p>
+
 <h2>Docker permission denied（Ubuntu）</h2>
 <p>症狀：<code>docker: Got permission denied while trying to connect to the Docker daemon socket</code>。</p>
 <p>原因：當下 shell 還沒生效 <code>docker</code> group。</p>
 <p>修法：先登出再登入，或開新 shell 跑 <code>newgrp docker</code>。</p>
 
-<h2>Port 18080 / 18090 被佔用</h2>
-<p>別的服務佔走了。停掉那個服務，或在 <code>~/.costaff/costaff/.env</code> 改 port：</p>
-<pre class="code">COSTAFF_AGENT_PORT=18180
-WEBCHAT_PORT=18190</pre>
-<p>接著 <code>costaff restart</code>。</p>
+<h2>Port 18080 被佔用</h2>
+<p>別的服務佔走了 Manager 的 port。停掉那個服務，或在 <code>~/.costaff/costaff/.env</code> 改 port：</p>
+<pre class="code">COSTAFF_AGENT_PORT=18180</pre>
+<p>接著 <code>costaff restart</code>。Channel 與 Agent 的 port 是從空檔自動分配的（<code>18090</code>–<code>18099</code> / <code>18100</code>–<code>18199</code>），自己會閃開衝突。</p>
 
 <h2><code>costaff agent list</code> 顯示 Agent 不健康</h2>
 <p>看容器 log：</p>

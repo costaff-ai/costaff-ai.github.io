@@ -55,6 +55,7 @@
             <h4>入門</h4>
             <ul>
               <li><a href="/zhtw/docs/">總覽</a></li>
+              <li><a href="/zhtw/docs/tutorial/">新手教學</a></li>
               <li><a href="/zhtw/docs/requirements/">系統需求</a></li>
               <li><a href="/zhtw/docs/install/">安裝</a></li>
             </ul>
@@ -92,8 +93,21 @@
         </header>
 
 
+<h2>官方 Agent</h2>
+<p>官方 Agent 放在 <code>costaff-ai</code> GitHub 組織。目前陣容（完整介紹見 <a href="/zhtw/agents/">AI 員工</a>）：</p>
+<table class="spec">
+  <thead><tr><th>Agent</th><th>Repo</th><th>做什麼</th></tr></thead>
+  <tbody>
+    <tr><td>商業分析</td><td><code>costaff-agent-business-analysis</code></td><td>自動選圖表 + 寫敘事；輸出排版完整的 PDF / PPT / PNG（完整 CJK 字型支援）。</td></tr>
+    <tr><td>程式開發</td><td><code>costaff-agent-coding</code></td><td>在沙盒裡寫並執行 Python — 資料清理、格式轉換、批次工作。</td></tr>
+    <tr><td>資料庫</td><td><code>costaff-agent-database</code></td><td>自然語言查 PostgreSQL / MySQL，schema 自動探索。</td></tr>
+    <tr><td>Twinkle&nbsp;Hub</td><td><code>costaff-agent-twinkle-hub</code></td><td>台灣開放資料：52,960+ 政府資料集，DuckDB 在源頭過濾。</td></tr>
+    <tr><td>Template</td><td><code>costaff-agent-template</code></td><td>自己寫專家 Agent 的起點（ADK + MCP + manifest）。</td></tr>
+  </tbody>
+</table>
+
 <h2>從 GitHub 安裝（官方與社群）</h2>
-<p>官方 Agent 放在 <code>costaff-ai</code> 組織。用 repo URL 加：</p>
+<p>用 repo URL 加：</p>
 <pre class="code"><span class="c"># 商業分析專家</span>
 costaff agent add business-analysis \
   --github https://github.com/costaff-ai/costaff-agent-business-analysis
@@ -102,7 +116,12 @@ costaff agent add business-analysis \
 costaff agent add coding \
   --github https://github.com/costaff-ai/costaff-agent-coding</pre>
 
-<p>CLI 會把 repo clone 到 <code>~/.costaff/costaff-agent/&lt;name&gt;/src/</code>，驗證 manifest，build image 並起容器，然後重啟 Manager 讓它看到新 Agent。</p>
+<p>CLI 會把 repo clone 到 <code>~/.costaff/costaff-agent/&lt;name&gt;/src/</code>，驗證 manifest（加 <code>--strict</code> 可強制過完整 Agent Protocol JSON Schema），詢問必要的 env var（或用 <code>-e KEY=VAL</code> 預先帶入），build image 並起容器，然後重啟 Manager 讓它看到新 Agent。</p>
+
+<div class="callout">
+  <div class="label">工具清單預設就是精簡的</div>
+  <p><code>agent add</code> 會自動只開放新 Agent 需要的 4 個平台核心 MCP 工具（<code>send_message_now</code>、<code>add_task_comment</code>、<code>move_to_shared</code>、<code>list_data_files</code>）— 而不是全部 ~40 個。工具規格更小、token 更省、選錯工具更少。之後可在 <code>config.json → agent_mcp_filters</code> 自訂。</p>
+</div>
 
 <h2>從本地路徑（開發用）</h2>
 <pre class="code">costaff agent add my-agent --local /path/to/my-agent</pre>
@@ -120,7 +139,9 @@ costaff agent add coding \
     <tr><td><code>costaff agent restart &lt;name&gt;</code></td><td>重啟容器，不 rebuild image，快。</td></tr>
     <tr><td><code>costaff agent rebuild &lt;name&gt;</code></td><td>Rebuild image 並重啟。改 code 或 <code>.env</code> 後需要。</td></tr>
     <tr><td><code>costaff agent remove &lt;name&gt;</code></td><td>停掉、移除、unregister。</td></tr>
+    <tr><td><code>costaff agent enable / disable &lt;name&gt;</code></td><td>切換 Manager 要不要派工給它（不移除）。</td></tr>
     <tr><td><code>costaff agent model &lt;name&gt;</code></td><td>查詢或設定某個 Agent 的 LLM model。</td></tr>
+    <tr><td><code>costaff agent tags &lt;name&gt;</code></td><td>列出該 Agent repo 可用的 release tag（pin 版本用）。</td></tr>
   </tbody>
 </table>
 
@@ -145,6 +166,9 @@ costaff agent rebuild coding --no-pull</pre>
   <div class="label">每個 Agent 用不同 model</div>
   <p>每個專家可以跑不同 model。把 coding agent 指到 <code>gemini-3-flash-preview</code>、BA agent 留在比較小的 model，或把某個 Agent 接到本機 Ollama 透過 LiteLLM。</p>
 </div>
+
+<h2>自己寫一個 Agent</h2>
+<p>Fork <a href="https://github.com/costaff-ai/costaff-agent-template" target="_blank" rel="noopener"><code>costaff-agent-template</code></a> — 內含 ADK agent 骨架、MCP server、<code>costaff.agent.json</code> manifest、compose fragment。Agent 必須遵守的契約（manifest schema、A2A 行為、4 個核心 MCP 工具、workspace 慣例）規範在 <a href="https://github.com/costaff-ai/costaff/blob/main/docs/AGENT_PROTOCOL_v1.0.md" target="_blank" rel="noopener">Agent Protocol v1.0</a>。開發時用 <code>costaff agent add my-agent --local /path/to/my-agent</code>，成熟後再發佈到 GitHub。</p>
 
 
         <nav class="docs-pager" aria-label="Pager">

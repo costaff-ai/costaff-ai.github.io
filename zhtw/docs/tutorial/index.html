@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CoStaff — 新手教學：從零到第一次對話</title>
+  <meta name="description" content="給第一次使用者的手把手教學：免費拿 Gemini API key、安裝 CoStaff、跑設定精靈、完成第一次對話 — 每一步都附預期輸出與耗時。" />
+  <meta name="robots" content="index, follow, all, max-image-preview:large" />
+  <link rel="describedby" href="/llms.txt" type="text/markdown" />
+  <link rel="alternate" type="text/markdown" href="/zhtw/docs.md" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&family=Inter:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/docs/docs.css" />
+</head>
+<body>
+
+  <div class="coming-soon-banner">
+    <span class="cs-label">🎉 已開源 · v0.1.0-alpha-1</span>
+    <span class="cs-sub">— 加入候補名單，正式版上線第一時間通知</span>
+    <a href="https://forms.gle/9UVdi527sYUBuqcm6" target="_blank" rel="noopener">加入候補 →</a>
+  </div>
+
+  <nav class="site">
+    <a class="nav-logo" href="/">Co<span>Staff</span></a>
+    <div class="nav-links" id="primary-nav">
+      <a href="/zhtw/">首頁</a>
+      <a href="/zhtw/agents/">AI 員工</a>
+      <a href="/zhtw/channels/">通訊軟體</a>
+      <a href="/zhtw/architecture/">技術架構</a>
+      <a href="/zhtw/user-flow/">應用架構</a>
+      <a href="/zhtw/docs/" class="active">文件</a>
+    </div>
+    <div class="nav-right">
+      <a class="nav-lang" href="/docs/tutorial/">EN</a>
+      <a class="nav-gh" href="https://github.com/costaff-ai/costaff" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
+      <button class="nav-toggle" aria-label="切換選單" aria-expanded="false" aria-controls="primary-nav">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="docs-shell">
+
+      <aside class="docs-side" data-open="false">
+        <button class="side-mobile" type="button" aria-expanded="false">
+          <span>本頁目錄</span>
+          <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <nav class="side-nav" aria-label="Docs">
+          <div class="side-group">
+            <h4>入門</h4>
+            <ul>
+              <li><a href="/zhtw/docs/">總覽</a></li>
+              <li><a href="/zhtw/docs/tutorial/" class="active">新手教學</a></li>
+              <li><a href="/zhtw/docs/requirements/">系統需求</a></li>
+              <li><a href="/zhtw/docs/install/">安裝</a></li>
+            </ul>
+          </div>
+          <div class="side-group">
+            <h4>設定與啟動</h4>
+            <ul>
+              <li><a href="/zhtw/docs/onboard/">首次設定</a></li>
+              <li><a href="/zhtw/docs/start/">啟動 CoStaff</a></li>
+            </ul>
+          </div>
+          <div class="side-group">
+            <h4>擴充</h4>
+            <ul>
+              <li><a href="/zhtw/docs/agents/">專家 Agent</a></li>
+              <li><a href="/zhtw/docs/channels/">通訊軟體</a></li>
+            </ul>
+          </div>
+          <div class="side-group">
+            <h4>營運</h4>
+            <ul>
+              <li><a href="/zhtw/docs/verify/">驗證安裝</a></li>
+              <li><a href="/zhtw/docs/cli/">CLI 指令</a></li>
+              <li><a href="/zhtw/docs/troubleshooting/">問題排解</a></li>
+            </ul>
+          </div>
+        </nav>
+      </aside>
+
+      <main class="docs-main">
+        <header class="docs-header">
+          <div class="docs-eyebrow">入門 — 手把手實作</div>
+          <h1 class="docs-title">新手教學：<span>從零到第一次對話</span></h1>
+          <p class="docs-lede">沒碰過 Docker、沒玩過 AI Agent？這頁全程牽著你走：每個指令、跑完應該看到什麼、要花多久、長得不一樣時怎麼辦。</p>
+        </header>
+
+<p><strong>總共 15–25 分鐘</strong>，大部分時間在等下載。你需要一台 Mac（macOS 12+）或 Ubuntu 機器（20.04+）、一個終端機、一個 Google 帳號。就這樣。</p>
+
+<div class="callout">
+  <div class="label">會一直看到的五個名詞</div>
+  <p>
+    <strong>Manager</strong> — 你唯一對話的總管助理，負責協調其他所有人。<br/>
+    <strong>Agent</strong> — 專家員工（寫程式、做報表、查資料庫），Manager 派工給它們。<br/>
+    <strong>Channel</strong> — 你跟總管說話的門：瀏覽器頁面、Telegram bot、Discord bot。<br/>
+    <strong>MCP</strong> — Agent 拿工具（檔案、排程、API）時用的插座標準。<br/>
+    <strong>Dashboard</strong> — 瀏覽器控制台，在這裡核准使用者、看日誌。
+  </p>
+</div>
+
+<h2>Step 0 — 免費拿一把 Gemini API key <span style="font-weight:400">（約 3 分鐘）</span></h2>
+<p>CoStaff 需要一個 AI 模型當大腦。最簡單的是 Google Gemini 免費額度：</p>
+<ol>
+  <li>開 <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a>，用任何 Google 帳號登入。</li>
+  <li>點 <strong>Create API key</strong>（可能會先要你建一個 project — 用預設的就好）。</li>
+  <li>複製 key。長相是 <code>AIzaSyD…</code> — 39 個字元、<code>AIza</code> 開頭的字串。</li>
+  <li>先貼到記事本放著，Step 2 會用到。</li>
+</ol>
+<div class="callout">
+  <div class="label">會被收錢嗎？</div>
+  <p>不會。免費額度<strong>不需要綁信用卡</strong>，也不可能默默扣款 — 超過每分鐘或每天的額度時，請求只會回 <code>429</code> 錯誤，等額度重置就好。個人使用 CoStaff，免費額度綽綽有餘。之後若看到助理抱怨「quota」或「429」，等一分鐘再試即可。</p>
+</div>
+
+<h2>Step 1 — 安裝 <span style="font-weight:400">（約 5–8 分鐘）</span></h2>
+<p>把這行貼進終端機：</p>
+<pre class="code">curl -fsSL https://raw.githubusercontent.com/costaff-ai/costaff/main/install.sh | bash</pre>
+<p>你會看到一連串 <code>==&gt;</code> 進度步驟（檢查 Python、裝 Docker、clone repo、裝 CLI），最後出現這個框：</p>
+<pre class="code">============================================
+  Installation complete!
+============================================</pre>
+<p>接著兩種情況之一：</p>
+<ul>
+  <li><strong>設定精靈自己跑起來了</strong> — 很好，直接跳 Step 2。</li>
+  <li><strong>它列出「manual steps」</strong> — 通常是「先登出再登入」（Ubuntu，為了 Docker group）或「打開 Docker Desktop 等鯨魚圖示出現」（macOS 首次安裝）。照做之後執行：
+  <pre class="code">source ~/.zshrc      <span class="c"># Ubuntu 用 source ~/.bashrc</span>
+costaff onboard</pre></li>
+</ul>
+<div class="callout warn">
+  <div class="label">安裝中途失敗怎麼辦</div>
+  <p>直接把同一行 <code>curl … | bash</code> 再跑一次就好 — 安裝程式是冪等的，會從斷掉的地方接著做，絕不會刪你的設定。</p>
+</div>
+
+<h2>Step 2 — 設定精靈 <span style="font-weight:400">（約 3 分鐘）</span></h2>
+<p>精靈一次問一題。每一題與建議答案如下：</p>
+<table class="spec">
+  <thead><tr><th>提問</th><th>怎麼答</th></tr></thead>
+  <tbody>
+    <tr><td><code>PostgreSQL URI:</code></td><td>直接按 <strong>Enter</strong> — 預設值就是內建的資料庫容器。</td></tr>
+    <tr><td><code>Select Model Provider:</code></td><td>選 <strong>Google Gemini</strong>。</td></tr>
+    <tr><td><code>Google API Key:</code></td><td>貼上 Step 0 的 <code>AIza…</code> key。應該看到 <code style="color:#3a9">✔ Gemini API key verified.</code>。如果說 key 被拒絕，檢查複製貼上有沒有缺字 — 現在改或之後重跑精靈都行。</td></tr>
+    <tr><td><code>Gemini Model Name:</code></td><td>按 <strong>Enter</strong>（預設 <code>gemini-3-flash-preview</code>）。</td></tr>
+    <tr><td><code>Preferred Response Language:</code></td><td>選你要的回覆語言。</td></tr>
+    <tr><td><code>Timezone:</code></td><td>選你的時區（例如 <code>Asia/Taipei</code>）— 提醒會照這個時區響。</td></tr>
+    <tr><td><code>Select Channels to enable:</code></td><td><strong>WebChat 已經幫你勾好 — 按 Enter 就好。</strong>Telegram / Discord / LINE 先跳過，之後要加只要 5 分鐘。</td></tr>
+    <tr><td>WebChat 問登入 email、密碼、JWT secret</td><td>email + 密碼是<em>你自己</em>之後登入瀏覽器聊天用的，隨意設定。JWT secret 輸入一長串隨機字串即可。</td></tr>
+    <tr><td><code>Create the dashboard admin account now?</code></td><td>選 <strong>yes</strong>，設一組帳號密碼 — 這是控制台的登入。</td></tr>
+    <tr><td><code>Do you want to build Docker images now?</code></td><td><strong>Yes。</strong>這是最久的一段 — 3–5 分鐘的 build log 一直捲。看起來很嚇人，是正常的。</td></tr>
+  </tbody>
+</table>
+<p>精靈結尾是綠色的「<strong>Setup complete — next steps</strong>」面板。之後想改任何答案，重跑 <code>costaff onboard</code> 就好 — 每一題都會帶出你上次的選擇當預設值。</p>
+
+<h2>Step 3 — 啟動全部 <span style="font-weight:400">（首次約 2–5 分鐘）</span></h2>
+<pre class="code">costaff start</pre>
+<p>它會先跑 <strong>preflight 檢查</strong>驗證設定 — 缺了致命的東西會直接停下來告訴你確切修法（通常是「跑 <code>costaff onboard</code>」）。然後分層啟動：</p>
+<pre class="code">🚀 Step 1: Starting Infrastructure (Postgres)...
+🚀 Step 3: Starting CoStaff Manager...
+Waiting for 2 services to initialize...
+🚀 Step 4: Starting Channel webchat...
+SUCCESS: CoStaff started in tiered sequence (Agents -> Manager -> Channels)!</pre>
+<p>（Step 2 要等你加了專家 Agent 之後才會出現。）確認都活著：</p>
+<pre class="code">costaff status</pre>
+<p>每一列都該是 <strong>Up</strong>。有紅的就跑 <code>costaff doctor</code> — 結尾會列出<em>建議修復步驟</em>。</p>
+
+<h2>Step 4 — 打開聊天 <span style="font-weight:400">（30 秒）</span></h2>
+<p>兩扇門，挑一扇：</p>
+<ul>
+  <li><strong>Dashboard 聊天</strong> — 跑 <code>costaff dashboard</code>，瀏覽器開 <code>http://localhost:8501</code>，用 Step 2 的管理員帳號登入，點側欄的 <strong>Chat</strong>。</li>
+  <li><strong>WebChat</strong> — 開 <a href="http://localhost:18090" target="_blank" rel="noopener">http://localhost:18090</a>（WebChat 是你第一個 channel 時就是 <code>18090</code>；不確定就 <code>costaff channel list</code> 查），用 Step 2 設定的 email + 密碼登入。</li>
+</ul>
+
+<h2>Step 5 — 說點什麼</h2>
+<p>試試這幾句（用你設定的語言都行）：</p>
+<ul>
+  <li><em>「嗨，你會做什麼？」</em> — Manager 會自我介紹目前的能力。</li>
+  <li><em>「每天下午三點提醒我喝水。」</em> — 排程器接手；提醒會送回這個聊天視窗。</li>
+  <li><em>「記住我叫 Alex，職務是產品經理。」</em> — 跨對話記得你。</li>
+</ul>
+<p>回覆通常 2–10 秒。游標在閃就是在思考。</p>
+
+<div class="callout warn">
+  <div class="label">如果回覆說「your account has not been approved」</div>
+  <p>這是預設開啟的審核門檻：任何聊天介面傳來的第一句話會建立一個<em>待核准</em>身份，核准前助理會拒絕執行實際工作。核准自己：<code>costaff dashboard</code> → <strong>Users</strong> → 找到新的那一列 → 核准。再傳一次訊息就通了。（這個機制是為了防止陌生人找到你的 Telegram bot 就能免費用你的 AI。）</p>
+</div>
+
+<h2>完成了 — 接下來去哪</h2>
+<table class="spec">
+  <thead><tr><th>想要…</th><th>去這裡</th></tr></thead>
+  <tbody>
+    <tr><td>僱一個專家（報表、寫程式、台灣開放資料）</td><td><a href="/zhtw/docs/agents/">專家 Agent</a></td></tr>
+    <tr><td>改用 Telegram / Discord 聊</td><td><a href="/zhtw/docs/channels/">通訊軟體</a> — 含逐步申請 token 教學</td></tr>
+    <tr><td>搞懂背後到底跑了什麼</td><td><a href="/zhtw/docs/verify/">驗證安裝</a> + <a href="/zhtw/architecture/">技術架構</a></td></tr>
+    <tr><td>看所有指令</td><td><a href="/zhtw/docs/cli/">CLI 指令</a></td></tr>
+    <tr><td>東西壞了</td><td>先跑 <code>costaff doctor</code>，再看<a href="/zhtw/docs/troubleshooting/">問題排解</a></td></tr>
+  </tbody>
+</table>
+
+        <nav class="docs-pager" aria-label="Pager">
+        <a class="prev" href="/zhtw/docs/"><span class="pager-label">← 上一頁</span><span class="pager-title">總覽</span></a>
+        <a class="next" href="/zhtw/docs/requirements/"><span class="pager-label">下一頁 →</span><span class="pager-title">系統需求</span></a>
+      </nav>
+      </main>
+
+  </div>
+
+  <footer class="site">
+    <div class="footer-inner">
+      <div class="footer-logo">Co<span>Staff</span></div>
+      <div class="footer-text">© 2026 CoStaffAI</div>
+      <div class="footer-links">
+        <a href="/zhtw/">首頁</a>
+        <a href="https://github.com/costaff-ai/costaff" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://forms.gle/9UVdi527sYUBuqcm6" target="_blank" rel="noopener">搶先預約</a>
+        <a href="mailto:simonliuyuwei@gmail.com">聯絡</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const toggle = document.querySelector('.nav-toggle');
+      const menu   = document.getElementById('primary-nav');
+      if (toggle && menu) {
+        toggle.addEventListener('click', () => {
+          const open = menu.classList.toggle('open');
+          toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+        menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+          menu.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        }));
+      }
+
+      const side = document.querySelector('.docs-side');
+      const sideBtn = side && side.querySelector('.side-mobile');
+      if (side && sideBtn) {
+        sideBtn.addEventListener('click', () => {
+          const open = side.getAttribute('data-open') !== 'true';
+          side.setAttribute('data-open', open ? 'true' : 'false');
+          sideBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

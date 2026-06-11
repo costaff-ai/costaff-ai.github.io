@@ -55,6 +55,7 @@
             <h4>Getting started</h4>
             <ul>
               <li><a href="/docs/">Overview</a></li>
+              <li><a href="/docs/tutorial/">Beginner tutorial</a></li>
               <li><a href="/docs/requirements/">System requirements</a></li>
               <li><a href="/docs/install/">Install</a></li>
             </ul>
@@ -93,7 +94,9 @@
 
 
 <h2>List running containers</h2>
-<pre class="code">docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'</pre>
+<pre class="code">costaff status
+<span class="c"># or raw docker:</span>
+docker ps --format 'table {{.Names}}\t{{.Status}}\t{{.Ports}}'</pre>
 
 <p>You should see, at minimum:</p>
 <ul>
@@ -105,21 +108,44 @@
 </ul>
 
 <h2>Health endpoints</h2>
-<pre class="code"><span class="c"># Manager Agent (ADK web server)</span>
-curl http://localhost:18080/health
-<span class="c"># → HTTP 200</span>
+<pre class="code"><span class="c"># Manager Agent (ADK web server) — any non-5xx means it's up</span>
+curl -I http://localhost:18080/
 
-<span class="c"># WebChat (if installed)</span>
-curl http://localhost:18090/.well-known/agent-card.json
-<span class="c"># → WebChat agent card JSON</span></pre>
+<span class="c"># Specialist agents and channels expose an A2A agent card on their
+# auto-assigned port (see `costaff agent list` / `costaff channel list`)</span>
+curl http://localhost:&lt;port&gt;/.well-known/agent-card.json
+<span class="c"># → agent card JSON</span></pre>
+<p><code>costaff agent list</code> and <code>costaff channel list</code> run these same health checks for you and print a per-row result.</p>
 
 <h2>Open the chat UI</h2>
-<p>Browse to <a href="http://localhost:18090" target="_blank" rel="noopener">http://localhost:18090</a> and start a conversation. The Manager will route your message to the right specialist agent and stream its progress back.</p>
+<p>Browse to your WebChat channel's port (shown in <code>costaff channel list</code>; <a href="http://localhost:18090" target="_blank" rel="noopener">http://localhost:18090</a> if it was the first channel you added), log in with the email + password you set at deploy, and start a conversation. The Manager routes your message to the right specialist agent and streams its progress back.</p>
+<p>Alternatively, <code>costaff dashboard</code> opens the operator dashboard at <code>http://localhost:8501</code> — the <strong>Chat</strong> tab talks to the Manager with no channel at all.</p>
+
+<div class="callout warn">
+  <div class="label">"Your account has not been approved"</div>
+  <p>The first message from any chat surface creates a <em>pending</em> identity, and the assistant refuses real work until it's approved (on by default). Fix: dashboard → <strong>Users</strong> → approve the new row → send your message again.</p>
+</div>
+
+<h2>Finding your way around the dashboard</h2>
+<p>The left sidebar of the dashboard, in the order a new operator needs them:</p>
+<table class="spec">
+  <thead><tr><th>Module</th><th>What you do there</th></tr></thead>
+  <tbody>
+    <tr><td><strong>Chat</strong></td><td>Talk to the Manager directly — no channel needed.</td></tr>
+    <tr><td><strong>Users</strong></td><td><strong>Approve new identities</strong> (the gate above), edit per-user profiles.</td></tr>
+    <tr><td><strong>Channels</strong></td><td>Add or swap Telegram / Discord / LINE bot tokens without restarting.</td></tr>
+    <tr><td><strong>Agents</strong></td><td>Health of every specialist; per-agent MCP / API / skill assignment.</td></tr>
+    <tr><td><strong>Reminders / Tasks</strong></td><td>Everything the assistant has scheduled, and recurring-task history.</td></tr>
+    <tr><td><strong>Sessions</strong></td><td>Browse past conversations with full tool-call traces.</td></tr>
+    <tr><td><strong>Logs</strong></td><td>Live container logs from any service — first stop when something misbehaves.</td></tr>
+    <tr><td><strong>Config</strong></td><td>Model provider, approval-gate toggle, theme.</td></tr>
+  </tbody>
+</table>
 
 <h2>Run the doctor</h2>
 <p>For a one-shot diagnostic that checks all of the above plus environment variables:</p>
 <pre class="code">costaff doctor</pre>
-<p>If something's off, this is the easiest output to share when you ask for help.</p>
+<p>It validates containers, network, <code>.env</code>, and the database, ends with a <strong>Suggested fixes</strong> list (each detected problem paired with the command that fixes it), and saves a timestamped report — the easiest output to share when you ask for help.</p>
 
 
         <nav class="docs-pager" aria-label="Pager">

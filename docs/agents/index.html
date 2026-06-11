@@ -55,6 +55,7 @@
             <h4>Getting started</h4>
             <ul>
               <li><a href="/docs/">Overview</a></li>
+              <li><a href="/docs/tutorial/">Beginner tutorial</a></li>
               <li><a href="/docs/requirements/">System requirements</a></li>
               <li><a href="/docs/install/">Install</a></li>
             </ul>
@@ -92,8 +93,21 @@
         </header>
 
 
+<h2>Official agents</h2>
+<p>Official agents live in the <code>costaff-ai</code> GitHub org. The current line-up (see <a href="/agents/">AI Staff</a> for the full pitch):</p>
+<table class="spec">
+  <thead><tr><th>Agent</th><th>Repo</th><th>What it does</th></tr></thead>
+  <tbody>
+    <tr><td>Business&nbsp;Analysis</td><td><code>costaff-agent-business-analysis</code></td><td>Auto-chart + narrative; polished PDF / PPT / PNG output with full CJK support.</td></tr>
+    <tr><td>Coding</td><td><code>costaff-agent-coding</code></td><td>Writes and runs Python in a sandbox — data cleaning, conversions, batch jobs.</td></tr>
+    <tr><td>Database</td><td><code>costaff-agent-database</code></td><td>Plain-language SQL over PostgreSQL / MySQL with schema auto-discovery.</td></tr>
+    <tr><td>Twinkle&nbsp;Hub</td><td><code>costaff-agent-twinkle-hub</code></td><td>Taiwan open data: 52,960+ government datasets, DuckDB filtering at source.</td></tr>
+    <tr><td>Template</td><td><code>costaff-agent-template</code></td><td>The starting point for writing your own specialist (ADK + MCP + manifest).</td></tr>
+  </tbody>
+</table>
+
 <h2>From GitHub (official + community)</h2>
-<p>Official agents live in the <code>costaff-ai</code> GitHub org. Add by repo URL:</p>
+<p>Add by repo URL:</p>
 <pre class="code"><span class="c"># Business analysis specialist</span>
 costaff agent add business-analysis \
   --github https://github.com/costaff-ai/costaff-agent-business-analysis
@@ -102,7 +116,12 @@ costaff agent add business-analysis \
 costaff agent add coding \
   --github https://github.com/costaff-ai/costaff-agent-coding</pre>
 
-<p>The CLI clones the repo to <code>~/.costaff/costaff-agent/&lt;name&gt;/src/</code>, validates the agent manifest, builds the image, and brings the agent up. It also rebuilds the Manager so the new agent is visible in the next conversation.</p>
+<p>The CLI clones the repo to <code>~/.costaff/costaff-agent/&lt;name&gt;/src/</code>, validates the agent manifest (add <code>--strict</code> to enforce the full Agent Protocol JSON Schema), prompts for any required env vars (or pre-supply them with <code>-e KEY=VAL</code>), builds the image, and brings the agent up. It also restarts the Manager so the new agent is visible in the next conversation.</p>
+
+<div class="callout">
+  <div class="label">Focused tools out of the box</div>
+  <p><code>agent add</code> automatically whitelists just the four core platform tools the new agent needs from the Manager's MCP (<code>send_message_now</code>, <code>add_task_comment</code>, <code>move_to_shared</code>, <code>list_data_files</code>) — instead of all ~40. Smaller tool spec, fewer tokens, fewer mis-picks. Customize later in <code>config.json → agent_mcp_filters</code>.</p>
+</div>
 
 <h2>From a local path (for development)</h2>
 <pre class="code">costaff agent add my-agent --local /path/to/my-agent</pre>
@@ -120,7 +139,9 @@ costaff agent add coding \
     <tr><td><code>costaff agent restart &lt;name&gt;</code></td><td>Restart the container without rebuilding — fast.</td></tr>
     <tr><td><code>costaff agent rebuild &lt;name&gt;</code></td><td>Rebuild the image and restart. Needed after code or <code>.env</code> changes.</td></tr>
     <tr><td><code>costaff agent remove &lt;name&gt;</code></td><td>Stop, remove, and unregister.</td></tr>
+    <tr><td><code>costaff agent enable / disable &lt;name&gt;</code></td><td>Toggle whether the Manager dispatches to it, without removing it.</td></tr>
     <tr><td><code>costaff agent model &lt;name&gt;</code></td><td>View or set the LLM model for one agent.</td></tr>
+    <tr><td><code>costaff agent tags &lt;name&gt;</code></td><td>List the release tags available in the agent's repo (for pinning).</td></tr>
   </tbody>
 </table>
 
@@ -145,6 +166,9 @@ costaff agent rebuild coding --no-pull</pre>
   <div class="label">Model per agent</div>
   <p>Each specialist can run a different model. Point the coding agent at <code>gemini-3-flash-preview</code>, leave the BA agent on a smaller model, or wire one specific agent to a local Ollama via LiteLLM.</p>
 </div>
+
+<h2>Write your own agent</h2>
+<p>Fork <a href="https://github.com/costaff-ai/costaff-agent-template" target="_blank" rel="noopener"><code>costaff-agent-template</code></a> — it ships the ADK agent skeleton, an MCP server, the <code>costaff.agent.json</code> manifest, and a compose fragment. The contract your agent must honour (manifest schema, A2A behaviour, the four core MCP tools, workspace conventions) is specified in <a href="https://github.com/costaff-ai/costaff/blob/main/docs/AGENT_PROTOCOL_v1.0.md" target="_blank" rel="noopener">Agent Protocol v1.0</a>. Develop with <code>costaff agent add my-agent --local /path/to/my-agent</code>, then publish to GitHub when it's ready.</p>
 
 
         <nav class="docs-pager" aria-label="Pager">

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CoStaff — Beginner Tutorial: Zero to First Chat</title>
+  <meta name="description" content="A hand-held, step-by-step walkthrough for first-time users: get a free Gemini API key, install CoStaff, run the wizard, and have your first conversation — with the expected output at every step." />
+  <meta name="robots" content="index, follow, all, max-image-preview:large" />
+  <link rel="describedby" href="/llms.txt" type="text/markdown" />
+  <link rel="alternate" type="text/markdown" href="/docs.md" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&family=Inter:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/docs/docs.css" />
+</head>
+<body>
+
+  <div class="coming-soon-banner">
+    <span class="cs-label">🎉 Now open source · v0.1.0-alpha-1</span>
+    <span class="cs-sub">— Join the waitlist for GA notifications</span>
+    <a href="https://forms.gle/9UVdi527sYUBuqcm6" target="_blank" rel="noopener">Join waitlist →</a>
+  </div>
+
+  <nav class="site">
+    <a class="nav-logo" href="/">Co<span>Staff</span></a>
+    <div class="nav-links" id="primary-nav">
+      <a href="/">Home</a>
+      <a href="/agents/">AI Staff</a>
+      <a href="/channels/">Channels</a>
+      <a href="/architecture/">Architecture</a>
+      <a href="/user-flow/">User Flow</a>
+      <a href="/docs/" class="active">Docs</a>
+    </div>
+    <div class="nav-right">
+      <a class="nav-lang" href="/zhtw/docs/tutorial/">繁中</a>
+      <a class="nav-gh" href="https://github.com/costaff-ai/costaff" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
+        GitHub
+      </a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-nav">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+    </div>
+  </nav>
+
+  <div class="docs-shell">
+
+      <aside class="docs-side" data-open="false">
+        <button class="side-mobile" type="button" aria-expanded="false">
+          <span>On this page</span>
+          <svg class="chev" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+        </button>
+        <nav class="side-nav" aria-label="Docs">
+          <div class="side-group">
+            <h4>Getting started</h4>
+            <ul>
+              <li><a href="/docs/">Overview</a></li>
+              <li><a href="/docs/tutorial/" class="active">Beginner tutorial</a></li>
+              <li><a href="/docs/requirements/">System requirements</a></li>
+              <li><a href="/docs/install/">Install</a></li>
+            </ul>
+          </div>
+          <div class="side-group">
+            <h4>Configure & run</h4>
+            <ul>
+              <li><a href="/docs/onboard/">First-run setup</a></li>
+              <li><a href="/docs/start/">Start CoStaff</a></li>
+            </ul>
+          </div>
+          <div class="side-group">
+            <h4>Extend</h4>
+            <ul>
+              <li><a href="/docs/agents/">Specialist agents</a></li>
+              <li><a href="/docs/channels/">Chat channels</a></li>
+            </ul>
+          </div>
+          <div class="side-group">
+            <h4>Operate</h4>
+            <ul>
+              <li><a href="/docs/verify/">Verify the install</a></li>
+              <li><a href="/docs/cli/">CLI reference</a></li>
+              <li><a href="/docs/troubleshooting/">Troubleshooting</a></li>
+            </ul>
+          </div>
+        </nav>
+      </aside>
+
+      <main class="docs-main">
+        <header class="docs-header">
+          <div class="docs-eyebrow">Getting started — hands-on</div>
+          <h1 class="docs-title">Beginner tutorial: <span>zero to first chat</span></h1>
+          <p class="docs-lede">Never used Docker or an AI agent before? This page holds your hand the whole way: every command, what you should see after running it, how long it takes, and what to do when it doesn't match.</p>
+        </header>
+
+<p><strong>Total time: 15–25 minutes</strong>, most of it waiting for downloads. You need a Mac (macOS 12+) or an Ubuntu machine (20.04+), a terminal, and a Google account. That's all.</p>
+
+<div class="callout">
+  <div class="label">Five words you'll keep seeing</div>
+  <p>
+    <strong>Manager</strong> — the one assistant you talk to; it coordinates everything else.<br/>
+    <strong>Agent</strong> — a specialist worker (coding, reports, databases) the Manager hands tasks to.<br/>
+    <strong>Channel</strong> — a door you talk through: a browser page, a Telegram bot, a Discord bot.<br/>
+    <strong>MCP</strong> — the plug standard agents use to reach tools (files, schedulers, APIs).<br/>
+    <strong>Dashboard</strong> — the browser control panel where you approve users and watch logs.
+  </p>
+</div>
+
+<h2>Step 0 — Get a free Gemini API key <span style="font-weight:400">(≈ 3 min)</span></h2>
+<p>CoStaff needs an AI model to think with. The easiest is Google Gemini's free tier:</p>
+<ol>
+  <li>Open <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">aistudio.google.com/apikey</a> and sign in with any Google account.</li>
+  <li>Click <strong>Create API key</strong> (you may be asked to create a project first — accept the default).</li>
+  <li>Copy the key. It looks like <code>AIzaSyD…</code> — a 39-character string starting with <code>AIza</code>.</li>
+  <li>Paste it somewhere handy (a notes app); you'll need it in Step 2.</li>
+</ol>
+<div class="callout">
+  <div class="label">Does this cost money?</div>
+  <p>No. The free tier needs <strong>no credit card</strong> and can't silently charge you — when you exceed the per-minute or per-day quota, requests simply fail with a <code>429</code> error until the quota resets. For personal use of CoStaff the free tier is plenty. If you ever see the assistant complain about "quota" or "429", wait a minute and try again.</p>
+</div>
+
+<h2>Step 1 — Install <span style="font-weight:400">(≈ 5–8 min)</span></h2>
+<p>Paste this into your terminal:</p>
+<pre class="code">curl -fsSL https://raw.githubusercontent.com/costaff-ai/costaff/main/install.sh | bash</pre>
+<p>You'll see a sequence of <code>==&gt;</code> progress steps (checking Python, installing Docker, cloning the repo, installing the CLI). It ends with a box like this:</p>
+<pre class="code">============================================
+  Installation complete!
+============================================</pre>
+<p>Then one of two things happens:</p>
+<ul>
+  <li><strong>The setup wizard starts by itself</strong> — great, skip to Step 2.</li>
+  <li><strong>It lists "manual steps"</strong> — typically "log out and back in" (Ubuntu, for the Docker group) or "open Docker Desktop and wait for the whale icon" (macOS, first install). Do what it says, then run:
+  <pre class="code">source ~/.zshrc      <span class="c"># Ubuntu: source ~/.bashrc</span>
+costaff onboard</pre></li>
+</ul>
+<div class="callout warn">
+  <div class="label">If the install fails halfway</div>
+  <p>It's safe to just run the same <code>curl … | bash</code> command again — the installer is idempotent and picks up where it left off. It never deletes your settings.</p>
+</div>
+
+<h2>Step 2 — The setup wizard <span style="font-weight:400">(≈ 3 min)</span></h2>
+<p>The wizard asks one question at a time. Here's every prompt and what to answer:</p>
+<table class="spec">
+  <thead><tr><th>Prompt</th><th>What to do</th></tr></thead>
+  <tbody>
+    <tr><td><code>PostgreSQL URI:</code></td><td>Just press <strong>Enter</strong> — the default uses the bundled database container.</td></tr>
+    <tr><td><code>Select Model Provider:</code></td><td>Pick <strong>Google Gemini</strong>.</td></tr>
+    <tr><td><code>Google API Key:</code></td><td>Paste the <code>AIza…</code> key from Step 0. You should see <code style="color:#3a9">✔ Gemini API key verified.</code> If it says the key was rejected, re-check the copy-paste — you can fix it now or re-run the wizard later.</td></tr>
+    <tr><td><code>Gemini Model Name:</code></td><td>Press <strong>Enter</strong> (default <code>gemini-3-flash-preview</code>).</td></tr>
+    <tr><td><code>Preferred Response Language:</code></td><td>Pick the language you want replies in.</td></tr>
+    <tr><td><code>Timezone:</code></td><td>Pick yours (e.g. <code>Asia/Taipei</code>) — reminders fire in this timezone.</td></tr>
+    <tr><td><code>Select Channels to enable:</code></td><td><strong>WebChat is already checked — just press Enter.</strong> Skip Telegram/Discord/LINE for now; they're a 5-minute add later.</td></tr>
+    <tr><td>WebChat asks for a login email, password, and a JWT secret</td><td>The email + password are what <em>you</em> will use to log into the browser chat — pick anything. For the JWT secret, type any long random string.</td></tr>
+    <tr><td><code>Create the dashboard admin account now?</code></td><td>Say <strong>yes</strong> and pick a username + password — this is your control-panel login.</td></tr>
+    <tr><td><code>Do you want to build Docker images now?</code></td><td><strong>Yes.</strong> This is the long pour — 3–5 minutes of build logs scrolling by. Scary-looking but normal.</td></tr>
+  </tbody>
+</table>
+<p>The wizard ends with a green <strong>"Setup complete — next steps"</strong> panel. If you ever want to change an answer, just run <code>costaff onboard</code> again — every prompt defaults to what you chose before.</p>
+
+<h2>Step 3 — Start everything <span style="font-weight:400">(first time ≈ 2–5 min)</span></h2>
+<pre class="code">costaff start</pre>
+<p>First a <strong>preflight check</strong> validates your settings — if something fatal is missing it stops and tells you the exact fix (usually "run <code>costaff onboard</code>"). Then you'll see the layers come up in order:</p>
+<pre class="code">🚀 Step 1: Starting Infrastructure (Postgres)...
+🚀 Step 3: Starting CoStaff Manager...
+Waiting for 2 services to initialize...
+🚀 Step 4: Starting Channel webchat...
+SUCCESS: CoStaff started in tiered sequence (Agents -> Manager -> Channels)!</pre>
+<p>(Step 2 only appears once you've added specialist agents.) Confirm everything is alive:</p>
+<pre class="code">costaff status</pre>
+<p>Every row should say <strong>Up</strong>. If anything is red, run <code>costaff doctor</code> — it ends with a <em>Suggested fixes</em> list.</p>
+
+<h2>Step 4 — Open the chat <span style="font-weight:400">(30 sec)</span></h2>
+<p>Two doors; pick either:</p>
+<ul>
+  <li><strong>Dashboard chat</strong> — run <code>costaff dashboard</code>. A browser tab opens at <code>http://localhost:8501</code>; log in with the admin account from Step 2 and click <strong>Chat</strong> in the sidebar.</li>
+  <li><strong>WebChat</strong> — open <a href="http://localhost:18090" target="_blank" rel="noopener">http://localhost:18090</a> (it's <code>18090</code> when WebChat is your first channel; confirm with <code>costaff channel list</code>) and log in with the email + password you set in Step 2.</li>
+</ul>
+
+<h2>Step 5 — Say something</h2>
+<p>Try these, in any language you configured:</p>
+<ul>
+  <li><em>"Hi, what can you do?"</em> — the Manager introduces itself and its current abilities.</li>
+  <li><em>"Remind me to drink water at 3 PM every day."</em> — the scheduler picks it up; the reminder arrives in this same chat.</li>
+  <li><em>"Save my name as Alex and my role as product manager."</em> — it remembers across conversations.</li>
+</ul>
+<p>Replies usually take 2–10 seconds. A blinking cursor means it's thinking.</p>
+
+<div class="callout warn">
+  <div class="label">If the reply says "your account has not been approved"</div>
+  <p>That's the approval gate, on by default: the first message from any chat surface creates a <em>pending</em> identity, and the assistant refuses real work until an operator approves it. Approve yourself: <code>costaff dashboard</code> → <strong>Users</strong> → find the new row → approve. Send your message again — it now works. (This is what keeps a stranger who finds your Telegram bot from using your AI.)</p>
+</div>
+
+<h2>You're done — where to next</h2>
+<table class="spec">
+  <thead><tr><th>Want to…</th><th>Go to</th></tr></thead>
+  <tbody>
+    <tr><td>Hire a specialist (reports, coding, Taiwan open data)</td><td><a href="/docs/agents/">Specialist agents</a></td></tr>
+    <tr><td>Chat from Telegram / Discord instead of the browser</td><td><a href="/docs/channels/">Chat channels</a> — step-by-step token guides included</td></tr>
+    <tr><td>Understand what's actually running</td><td><a href="/docs/verify/">Verify the install</a> + <a href="/architecture/">Architecture</a></td></tr>
+    <tr><td>See every command</td><td><a href="/docs/cli/">CLI reference</a></td></tr>
+    <tr><td>Something's broken</td><td><code>costaff doctor</code> first, then <a href="/docs/troubleshooting/">Troubleshooting</a></td></tr>
+  </tbody>
+</table>
+
+        <nav class="docs-pager" aria-label="Pager">
+        <a class="prev" href="/docs/"><span class="pager-label">← Previous</span><span class="pager-title">Overview</span></a>
+        <a class="next" href="/docs/requirements/"><span class="pager-label">Next →</span><span class="pager-title">System requirements</span></a>
+      </nav>
+      </main>
+
+  </div>
+
+  <footer class="site">
+    <div class="footer-inner">
+      <div class="footer-logo">Co<span>Staff</span></div>
+      <div class="footer-text">© 2026 CoStaffAI</div>
+      <div class="footer-links">
+        <a href="/">Home</a>
+        <a href="https://github.com/costaff-ai/costaff" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://forms.gle/9UVdi527sYUBuqcm6" target="_blank" rel="noopener">Get early access</a>
+        <a href="mailto:simonliuyuwei@gmail.com">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      const toggle = document.querySelector('.nav-toggle');
+      const menu   = document.getElementById('primary-nav');
+      if (toggle && menu) {
+        toggle.addEventListener('click', () => {
+          const open = menu.classList.toggle('open');
+          toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+        menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+          menu.classList.remove('open');
+          toggle.setAttribute('aria-expanded', 'false');
+        }));
+      }
+
+      const side = document.querySelector('.docs-side');
+      const sideBtn = side && side.querySelector('.side-mobile');
+      if (side && sideBtn) {
+        sideBtn.addEventListener('click', () => {
+          const open = side.getAttribute('data-open') !== 'true';
+          side.setAttribute('data-open', open ? 'true' : 'false');
+          sideBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+      }
+    })();
+  </script>
+</body>
+</html>

@@ -55,6 +55,7 @@
             <h4>Getting started</h4>
             <ul>
               <li><a href="/docs/" class="active">Overview</a></li>
+              <li><a href="/docs/tutorial/">Beginner tutorial</a></li>
               <li><a href="/docs/requirements/">System requirements</a></li>
               <li><a href="/docs/install/">Install</a></li>
             </ul>
@@ -96,6 +97,11 @@
 
 <p>If you just want to get going, jump to the <a href="/docs/install/">install command</a>. If you want the big picture first, the <a href="/architecture/">architecture page</a> covers the 6-layer model.</p>
 
+<div class="callout">
+  <div class="label">First time here?</div>
+  <p>Take the <a href="/docs/tutorial/"><strong>Beginner tutorial</strong></a> — a hand-held walkthrough from zero to your first conversation, with the expected output at every step. The pages below are the reference version of the same journey.</p>
+</div>
+
 <div class="overview-grid">
   <a class="ov-card" href="/docs/requirements/"><div class="num">01</div><h3>System requirements</h3><p>What hardware and software you need before installing.</p></a>
   <a class="ov-card" href="/docs/install/"><div class="num">02</div><h3>Install</h3><p>One curl command for macOS or Ubuntu.</p></a>
@@ -108,22 +114,25 @@
 </div>
 
 <h2>Quick start</h2>
-<p>If you already know the stack, this is the whole thing in three commands:</p>
+<p>If you already know the stack, this is the whole thing in four commands:</p>
 <pre class="code"><span class="c"># 1. install</span>
 curl -fsSL https://raw.githubusercontent.com/costaff-ai/costaff/main/install.sh | bash
 
-<span class="c"># 2. configure (interactive wizard)</span>
+<span class="c"># 2. configure (interactive wizard — auto-runs after install when possible)</span>
 source ~/.zshrc  <span class="c"># or ~/.bashrc on Ubuntu</span>
 costaff onboard
 
-<span class="c"># 3. start everything</span>
-costaff start</pre>
+<span class="c"># 3. start everything (preflight-checks your .env first)</span>
+costaff start
+
+<span class="c"># 4. open the dashboard and click Chat</span>
+costaff dashboard</pre>
 <p>Then add agents and channels — see <a href="/docs/agents/">Specialist agents</a> and <a href="/docs/channels/">Chat channels</a>.</p>
 
 
         <nav class="docs-pager" aria-label="Pager">
         <span class="empty"></span>
-        <a class="next" href="/docs/requirements/"><span class="pager-label">Next →</span><span class="pager-title">System requirements</span></a>
+        <a class="next" href="/docs/tutorial/"><span class="pager-label">Next →</span><span class="pager-title">Beginner tutorial</span></a>
       </nav>
       </main>
 

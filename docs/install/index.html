@@ -55,6 +55,7 @@
             <h4>Getting started</h4>
             <ul>
               <li><a href="/docs/">Overview</a></li>
+              <li><a href="/docs/tutorial/">Beginner tutorial</a></li>
               <li><a href="/docs/requirements/">System requirements</a></li>
               <li><a href="/docs/install/" class="active">Install</a></li>
             </ul>
@@ -99,11 +100,12 @@ curl -fsSL https://raw.githubusercontent.com/costaff-ai/costaff/main/install.sh 
 <ul>
   <li><strong>Detects the OS</strong> — macOS or Ubuntu/Debian. Other distros exit with an error.</li>
   <li><strong>System packages</strong> — Xcode Command Line Tools + Homebrew on macOS; <code>apt</code> packages on Ubuntu.</li>
-  <li><strong>Python 3.12</strong> — Homebrew on macOS, <code>deadsnakes</code> PPA on Ubuntu.</li>
-  <li><strong>Docker</strong> — Docker Desktop on macOS, Docker Engine on Ubuntu.</li>
+  <li><strong>Python 3.12</strong> — Homebrew on macOS, <code>deadsnakes</code> PPA on Ubuntu (Ubuntu 24.04+ is handled — the retired <code>distutils</code> package is skipped automatically).</li>
+  <li><strong>Docker</strong> — Docker Desktop on macOS, Docker Engine on Ubuntu. On macOS the installer launches Docker Desktop and waits for the daemon (up to 90s); on Ubuntu it starts the daemon via systemd if it's stopped.</li>
   <li><strong>Repo</strong> — clones <code>costaff-ai/costaff</code> into <code>~/.costaff/costaff/</code>.</li>
   <li><strong>Virtualenv</strong> — creates <code>~/.costaff/.venv/</code> and runs <code>pip install -e</code>.</li>
   <li><strong>PATH</strong> — appends the venv to <code>~/.zshrc</code> (macOS) or <code>~/.bashrc</code> (Ubuntu).</li>
+  <li><strong>Setup wizard</strong> — when no manual steps remain (e.g. no Docker group re-login needed), the installer chains straight into <code>costaff onboard</code>.</li>
 </ul>
 
 <div class="callout warn">

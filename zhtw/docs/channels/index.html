@@ -55,6 +55,7 @@
             <h4>入門</h4>
             <ul>
               <li><a href="/zhtw/docs/">總覽</a></li>
+              <li><a href="/zhtw/docs/tutorial/">新手教學</a></li>
               <li><a href="/zhtw/docs/requirements/">系統需求</a></li>
               <li><a href="/zhtw/docs/install/">安裝</a></li>
             </ul>
@@ -92,35 +93,83 @@
         </header>
 
 
-<pre class="code"><span class="c"># 瀏覽器版聊天介面（不需額外金鑰）</span>
+<pre class="code"><span class="c"># 瀏覽器版聊天介面（不用 bot token — 設一組登入帳密就好）</span>
 costaff channel add webchat
 
 <span class="c"># Telegram bot — 會問 TELEGRAM_BOT_TOKEN</span>
 costaff channel add telegram</pre>
 
 <h2>官方 Channel</h2>
+<p>這四個名稱會自動解析到對應的 GitHub repo，不用給 URL：</p>
 <table class="spec">
-  <thead><tr><th>名稱</th><th>預設 port</th><th>需要什麼</th></tr></thead>
+  <thead><tr><th>名稱</th><th>需要什麼</th></tr></thead>
   <tbody>
-    <tr><td><code>webchat</code></td><td><code>18090</code></td><td>什麼都不用 — 開 <a href="http://localhost:18090" target="_blank" rel="noopener">http://localhost:18090</a> 就能聊。</td></tr>
-    <tr><td><code>telegram</code></td><td>—</td><td>到 <a href="https://t.me/BotFather" target="_blank" rel="noopener">@BotFather</a> 拿 <code>TELEGRAM_BOT_TOKEN</code>。</td></tr>
-    <tr><td><code>discord</code></td><td>—</td><td>Discord bot token + guild 設定。</td></tr>
-    <tr><td><code>line</code></td><td>—</td><td>LINE channel access token + secret。</td></tr>
+    <tr><td><code>webchat</code></td><td>不依賴第三方服務。部署時 CLI 會問登入 email + 密碼（以及 JWT secret）；之後瀏覽器開該 channel 的 port 就能聊。</td></tr>
+    <tr><td><code>telegram</code></td><td>到 <a href="https://t.me/BotFather" target="_blank" rel="noopener">@BotFather</a> 拿 <code>TELEGRAM_BOT_TOKEN</code>。</td></tr>
+    <tr><td><code>discord</code></td><td>到 Discord developer portal 拿 <code>DISCORD_BOT_TOKEN</code>。</td></tr>
+    <tr><td><code>line</code></td><td><code>LINE_CHANNEL_ACCESS_TOKEN</code> + <code>LINE_CHANNEL_SECRET</code>。</td></tr>
   </tbody>
 </table>
+<p>Host port 依加入順序從 <code>18090</code>–<code>18099</code> 自動分配 — <code>costaff channel list</code> 會顯示各 channel 的 port 與健康狀態。如果 WebChat 是你加的第一個 channel，就落在 <a href="http://localhost:18090" target="_blank" rel="noopener">http://localhost:18090</a>。</p>
+
+<h2>逐步教學：每個 channel 怎麼設</h2>
+
+<h3>WebChat（最簡單 — 全程本機）</h3>
+<ol>
+  <li><code>costaff channel add webchat</code></li>
+  <li>被問到時，設定一組<strong>登入 email + 密碼</strong>（這是<em>你自己</em>登入聊天頁用的，隨意設定）和一個 <strong>JWT secret</strong>（任意一長串隨機字串）。</li>
+  <li>瀏覽器開 <code>costaff channel list</code> 顯示的 port，登入，開聊。不依賴任何第三方帳號。</li>
+</ol>
+
+<h3>Telegram（約 5 分鐘 — 筆電就能跑，不需要公網 IP）</h3>
+<ol>
+  <li>在 Telegram 裡開 <a href="https://t.me/BotFather" target="_blank" rel="noopener">@BotFather</a>，送出 <code>/newbot</code>。</li>
+  <li>先給 bot 一個顯示名稱，再給一個結尾是 <code>bot</code> 的 username（例如 <code>my_costaff_bot</code>）。</li>
+  <li>BotFather 會回一個長得像 <code>123456789:AAH…</code> 的 token — 複製起來。</li>
+  <li><code>costaff channel add telegram</code>，被問到時貼上 token。</li>
+  <li>在 Telegram 打開你的 bot，送 <code>/start</code> 再隨便傳一句話。第一句話會建立<em>待核准</em>身份 — 見下方核准說明。</li>
+</ol>
+<p>Telegram 走 long polling（是你的機器去連 Telegram，不是反過來），所以在家用路由器、防火牆後面都能跑，零網路設定。</p>
+
+<h3>Discord（約 10 分鐘）</h3>
+<ol>
+  <li>到 <a href="https://discord.com/developers/applications" target="_blank" rel="noopener">Discord Developer Portal</a> → <strong>New Application</strong>。</li>
+  <li>進 <strong>Bot</strong> 分頁：點 <strong>Reset Token</strong> 並複製。</li>
+  <li>同一頁往下捲到 <em>Privileged Gateway Intents</em>，<strong>打開 Message Content Intent</strong> — 不開的話 bot 連得上但永遠看不到你的訊息。這是 Discord 的第一大雷。</li>
+  <li>進 <strong>OAuth2 → URL Generator</strong>：勾 <code>bot</code> scope，給 <em>Send Messages</em> + <em>Read Message History</em> 權限，打開產生的網址，把 bot 邀進你的伺服器。</li>
+  <li><code>costaff channel add discord</code>，貼上 token。</li>
+</ol>
+
+<h3>LINE（⚠ 需要公網 HTTPS）</h3>
+<p>跟 Telegram 不同，LINE 是用 <strong>webhook</strong> 送訊息 — LINE 的伺服器必須能從外面透過公網 HTTPS 打到你機器的 <code>/callback</code>。在家用路由器後面的筆電，代表你需要 tunnel（例如 Cloudflare Tunnel 或 ngrok）或有 TLS 的反向代理。<strong>如果只是想在本機試用 CoStaff，先用 WebChat 或 Telegram，等有伺服器再回來接 LINE。</strong></p>
+<ol>
+  <li>到 <a href="https://developers.line.biz/" target="_blank" rel="noopener">LINE Developers Console</a> 建立 Provider 與 <strong>Messaging API</strong> channel。</li>
+  <li>複製 <strong>Channel access token</strong> 與 <strong>Channel secret</strong>。</li>
+  <li><code>costaff channel add line</code>，兩個都貼上。</li>
+  <li>回 LINE 後台把 webhook URL 設成 <code>https://&lt;你的公網網域&gt;/callback</code>（指向這個 channel 的 port）並啟用 webhook。</li>
+</ol>
+
+<div class="callout warn">
+  <div class="label">第一句話 → 需要核准</div>
+  <p>預設情況下，任何新的聊天帳號傳來第一句話會建立<em>待核准</em>身份，助理會回覆該帳號「has not been approved」。核准自己：<code>costaff dashboard</code> → <strong>Users</strong> → 核准新的那一列，再傳一次訊息即可。這道門檻是防止陌生人撿到你的 bot 就能免費用你的 AI — 建議保持開啟。</p>
+</div>
 
 <h2>自訂 Channel</h2>
-<p>跟 Agent 一樣的 flag：</p>
-<pre class="code">costaff channel add my-channel --github https://github.com/you/my-channel
+<p>跟 Agent 一樣的 flag。例如 Slack 是第一方 repo，用 URL 加：</p>
+<pre class="code"><span class="c"># Slack bot（Socket Mode — 需要 SLACK_BOT_TOKEN + SLACK_APP_TOKEN）</span>
+costaff channel add slack --github https://github.com/costaff-ai/costaff-channel-slack
+
+costaff channel add my-channel --github https://github.com/you/my-channel
 costaff channel add my-channel --local /path/to/my-channel</pre>
 
 <h2>管理 Channel</h2>
 <table class="spec">
   <thead><tr><th>指令</th><th>作用</th></tr></thead>
   <tbody>
-    <tr><td><code>costaff channel list</code></td><td>列出已註冊 channel 與健康狀態。</td></tr>
+    <tr><td><code>costaff channel list</code></td><td>列出已註冊 channel 與 port、健康狀態。</td></tr>
     <tr><td><code>costaff channel rebuild &lt;name&gt;</code></td><td>Rebuild image 並重啟。</td></tr>
     <tr><td><code>costaff channel remove &lt;name&gt;</code></td><td>停掉、移除、unregister。</td></tr>
+    <tr><td><code>costaff channel tags &lt;name&gt;</code></td><td>列出該 channel repo 可用的 release tag（pin 版本用）。</td></tr>
   </tbody>
 </table>
 

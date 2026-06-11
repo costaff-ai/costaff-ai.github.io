@@ -55,6 +55,7 @@
             <h4>入門</h4>
             <ul>
               <li><a href="/zhtw/docs/">總覽</a></li>
+              <li><a href="/zhtw/docs/tutorial/">新手教學</a></li>
               <li><a href="/zhtw/docs/requirements/">系統需求</a></li>
               <li><a href="/zhtw/docs/install/">安裝</a></li>
             </ul>
@@ -98,11 +99,12 @@ costaff onboard</pre>
 <h2>精靈會問</h2>
 <ul>
   <li><strong>PostgreSQL URI</strong> — 用預設值，會走內建的 Postgres 容器。CoStaff 強制走 Postgres，不支援 SQLite。</li>
-  <li><strong>Model provider</strong> — <em>Google Gemini</em>（要 <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio key</a>）或 <em>LiteLLM</em>（OpenAI、Anthropic、Ollama，任何 OpenAI 相容）。</li>
+  <li><strong>Model provider</strong> — <em>Google Gemini</em>（要 <a href="https://aistudio.google.com/apikey" target="_blank" rel="noopener">Google AI Studio key</a>）或 <em>LiteLLM</em>（OpenAI、Anthropic、Ollama，任何 OpenAI 相容）。Gemini key 會<strong>即時打 Gemini API 驗證</strong> — key 有問題當場就警告，不會拖到第一次對話才發現。</li>
   <li><strong>Model 名稱</strong> — Gemini 預設 <code>gemini-3-flash-preview</code>；LiteLLM 自由填。</li>
   <li><strong>語言</strong> — 繁中、英、日、簡中。影響 Agent 回覆語言。</li>
   <li><strong>時區</strong> — 排程與時間戳會用，例如 <code>Asia/Taipei</code>、<code>America/Los_Angeles</code>。</li>
-  <li><strong>通訊軟體</strong> — Telegram、Discord、LINE、WebChat、Email，可以勾零或多個；之後也能用 <code>costaff channel add</code> 再加。</li>
+  <li><strong>通訊軟體</strong> — <strong>WebChat 預設已勾選</strong>（瀏覽器聊天，不用 bot token）；可再加 Telegram、Discord、LINE、Email。之後也能用 <code>costaff channel add</code> 再加；已部署的 channel 會保留，不會重新 clone。</li>
+  <li><strong>Dashboard 管理員帳號</strong> — 操作 dashboard（<code>costaff dashboard</code>）的帳密。可跳過 — dashboard 第一次開啟時也會引導設定。</li>
 </ul>
 
 <h2>產出長這樣</h2>
@@ -128,7 +130,15 @@ POSTGRES_PASSWORD=costaff_pass
 POSTGRES_DB=costaff_db</pre>
 
 <h2>重跑 onboard</h2>
-<p>隨時都能重跑。精靈會讀現有 <code>.env</code> 當預設值，只覆寫你真的有改的欄位。</p>
+<p>隨時都能重跑。精靈會讀現有 <code>.env</code> 當預設值，只覆寫你真的有改的欄位。已部署的 channel 不會被動到。</p>
+
+<h2>精靈結束之後</h2>
+<p>結尾會顯示「next steps」面板：<code>costaff start</code>，然後 <code>costaff dashboard</code>（開 <code>http://localhost:8501</code>，點 <strong>Chat</strong>）。之後若有任何異常，<code>costaff doctor</code> 會輸出完整診斷報告，並在結尾列出<em>建議修復步驟</em>。</p>
+
+<div class="callout">
+  <div class="label">腳本化安裝</div>
+  <p>CI 或無人值守部署可跳過精靈：<code>costaff bootstrap -k &lt;gemini-key&gt;</code> 會寫入最小 env（並產生同一套安全 secret），然後直接接 <code>costaff start</code>。</p>
+</div>
 
 
         <nav class="docs-pager" aria-label="Pager">
