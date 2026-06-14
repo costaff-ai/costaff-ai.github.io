@@ -47,7 +47,7 @@ CoStaff orchestrates multiple specialist AI agents through a Manager Agent. Each
 
 ## Source code
 
-Open-source repos live on https://github.com/costaff-ai (v0.1.0-alpha-1). Discord / LINE / Slack / WebChat Enterprise channels and the private agent fleet are private — contact for access. Business platform suite (11 products): private — contact.
+Open-source repos live on https://github.com/costaff-ai (v0.1.0-alpha-2). Discord / LINE / Slack / WebChat Enterprise channels and the private agent fleet are private — contact for access. Business platform suite (11 products): private — contact.
 
 - Core: https://github.com/costaff-ai/costaff
 - Channels (open source): https://github.com/costaff-ai/costaff-channel-webchat-oss · https://github.com/costaff-ai/costaff-channel-telegram · https://github.com/costaff-ai/costaff-channel-chatbot (shared channel runtime SDK)
