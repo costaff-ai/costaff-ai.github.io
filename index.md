@@ -2,6 +2,8 @@
 
 > Open-source, self-hosted multi-agent system. Hand off tasks in your chat app — specialist AI agents collaborate to get the work done. All on your own machine.
 
+**▶ [Watch the 30-second intro](https://youtu.be/QVZ4cOzvb18)**
+
 ## What CoStaff does
 
 In your chat app (Telegram, LINE, WebChat), you describe a task in plain language. The Manager Agent parses your intent, dispatches to the right specialists. They collaborate via A2A (Agent-to-Agent) protocol and call MCP (Model Context Protocol) tools to deliver results back to your chat — PDFs, Excel files, query results, anything.

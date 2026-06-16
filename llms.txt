@@ -62,4 +62,5 @@ Open-source repos live on https://github.com/costaff-ai (v0.1.0-alpha-2). Discor
 
 ## Optional
 
+- [30-second intro video](https://youtu.be/QVZ4cOzvb18): Product overview in 30 seconds (YouTube)
 - [Pitch deck](https://costaffs.app/deck.html): For investors / partners

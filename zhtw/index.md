@@ -2,6 +2,8 @@
 
 > 開源、自架的多 agent 系統。在通訊軟體中交辦事情給 Manager Agent，由它分派給對的專家 — 你只負責下指令、收成品。所有東西跑在你自己的機器上。
 
+**▶ [觀看 30 秒產品介紹](https://youtu.be/QVZ4cOzvb18)**
+
 ## CoStaff 在做什麼
 
 在你慣用的通訊軟體（Telegram、LINE、WebChat）裡用一句話交辦任務。Manager Agent 解析意圖、分派給對的專家。專家透過 A2A（Agent-to-Agent）協定協作、呼叫 MCP（Model Context Protocol）工具，最後把結果（PDF、Excel、查詢結果）送回你的聊天視窗。
