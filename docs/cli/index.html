@@ -16,7 +16,7 @@
 <body>
 
   <div class="coming-soon-banner">
-    <span class="cs-label">🎉 Now open source · v0.1.0-alpha-2</span>
+    <span class="cs-label">🎉 Now open source · v0.1.0-beta-1</span>
     <span class="cs-sub">— Join the waitlist for GA notifications</span>
     <a href="https://forms.gle/9UVdi527sYUBuqcm6" target="_blank" rel="noopener">Join waitlist →</a>
   </div>
@@ -216,10 +216,10 @@
 <p>Agents, channels, and the core itself can all be pinned to a specific git tag, branch, or SHA. Once pinned, <code>rebuild</code> stays on that ref instead of pulling the latest <code>main</code>.</p>
 <pre class="code"><span class="c"># Install pinned to a specific tag</span>
 costaff agent add ba --github https://github.com/costaff-ai/costaff-agent-business-analysis \
-  --tag v0.1.0-alpha-2
+  --tag v0.1.0-beta-1
 
-costaff channel add telegram --tag v0.1.0-alpha-2
-costaff update --tag v0.1.0-alpha-2   <span class="c"># pin the core too</span>
+costaff channel add telegram --tag v0.1.0-beta-1
+costaff update --tag v0.1.0-beta-1   <span class="c"># pin the core too</span>
 
 <span class="c"># Subsequent rebuilds stay on the pinned ref</span>
 costaff agent rebuild ba

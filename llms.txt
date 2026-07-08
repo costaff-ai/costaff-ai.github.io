@@ -9,6 +9,7 @@ CoStaff orchestrates multiple specialist AI agents through a Manager Agent. Each
 - **Self-hosted**: 100% on your own machine via Docker. No data leaves your network unless you choose a hosted LLM.
 - **Multi-agent**: Manager Agent dispatches work to specialists — open-source agents (Business Analysis, Coding, Database, Twinkle Hub, WrenAI GenBI, Custom Agents) plus a private fleet (Gmail, Google Calendar, Google Drive, Notion, RSS, Web Search, HR, Kubernetes, Terraform, Nutrition, Fill-Table, Browser Operator, Builder, Medical — contact for access).
 - **Multi-channel**: WebChat OSS and Telegram (open source); Discord, LINE, Slack, WebChat Enterprise (private — contact). Same agents, multiple chat apps.
+- **Multi-system**: Run several independent CoStaff systems on one host — each with its own agents, data, and configuration — and switch the active one from the dashboard's system switcher or the CLI (`costaff core`).
 - **Platform suite**: 11 self-hosted, agent-operable business platforms (Account Manager SSO, ERP, CRM, HRM, SCM, PLM, Accounting, KMS, Project, Expense, Helpdesk) — every platform ships an MCP server + a paired agent. Private source — contact.
 - **License**: AGPL v3 (open-source) + commercial license available.
 - **Stack**: Google ADK · MCP · A2A · Docker · PostgreSQL.
@@ -47,7 +48,7 @@ CoStaff orchestrates multiple specialist AI agents through a Manager Agent. Each
 
 ## Source code
 
-Open-source repos live on https://github.com/costaff-ai (v0.1.0-alpha-2). Discord / LINE / Slack / WebChat Enterprise channels and the private agent fleet are private — contact for access. Business platform suite (11 products): private — contact.
+Open-source repos live on https://github.com/costaff-ai (v0.1.0-beta-1). Discord / LINE / Slack / WebChat Enterprise channels and the private agent fleet are private — contact for access. Business platform suite (11 products): private — contact.
 
 - Core: https://github.com/costaff-ai/costaff
 - Channels (open source): https://github.com/costaff-ai/costaff-channel-webchat-oss · https://github.com/costaff-ai/costaff-channel-telegram · https://github.com/costaff-ai/costaff-channel-chatbot (shared channel runtime SDK)

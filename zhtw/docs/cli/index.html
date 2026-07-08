@@ -16,7 +16,7 @@
 <body>
 
   <div class="coming-soon-banner">
-    <span class="cs-label">🎉 已開源 · v0.1.0-alpha-2</span>
+    <span class="cs-label">🎉 已開源 · v0.1.0-beta-1</span>
     <span class="cs-sub">— 加入候補名單，正式版上線第一時間通知</span>
     <a href="https://forms.gle/9UVdi527sYUBuqcm6" target="_blank" rel="noopener">加入候補 →</a>
   </div>
@@ -216,10 +216,10 @@
 <p>Agent、channel、以及 core 本身都能 pin 到指定的 git tag / branch / SHA。Pin 之後 <code>rebuild</code> 會停在那個 ref，不會自動拉 <code>main</code> 的最新。</p>
 <pre class="code"><span class="c"># 裝的時候 pin 到指定 tag</span>
 costaff agent add ba --github https://github.com/costaff-ai/costaff-agent-business-analysis \
-  --tag v0.1.0-alpha-2
+  --tag v0.1.0-beta-1
 
-costaff channel add telegram --tag v0.1.0-alpha-2
-costaff update --tag v0.1.0-alpha-2   <span class="c"># core 也 pin</span>
+costaff channel add telegram --tag v0.1.0-beta-1
+costaff update --tag v0.1.0-beta-1   <span class="c"># core 也 pin</span>
 
 <span class="c"># 之後的 rebuild 都會停在 pin 的 ref</span>
 costaff agent rebuild ba
