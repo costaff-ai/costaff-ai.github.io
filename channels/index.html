@@ -176,11 +176,12 @@
           <div class="agent-sub">Role: browser-based chat (open source)</div>
         </div>
         <div class="agent-card-body">
-          <p class="agent-desc">A lightweight browser interface — no Telegram, Discord, or LINE account required. Email + password login, identity hashing built in. <strong>Drop it on your own subdomain and let your team chat with the agents straight from the browser</strong>.</p>
+          <p class="agent-desc">A lightweight browser interface — no Telegram, Discord, or LINE account required. Email + password login, identity hashing built in. <strong>Your conversation persists across reopen, and background tasks push their results back into the chat</strong>. Drop it on your own subdomain and let your team chat with the agents straight from the browser.</p>
           <ul class="agent-caps">
             <li>Browser-only access — zero third-party chat app</li>
-            <li>Email + password login (JWT, bcrypt)</li>
-            <li>Identity hashed to a 16-char SHA-256 — no raw IDs stored</li>
+            <li>Email + password login (JWT, bcrypt); identity hashed to a 16-char SHA-256</li>
+            <li>Persistent single-thread history — reopen the tab and your chat is still there</li>
+            <li>Async result delivery over SSE — "notify you later" tasks land back in the chat</li>
             <li>nginx + FastAPI; ships as a single Docker image</li>
           </ul>
         </div>
@@ -224,11 +225,11 @@
           <div class="agent-sub">Role: production-grade browser channel</div>
         </div>
         <div class="agent-card-body">
-          <p class="agent-desc">Same browser entry point as WebChat — but on the full chatbot runtime so <strong>agents can deliver files, push async progress, dedup messages, and rate-limit</strong>. Multi-tenant Org / SSO / RBAC / audit log on the roadmap. For teams that need to stand this up for real customers.</p>
+          <p class="agent-desc">Same browser entry point as WebChat — file delivery and async push are shared across both, but Enterprise runs the full chatbot runtime: <strong>full-duplex WebSocket, message dedup, and multiple switchable conversations per user</strong>. Multi-tenant Org / SSO / RBAC / audit log on the roadmap. For teams that need to stand this up for real customers.</p>
           <ul class="agent-caps">
-            <li>WebSocket transport with reconnect + ping/pong</li>
-            <li>Agent file delivery via short-lived download tokens</li>
-            <li>Async-callback push, dedup, per-user rate limit</li>
+            <li>Full-duplex WebSocket transport (reconnect + ping/pong)</li>
+            <li>Message dedup + multiple switchable conversations</li>
+            <li>Production hardening: file delivery, per-user rate limit</li>
             <li>Roadmap: multi-tenant Org · OIDC/SAML · RBAC · audit log</li>
           </ul>
         </div>

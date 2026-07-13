@@ -173,11 +173,12 @@
           <div class="agent-sub">角色：瀏覽器版聊天介面（開源）</div>
         </div>
         <div class="agent-card-body">
-          <p class="agent-desc">輕量瀏覽器介面 — 不用 Telegram、Discord、LINE 帳號。內建 Email + 密碼登入，身份雜湊處理好。<strong>掛到自己的子網域，團隊用瀏覽器就能直接跟 Agent 對話</strong>。</p>
+          <p class="agent-desc">輕量瀏覽器介面 — 不用 Telegram、Discord、LINE 帳號。內建 Email + 密碼登入，身份雜湊處理好。<strong>對話關掉重開看得到，背景任務完成後結果會自動推回對話</strong>。掛到自己的子網域，團隊用瀏覽器就能直接跟 Agent 對話。</p>
           <ul class="agent-caps">
             <li>純瀏覽器 — 不依賴任何第三方聊天 App</li>
-            <li>Email + 密碼登入（JWT、bcrypt）</li>
-            <li>身份雜湊成 16 字元 SHA-256，不存原始 ID</li>
+            <li>Email + 密碼登入（JWT、bcrypt）；身份雜湊成 16 字元 SHA-256，不存原始 ID</li>
+            <li>單一 thread 持久對話 — 關掉視窗再回來，之前的問答還在</li>
+            <li>非同步結果推播（SSE）—「稍後通知你」的任務會自動送回對話</li>
             <li>nginx + FastAPI，單 Docker image</li>
           </ul>
         </div>
@@ -221,11 +222,11 @@
           <div class="agent-sub">角色：商用級瀏覽器版</div>
         </div>
         <div class="agent-card-body">
-          <p class="agent-desc">和 WebChat 一樣的瀏覽器入口 — 但跑在完整的 chatbot runtime 上，所以 <strong>Agent 能派送檔案、推進度、去重、限流</strong>。多租戶 Org / SSO / RBAC / 稽核 log 在 roadmap 上。要把這套搬給實際付費客戶用的團隊適用。</p>
+          <p class="agent-desc">和 WebChat 一樣的瀏覽器入口 — 檔案派送與非同步推播兩版皆有，但 Enterprise 跑在完整的 chatbot runtime 上：<strong>全雙工 WebSocket、訊息去重、每位使用者可切換多個對話串</strong>。多租戶 Org / SSO / RBAC / 稽核 log 在 roadmap 上。要把這套搬給實際付費客戶用的團隊適用。</p>
           <ul class="agent-caps">
-            <li>WebSocket 傳輸，含重連與 ping/pong</li>
-            <li>透過短期 download token 派送 Agent 產出檔案</li>
-            <li>非同步 callback 推送、訊息去重、每用戶限流</li>
+            <li>全雙工 WebSocket 傳輸（含重連與 ping/pong）</li>
+            <li>訊息去重 + 多個可切換的對話串</li>
+            <li>正式環境強化：檔案派送、每用戶限流</li>
             <li>Roadmap：多租戶 Org · OIDC/SAML · RBAC · 稽核日誌</li>
           </ul>
         </div>
