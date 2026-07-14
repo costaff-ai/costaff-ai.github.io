@@ -51,6 +51,21 @@
     nav { position:fixed; top:48px; left:50%; transform:translateX(-50%); width:min(calc(100% - 32px), 1060px); z-index:100; display:flex; align-items:center; justify-content:space-between; padding:0 12px 0 24px; height:56px; background:rgba(250,249,247,0.9); backdrop-filter:blur(14px); border:1px solid var(--border); border-radius:14px; box-shadow:0 12px 40px rgba(26,25,23,0.08); }
     .nav-cta { background:var(--accent); color:#fff !important; font-size:12.5px; padding:8px 18px; border-radius:999px; text-decoration:none; transition:background 0.2s; white-space:nowrap; }
     .nav-cta:hover { background:var(--accent-2); }
+
+    /* Nav dropdowns (Wren-style grouped menus) */
+    .nav-home { display:none; }
+    .nav-item { position:relative; }
+    .nav-dd-btn { display:flex; align-items:center; gap:5px; background:none; border:none; cursor:pointer; font-family:var(--sans); font-size:13px; color:var(--ink-2); padding:0; transition:color 0.2s; }
+    .nav-dd-btn:hover, .nav-item.dd-open .nav-dd-btn { color:var(--ink); }
+    .nav-dd-btn .caret { transition:transform 0.2s; flex-shrink:0; }
+    .nav-item.dd-open .caret { transform:rotate(180deg); }
+    .nav-dd { position:absolute; top:calc(100% + 16px); left:50%; transform:translateX(-50%) translateY(6px); min-width:250px; background:rgba(250,249,247,0.98); backdrop-filter:blur(14px); border:1px solid var(--border); border-radius:12px; box-shadow:0 18px 50px rgba(26,25,23,0.14); padding:8px; opacity:0; visibility:hidden; transition:opacity 0.18s ease, transform 0.18s ease, visibility 0.18s; z-index:101; }
+    .nav-dd::before { content:''; position:absolute; top:-18px; left:0; right:0; height:18px; } /* hover bridge across the gap */
+    .nav-item.dd-open .nav-dd { opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); }
+    .nav-dd a { display:block; padding:10px 12px; border-radius:8px; text-decoration:none; transition:background 0.15s; }
+    .nav-dd a:hover { background:var(--bg-alt); }
+    .nav-dd a strong { display:block; font-size:13px; font-weight:500; color:var(--ink); margin-bottom:2px; }
+    .nav-dd a span { display:block; font-size:11.5px; color:var(--ink-3); line-height:1.55; }
     .nav-logo { font-family:var(--serif); font-weight:400; font-size:17px; letter-spacing:0.04em; color:var(--ink); text-decoration:none; }
     .nav-logo span { color:var(--accent-2); }
     .nav-links { display:flex; gap:28px; align-items:center; }
@@ -304,6 +319,16 @@
       .nav-links.open{display:flex;}
       .nav-links a{padding:14px 0; font-size:15px; border-bottom:1px solid var(--border);}
       .nav-links a:last-child{border-bottom:none;}
+      /* Mobile: dropdown groups flatten into labeled sections */
+      .nav-home{display:block;}
+      .nav-item{width:100%;}
+      .nav-dd-btn{width:100%; padding:14px 0 4px; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-3); pointer-events:none;}
+      .nav-dd-btn .caret{display:none;}
+      .nav-dd{position:static; transform:none; opacity:1; visibility:visible; min-width:0; background:none; border:none; box-shadow:none; padding:0; backdrop-filter:none;}
+      .nav-dd::before{display:none;}
+      .nav-dd a{padding:12px 0 12px 14px; border-radius:0; border-bottom:1px solid var(--border);}
+      .nav-dd a strong{font-size:15px; font-weight:400; margin-bottom:0;}
+      .nav-dd a span{display:none;}
       .hero{padding:130px 20px 88px;}
       .hero-chat-body{min-height:236px;}
       .problem-row{grid-template-columns:1fr;}
@@ -465,12 +490,26 @@
   <nav>
     <a class="nav-logo" href="/">Co<span>Staff</span></a>
     <div class="nav-links" id="primary-nav">
-      <a href="/">首頁</a>
-      <a href="/zhtw/agents/">AI 員工</a>
-      <a href="/zhtw/channels/">通訊軟體</a>
-      <a href="/zhtw/platforms/">企業平台</a>
-      <a href="/zhtw/architecture/">技術架構</a>
-      <a href="/zhtw/user-flow/">應用架構</a>
+      <a class="nav-home" href="/zhtw/">首頁</a>
+      <div class="nav-item has-dd">
+        <button class="nav-dd-btn" aria-expanded="false" aria-haspopup="true">產品
+          <svg class="caret" width="9" height="9" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="nav-dd">
+          <a href="/zhtw/agents/"><strong>AI 員工</strong><span>各領域的專家 Agent 團隊</span></a>
+          <a href="/zhtw/channels/"><strong>通訊軟體</strong><span>在 Telegram、WebChat 直接交辦</span></a>
+          <a href="/zhtw/platforms/"><strong>企業平台</strong><span>與 AI 員工協作的業務系統</span></a>
+        </div>
+      </div>
+      <div class="nav-item has-dd">
+        <button class="nav-dd-btn" aria-expanded="false" aria-haspopup="true">架構
+          <svg class="caret" width="9" height="9" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="nav-dd">
+          <a href="/zhtw/architecture/"><strong>技術架構</strong><span>六層架構，各自獨立可替換</span></a>
+          <a href="/zhtw/user-flow/"><strong>應用架構</strong><span>一次交辦的完整流程</span></a>
+        </div>
+      </div>
       <a href="/zhtw/docs/">文件</a>
     </div>
     <div class="nav-right">
@@ -988,6 +1027,37 @@
         menu.classList.remove('open');
         toggle.setAttribute('aria-expanded', 'false');
       }));
+    })();
+
+    // === Nav dropdowns (hover on desktop, click/tap fallback; inert on mobile menu) ===
+    (function () {
+      const items = document.querySelectorAll('.nav-item.has-dd');
+      if (!items.length) return;
+      const isMobile = () => window.matchMedia('(max-width: 720px)').matches;
+      const closeAll = () => items.forEach(it => {
+        it.classList.remove('dd-open');
+        it.querySelector('.nav-dd-btn').setAttribute('aria-expanded', 'false');
+      });
+      items.forEach(item => {
+        const btn = item.querySelector('.nav-dd-btn');
+        let hideTimer;
+        const open = () => {
+          closeAll();
+          item.classList.add('dd-open');
+          btn.setAttribute('aria-expanded', 'true');
+        };
+        if (window.matchMedia('(hover: hover)').matches) {
+          item.addEventListener('mouseenter', () => { if (isMobile()) return; clearTimeout(hideTimer); open(); });
+          item.addEventListener('mouseleave', () => { hideTimer = setTimeout(closeAll, 140); });
+        }
+        btn.addEventListener('click', e => {
+          if (isMobile()) return;
+          e.preventDefault();
+          item.classList.contains('dd-open') ? closeAll() : open();
+        });
+      });
+      document.addEventListener('click', e => { if (!e.target.closest('.nav-item.has-dd')) closeAll(); });
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeAll(); });
     })();
 
     // === Problems: numbered tab switcher (user-controlled — no auto-rotate) ===
