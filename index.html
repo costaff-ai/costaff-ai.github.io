@@ -266,7 +266,7 @@
     .start-kicker { font-family:var(--mono); font-size:10px; letter-spacing:0.22em; text-transform:uppercase; color:#7a9a6d; margin-bottom:18px; }
     .start-title { font-family:var(--serif); font-weight:300; font-size:clamp(26px,4vw,40px); line-height:1.25; color:#efede6; margin-bottom:14px; }
     .start-sub { font-size:14px; color:#8a8885; max-width:460px; margin:0 auto 26px; line-height:1.8; }
-    .start-install { display:inline-flex; align-items:center; gap:14px; background:#1d1d1b; border:1px solid #33332f; border-radius:8px; padding:12px 18px; font-family:var(--mono); font-size:13px; color:#e2e0d8; margin-bottom:26px; }
+    .start-install { display:inline-flex; flex-wrap:wrap; justify-content:center; max-width:100%; align-items:center; gap:10px 14px; background:#1d1d1b; border:1px solid #33332f; border-radius:8px; padding:12px 18px; font-family:var(--mono); font-size:13px; color:#e2e0d8; margin-bottom:26px; }
     .start-copy { background:none; border:1px solid #33332f; color:#8a8885; border-radius:5px; font-size:9.5px; font-family:var(--mono); letter-spacing:0.08em; padding:5px 10px; cursor:pointer; transition:all .2s; text-transform:uppercase; }
     .start-copy:hover { color:#e2e0d8; border-color:#5a5855; }
     .start-actions { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
@@ -495,7 +495,6 @@
         </p>
         <div class="hero-proof">
           <a class="proof-chip" href="https://github.com/costaff-ai/costaff" target="_blank" rel="noopener"><span class="star">★</span><strong id="gh-stars">Open source</strong>on GitHub</a>
-          <span class="proof-chip"><strong>AGPL-3.0</strong></span>
           <span class="proof-chip"><strong>100%</strong>self-hosted</span>
           <span class="proof-chip"><strong>~5 min</strong>to running</span>
         </div>
@@ -520,7 +519,7 @@
     </div>
     <div class="hero-ticker" aria-hidden="true">
       <div class="ticker-track" id="ticker-track">
-        <span>Multi-agent orchestration</span><span>Manager + specialist agents</span><span>MCP tools</span><span>A2A protocol</span><span>100% self-hosted</span><span>Docker-first</span><span>Telegram</span><span>WebChat</span><span>Bring your own LLM</span><span>Open source · AGPL-3.0</span>
+        <span>Multi-agent orchestration</span><span>Manager + specialist agents</span><span>MCP tools</span><span>A2A protocol</span><span>100% self-hosted</span><span>Docker-first</span><span>Telegram</span><span>WebChat</span><span>Bring your own LLM</span><span>Open source</span>
       </div>
     </div>
   </section>
@@ -946,7 +945,7 @@
         <h2 class="start-title">Start with open source.<br/>Your machine, your staff.</h2>
         <p class="start-sub">Three commands from zero to a working AI staff — running entirely on your own hardware.</p>
         <div class="start-install">
-          <span class="prompt">$</span><span id="install-cmd">pip install costaff</span>
+          <span class="prompt">$</span><span id="install-cmd" style="word-break:break-all;text-align:left;">curl -fsSL https://raw.githubusercontent.com/costaff-ai/costaff/main/install.sh | bash</span>
           <button class="start-copy" id="copy-install" aria-label="Copy install command">Copy</button>
         </div>
         <div class="start-actions">

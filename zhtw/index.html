@@ -271,7 +271,7 @@
     .start-kicker { font-family:var(--mono); font-size:10px; letter-spacing:0.22em; text-transform:uppercase; color:#7a9a6d; margin-bottom:18px; }
     .start-title { font-family:var(--serif); font-weight:300; font-size:clamp(26px,4vw,40px); line-height:1.35; color:#efede6; margin-bottom:14px; }
     .start-sub { font-size:14px; color:#8a8885; max-width:460px; margin:0 auto 26px; line-height:1.9; }
-    .start-install { display:inline-flex; align-items:center; gap:14px; background:#1d1d1b; border:1px solid #33332f; border-radius:8px; padding:12px 18px; font-family:var(--mono); font-size:13px; color:#e2e0d8; margin-bottom:26px; }
+    .start-install { display:inline-flex; flex-wrap:wrap; justify-content:center; max-width:100%; align-items:center; gap:10px 14px; background:#1d1d1b; border:1px solid #33332f; border-radius:8px; padding:12px 18px; font-family:var(--mono); font-size:13px; color:#e2e0d8; margin-bottom:26px; }
     .start-copy { background:none; border:1px solid #33332f; color:#8a8885; border-radius:5px; font-size:9.5px; font-family:var(--mono); letter-spacing:0.08em; padding:5px 10px; cursor:pointer; transition:all .2s; text-transform:uppercase; }
     .start-copy:hover { color:#e2e0d8; border-color:#5a5855; }
     .start-actions { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
@@ -499,7 +499,6 @@
         </p>
         <div class="hero-proof">
           <a class="proof-chip" href="https://github.com/costaff-ai/costaff" target="_blank" rel="noopener"><span class="star">★</span><strong id="gh-stars">開源專案</strong>GitHub</a>
-          <span class="proof-chip"><strong>AGPL-3.0</strong></span>
           <span class="proof-chip"><strong>100%</strong>自架自管</span>
           <span class="proof-chip"><strong>約 5 分鐘</strong>跑起來</span>
         </div>
@@ -524,7 +523,7 @@
     </div>
     <div class="hero-ticker" aria-hidden="true">
       <div class="ticker-track" id="ticker-track">
-        <span>多代理協作</span><span>Manager + 專家 Agent</span><span>MCP 工具</span><span>A2A 協議</span><span>100% 自架自管</span><span>Docker 優先</span><span>Telegram</span><span>WebChat</span><span>自選 LLM</span><span>開源 · AGPL-3.0</span>
+        <span>多代理協作</span><span>Manager + 專家 Agent</span><span>MCP 工具</span><span>A2A 協議</span><span>100% 自架自管</span><span>Docker 優先</span><span>Telegram</span><span>WebChat</span><span>自選 LLM</span><span>開源</span>
       </div>
     </div>
   </section>
@@ -950,7 +949,7 @@
         <h2 class="start-title">從開源版開始。<br/>你的機器，你的 AI 員工。</h2>
         <p class="start-sub">三個指令，從零到一支能幹活的 AI 員工團隊——全部跑在你自己的硬體上。</p>
         <div class="start-install">
-          <span class="prompt">$</span><span id="install-cmd">pip install costaff</span>
+          <span class="prompt">$</span><span id="install-cmd" style="word-break:break-all;text-align:left;">curl -fsSL https://raw.githubusercontent.com/costaff-ai/costaff/main/install.sh | bash</span>
           <button class="start-copy" id="copy-install" aria-label="複製安裝指令">Copy</button>
         </div>
         <div class="start-actions">
