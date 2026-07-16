@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CoStaff — Manager</title>
+  <meta name="description" content="CoStaff Manager 是 CoStaff 的核心協調者，也是你直接對話的助理。它將工作分派給專家 Agent、安排任務，並將成果送回你的對話中。" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    :root { --bg:#faf9f7; --bg-alt:#f3f2ef; --ink:#1a1917; --ink-2:#5a5855; --ink-3:#9a9895; --border:#e4e2de; --accent:#2d3a2e; --accent-2:#4a6741; --serif:'Noto Serif TC','Noto Serif JP',Georgia,serif; --sans:'Noto Sans TC','Inter',system-ui,sans-serif; --mono:'JetBrains Mono',monospace; }
+    html { scroll-behavior:smooth; }
+    body { background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:15px; line-height:1.8; -webkit-font-smoothing:antialiased; }
+    .mgr-code { display:inline-block; font-family:var(--mono); font-size:13px; color:var(--ink); background:var(--bg-alt); border:1px solid var(--border); border-radius:8px; padding:12px 18px; margin-bottom:26px; overflow-x:auto; max-width:100%; }
+    .mgr-code .p { color:var(--accent-2); user-select:none; margin-right:8px; }
+  </style>
+  <link rel="stylesheet" href="/assets/site.css?v=16" />
+</head>
+<body>
+  <div id="cs-header"></div>
+
+  <header class="cs-hero">
+    <div class="cs-hero-inner">
+      <div class="cs-hero-label">CoStaff Manager</div>
+      <h1 class="cs-hero-title">只要開口，<br/><span>它便統籌整個團隊。</span></h1>
+      <p class="cs-hero-desc">CoStaff Manager 是 CoStaff 的核心協調者，也是你直接對話的助理。它理解你的需求，將工作分派給合適的專家 Agent，安排提醒與例行任務，再將完成的成果送回你的對話中。</p>
+    </div>
+  </header>
+
+  <section class="cs-band">
+    <div class="cs-band-inner">
+      <div class="cs-band-head">
+        <div class="cs-band-num">01&nbsp;&nbsp;它做什麼</div>
+        <h2 class="cs-band-title">一段對話，背後是一整個團隊。</h2>
+        <p class="cs-band-desc">你只需與單一助理對話，Manager 便會在背後調度整個團隊。</p>
+      </div>
+      <div class="cs-grid">
+        <div class="cs-card"><h3>與單一助理對話</h3><p>無論使用哪種聊天軟體都能連上；在同一處，什麼都能交辦。</p></div>
+        <div class="cs-card"><h3>分派工作給專家</h3><p>它理解你的需求，將工作交給合適的 Agent，例如程式開發、商業分析，或你自行加入的 Agent。</p></div>
+        <div class="cs-card"><h3>Hub-and-spoke 協調</h3><p>Manager → Agent A → Manager → Agent B → Manager → 你。專家在背後彼此協作，你只會看到整理好的成果。</p></div>
+        <div class="cs-card"><h3>提醒與例行任務</h3><p>「下午三點提醒我」或「每天早上彙整 AI 新聞」，它會排定時間，再將結果推送至你的聊天室。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-band cs-band--alt">
+    <div class="cs-band-inner">
+      <div class="cs-band-head">
+        <div class="cs-band-num">02&nbsp;&nbsp;建立在開放標準上</div>
+        <h2 class="cs-band-title">CoStaff 的開源核心。</h2>
+        <p class="cs-band-desc">不受單一供應商綁定：Manager 為開源，並採用整個生態共通的協定。</p>
+      </div>
+      <div class="cs-grid">
+        <div class="cs-card"><h3>Google ADK</h3><p>以 Google ADK 的 LlmAgent 打造，採純協調者模式，核心接線約 30 行。</p></div>
+        <div class="cs-card"><h3>A2A 協定</h3><p>透過開放的 A2A 協定與專家 Agent 溝通，你也能接上自訂的 Agent。</p></div>
+        <div class="cs-card"><h3>MCP 工具</h3><p>以 MCP server 處理排程、通知與檔案等作業。</p></div>
+        <div class="cs-card"><h3>自建且開源</h3><p>於你自有的機器上執行，即為 CoStaff 的核心，並以 AGPL v3 開源。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-band">
+    <div class="cs-band-inner">
+      <div class="cs-band-head">
+        <div class="cs-band-num">03&nbsp;&nbsp;開始使用</div>
+        <h2 class="cs-band-title">部署你專屬的 Manager。</h2>
+        <p class="cs-band-desc">三行指令，即可從零建立可運作的 Manager 與團隊，全程執行於你自有的硬體。</p>
+      </div>
+      <div class="mgr-code"><span class="p">$</span>curl -fsSL https://raw.githubusercontent.com/costaff-ai/costaff/main/install.sh | bash</div>
+      <div class="cs-btn-row" style="margin-top:0">
+        <a class="cs-btn primary" href="https://github.com/costaff-ai/costaff" target="_blank" rel="noopener">前往 GitHub</a>
+        <a class="cs-btn ghost" href="/zhtw/docs/">閱讀文件</a>
+      </div>
+    </div>
+  </section>
+
+  <div id="cs-footer"></div>
+  <script src="/assets/site.js?v=16" defer></script>
+</body>
+</html>

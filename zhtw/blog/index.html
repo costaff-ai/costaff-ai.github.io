@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CoStaff — 部落格</title>
+  <meta name="description" content="CoStaff 部落格 — 產品更新、工程實作、開源動態，與打造你自己的 AI 員工團隊的一手筆記。" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:#faf9f7; --bg-alt:#f3f2ef; --ink:#1a1917; --ink-2:#5a5855;
+      --ink-3:#9a9895; --border:#e4e2de; --accent:#2d3a2e; --accent-2:#4a6741;
+      --serif:'Noto Serif TC','Noto Serif JP',Georgia,serif; --sans:'Noto Sans TC','Inter',system-ui,sans-serif;
+      --mono:'JetBrains Mono',monospace; --max:960px;
+    }
+    html { scroll-behavior:smooth; }
+    body { background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:15px; line-height:1.8; -webkit-font-smoothing:antialiased; }
+    .blog-wrap { max-width:var(--max); margin:0 auto; padding:150px 24px 120px; min-height:100vh; }
+    .blog-eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent-2); margin-bottom:16px; }
+    .blog-title { font-family:var(--serif); font-weight:300; font-size:clamp(30px,5vw,48px); line-height:1.3; color:var(--ink); margin-bottom:16px; }
+    .blog-sub { font-size:16px; color:var(--ink-2); max-width:560px; line-height:1.9; }
+    .blog-empty { margin-top:56px; border:1px solid var(--border); border-radius:14px; background:#fff;
+      padding:56px 40px; text-align:center; box-shadow:0 20px 50px rgba(26,25,23,0.05); }
+    .blog-empty-kicker { font-family:var(--mono); font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--ink-3); margin-bottom:14px; }
+    .blog-empty-title { font-family:var(--serif); font-weight:400; font-size:24px; color:var(--ink); margin-bottom:12px; }
+    .blog-empty-text { font-size:14px; color:var(--ink-2); max-width:440px; margin:0 auto 28px; line-height:1.9; }
+    .blog-actions { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
+    .blog-btn { font-size:13px; padding:12px 24px; border-radius:4px; text-decoration:none; transition:all 0.2s; }
+    .blog-btn.primary { background:var(--accent); color:#fff; }
+    .blog-btn.primary:hover { background:var(--accent-2); }
+    .blog-btn.ghost { background:transparent; color:var(--ink); border:1px solid var(--border); }
+    .blog-btn.ghost:hover { border-color:var(--ink-3); background:var(--bg-alt); }
+    @media (max-width:720px) { .blog-wrap { padding:120px 20px 88px; } .blog-empty { padding:44px 24px; } }
+  </style>
+  <link rel="stylesheet" href="/assets/site.css?v=16" />
+</head>
+<body>
+  <div id="cs-header"></div>
+
+  <main class="blog-wrap">
+    <div class="blog-eyebrow">Blog</div>
+    <h1 class="blog-title">CoStaff 部落格</h1>
+    <p class="blog-sub">關於打造自有 AI 員工團隊的第一手筆記：產品更新、工程實作與開源動態，由 CoStaff 團隊親自撰寫。</p>
+
+    <div class="blog-empty">
+      <div class="blog-empty-kicker">敬請期待</div>
+      <div class="blog-empty-title">目前還沒有文章</div>
+      <p class="blog-empty-text">我們才剛起步。歡迎於 GitHub 追蹤，或加入候補名單，首篇文章上線時將第一時間通知你。</p>
+      <div class="blog-actions">
+        <a class="blog-btn primary" href="https://forms.gle/9UVdi527sYUBuqcm6" target="_blank" rel="noopener">加入候補</a>
+        <a class="blog-btn ghost" href="https://github.com/costaff-ai/costaff" target="_blank" rel="noopener">前往 GitHub</a>
+      </div>
+    </div>
+  </main>
+
+  <div id="cs-footer"></div>
+  <script src="/assets/site.js?v=16" defer></script>
+</body>
+</html>

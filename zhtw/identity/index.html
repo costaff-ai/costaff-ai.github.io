@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CoStaff — Identity</title>
+  <meta name="description" content="CoStaff Identity 是採用標準 OIDC 的身分中心，讓一個帳號橫跨所有 CoStaff 平台，達成單一登入。" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    :root { --bg:#faf9f7; --bg-alt:#f3f2ef; --ink:#1a1917; --ink-2:#5a5855; --ink-3:#9a9895; --border:#e4e2de; --accent:#2d3a2e; --accent-2:#4a6741; --serif:'Noto Serif TC','Noto Serif JP',Georgia,serif; --sans:'Noto Sans TC','Inter',system-ui,sans-serif; --mono:'JetBrains Mono',monospace; }
+    html { scroll-behavior:smooth; }
+    body { background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:15px; line-height:1.8; -webkit-font-smoothing:antialiased; }
+  </style>
+  <link rel="stylesheet" href="/assets/site.css?v=16" />
+</head>
+<body>
+  <div id="cs-header"></div>
+
+  <header class="cs-hero">
+    <div class="cs-hero-inner">
+      <div class="cs-tag">企業服務</div>
+      <div class="cs-hero-label">CoStaff Identity</div>
+      <h1 class="cs-hero-title">一個帳號，<br/><span>全平台單一登入。</span></h1>
+      <p class="cs-hero-desc">專為 CoStaff 平台家族打造的身分中心，採用標準 OIDC。帳號、密碼與角色統一於此管理，每一套平台皆透過標準的 OpenID Connect 委派登入。</p>
+    </div>
+  </header>
+
+  <section class="cs-band">
+    <div class="cs-band-inner">
+      <div class="cs-band-head">
+        <div class="cs-band-num">01&nbsp;&nbsp;為什麼需要它</div>
+        <h2 class="cs-band-title">將身分化為共用服務。</h2>
+      </div>
+      <p class="cs-band-text">過去每套平台各自維護一份使用者資料與登入機制，形同多份密碼庫、多份稽核紀錄與多套重設密碼流程。Identity 將登入整合為單一共用服務：身分交由身分中心統一管理，各應用僅需自 token 讀取角色以進行授權。</p>
+    </div>
+  </section>
+
+  <section class="cs-band cs-band--alt">
+    <div class="cs-band-inner">
+      <div class="cs-band-head">
+        <div class="cs-band-num">02&nbsp;&nbsp;內含能力</div>
+        <h2 class="cs-band-title">帳號集中於一處管理。</h2>
+        <p class="cs-band-desc">登入整合於單一服務，每套平台皆信任其結果。</p>
+      </div>
+      <div class="cs-grid">
+        <div class="cs-card"><h3>單一登入 (SSO)</h3><p>登入一次，所有 CoStaff 平台即認得你的身分。使用者、密碼與角色皆集中管理。</p></div>
+        <div class="cs-card"><h3>標準 OIDC</h3><p>採用 OpenID Connect 授權碼 + PKCE 與 RS256 簽章的 token，並提供 JWKS 端點供各應用驗證。</p></div>
+        <div class="cs-card"><h3>身分歸中心，授權歸應用</h3><p>身分中心負責帳號與登入；各應用自 token 讀取角色，自行決定各角色的權限。</p></div>
+        <div class="cs-card"><h3>自建管理後台</h3><p>單一 realm 的管理後台，可管理使用者、角色與 OIDC client。新增一套平台，僅需再註冊一個 OIDC client。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-band">
+    <div class="cs-band-inner">
+      <div class="cs-band-head">
+        <div class="cs-band-num">03&nbsp;&nbsp;開始使用</div>
+        <h2 class="cs-band-title">想導入 CoStaff Identity 嗎？</h2>
+        <p class="cs-band-desc">以私有、受管的企業服務形式提供。歡迎與我們聯絡取得使用權，我們亦會協助你於各平台完成設定。</p>
+      </div>
+      <div class="cs-btn-row" style="margin-top:0">
+        <a class="cs-btn primary" href="mailto:simonliuyuwei@gmail.com?subject=CoStaff%20Identity%20Inquiry">與我們聯絡</a>
+        <a class="cs-btn ghost" href="/zhtw/platforms/">了解企業平台</a>
+      </div>
+    </div>
+  </section>
+
+  <div id="cs-footer"></div>
+  <script src="/assets/site.js?v=16" defer></script>
+</body>
+</html>

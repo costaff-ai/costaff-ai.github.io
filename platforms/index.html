@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CoStaff — Platforms</title>
-  <meta name="description" content="One account, eleven self-hosted business platforms — ERP, CRM, HRM, SCM, PLM, Accounting, KMS, Project, Expense, Helpdesk, Account Manager. Every platform ships an MCP server so CoStaff agents can operate it." />
+  <meta name="description" content="One account, ten self-hosted business platforms — ERP, CRM, HRM, SCM, PLM, Accounting, KMS, Project, Expense, Helpdesk. Every platform ships an MCP server so CoStaff agents can operate it." />
   <meta name="robots" content="index, follow, all, max-image-preview:large" />
   <link rel="describedby" href="/llms.txt" type="text/markdown" />
   <script type="application/ld+json">
@@ -173,56 +173,15 @@
       .nav-dd a span{display:none;}
     }
   </style>
+  <link rel="stylesheet" href="/assets/site.css?v=16" />
 </head>
 <body>
 
-  <div class="coming-soon-banner">
-    <span class="cs-label">🎉 Now open source · v0.1.0-beta-3</span>
-    <span class="cs-sub">— Join the waitlist for GA notifications</span>
-    <a href="https://forms.gle/9UVdi527sYUBuqcm6" target="_blank" rel="noopener">Join waitlist →</a>
-  </div>
-
-  <nav>
-    <a class="nav-logo" href="/">Co<span>Staff</span></a>
-    <div class="nav-links" id="primary-nav">
-      <a class="nav-home" href="/">Home</a>
-      <div class="nav-item has-dd">
-        <button class="nav-dd-btn" aria-expanded="false" aria-haspopup="true">Product
-          <svg class="caret" width="9" height="9" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <div class="nav-dd">
-          <a href="/agents/"><strong>AI Staff</strong><span>Specialist agents for every domain</span></a>
-          <a href="/channels/"><strong>Channels</strong><span>Hand off work in Telegram or WebChat</span></a>
-          <a href="/platforms/" class="active"><strong>Platforms</strong><span>Business systems your staff works with</span></a>
-        </div>
-      </div>
-      <div class="nav-item has-dd">
-        <button class="nav-dd-btn" aria-expanded="false" aria-haspopup="true">Architecture
-          <svg class="caret" width="9" height="9" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <div class="nav-dd">
-          <a href="/architecture/"><strong>System architecture</strong><span>Six layers, independently replaceable</span></a>
-          <a href="/user-flow/"><strong>User flow</strong><span>One hand-off, end to end</span></a>
-        </div>
-      </div>
-      <a href="/docs/">Docs</a>
-    </div>
-    <div class="nav-right">
-      <a class="nav-lang" href="/zhtw/platforms/">繁中</a>
-      <a class="nav-gh" href="https://github.com/costaff-ai/costaff" target="_blank" rel="noopener">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-        GitHub
-      </a>
-      <a class="nav-cta" href="https://forms.gle/9UVdi527sYUBuqcm6" target="_blank" rel="noopener">Get early access</a>
-      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-nav">
-        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-      </button>
-    </div>
-  </nav>
+  <div id="cs-header"></div>
 
   <header class="page-header">
     <div class="page-label">CoStaff Platforms</div>
-    <h1 class="page-title">One account. Eleven business platforms.<br/>All <span>agent-operable</span>.</h1>
+    <h1 class="page-title">One account. Ten business platforms.<br/>All <span>agent-operable</span>.</h1>
     <p class="page-desc">A self-hosted business suite built to be run by your AI staff. <strong>Every platform ships its own MCP server</strong> — so CoStaff agents can post a voucher in ERP, look up a customer in CRM, or open a helpdesk ticket on your behalf. The full suite is private source — contact us for access.</p>
   </header>
 
@@ -231,7 +190,7 @@
     <div class="gov-grid">
       <div class="gov-item">
         <h4>Single Sign-On</h4>
-        <p>A self-hosted, Keycloak-grade identity provider — OIDC, PKCE, MFA, Passkey. One login for the whole suite.</p>
+        <p>A self-hosted, enterprise-grade identity provider — OIDC, PKCE, MFA, Passkey. One login for the whole suite.</p>
       </div>
       <div class="gov-item">
         <h4>Per-app roles</h4>
@@ -258,30 +217,6 @@
 
   <main class="agents-main">
     <div class="agent-grid">
-
-      <!-- Account Manager -->
-      <div class="agent-card">
-        <div class="agent-card-header">
-          <div class="agent-name">Account Manager</div>
-          <div class="agent-sub">Role: identity provider / SSO hub</div>
-        </div>
-        <div class="agent-card-body">
-          <p class="agent-desc">A Keycloak-style identity provider that signs your team into the entire suite once. <strong>One account, one permission matrix, every app</strong> — with full audit trails for the security review.</p>
-          <ul class="agent-caps">
-            <li>OIDC + PKCE authorization flows</li>
-            <li>MFA, Passkey, and Google sign-in</li>
-            <li>Users × apps permission matrix</li>
-            <li>SSO session management, audit export, webhooks</li>
-          </ul>
-        </div>
-        <div class="agent-card-footer">
-          <span class="agent-tag">Private</span>
-          <a class="agent-link" href="mailto:simonliuyuwei@gmail.com?subject=CoStaff%20Account%20Manager%20Inquiry">
-            Contact for access
-            <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 8.25V18a2.25 2.25 0 0 0 2.25 2.25h13.5A2.25 2.25 0 0 0 21 18V8.25m-18 0V6a2.25 2.25 0 0 1 2.25-2.25h13.5A2.25 2.25 0 0 1 21 6v2.25m-18 0 9 5.25 9-5.25"/></svg>
-          </a>
-        </div>
-      </div>
 
       <!-- ERP -->
       <div class="agent-card">
@@ -540,18 +475,7 @@
     </div>
   </main>
 
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-logo">Co<span>Staff</span></div>
-      <div class="footer-text">© 2026 CoStaffAI</div>
-      <div class="footer-links">
-        <a href="/">Home</a>
-        <a href="https://github.com/costaff-ai/costaff" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://forms.gle/9UVdi527sYUBuqcm6" target="_blank" rel="noopener">Get early access</a>
-        <a href="mailto:simonliuyuwei@gmail.com">Contact</a>
-      </div>
-    </div>
-  </footer>
+  <div id="cs-footer"></div>
 
   <script>
     (function () {
@@ -601,5 +525,6 @@
       document.addEventListener('keydown', e => { if (e.key === 'Escape') closeAll(); });
     })();
   </script>
+  <script src="/assets/site.js?v=16" defer></script>
 </body>
 </html>

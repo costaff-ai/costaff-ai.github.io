@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CoStaff — WebChat OSS</title>
+  <meta name="description" content="CoStaff WebChat OSS — a lightweight, open-source browser chat for your AI staff. No Telegram or Discord account required." />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    :root { --bg:#faf9f7; --bg-alt:#f3f2ef; --ink:#1a1917; --ink-2:#5a5855; --ink-3:#9a9895; --border:#e4e2de; --accent:#2d3a2e; --accent-2:#4a6741; --serif:'Noto Serif JP',Georgia,serif; --sans:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',monospace; }
+    html { scroll-behavior:smooth; }
+    body { background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:15px; line-height:1.7; -webkit-font-smoothing:antialiased; }
+  </style>
+  <link rel="stylesheet" href="/assets/site.css?v=16" />
+</head>
+<body>
+  <div id="cs-header"></div>
+
+  <header class="cs-hero">
+    <div class="cs-hero-inner">
+      <div class="cs-tag">Open source</div>
+      <div class="cs-hero-label">CoStaff WebChat OSS</div>
+      <h1 class="cs-hero-title">A browser chat<br/><span>for your AI staff.</span></h1>
+      <p class="cs-hero-desc">A lightweight browser interface — no Telegram, Discord, or LINE account required. Drop it on your own subdomain and let your team chat with the agents straight from the browser.</p>
+    </div>
+  </header>
+
+  <section class="cs-band">
+    <div class="cs-band-inner">
+      <div class="cs-band-head">
+        <div class="cs-band-num">01&nbsp;&nbsp;Highlights</div>
+        <h2 class="cs-band-title">Just a browser, nothing else.</h2>
+        <p class="cs-band-desc">Everything you need to hand work to your AI staff from the web.</p>
+      </div>
+      <div class="cs-grid">
+        <div class="cs-card"><h3>No third-party account</h3><p>Just a browser. Email + password login with identity hashing built in — nothing to install, nobody else in the loop.</p></div>
+        <div class="cs-card"><h3>Persistent conversations</h3><p>Your conversation stays put across reopen, so you can pick a thread back up exactly where you left it.</p></div>
+        <div class="cs-card"><h3>Async results, pushed back</h3><p>Long-running tasks finish in the background and push their results — files included — straight into the chat.</p></div>
+        <div class="cs-card"><h3>Self-hosted</h3><p>Runs on your own subdomain, on your own machine. Open source, so you can read and modify every line.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-band cs-band--alt">
+    <div class="cs-band-inner">
+      <div class="cs-band-head">
+        <div class="cs-band-num">02&nbsp;&nbsp;Get started</div>
+        <h2 class="cs-band-title">Put it on your own subdomain.</h2>
+        <p class="cs-band-desc">It ships with CoStaff — read the source, or explore the other channels.</p>
+      </div>
+      <div class="cs-btn-row" style="margin-top:0">
+        <a class="cs-btn primary" href="https://github.com/costaff-ai/costaff" target="_blank" rel="noopener">View on GitHub</a>
+        <a class="cs-btn ghost" href="/channels/">All channels</a>
+      </div>
+    </div>
+  </section>
+
+  <div id="cs-footer"></div>
+  <script src="/assets/site.js?v=16" defer></script>
+</body>
+</html>

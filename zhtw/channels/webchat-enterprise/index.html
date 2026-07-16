@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CoStaff — WebChat Enterprise</title>
+  <meta name="description" content="CoStaff WebChat 企業版：完整 chatbot 執行環境、全雙工 WebSocket、多租戶組織、走 CoStaff Identity 的 SSO、RBAC 與稽核，專為正式營運的團隊打造。" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    :root { --bg:#faf9f7; --bg-alt:#f3f2ef; --ink:#1a1917; --ink-2:#5a5855; --ink-3:#9a9895; --border:#e4e2de; --accent:#2d3a2e; --accent-2:#4a6741; --serif:'Noto Serif TC','Noto Serif JP',Georgia,serif; --sans:'Noto Sans TC','Inter',system-ui,sans-serif; --mono:'JetBrains Mono',monospace; }
+    html { scroll-behavior:smooth; }
+    body { background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:15px; line-height:1.8; -webkit-font-smoothing:antialiased; }
+  </style>
+  <link rel="stylesheet" href="/assets/site.css?v=16" />
+</head>
+<body>
+  <div id="cs-header"></div>
+
+  <header class="cs-hero">
+    <div class="cs-hero-inner">
+      <div class="cs-tag">Enterprise</div>
+      <div class="cs-hero-label">CoStaff WebChat Enterprise</div>
+      <h1 class="cs-hero-title">正式營運等級的<br/><span>企業版網頁通道。</span></h1>
+      <p class="cs-hero-desc">CoStaff WebChat 的企業版。瀏覽器入口與開源版相同，檔案傳遞與非同步推播亦兩版共用；差異在於企業版運行完整的 chatbot 執行環境，內建多租戶組織、單一登入與稽核。專為需要正式營運的團隊打造。</p>
+    </div>
+  </header>
+
+  <section class="cs-band">
+    <div class="cs-band-inner">
+      <div class="cs-band-head">
+        <div class="cs-band-num">01&nbsp;&nbsp;完整執行環境</div>
+        <h2 class="cs-band-title">建構於完整執行環境之上。</h2>
+        <p class="cs-band-desc">開源版為輕量的 HTTP 封裝；企業版則直接建構於共用的 chatbot 執行環境，與其他通道採用同一套管線，因而具備全雙工傳輸、去重、流量限制與 sub-agent 進度面板。</p>
+      </div>
+      <div class="cs-grid">
+        <div class="cs-card"><h3>全雙工 WebSocket</h3><p>維持持續連線，並具備重連與 ping/pong，訊息與串流回應即時雙向傳遞。</p></div>
+        <div class="cs-card"><h3>去重與流量限制</h3><p>重連與重試不會造成重複送出，並以每位使用者的流量限制，維持營運等級的穩定吞吐。</p></div>
+        <div class="cs-card"><h3>多組對話</h3><p>每位使用者可同時保有多組對話並隨時切換，對話歷史亦跨 session 保存。</p></div>
+        <div class="cs-card"><h3>檔案傳遞與上傳</h3><p>支援多檔上傳，產出檔案以短效、限本人的下載連結回傳，並可跨機器非同步傳遞。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-band cs-band--alt">
+    <div class="cs-band-inner">
+      <div class="cs-band-head">
+        <div class="cs-band-num">02&nbsp;&nbsp;存取與治理</div>
+        <h2 class="cs-band-title">企業等級的存取控制。</h2>
+        <p class="cs-band-desc">身分、多租戶與稽核皆內建，單一部署即可安全服務多個團隊與客戶。</p>
+      </div>
+      <div class="cs-grid">
+        <div class="cs-card"><h3>單一登入 (SSO)</h3><p>登入與角色委派予 CoStaff Identity（OIDC）：首次登入即自動佈建使用者、將驗證身分帶入 session，並支援真正的單一登出與 TOTP 兩階段驗證。</p></div>
+        <div class="cs-card"><h3>多租戶</h3><p>以 Org × Human Team × CoStaff Team 分流，讓客戶與團隊在共用基礎設施上清楚隔離。</p></div>
+        <div class="cs-card"><h3>角色權限 (RBAC)</h3><p>角色由身分中心解析，決定每位使用者可檢視與操作的範圍，分為 admin、member、viewer。</p></div>
+        <div class="cs-card"><h3>稽核與歷史</h3><p>保留稽核紀錄與可查詢的對話歷史，供合規、審查與客戶服務調閱。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-band">
+    <div class="cs-band-inner">
+      <div class="cs-band-head">
+        <div class="cs-band-num">03&nbsp;&nbsp;開始使用</div>
+        <h2 class="cs-band-title">想導入 WebChat Enterprise 嗎？</h2>
+        <p class="cs-band-desc">以私有、受管的企業服務形式提供。請告訴我們你的情境，我們將協助你取得使用權並完成部署。</p>
+      </div>
+      <div class="cs-btn-row" style="margin-top:0">
+        <a class="cs-btn primary" href="mailto:simonliuyuwei@gmail.com?subject=CoStaff%20WebChat%20Enterprise%20Inquiry">與我們聯絡</a>
+        <a class="cs-btn ghost" href="/zhtw/channels/">所有通訊軟體</a>
+      </div>
+    </div>
+  </section>
+
+  <div id="cs-footer"></div>
+  <script src="/assets/site.js?v=16" defer></script>
+</body>
+</html>

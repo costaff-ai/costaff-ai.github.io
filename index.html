@@ -58,12 +58,16 @@
     .nav-dd-btn:hover, .nav-item.dd-open .nav-dd-btn { color:var(--ink); }
     .nav-dd-btn .caret { transition:transform 0.2s; flex-shrink:0; }
     .nav-item.dd-open .caret { transform:rotate(180deg); }
-    .nav-dd { position:absolute; top:calc(100% + 16px); left:50%; transform:translateX(-50%) translateY(6px); min-width:250px; background:rgba(250,249,247,0.98); backdrop-filter:blur(14px); border:1px solid var(--border); border-radius:12px; box-shadow:0 18px 50px rgba(26,25,23,0.14); padding:8px; opacity:0; visibility:hidden; transition:opacity 0.18s ease, transform 0.18s ease, visibility 0.18s; z-index:101; }
+    .nav-dd { position:absolute; top:calc(100% + 16px); left:0; transform:translateY(6px); min-width:280px; background:rgba(250,249,247,0.98); backdrop-filter:blur(14px); border:1px solid var(--border); border-radius:14px; box-shadow:0 22px 60px rgba(26,25,23,0.16); padding:18px; opacity:0; visibility:hidden; transition:opacity 0.18s ease, transform 0.18s ease, visibility 0.18s; z-index:101; }
     .nav-dd::before { content:''; position:absolute; top:-18px; left:0; right:0; height:18px; } /* hover bridge across the gap */
-    .nav-item.dd-open .nav-dd { opacity:1; visibility:visible; transform:translateX(-50%) translateY(0); }
-    .nav-dd a { display:block; padding:10px 12px; border-radius:8px; text-decoration:none; transition:background 0.15s; }
+    .nav-item.dd-open .nav-dd { opacity:1; visibility:visible; transform:translateY(0); }
+    /* Mega-menu: full multi-column grouped panel (Wren-style, CoStaff palette) */
+    .nav-dd--mega { display:grid; grid-template-columns:repeat(2, minmax(250px,1fr)); gap:2px 30px; padding:22px 24px; }
+    .nav-dd-col { display:flex; flex-direction:column; }
+    .nav-dd-head { font-family:var(--mono); font-size:10.5px; letter-spacing:0.14em; text-transform:uppercase; color:var(--accent-2); padding:4px 12px 9px; }
+    .nav-dd a { display:block; padding:9px 12px; border-radius:9px; text-decoration:none; transition:background 0.15s; }
     .nav-dd a:hover { background:var(--bg-alt); }
-    .nav-dd a strong { display:block; font-size:13px; font-weight:500; color:var(--ink); margin-bottom:2px; }
+    .nav-dd a strong { display:block; font-size:13.5px; font-weight:500; color:var(--ink); margin-bottom:3px; }
     .nav-dd a span { display:block; font-size:11.5px; color:var(--ink-3); line-height:1.55; }
     .nav-logo { font-family:var(--serif); font-weight:400; font-size:17px; letter-spacing:0.04em; color:var(--ink); text-decoration:none; }
     .nav-logo span { color:var(--accent-2); }
@@ -264,38 +268,38 @@
     @media(max-width:720px){ .partners-row{gap:36px;} .partners-row img{max-height:38px;} }
 
     /* PRIVACY */
-    #privacy { background:var(--ink); color:#e2e0d8; }
-    #privacy .section-num { color:#4a4845; }
-    #privacy .section-num::after { background:#2a2a28; }
-    #privacy .section-title { color:#e2e0d8; }
-    #privacy .section-desc { color:#8a8885; max-width:520px; }
+    #privacy { background:var(--bg-alt); color:var(--ink); }
+    #privacy .section-num { color:var(--ink-3); }
+    #privacy .section-num::after { background:var(--border); }
+    #privacy .section-title { color:var(--ink); }
+    #privacy .section-desc { color:var(--ink-2); max-width:520px; }
     .privacy-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; margin-top:52px; }
-    .privacy-item { padding:36px 32px; border:1px solid #2a2a28; display:flex; flex-direction:column; justify-content:center; }
-    .privacy-item-title { font-size:14px; font-weight:500; color:#e2e0d8; margin-bottom:8px; }
-    .privacy-item-text { font-size:13px; color:#6a6865; line-height:1.8; }
+    .privacy-item { padding:36px 32px; border:1px solid var(--border); background:var(--bg); display:flex; flex-direction:column; justify-content:center; }
+    .privacy-item-title { font-size:14px; font-weight:500; color:var(--ink); margin-bottom:8px; }
+    .privacy-item-text { font-size:13px; color:var(--ink-2); line-height:1.8; }
 
-    /* FINAL CTA — dark closing panel with radial glow (Wren pattern, CoStaff green) */
-    #start { background:var(--ink); color:#e2e0d8; }
-    .start-panel { max-width:860px; margin:0 auto; border:1px solid #2f2f2c; border-radius:16px; padding:60px 48px 52px; text-align:center; position:relative; overflow:hidden;
-      background: radial-gradient(ellipse 90% 75% at 50% -10%, rgba(74,103,65,0.4), transparent 62%), #151513; }
-    .start-kicker { font-family:var(--mono); font-size:10px; letter-spacing:0.22em; text-transform:uppercase; color:#7a9a6d; margin-bottom:18px; }
-    .start-title { font-family:var(--serif); font-weight:300; font-size:clamp(26px,4vw,40px); line-height:1.25; color:#efede6; margin-bottom:14px; }
-    .start-sub { font-size:14px; color:#8a8885; max-width:460px; margin:0 auto 26px; line-height:1.8; }
-    .start-install { display:inline-flex; flex-wrap:wrap; justify-content:center; max-width:100%; align-items:center; gap:10px 14px; background:#1d1d1b; border:1px solid #33332f; border-radius:8px; padding:12px 18px; font-family:var(--mono); font-size:13px; color:#e2e0d8; margin-bottom:26px; }
-    .start-copy { background:none; border:1px solid #33332f; color:#8a8885; border-radius:5px; font-size:9.5px; font-family:var(--mono); letter-spacing:0.08em; padding:5px 10px; cursor:pointer; transition:all .2s; text-transform:uppercase; }
-    .start-copy:hover { color:#e2e0d8; border-color:#5a5855; }
+    /* FINAL CTA — light closing panel with soft green radial glow (CoStaff green) */
+    #start { background:var(--bg); color:var(--ink); }
+    .start-panel { max-width:860px; margin:0 auto; border:1px solid var(--border); border-radius:16px; padding:60px 48px 52px; text-align:center; position:relative; overflow:hidden;
+      background: radial-gradient(ellipse 90% 75% at 50% -10%, rgba(74,103,65,0.12), transparent 62%), #fff; box-shadow:0 24px 60px rgba(26,25,23,0.06); }
+    .start-kicker { font-family:var(--mono); font-size:10px; letter-spacing:0.22em; text-transform:uppercase; color:var(--accent-2); margin-bottom:18px; }
+    .start-title { font-family:var(--serif); font-weight:300; font-size:clamp(26px,4vw,40px); line-height:1.25; color:var(--ink); margin-bottom:14px; }
+    .start-sub { font-size:14px; color:var(--ink-2); max-width:460px; margin:0 auto 26px; line-height:1.8; }
+    .start-install { display:inline-flex; flex-wrap:wrap; justify-content:center; max-width:100%; align-items:center; gap:10px 14px; background:var(--bg-alt); border:1px solid var(--border); border-radius:8px; padding:12px 18px; font-family:var(--mono); font-size:13px; color:var(--ink); margin-bottom:26px; }
+    .start-copy { background:none; border:1px solid var(--border); color:var(--ink-2); border-radius:5px; font-size:9.5px; font-family:var(--mono); letter-spacing:0.08em; padding:5px 10px; cursor:pointer; transition:all .2s; text-transform:uppercase; }
+    .start-copy:hover { color:var(--ink); border-color:var(--ink-3); }
     .start-actions { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; }
-    .btn-ghost-dark { background:transparent; color:#c9c7c0; font-size:13px; padding:12px 24px; border-radius:4px; text-decoration:none; border:1px solid #3a3a37; transition:all .2s; }
-    .btn-ghost-dark:hover { border-color:#6a6865; color:#efede6; }
+    .btn-ghost-dark { background:transparent; color:var(--ink); font-size:13px; padding:12px 24px; border-radius:4px; text-decoration:none; border:1px solid var(--border); transition:all .2s; }
+    .btn-ghost-dark:hover { border-color:var(--ink-3); color:var(--ink); background:var(--bg-alt); }
 
-    footer { background:var(--ink); border-top:1px solid #2a2a28; padding:40px 24px; }
+    footer { background:var(--bg); border-top:1px solid var(--border); padding:40px 24px; }
     .footer-inner { max-width:var(--max); margin:0 auto; display:flex; align-items:center; justify-content:space-between; }
-    .footer-logo { font-family:var(--serif); font-size:16px; color:#e2e0d8; }
+    .footer-logo { font-family:var(--serif); font-size:16px; color:var(--ink); }
     .footer-logo span { color:var(--accent-2); }
-    .footer-text { font-size:12px; color:#4a4845; }
+    .footer-text { font-size:12px; color:var(--ink-3); }
     .footer-links { display:flex; gap:24px; }
-    .footer-links a, .footer-links span { font-size:12px; color:#5a5855; text-decoration:none; transition:color 0.2s; }
-    .footer-links a:hover { color:#8a8885; }
+    .footer-links a, .footer-links span { font-size:12px; color:var(--ink-2); text-decoration:none; transition:color 0.2s; }
+    .footer-links a:hover { color:var(--ink); }
 
     @media(max-width:720px){
       .coming-soon-banner{font-size:11px;gap:8px;}
@@ -320,6 +324,8 @@
       .nav-dd-btn{width:100%; padding:14px 0 4px; font-size:11px; letter-spacing:0.12em; text-transform:uppercase; color:var(--ink-3); pointer-events:none;}
       .nav-dd-btn .caret{display:none;}
       .nav-dd{position:static; transform:none; opacity:1; visibility:visible; min-width:0; background:none; border:none; box-shadow:none; padding:0; backdrop-filter:none;}
+      .nav-dd--mega{display:block; padding:0; gap:0;}
+      .nav-dd-head{display:none;}
       .nav-dd::before{display:none;}
       .nav-dd a{padding:12px 0 12px 14px; border-radius:0; border-bottom:1px solid var(--border);}
       .nav-dd a strong{font-size:15px; font-weight:400; margin-bottom:0;}
@@ -361,7 +367,7 @@
     }
     .hero-inner { grid-template-columns: 1.04fr 0.96fr; gap: 56px; }
     #start { position: relative; padding-bottom: 100px; }
-    #start .footer-inner { position: absolute; left: 24px; right: 24px; bottom: 24px; max-width: var(--max); margin: 0 auto; border-top: 1px solid #2a2a28; padding-top: 20px; }
+    #start .footer-inner { position: absolute; left: 24px; right: 24px; bottom: 24px; max-width: var(--max); margin: 0 auto; border-top: 1px solid var(--border); padding-top: 20px; }
 
     /* Tighter spacing so everything fits in 100vh */
     .section-header  { margin-bottom: 24px; }
@@ -461,65 +467,11 @@
     .si-item.active .si-dot { background: var(--ink); transform: scale(1.75); }
     @media (max-width: 768px) { .scroll-indicator { display: none; } }
   </style>
+  <link rel="stylesheet" href="/assets/site.css?v=16" />
 </head>
 <body>
 
-  <!-- Coming Soon banner -->
-  <div class="coming-soon-banner">
-    <span class="cs-label">🎉 Now open source · v0.1.0-beta-3</span>
-    <span class="cs-sub">— Join the waitlist for GA notifications</span>
-    <a href="https://forms.gle/9UVdi527sYUBuqcm6" target="_blank" rel="noopener">Join waitlist →</a>
-  </div>
-
-  <aside class="scroll-indicator" aria-label="Section navigation">
-    <button class="si-item active" data-target=".hero"><span class="si-label">Intro</span><div class="si-dot"></div></button>
-    <button class="si-item" data-target="#demo"><span class="si-label">Demo</span><div class="si-dot"></div></button>
-    <button class="si-item" data-target="#problems"><span class="si-label">01 Why</span><div class="si-dot"></div></button>
-    <button class="si-item" data-target="#how"><span class="si-label">02 How</span><div class="si-dot"></div></button>
-    <button class="si-item" data-target="#cli"><span class="si-label">03 CLI</span><div class="si-dot"></div></button>
-    <button class="si-item" data-target="#channels"><span class="si-label">04 Where</span><div class="si-dot"></div></button>
-    <button class="si-item" data-target="#plans"><span class="si-label">05 Plans</span><div class="si-dot"></div></button>
-    <button class="si-item" data-target="#privacy"><span class="si-label">06 Privacy</span><div class="si-dot"></div></button>
-    <button class="si-item" data-target="#start"><span class="si-label">Start</span><div class="si-dot"></div></button>
-  </aside>
-
-  <nav>
-    <a class="nav-logo" href="/">Co<span>Staff</span></a>
-    <div class="nav-links" id="primary-nav">
-      <a class="nav-home" href="/">Home</a>
-      <div class="nav-item has-dd">
-        <button class="nav-dd-btn" aria-expanded="false" aria-haspopup="true">Product
-          <svg class="caret" width="9" height="9" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <div class="nav-dd">
-          <a href="/agents/"><strong>AI Staff</strong><span>Specialist agents for every domain</span></a>
-          <a href="/channels/"><strong>Channels</strong><span>Hand off work in Telegram or WebChat</span></a>
-          <a href="/platforms/"><strong>Platforms</strong><span>Business systems your staff works with</span></a>
-        </div>
-      </div>
-      <div class="nav-item has-dd">
-        <button class="nav-dd-btn" aria-expanded="false" aria-haspopup="true">Architecture
-          <svg class="caret" width="9" height="9" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <div class="nav-dd">
-          <a href="/architecture/"><strong>System architecture</strong><span>Six layers, independently replaceable</span></a>
-          <a href="/user-flow/"><strong>User flow</strong><span>One hand-off, end to end</span></a>
-        </div>
-      </div>
-      <a href="/docs/">Docs</a>
-    </div>
-    <div class="nav-right">
-      <a class="nav-lang" href="/zhtw/">繁中</a>
-      <a class="nav-gh" href="https://github.com/costaff-ai/costaff" target="_blank" rel="noopener">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-        GitHub
-      </a>
-      <a class="nav-cta" href="https://forms.gle/9UVdi527sYUBuqcm6" target="_blank" rel="noopener">Get early access</a>
-      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="primary-nav">
-        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-      </button>
-    </div>
-  </nav>
+  <div id="cs-header"></div>
 
   <!-- HERO -->
   <section class="hero">
@@ -1034,10 +986,11 @@
         it.classList.remove('dd-open');
         it.querySelector('.nav-dd-btn').setAttribute('aria-expanded', 'false');
       });
+      let hideTimer;
       items.forEach(item => {
         const btn = item.querySelector('.nav-dd-btn');
-        let hideTimer;
         const open = () => {
+          clearTimeout(hideTimer);
           closeAll();
           item.classList.add('dd-open');
           btn.setAttribute('aria-expanded', 'true');
@@ -1250,5 +1203,6 @@
     })();
   </script>
 
+  <script src="/assets/site.js?v=16" defer></script>
 </body>
 </html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CoStaff — Identity</title>
+  <meta name="description" content="CoStaff Identity is a standards-based OIDC identity provider — one account and single sign-on across every CoStaff platform." />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    :root { --bg:#faf9f7; --bg-alt:#f3f2ef; --ink:#1a1917; --ink-2:#5a5855; --ink-3:#9a9895; --border:#e4e2de; --accent:#2d3a2e; --accent-2:#4a6741; --serif:'Noto Serif JP',Georgia,serif; --sans:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',monospace; }
+    html { scroll-behavior:smooth; }
+    body { background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:15px; line-height:1.7; -webkit-font-smoothing:antialiased; }
+  </style>
+  <link rel="stylesheet" href="/assets/site.css?v=16" />
+</head>
+<body>
+  <div id="cs-header"></div>
+
+  <header class="cs-hero">
+    <div class="cs-hero-inner">
+      <div class="cs-tag">Enterprise service</div>
+      <div class="cs-hero-label">CoStaff Identity</div>
+      <h1 class="cs-hero-title">One account.<br/><span>Single sign-on everywhere.</span></h1>
+      <p class="cs-hero-desc">A standards-based OIDC identity provider for the CoStaff platform family. It centralises who a user is — accounts, passwords, roles — and lets every platform delegate login to it over standard OpenID Connect.</p>
+    </div>
+  </header>
+
+  <section class="cs-band">
+    <div class="cs-band-inner">
+      <div class="cs-band-head">
+        <div class="cs-band-num">01&nbsp;&nbsp;Why it exists</div>
+        <h2 class="cs-band-title">Identity as a shared service.</h2>
+      </div>
+      <p class="cs-band-text">Each platform used to carry its own users table and login — N password stores, N audit trails, N reset-password flows. Identity makes login a shared service: the identity provider owns identity, and each app owns authorization by reading roles from the token — identity and access, cleanly separated.</p>
+    </div>
+  </section>
+
+  <section class="cs-band cs-band--alt">
+    <div class="cs-band-inner">
+      <div class="cs-band-head">
+        <div class="cs-band-num">02&nbsp;&nbsp;What's inside</div>
+        <h2 class="cs-band-title">One place to manage accounts.</h2>
+        <p class="cs-band-desc">Login lives in one service; every platform trusts it.</p>
+      </div>
+      <div class="cs-grid">
+        <div class="cs-card"><h3>Single sign-on</h3><p>Log in once, and every CoStaff platform trusts the session. Users, passwords, and realm roles live in one place.</p></div>
+        <div class="cs-card"><h3>Standards-based OIDC</h3><p>OpenID Connect with authorization code + PKCE, RS256-signed tokens, and a JWKS endpoint apps use to verify them.</p></div>
+        <div class="cs-card"><h3>IdP owns identity, apps own access</h3><p>The provider manages accounts and login; each app reads roles from the token and decides what each role may do.</p></div>
+        <div class="cs-card"><h3>Self-hosted admin console</h3><p>A single-realm console to manage users, roles, and relying-party clients. Adding a platform is just registering another OIDC client.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-band">
+    <div class="cs-band-inner">
+      <div class="cs-band-head">
+        <div class="cs-band-num">03&nbsp;&nbsp;Get started</div>
+        <h2 class="cs-band-title">Want to use CoStaff Identity?</h2>
+        <p class="cs-band-desc">It runs as a private, managed enterprise service. Get in touch to get access and set it up for your platforms.</p>
+      </div>
+      <div class="cs-btn-row" style="margin-top:0">
+        <a class="cs-btn primary" href="mailto:simonliuyuwei@gmail.com?subject=CoStaff%20Identity%20Inquiry">Get in touch</a>
+        <a class="cs-btn ghost" href="/platforms/">See the platforms</a>
+      </div>
+    </div>
+  </section>
+
+  <div id="cs-footer"></div>
+  <script src="/assets/site.js?v=16" defer></script>
+</body>
+</html>

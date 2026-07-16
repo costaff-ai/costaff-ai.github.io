@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CoStaff — WebChat OSS</title>
+  <meta name="description" content="CoStaff WebChat OSS：輕量、開源的網頁聊天介面，讓團隊在瀏覽器中向 AI 員工交辦工作，無需任何第三方通訊帳號。" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    :root { --bg:#faf9f7; --bg-alt:#f3f2ef; --ink:#1a1917; --ink-2:#5a5855; --ink-3:#9a9895; --border:#e4e2de; --accent:#2d3a2e; --accent-2:#4a6741; --serif:'Noto Serif TC','Noto Serif JP',Georgia,serif; --sans:'Noto Sans TC','Inter',system-ui,sans-serif; --mono:'JetBrains Mono',monospace; }
+    html { scroll-behavior:smooth; }
+    body { background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:15px; line-height:1.8; -webkit-font-smoothing:antialiased; }
+  </style>
+  <link rel="stylesheet" href="/assets/site.css?v=16" />
+</head>
+<body>
+  <div id="cs-header"></div>
+
+  <header class="cs-hero">
+    <div class="cs-hero-inner">
+      <div class="cs-tag">開源</div>
+      <div class="cs-hero-label">CoStaff WebChat OSS</div>
+      <h1 class="cs-hero-title">給 AI 員工的<br/><span>網頁聊天入口。</span></h1>
+      <p class="cs-hero-desc">輕量的瀏覽器介面，無需任何第三方通訊帳號。部署於你的子網域，團隊即可直接在瀏覽器中向 Agent 交辦工作。</p>
+    </div>
+  </header>
+
+  <section class="cs-band">
+    <div class="cs-band-inner">
+      <div class="cs-band-head">
+        <div class="cs-band-num">01&nbsp;&nbsp;重點特色</div>
+        <h2 class="cs-band-title">只需一個瀏覽器。</h2>
+        <p class="cs-band-desc">從網頁向 AI 員工交辦工作，所需功能一應俱全。</p>
+      </div>
+      <div class="cs-grid">
+        <div class="cs-card"><h3>無需第三方帳號</h3><p>僅需瀏覽器。內建 Email 與密碼登入及身分雜湊，無須安裝，亦無中介。</p></div>
+        <div class="cs-card"><h3>對話持久保存</h3><p>重新開啟後對話依然保留，可從上次中斷處繼續。</p></div>
+        <div class="cs-card"><h3>非同步結果自動回傳</h3><p>長時間任務於背景完成後，會將結果（含檔案）直接回傳至聊天室。</p></div>
+        <div class="cs-card"><h3>完全自行部署</h3><p>運行於你的子網域與機器上。完全開源，每一行皆可檢視與修改。</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-band cs-band--alt">
+    <div class="cs-band-inner">
+      <div class="cs-band-head">
+        <div class="cs-band-num">02&nbsp;&nbsp;開始使用</div>
+        <h2 class="cs-band-title">部署至你的子網域。</h2>
+        <p class="cs-band-desc">隨 CoStaff 一同提供；歡迎閱讀原始碼，或瀏覽其他通訊軟體。</p>
+      </div>
+      <div class="cs-btn-row" style="margin-top:0">
+        <a class="cs-btn primary" href="https://github.com/costaff-ai/costaff" target="_blank" rel="noopener">前往 GitHub</a>
+        <a class="cs-btn ghost" href="/zhtw/channels/">所有通訊軟體</a>
+      </div>
+    </div>
+  </section>
+
+  <div id="cs-footer"></div>
+  <script src="/assets/site.js?v=16" defer></script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CoStaff — Manager</title>
+  <meta name="description" content="CoStaff Manager is the orchestrator at the heart of CoStaff — the single assistant you chat with. It routes work to specialist agents, schedules tasks, and delivers results back to your chat." />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    :root { --bg:#faf9f7; --bg-alt:#f3f2ef; --ink:#1a1917; --ink-2:#5a5855; --ink-3:#9a9895; --border:#e4e2de; --accent:#2d3a2e; --accent-2:#4a6741; --serif:'Noto Serif JP',Georgia,serif; --sans:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',monospace; }
+    html { scroll-behavior:smooth; }
+    body { background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:15px; line-height:1.7; -webkit-font-smoothing:antialiased; }
+    .mgr-code { display:inline-block; font-family:var(--mono); font-size:13px; color:var(--ink); background:var(--bg-alt); border:1px solid var(--border); border-radius:8px; padding:12px 18px; margin-bottom:26px; overflow-x:auto; max-width:100%; }
+    .mgr-code .p { color:var(--accent-2); user-select:none; margin-right:8px; }
+  </style>
+  <link rel="stylesheet" href="/assets/site.css?v=16" />
+</head>
+<body>
+  <div id="cs-header"></div>
+
+  <header class="cs-hero">
+    <div class="cs-hero-inner">
+      <div class="cs-hero-label">CoStaff Manager</div>
+      <h1 class="cs-hero-title">The one you talk to.<br/><span>It runs your whole staff.</span></h1>
+      <p class="cs-hero-desc">CoStaff Manager is the orchestrator at the heart of CoStaff — the single assistant you chat with. It reads your request, routes the work to the right specialist agents, schedules reminders and recurring tasks, and delivers the finished result back to your conversation.</p>
+    </div>
+  </header>
+
+  <section class="cs-band">
+    <div class="cs-band-inner">
+      <div class="cs-band-head">
+        <div class="cs-band-num">01&nbsp;&nbsp;What it does</div>
+        <h2 class="cs-band-title">One conversation, a whole team behind it.</h2>
+        <p class="cs-band-desc">You talk to one assistant. The Manager quietly puts your staff to work.</p>
+      </div>
+      <div class="cs-grid">
+        <div class="cs-card"><h3>Chat with one assistant</h3><p>Reach it from Telegram, Discord, LINE, or the built-in web chat — one place to hand off anything.</p></div>
+        <div class="cs-card"><h3>Routes work to specialists</h3><p>It reads what you need and hands the job to the right agent — coding, business analysis, or any agent you add.</p></div>
+        <div class="cs-card"><h3>Hub-and-spoke orchestration</h3><p>Manager → agent A → Manager → agent B → Manager → you. Specialists collaborate; you only see the clean result.</p></div>
+        <div class="cs-card"><h3>Reminders &amp; recurring tasks</h3><p>"Remind me at 3 PM" or "summarise AI news every morning" — it schedules the job and pushes results to your channel.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-band cs-band--alt">
+    <div class="cs-band-inner">
+      <div class="cs-band-head">
+        <div class="cs-band-num">02&nbsp;&nbsp;Built on open standards</div>
+        <h2 class="cs-band-title">The open core of CoStaff.</h2>
+        <p class="cs-band-desc">No lock-in — the Manager is open source and speaks the same protocols the whole ecosystem does.</p>
+      </div>
+      <div class="cs-grid">
+        <div class="cs-card"><h3>Google ADK</h3><p>Built as a Google ADK LlmAgent — a pure orchestrator pattern, ~30 lines of wiring.</p></div>
+        <div class="cs-card"><h3>A2A protocol</h3><p>Talks to specialist agents over the open A2A protocol, so you can plug in your own.</p></div>
+        <div class="cs-card"><h3>MCP tools</h3><p>Uses MCP servers for scheduling, notifications, file handling, and more.</p></div>
+        <div class="cs-card"><h3>Self-hosted &amp; open</h3><p>Runs on your own machine as the CoStaff core. Open source under AGPL v3.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-band">
+    <div class="cs-band-inner">
+      <div class="cs-band-head">
+        <div class="cs-band-num">03&nbsp;&nbsp;Get started</div>
+        <h2 class="cs-band-title">Run your own Manager.</h2>
+        <p class="cs-band-desc">Three commands from zero to a working Manager and staff — entirely on your own hardware.</p>
+      </div>
+      <div class="mgr-code"><span class="p">$</span>curl -fsSL https://raw.githubusercontent.com/costaff-ai/costaff/main/install.sh | bash</div>
+      <div class="cs-btn-row" style="margin-top:0">
+        <a class="cs-btn primary" href="https://github.com/costaff-ai/costaff" target="_blank" rel="noopener">View on GitHub</a>
+        <a class="cs-btn ghost" href="/docs/">Read the docs</a>
+      </div>
+    </div>
+  </section>
+
+  <div id="cs-footer"></div>
+  <script src="/assets/site.js?v=16" defer></script>
+</body>
+</html>

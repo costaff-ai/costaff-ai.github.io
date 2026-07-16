@@ -179,53 +179,11 @@
       .nav-dd a span{display:none;}
     }
   </style>
+  <link rel="stylesheet" href="/assets/site.css?v=16" />
 </head>
 <body>
 
-  <!-- Coming Soon banner -->
-  <div class="coming-soon-banner">
-    <span class="cs-label">🎉 已開源 · v0.1.0-beta-3</span>
-    <span class="cs-sub">— 加入候補名單，正式版上線第一時間通知</span>
-    <a href="https://forms.gle/9UVdi527sYUBuqcm6" target="_blank" rel="noopener">加入候補 →</a>
-  </div>
-
-  <nav>
-    <a class="nav-logo" href="/zhtw/">Co<span>Staff</span></a>
-    <div class="nav-links" id="primary-nav">
-      <a class="nav-home" href="/zhtw/">首頁</a>
-      <div class="nav-item has-dd">
-        <button class="nav-dd-btn" aria-expanded="false" aria-haspopup="true">產品
-          <svg class="caret" width="9" height="9" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <div class="nav-dd">
-          <a href="/zhtw/agents/" class="active"><strong>AI 員工</strong><span>各領域的專家 Agent 團隊</span></a>
-          <a href="/zhtw/channels/"><strong>通訊軟體</strong><span>在 Telegram、WebChat 直接交辦</span></a>
-          <a href="/zhtw/platforms/"><strong>企業平台</strong><span>與 AI 員工協作的業務系統</span></a>
-        </div>
-      </div>
-      <div class="nav-item has-dd">
-        <button class="nav-dd-btn" aria-expanded="false" aria-haspopup="true">架構
-          <svg class="caret" width="9" height="9" viewBox="0 0 10 10" fill="none"><path d="M2 3.5L5 6.5L8 3.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <div class="nav-dd">
-          <a href="/zhtw/architecture/"><strong>技術架構</strong><span>六層架構，各自獨立可替換</span></a>
-          <a href="/zhtw/user-flow/"><strong>應用架構</strong><span>一次交辦的完整流程</span></a>
-        </div>
-      </div>
-      <a href="/zhtw/docs/">文件</a>
-    </div>
-    <div class="nav-right">
-      <a class="nav-lang" href="/agents/">EN</a>
-      <a class="nav-gh" href="https://github.com/costaff-ai/costaff" target="_blank" rel="noopener">
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
-        GitHub
-      </a>
-      <a class="nav-cta" href="https://forms.gle/9UVdi527sYUBuqcm6" target="_blank" rel="noopener">搶先預約</a>
-      <button class="nav-toggle" aria-label="切換選單" aria-expanded="false" aria-controls="primary-nav">
-        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
-      </button>
-    </div>
-  </nav>
+  <div id="cs-header"></div>
 
   <header class="page-header">
     <div class="page-label">CoStaff Agents</div>
@@ -734,18 +692,7 @@
     </div>
   </main>
 
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-logo">Co<span>Staff</span></div>
-      <div class="footer-text">© 2026 CoStaffAI</div>
-      <div class="footer-links">
-        <a href="/zhtw/">首頁</a>
-        <a href="https://github.com/costaff-ai/costaff" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://forms.gle/9UVdi527sYUBuqcm6" target="_blank" rel="noopener">搶先預約</a>
-        <a href="mailto:simonliuyuwei@gmail.com">聯絡</a>
-      </div>
-    </div>
-  </footer>
+  <div id="cs-footer"></div>
 
   <script>
     (function () {
@@ -795,5 +742,6 @@
       document.addEventListener('keydown', e => { if (e.key === 'Escape') closeAll(); });
     })();
   </script>
+  <script src="/assets/site.js?v=16" defer></script>
 </body>
 </html>
