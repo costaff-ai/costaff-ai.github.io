@@ -4,6 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CoStaff — 你的 AI 員工，隨時就緒</title>
+  <meta name="description" content="開源、可自架的多 Agent 系統。在通訊軟體中把工作交辦出去，專業 AI Agent 互相協作完成任務。採用 MCP 串接工具、A2A 進行 Agent 間通訊，全部跑在你自己的硬體上。" />
+  <link rel="icon" href="/images/logo/favicon.ico" sizes="any" />
+  <link rel="icon" href="/images/logo/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/images/logo/apple-touch-icon.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="CoStaff" />
+  <meta property="og:title" content="CoStaff — 你的 AI 員工，隨時就緒" />
+  <meta property="og:description" content="開源、可自架的多 Agent 系統。在通訊軟體中把工作交辦出去，專業 AI Agent 互相協作完成任務。採用 MCP 串接工具、A2A 進行 Agent 間通訊，全部跑在你自己的硬體上。" />
+  <meta property="og:url" content="https://costaffs.app/zhtw/" />
+  <meta property="og:image" content="https://costaffs.app/images/logo/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://costaffs.app/images/logo/og.png" />
+
   <meta name="robots" content="index, follow, all, max-image-preview:large" />
   <link rel="describedby" href="/llms.txt" type="text/markdown" />
   <link rel="alternate" type="text/markdown" href="/zhtw/index.md" />
@@ -300,6 +315,7 @@
     footer { background:var(--bg); border-top:1px solid var(--border); padding:40px 24px; }
     .footer-inner { max-width:var(--max); margin:0 auto; display:flex; align-items:center; justify-content:space-between; }
     .footer-logo { font-family:var(--serif); font-size:16px; color:var(--ink); }
+    .footer-mark { width:20px; height:20px; vertical-align:-4px; margin-right:8px; }
     .footer-logo span { color:var(--accent-2); }
     .footer-text { font-size:12px; color:var(--ink-3); }
     .footer-links { display:flex; gap:24px; }
@@ -471,7 +487,7 @@
     .si-item.active .si-dot { background: var(--ink); transform: scale(1.75); }
     @media (max-width: 768px) { .scroll-indicator { display: none; } }
   </style>
-  <link rel="stylesheet" href="/assets/site.css?v=16" />
+  <link rel="stylesheet" href="/assets/site.css?v=17" />
 </head>
 <body>
 
@@ -951,7 +967,7 @@
       </div>
     </div>
     <div class="footer-inner">
-      <div class="footer-logo">Co<span>Staff</span></div>
+      <div class="footer-logo"><img class="footer-mark" src="/images/logo/mark.svg" alt="" width="20" height="20" />Co<span>Staff</span></div>
       <div class="footer-text">© 2026 CoStaffAI</div>
       <div class="footer-links">
         <a href="https://github.com/costaff-ai/costaff" target="_blank" rel="noopener">GitHub</a>
@@ -1207,6 +1223,6 @@
     })();
   </script>
 
-  <script src="/assets/site.js?v=16" defer></script>
+  <script src="/assets/site.js?v=17" defer></script>
 </body>
 </html>

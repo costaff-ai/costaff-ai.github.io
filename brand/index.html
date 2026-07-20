@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CoStaff — Brand Guidelines</title>
+  <meta name="description" content="How to use the CoStaff logo: download every variant, and see the colour, spacing and sizing that keep the mark recognisable wherever it appears." />
+  <link rel="icon" href="/images/logo/favicon.ico" sizes="any" />
+  <link rel="icon" href="/images/logo/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/images/logo/apple-touch-icon.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="CoStaff" />
+  <meta property="og:title" content="CoStaff — Brand Guidelines" />
+  <meta property="og:description" content="How to use the CoStaff logo: download every variant, and see the colour, spacing and sizing that keep the mark recognisable wherever it appears." />
+  <meta property="og:url" content="https://costaffs.app/brand/" />
+  <meta property="og:image" content="https://costaffs.app/images/logo/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://costaffs.app/images/logo/og.png" />
+  <meta name="robots" content="index, follow, all, max-image-preview:large" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://costaffs.app/zhtw/brand/" />
+  <link rel="alternate" hreflang="en" href="https://costaffs.app/brand/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/site.css?v=17" />
+  <style>
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    :root { --bg:#faf9f7; --bg-alt:#f3f2ef; --ink:#1a1917; --ink-2:#5a5855; --ink-3:#9a9895; --border:#e4e2de; --accent:#2d3a2e; --accent-2:#4a6741; --serif:'Noto Serif JP',Georgia,serif; --sans:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',monospace; }
+    html { scroll-behavior:smooth; }
+    body { background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:15px; line-height:1.7; -webkit-font-smoothing:antialiased; }
+
+    .brand-dl-all { display:inline-flex; align-items:center; gap:10px; margin-top:26px;
+      background:var(--accent); color:#fff; border-radius:10px; padding:13px 22px;
+      font-size:14px; font-weight:500; text-decoration:none; transition:background .2s; }
+    .brand-dl-all:hover { background:var(--accent-2); }
+    .brand-dl-all span { font-family:var(--mono); font-size:11px; opacity:.7; }
+
+    .brand-asset { display:grid; grid-template-columns:1fr 300px; gap:28px; align-items:center;
+      border:1px solid var(--border); border-radius:12px; background:#fff; overflow:hidden; margin-bottom:16px; }
+    .brand-preview { display:flex; align-items:center; justify-content:center; padding:40px 32px; min-height:190px; }
+    .brand-preview.on-light { background:#fff; }
+    .brand-preview.on-dark  { background:#14181f; }
+    .brand-preview img { max-width:100%; max-height:110px; height:auto; }
+    .brand-meta { padding:26px 28px 26px 0; }
+    .brand-meta h3 { font-family:var(--serif); font-weight:400; font-size:19px; margin-bottom:7px; }
+    .brand-meta p { font-size:13.5px; color:var(--ink-2); line-height:1.75; margin-bottom:16px; }
+    .brand-dl { display:flex; gap:8px; flex-wrap:wrap; }
+    .brand-dl a { font-family:var(--mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase;
+      border:1px solid var(--border); border-radius:7px; padding:7px 13px; color:var(--ink-2);
+      text-decoration:none; transition:border-color .2s,color .2s; }
+    .brand-dl a:hover { border-color:var(--accent-2); color:var(--accent-2); }
+
+    .brand-colors { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:16px; }
+    .brand-color { border:1px solid var(--border); border-radius:12px; overflow:hidden; background:#fff; }
+    .brand-chip { height:96px; }
+    .brand-color-meta { padding:16px 18px; }
+    .brand-color-meta strong { display:block; font-size:14px; margin-bottom:4px; }
+    .brand-color-meta code { font-family:var(--mono); font-size:12px; color:var(--ink-2); }
+    .brand-color-meta span { display:block; font-size:12.5px; color:var(--ink-3); margin-top:7px; line-height:1.6; }
+
+    /* diagrams */
+    .brand-figs { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    .brand-fig { border:1px solid var(--border); border-radius:12px; background:#fff; overflow:hidden; }
+    .brand-fig img { width:100%; height:auto; display:block; }
+    .brand-fig figcaption { padding:20px 24px 22px; border-top:1px solid var(--border); }
+    .brand-fig h3 { font-size:12px; font-family:var(--mono); letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); margin-bottom:9px; }
+    .brand-fig p { font-size:14px; color:var(--ink-2); line-height:1.75; }
+    .brand-fig code { font-family:var(--mono); font-size:12.5px; color:var(--ink); background:var(--bg-alt); padding:1px 5px; border-radius:4px; }
+
+    /* two-column guidance */
+    .brand-rules { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    .brand-rule { border:1px solid var(--border); border-radius:12px; background:#fff; padding:26px 26px 24px; }
+    .brand-rule h3 { font-size:12px; font-family:var(--mono); letter-spacing:.1em; text-transform:uppercase; margin-bottom:18px; }
+    .brand-rule.ok h3 { color:var(--accent-2); }
+    .brand-rule.no h3 { color:#a3564a; }
+    .brand-rule li { list-style:none; position:relative; padding-left:22px; font-size:14px; color:var(--ink-2); line-height:1.72; margin-bottom:15px; }
+    .brand-rule li:last-child { margin-bottom:0; }
+    .brand-rule li strong { color:var(--ink); font-weight:500; display:block; margin-bottom:1px; }
+    .brand-rule li::before { position:absolute; left:0; top:1px; font-family:var(--mono); font-size:13px; }
+    .brand-rule.ok li::before { content:'+'; color:var(--accent-2); }
+    .brand-rule.no li::before { content:'\00d7'; color:#a3564a; }
+
+    /* misuse gallery */
+    .brand-avoid { display:grid; grid-template-columns:repeat(auto-fit,minmax(268px,1fr)); gap:16px; }
+    .brand-avoid figure { border:1px solid var(--border); border-radius:12px; background:#fff; overflow:hidden; }
+    .brand-avoid img { width:100%; height:auto; display:block; }
+    .brand-avoid figcaption { padding:16px 20px 18px; border-top:1px solid var(--border);
+      font-size:13.5px; color:var(--ink-2); line-height:1.7; }
+    .brand-avoid figcaption strong { display:block; color:var(--ink); font-weight:500; margin-bottom:2px; }
+
+    .brand-note { font-size:15px; color:var(--ink-2); line-height:1.9; max-width:640px; }
+    .brand-note + .brand-note { margin-top:22px; padding-top:22px; border-top:1px solid var(--border); }
+    .brand-note a { color:var(--accent-2); }
+    .brand-note strong { color:var(--ink); font-weight:500; }
+    .brand-note em { font-style:normal; color:var(--ink); }
+
+    @media (max-width:720px) {
+      .brand-asset { grid-template-columns:1fr; }
+      .brand-meta { padding:0 24px 26px; }
+      .brand-rules, .brand-figs { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div id="cs-header"></div>
+
+  <header class="cs-hero">
+    <div class="cs-hero-inner">
+      <div class="cs-hero-label">Brand</div>
+      <h1 class="cs-hero-title">Using the <span>CoStaff</span> logo.</h1>
+      <p class="cs-hero-desc">
+        This guide gathers the logo variants, colours and spacing we use, so CoStaff
+        stays recognisable wherever it turns up. Everything here is free to download.
+      </p>
+      <a class="brand-dl-all" href="/images/logo/costaff-brand-assets.zip" download>
+        Download all assets <span>ZIP · 1.4 MB</span>
+      </a>
+    </div>
+  </header>
+
+  <section class="cs-band">
+    <div class="cs-band-inner">
+      <div class="cs-band-head">
+        <div class="cs-band-num">01 &nbsp;Logo</div>
+        <h2 class="cs-band-title">Pick the variant that fits your background.</h2>
+        <p class="cs-band-desc">
+          Each lockup comes in two colourways so the wordmark keeps enough contrast to read.
+          Dark text belongs on light backgrounds, white text on dark ones — picking the right
+          file means you never need to recolour anything yourself.
+        </p>
+      </div>
+
+      <div class="brand-asset">
+        <div class="brand-preview on-light"><img src="/images/logo/costaff-icon.svg" alt="CoStaff icon" /></div>
+        <div class="brand-meta">
+          <h3>Icon</h3>
+          <p>The mark on its own. The green container gives it its own contrast, so it sits happily on light or dark. Good for avatars, app icons and favicons.</p>
+          <div class="brand-dl">
+            <a href="/images/logo/costaff-icon.svg" download>SVG</a>
+            <a href="/images/logo/costaff-icon.png" download>PNG</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="brand-asset">
+        <div class="brand-preview on-light"><img src="/images/logo/costaff-horizontal.png" alt="CoStaff horizontal lockup" /></div>
+        <div class="brand-meta">
+          <h3>Horizontal — light backgrounds</h3>
+          <p>The one to reach for first. It reads well at small heights, which makes it a natural fit for navigation bars, letterheads and email signatures.</p>
+          <div class="brand-dl">
+            <a href="/images/logo/costaff-horizontal.svg" download>SVG</a>
+            <a href="/images/logo/costaff-horizontal.png" download>PNG</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="brand-asset">
+        <div class="brand-preview on-dark"><img src="/images/logo/costaff-horizontal-dark.png" alt="CoStaff horizontal lockup, white text" /></div>
+        <div class="brand-meta">
+          <h3>Horizontal — dark backgrounds</h3>
+          <p>The same lockup with a white wordmark. Once the background is darker than a mid-tone, black text starts to disappear — this version keeps it legible.</p>
+          <div class="brand-dl">
+            <a href="/images/logo/costaff-horizontal-dark.svg" download>SVG</a>
+            <a href="/images/logo/costaff-horizontal-dark.png" download>PNG</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="brand-asset">
+        <div class="brand-preview on-light"><img src="/images/logo/costaff-vertical.png" alt="CoStaff vertical lockup" /></div>
+        <div class="brand-meta">
+          <h3>Vertical — light backgrounds</h3>
+          <p>Stacked, for places with more height than width or where things are centred — README banners, slide covers, print.</p>
+          <div class="brand-dl">
+            <a href="/images/logo/costaff-vertical.svg" download>SVG</a>
+            <a href="/images/logo/costaff-vertical.png" download>PNG</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="brand-asset">
+        <div class="brand-preview on-dark"><img src="/images/logo/costaff-vertical-dark.png" alt="CoStaff vertical lockup, white text" /></div>
+        <div class="brand-meta">
+          <h3>Vertical — dark backgrounds</h3>
+          <p>The stacked lockup with a white wordmark, for dark slide decks and dark-mode documents.</p>
+          <div class="brand-dl">
+            <a href="/images/logo/costaff-vertical-dark.svg" download>SVG</a>
+            <a href="/images/logo/costaff-vertical-dark.png" download>PNG</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="brand-asset">
+        <div class="brand-preview on-light"><img src="/images/logo/costaff-tagline.png" alt="CoStaff lockup with tagline" /></div>
+        <div class="brand-meta">
+          <h3>With tagline</h3>
+          <p>Adds “Call Your AI Staff to work”. It carries the most information, so it works best where someone meets CoStaff for the first time — covers, social cards, booth graphics. A dark version is in the ZIP.</p>
+          <div class="brand-dl">
+            <a href="/images/logo/costaff-tagline.svg" download>SVG</a>
+            <a href="/images/logo/costaff-tagline.png" download>PNG</a>
+            <a href="/images/logo/costaff-tagline-dark.svg" download>SVG dark</a>
+            <a href="/images/logo/costaff-tagline-dark.png" download>PNG dark</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-band cs-band--alt">
+    <div class="cs-band-inner">
+      <div class="cs-band-head">
+        <div class="cs-band-num">02 &nbsp;Colour</div>
+        <h2 class="cs-band-title">One green, two neutrals.</h2>
+        <p class="cs-band-desc">
+          The green does the recognising — it's the first thing anyone registers about the mark,
+          which is why it stays a single flat value with no gradients. The wordmark stays pure
+          black or pure white so it holds its contrast on any surface.
+        </p>
+      </div>
+      <div class="brand-colors">
+        <div class="brand-color">
+          <div class="brand-chip" style="background:#3A5032"></div>
+          <div class="brand-color-meta">
+            <strong>CoStaff Green</strong>
+            <code>#3A5032</code>
+            <span>The icon container, and the only brand colour.</span>
+          </div>
+        </div>
+        <div class="brand-color">
+          <div class="brand-chip" style="background:#000000"></div>
+          <div class="brand-color-meta">
+            <strong>Black</strong>
+            <code>#000000</code>
+            <span>The wordmark on light backgrounds.</span>
+          </div>
+        </div>
+        <div class="brand-color">
+          <div class="brand-chip" style="background:#FFFFFF;border-bottom:1px solid var(--border)"></div>
+          <div class="brand-color-meta">
+            <strong>White</strong>
+            <code>#FFFFFF</code>
+            <span>The letters inside the mark, and the wordmark on dark backgrounds.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-band">
+    <div class="cs-band-inner">
+      <div class="cs-band-head">
+        <div class="cs-band-num">03 &nbsp;Spacing &amp; size</div>
+        <h2 class="cs-band-title">Room to breathe, and a floor for legibility.</h2>
+        <p class="cs-band-desc">
+          Logos get crowded easily — a headline or another mark sitting too close pulls the eye
+          away and the shape stops registering. A consistent margin and a minimum size solve
+          both problems.
+        </p>
+      </div>
+      <div class="brand-figs">
+        <figure class="brand-fig">
+          <img src="/images/brand/clearspace.png" alt="Clear space diagram: margin equal to a quarter of the icon height on all sides" />
+          <figcaption>
+            <h3>Clear space</h3>
+            <p>Leave a margin on all sides of at least <code>¼</code> of the icon's height. Keeping text, rules and other logos outside that band is what stops the mark competing with its surroundings.</p>
+          </figcaption>
+        </figure>
+        <figure class="brand-fig">
+          <img src="/images/brand/minsize.png" alt="Minimum size diagram: icon at 16px, horizontal lockup at 120px wide" />
+          <figcaption>
+            <h3>Minimum size</h3>
+            <p>Below <code>16px</code> for the icon or <code>120px</code> for the horizontal lockup, the letters start to blur together. At <code>16–32px</code>, <code>favicon.svg</code> has slightly thickened strokes to hold up.</p>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-band cs-band--alt">
+    <div class="cs-band-inner">
+      <div class="cs-band-head">
+        <div class="cs-band-num">04 &nbsp;Ways it works</div>
+        <h2 class="cs-band-title">Most of what you'd want to do is fine.</h2>
+        <p class="cs-band-desc">
+          You don't need to ask us to write about CoStaff or show the logo. The things on the
+          right aren't forbidden so much as self-defeating — they each chip away at the
+          recognition the mark is there to provide.
+        </p>
+      </div>
+      <div class="brand-rules">
+        <div class="brand-rule ok">
+          <h3>Works well</h3>
+          <ul>
+            <li><strong>Writing about CoStaff</strong>In articles, tutorials, talks and slides — no permission needed.</li>
+            <li><strong>Linking back</strong>Using the logo as a link to this site or the GitHub repository.</li>
+            <li><strong>Describing what you built</strong>“Built with CoStaff” or “compatible with CoStaff”.</li>
+            <li><strong>Community material</strong>Meetup slides, posters, community posts.</li>
+            <li><strong>Scaling to fit</strong>Any size you like, as long as the proportions stay locked.</li>
+          </ul>
+        </div>
+        <div class="brand-rule no">
+          <h3>Weakens recognition</h3>
+          <ul>
+            <li><strong>Changing the colour</strong>The single green is the first thing people recognise.</li>
+            <li><strong>Stretching or squashing</strong>The proportions are part of what makes it readable.</li>
+            <li><strong>Rotating or cropping</strong>The lockup is drawn to sit level and whole.</li>
+            <li><strong>Adding shadows or outlines</strong>Effects muddy the silhouette, especially small.</li>
+            <li><strong>Busy or same-toned backgrounds</strong>The mark stops separating from what's behind it.</li>
+            <li><strong>Rebuilding it yourself</strong>Retyping the wordmark won't match the spacing — use the files.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-band">
+    <div class="cs-band-inner">
+      <div class="cs-band-head">
+        <div class="cs-band-num">05 &nbsp;At a glance</div>
+        <h2 class="cs-band-title">The same six, as pictures.</h2>
+        <p class="cs-band-desc">Easier to recognise than to describe — these are the ones we see most often.</p>
+      </div>
+      <div class="brand-avoid">
+        <figure>
+          <img src="/images/brand/misuse-stretch.png" alt="Stretched logo" />
+          <figcaption><strong>Stretched</strong>Scale both dimensions together.</figcaption>
+        </figure>
+        <figure>
+          <img src="/images/brand/misuse-recolor.png" alt="Recoloured logo" />
+          <figcaption><strong>Recoloured</strong>The green is fixed — pick the light or dark file instead.</figcaption>
+        </figure>
+        <figure>
+          <img src="/images/brand/misuse-rotate.png" alt="Rotated logo" />
+          <figcaption><strong>Rotated</strong>The lockup sits level.</figcaption>
+        </figure>
+        <figure>
+          <img src="/images/brand/misuse-shadow.png" alt="Logo with drop shadow" />
+          <figcaption><strong>Shadows and effects</strong>They blur the shape at small sizes.</figcaption>
+        </figure>
+        <figure>
+          <img src="/images/brand/misuse-lowcontrast.png" alt="Logo on a similar green background" />
+          <figcaption><strong>Too little contrast</strong>A green background swallows the mark.</figcaption>
+        </figure>
+        <figure>
+          <img src="/images/brand/misuse-busy.png" alt="Logo on a busy patterned background" />
+          <figcaption><strong>Busy backgrounds</strong>Give it a plain area to sit on.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-band cs-band--alt">
+    <div class="cs-band-inner">
+      <p class="brand-note">
+        <strong>Code and brand, briefly.</strong>
+        CoStaff's source is open under AGPL&nbsp;v3 — fork it, ship it, build on it freely.
+        The logo and name sit outside that licence, for a practical reason: they're how
+        someone tells an official release from a fork. So if you're shipping your own thing
+        built on CoStaff, give it its own name and mark, and say it's <em>built with
+        CoStaff</em> — which is exactly what the guide above is here to help with.
+      </p>
+      <p class="brand-note">
+        Something here not covered, or an idea that doesn't quite fit the guide?
+        Write to <a href="mailto:simonliuyuwei@gmail.com">simonliuyuwei@gmail.com</a> —
+        we'd much rather help you get it right than have you guess.
+      </p>
+    </div>
+  </section>
+
+  <div id="cs-footer"></div>
+  <script src="/assets/site.js?v=17" defer></script>
+</body>
+</html>

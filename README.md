@@ -1,6 +1,13 @@
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="images/logo/lockup-vertical-dark.png" />
+    <img src="images/logo/lockup-vertical.png" alt="CoStaff" width="300" />
+  </picture>
+</p>
+
 # costaff-ai.github.io
 
-Public landing page for [CoStaff](https://github.com/costaff-ai/costaff), served via GitHub Pages at **https://costaff-ai.github.io/**.
+Public landing page for [CoStaff](https://github.com/costaff-ai/costaff), served via GitHub Pages at **https://costaffs.app**.
 
 ---
 
@@ -8,48 +15,113 @@ Public landing page for [CoStaff](https://github.com/costaff-ai/costaff), served
 
 ```
 costaff-ai.github.io/
-├── index.html          # English landing page (default)
-├── index.zh.html       # Traditional Chinese landing page
-├── agents.html         # English agents page
-├── agents.zh.html      # Traditional Chinese agents page
-├── deck.html           # Deck / presentation page
-├── images/             # Static image assets
-└── scripts/            # Utility scripts (e.g. Google Form setup)
+├── index.html                  # English homepage
+├── zhtw/                       # Traditional Chinese mirror of the whole tree
+│   └── …                       #   same paths, prefixed with /zhtw
+├── agents/                     # Product — AI agent roster
+├── manager/                    # Product — Manager Agent
+├── channels/                   # Product — channels
+│   ├── webchat/
+│   └── webchat-enterprise/
+├── platforms/                  # Product — business platforms
+├── identity/                   # Product — identity / SSO
+├── architecture/               # Resources — technical architecture diagram
+├── user-flow/                  # Resources — user flow sequence diagram
+├── docs/                       # Docs — install, start, cli, tutorial, verify, …
+├── pricing/                    # Plans
+├── blog/
+├── partners/
+│   ├── community/
+│   └── enterprise/
+├── deck.html                   # Standalone presentation deck
+├── 404.html                    # Redirect stub
+├── assets/
+│   ├── site.js                 # Shared nav + footer injector
+│   └── site.css                # Shared chrome styles
+├── images/
+│   ├── logo/                   # Brand assets — favicon, OG card, lockups
+│   └── architecture/           # Architecture diagrams (SVG)
+└── scripts/                    # Utility scripts (e.g. Google Form setup)
 ```
 
-The site is a single-page design with full-page scroll-snap sections:
+Every page exists in both languages: English at `/<path>/`, Traditional Chinese at
+`/zhtw/<path>/`.
+
+---
+
+## Shared Chrome
+
+`assets/site.js` is the single source of truth for the banner, nav and footer — it
+injects them into every page at runtime. A page only needs the two placeholder divs
+plus the stylesheet and script:
+
+```html
+<link rel="stylesheet" href="/assets/site.css" />
+<div id="cs-header"></div>
+<!-- page content -->
+<div id="cs-footer"></div>
+<script src="/assets/site.js"></script>
+```
+
+Language (`en` / `zhtw`) and the active nav section are auto-detected from
+`location.pathname`, so pages need no configuration.
+
+> `index.html` and `zhtw/index.html` render their own inline footer instead of the
+> injected one — footer changes must be applied in both places.
+
+---
+
+## Homepage Sections
+
+`index.html` is a scroll-snap single-page layout:
 
 | Section | Anchor | Description |
 |---|---|---|
 | Hero | — | Tagline and CTAs |
-| 01 Why | `#problems` | Pain points vs. CoStaff solutions |
-| 02 How | `#how` | Three-step onboarding |
-| 03 CLI | `#cli` | `cst` command reference |
-| 04 Where | `#channels` | Supported channels (WebChat, Telegram, Discord, LINE, Slack) |
-| 05 Plans | `#plans` | Open Source (OSS) + Advanced Plan (Starter / Pro / Max / Enterprise) |
-| Partners | `#partners` | Partner community |
-| 06 Your data | `#privacy` | Data handling commitments |
+| Watch | `#demo` | 30-second intro video |
+| 01 Sound familiar? | `#problems` | Pain points CoStaff solves |
+| 02 How it works | `#flow` | Hand-off flow across the agent team |
+| 03 System architecture | `#architecture` | Six independently replaceable layers |
+| 04 Getting started | `#how` | Docker-only setup |
+| 05 One command for everything | `#cli` | `costaff` CLI reference |
+| 06 Where it lives | `#channels` | Supported chat channels |
+| 07 Plans | `#plans` | Open source + paid tiers |
+| 08 Partners | `#partners` | Partner community |
+| 09 Your data | `#privacy` | Data handling commitments |
+| Ready when you are | `#start` | Closing CTA |
+
+---
+
+## Brand Assets
+
+All brand files live in `images/logo/`:
+
+| File | Use |
+|---|---|
+| `mark.svg` | Icon only, true vector — nav and footer lockups |
+| `favicon.svg` | Icon with thickened strokes for legibility at small sizes |
+| `favicon.ico` | Multi-resolution (16–256px); 16/32px use the thickened mark |
+| `apple-touch-icon.png` | 180×180, iOS home screen |
+| `icon-192.png` / `icon-512.png` | PWA / Android icon sizes |
+| `og.png` | 1200×630 social sharing card |
+| `lockup-vertical.png` | Vertical lockup, dark text — light backgrounds |
+| `lockup-vertical-dark.png` | Vertical lockup, white text — dark backgrounds |
+
+Source artwork lives outside this repo in `costaff-logo/`.
 
 ---
 
 ## Editing
 
-The pages are self-contained single-file HTML — all CSS is inlined in `<style>` and there are no build steps or external asset dependencies.
+The pages carry their own inlined `<style>`; there is no build step and no bundler.
 
-1. Edit `index.html` for the English landing page; mirror any content changes to `index.zh.html`.
-2. Edit `agents.html` for the agents page; mirror to `agents.zh.html`.
-3. Push to `main` — GitHub Pages deploys automatically.
-
----
-
-## Language Switching
-
-The nav bar includes a language toggle:
-- English page links to `index.zh.html`
-- Chinese page links to `index.html`
+1. Edit the English page, then mirror the change to its `/zhtw/` counterpart.
+2. Nav and footer changes go in `assets/site.js` only — never per page.
+3. Push to `main`; GitHub Pages deploys automatically.
 
 ---
 
 ## Deployment
 
-This repo is configured as a GitHub Pages site. Any push to `main` triggers an automatic deployment — no CI or build pipeline required.
+GitHub Pages with a custom domain (`CNAME` → `costaffs.app`). Any push to `main`
+triggers an automatic deployment — no CI or build pipeline required.

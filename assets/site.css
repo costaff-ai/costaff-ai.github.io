@@ -23,6 +23,7 @@
 .csnav-logo { font-family:var(--serif,'Noto Serif JP',Georgia,serif); font-weight:400; font-size:17px;
   letter-spacing:0.04em; color:var(--ink,#1a1917); text-decoration:none; white-space:nowrap; }
 .csnav-logo span { color:var(--accent-2,#4a6741); }
+.csnav-mark { width:22px; height:22px; vertical-align:-5px; margin-right:8px; }
 .csnav-links { display:flex; gap:24px; align-items:center; }
 .csnav-links > a { font-size:13px; color:var(--ink-2,#5a5855); text-decoration:none; transition:color 0.2s; white-space:nowrap; }
 .csnav-links > a:hover, .csnav-links > a.is-active { color:var(--ink,#1a1917); }
@@ -92,6 +93,7 @@
   gap:16px; flex-wrap:wrap; }
 .csfoot-logo { font-family:var(--serif,'Noto Serif JP',Georgia,serif); font-size:16px; color:var(--ink,#1a1917); }
 .csfoot-logo span { color:var(--accent-2,#4a6741); }
+.csfoot-mark { width:20px; height:20px; vertical-align:-4px; margin-right:8px; }
 .csfoot-text { font-size:12px; color:var(--ink-3,#9a9895); }
 .csfoot-links { display:flex; gap:24px; flex-wrap:wrap; }
 .csfoot-links a { font-size:12px; color:var(--ink-2,#5a5855); text-decoration:none; transition:color 0.2s; }

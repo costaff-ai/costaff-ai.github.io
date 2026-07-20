@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CoStaff — 品牌規範</title>
+  <meta name="description" content="CoStaff 標誌的使用方式：下載各版本檔案，並了解色彩、間距與尺寸的應用，讓標誌在任何地方都保持辨識度。" />
+  <link rel="icon" href="/images/logo/favicon.ico" sizes="any" />
+  <link rel="icon" href="/images/logo/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/images/logo/apple-touch-icon.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="CoStaff" />
+  <meta property="og:title" content="CoStaff — 品牌規範" />
+  <meta property="og:description" content="CoStaff 標誌的使用方式：下載各版本檔案，並了解色彩、間距與尺寸的應用，讓標誌在任何地方都保持辨識度。" />
+  <meta property="og:url" content="https://costaffs.app/zhtw/brand/" />
+  <meta property="og:image" content="https://costaffs.app/images/logo/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://costaffs.app/images/logo/og.png" />
+  <meta name="robots" content="index, follow, all, max-image-preview:large" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://costaffs.app/zhtw/brand/" />
+  <link rel="alternate" hreflang="en" href="https://costaffs.app/brand/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/assets/site.css?v=17" />
+  <style>
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    :root { --bg:#faf9f7; --bg-alt:#f3f2ef; --ink:#1a1917; --ink-2:#5a5855; --ink-3:#9a9895; --border:#e4e2de; --accent:#2d3a2e; --accent-2:#4a6741; --serif:'Noto Serif JP',Georgia,serif; --sans:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',monospace; }
+    html { scroll-behavior:smooth; }
+    body { background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:15px; line-height:1.7; -webkit-font-smoothing:antialiased; }
+
+    .brand-dl-all { display:inline-flex; align-items:center; gap:10px; margin-top:26px;
+      background:var(--accent); color:#fff; border-radius:10px; padding:13px 22px;
+      font-size:14px; font-weight:500; text-decoration:none; transition:background .2s; }
+    .brand-dl-all:hover { background:var(--accent-2); }
+    .brand-dl-all span { font-family:var(--mono); font-size:11px; opacity:.7; }
+
+    .brand-asset { display:grid; grid-template-columns:1fr 300px; gap:28px; align-items:center;
+      border:1px solid var(--border); border-radius:12px; background:#fff; overflow:hidden; margin-bottom:16px; }
+    .brand-preview { display:flex; align-items:center; justify-content:center; padding:40px 32px; min-height:190px; }
+    .brand-preview.on-light { background:#fff; }
+    .brand-preview.on-dark  { background:#14181f; }
+    .brand-preview img { max-width:100%; max-height:110px; height:auto; }
+    .brand-meta { padding:26px 28px 26px 0; }
+    .brand-meta h3 { font-family:var(--serif); font-weight:400; font-size:19px; margin-bottom:7px; }
+    .brand-meta p { font-size:13.5px; color:var(--ink-2); line-height:1.75; margin-bottom:16px; }
+    .brand-dl { display:flex; gap:8px; flex-wrap:wrap; }
+    .brand-dl a { font-family:var(--mono); font-size:11px; letter-spacing:.06em; text-transform:uppercase;
+      border:1px solid var(--border); border-radius:7px; padding:7px 13px; color:var(--ink-2);
+      text-decoration:none; transition:border-color .2s,color .2s; }
+    .brand-dl a:hover { border-color:var(--accent-2); color:var(--accent-2); }
+
+    .brand-colors { display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:16px; }
+    .brand-color { border:1px solid var(--border); border-radius:12px; overflow:hidden; background:#fff; }
+    .brand-chip { height:96px; }
+    .brand-color-meta { padding:16px 18px; }
+    .brand-color-meta strong { display:block; font-size:14px; margin-bottom:4px; }
+    .brand-color-meta code { font-family:var(--mono); font-size:12px; color:var(--ink-2); }
+    .brand-color-meta span { display:block; font-size:12.5px; color:var(--ink-3); margin-top:7px; line-height:1.6; }
+
+    /* diagrams */
+    .brand-figs { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    .brand-fig { border:1px solid var(--border); border-radius:12px; background:#fff; overflow:hidden; }
+    .brand-fig img { width:100%; height:auto; display:block; }
+    .brand-fig figcaption { padding:20px 24px 22px; border-top:1px solid var(--border); }
+    .brand-fig h3 { font-size:12px; font-family:var(--mono); letter-spacing:.1em; text-transform:uppercase; color:var(--ink-3); margin-bottom:9px; }
+    .brand-fig p { font-size:14px; color:var(--ink-2); line-height:1.75; }
+    .brand-fig code { font-family:var(--mono); font-size:12.5px; color:var(--ink); background:var(--bg-alt); padding:1px 5px; border-radius:4px; }
+
+    /* two-column guidance */
+    .brand-rules { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+    .brand-rule { border:1px solid var(--border); border-radius:12px; background:#fff; padding:26px 26px 24px; }
+    .brand-rule h3 { font-size:12px; font-family:var(--mono); letter-spacing:.1em; text-transform:uppercase; margin-bottom:18px; }
+    .brand-rule.ok h3 { color:var(--accent-2); }
+    .brand-rule.no h3 { color:#a3564a; }
+    .brand-rule li { list-style:none; position:relative; padding-left:22px; font-size:14px; color:var(--ink-2); line-height:1.72; margin-bottom:15px; }
+    .brand-rule li:last-child { margin-bottom:0; }
+    .brand-rule li strong { color:var(--ink); font-weight:500; display:block; margin-bottom:1px; }
+    .brand-rule li::before { position:absolute; left:0; top:1px; font-family:var(--mono); font-size:13px; }
+    .brand-rule.ok li::before { content:'+'; color:var(--accent-2); }
+    .brand-rule.no li::before { content:'\00d7'; color:#a3564a; }
+
+    /* misuse gallery */
+    .brand-avoid { display:grid; grid-template-columns:repeat(auto-fit,minmax(268px,1fr)); gap:16px; }
+    .brand-avoid figure { border:1px solid var(--border); border-radius:12px; background:#fff; overflow:hidden; }
+    .brand-avoid img { width:100%; height:auto; display:block; }
+    .brand-avoid figcaption { padding:16px 20px 18px; border-top:1px solid var(--border);
+      font-size:13.5px; color:var(--ink-2); line-height:1.7; }
+    .brand-avoid figcaption strong { display:block; color:var(--ink); font-weight:500; margin-bottom:2px; }
+
+    .brand-note { font-size:15px; color:var(--ink-2); line-height:1.9; max-width:640px; }
+    .brand-note + .brand-note { margin-top:22px; padding-top:22px; border-top:1px solid var(--border); }
+    .brand-note a { color:var(--accent-2); }
+    .brand-note strong { color:var(--ink); font-weight:500; }
+    .brand-note em { font-style:normal; color:var(--ink); }
+
+    @media (max-width:720px) {
+      .brand-asset { grid-template-columns:1fr; }
+      .brand-meta { padding:0 24px 26px; }
+      .brand-rules, .brand-figs { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div id="cs-header"></div>
+
+  <header class="cs-hero">
+    <div class="cs-hero-inner">
+      <div class="cs-hero-label">品牌</div>
+      <h1 class="cs-hero-title">如何使用 <span>CoStaff</span> 標誌。</h1>
+      <p class="cs-hero-desc">
+        這份指引整理了我們使用的標誌版本、色彩與間距，讓 CoStaff 出現在任何地方都保持辨識度。所有檔案都可自由下載。
+      </p>
+      <a class="brand-dl-all" href="/images/logo/costaff-brand-assets.zip" download>
+        下載全部資產 <span>ZIP · 1.4 MB</span>
+      </a>
+    </div>
+  </header>
+
+  <section class="cs-band">
+    <div class="cs-band-inner">
+      <div class="cs-band-head">
+        <div class="cs-band-num">01 &nbsp;標誌</div>
+        <h2 class="cs-band-title">依背景挑選合適的版本。</h2>
+        <p class="cs-band-desc">
+          每種組合都有兩個配色，確保字體保有足夠的對比度。深色字用於淺色背景、白色字用於深色背景——選對檔案，就不需要自己動手改色。
+        </p>
+      </div>
+
+      <div class="brand-asset">
+        <div class="brand-preview on-light"><img src="/images/logo/costaff-icon.svg" alt="CoStaff icon" /></div>
+        <div class="brand-meta">
+          <h3>圖示</h3>
+          <p>單獨使用的標誌。綠色容器本身就提供了對比，因此深淺背景都能安放。適合頭像、應用程式圖示與 favicon。</p>
+          <div class="brand-dl">
+            <a href="/images/logo/costaff-icon.svg" download>SVG</a>
+            <a href="/images/logo/costaff-icon.png" download>PNG</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="brand-asset">
+        <div class="brand-preview on-light"><img src="/images/logo/costaff-horizontal.png" alt="CoStaff horizontal lockup" /></div>
+        <div class="brand-meta">
+          <h3>橫式——淺色背景</h3>
+          <p>優先選用的版本。在高度受限時仍然清楚，因此很適合導覽列、信頭與電子郵件簽名檔。</p>
+          <div class="brand-dl">
+            <a href="/images/logo/costaff-horizontal.svg" download>SVG</a>
+            <a href="/images/logo/costaff-horizontal.png" download>PNG</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="brand-asset">
+        <div class="brand-preview on-dark"><img src="/images/logo/costaff-horizontal-dark.png" alt="CoStaff horizontal lockup, white text" /></div>
+        <div class="brand-meta">
+          <h3>橫式——深色背景</h3>
+          <p>同樣的組合，字體改為白色。當背景深於中間調時，黑字會開始消失——這個版本能維持清晰度。</p>
+          <div class="brand-dl">
+            <a href="/images/logo/costaff-horizontal-dark.svg" download>SVG</a>
+            <a href="/images/logo/costaff-horizontal-dark.png" download>PNG</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="brand-asset">
+        <div class="brand-preview on-light"><img src="/images/logo/costaff-vertical.png" alt="CoStaff vertical lockup" /></div>
+        <div class="brand-meta">
+          <h3>直式——淺色背景</h3>
+          <p>堆疊排列，適合高度大於寬度或需要置中的版位——README 橫幅、簡報封面、印刷品。</p>
+          <div class="brand-dl">
+            <a href="/images/logo/costaff-vertical.svg" download>SVG</a>
+            <a href="/images/logo/costaff-vertical.png" download>PNG</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="brand-asset">
+        <div class="brand-preview on-dark"><img src="/images/logo/costaff-vertical-dark.png" alt="CoStaff vertical lockup, white text" /></div>
+        <div class="brand-meta">
+          <h3>直式——深色背景</h3>
+          <p>白字版的堆疊組合，適用於深色簡報與深色模式文件。</p>
+          <div class="brand-dl">
+            <a href="/images/logo/costaff-vertical-dark.svg" download>SVG</a>
+            <a href="/images/logo/costaff-vertical-dark.png" download>PNG</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="brand-asset">
+        <div class="brand-preview on-light"><img src="/images/logo/costaff-tagline.png" alt="CoStaff lockup with tagline" /></div>
+        <div class="brand-meta">
+          <h3>含標語版</h3>
+          <p>加上「Call Your AI Staff to work」標語。它承載的資訊最多，因此最適合初次接觸 CoStaff 的場合——封面、社群分享卡、展場圖像。深色版已收錄於 ZIP 中。</p>
+          <div class="brand-dl">
+            <a href="/images/logo/costaff-tagline.svg" download>SVG</a>
+            <a href="/images/logo/costaff-tagline.png" download>PNG</a>
+            <a href="/images/logo/costaff-tagline-dark.svg" download>SVG 深色版</a>
+            <a href="/images/logo/costaff-tagline-dark.png" download>PNG 深色版</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-band cs-band--alt">
+    <div class="cs-band-inner">
+      <div class="cs-band-head">
+        <div class="cs-band-num">02 &nbsp;色彩</div>
+        <h2 class="cs-band-title">一個綠色，兩個中性色。</h2>
+        <p class="cs-band-desc">
+          綠色負責辨識——它是人們對這個標誌的第一印象，因此維持單一平塗色值、不使用漸層。字體則維持純黑或純白，確保在任何底色上都保有對比。
+        </p>
+      </div>
+      <div class="brand-colors">
+        <div class="brand-color">
+          <div class="brand-chip" style="background:#3A5032"></div>
+          <div class="brand-color-meta">
+            <strong>CoStaff 綠</strong>
+            <code>#3A5032</code>
+            <span>圖示容器色，也是唯一的品牌色。</span>
+          </div>
+        </div>
+        <div class="brand-color">
+          <div class="brand-chip" style="background:#000000"></div>
+          <div class="brand-color-meta">
+            <strong>黑</strong>
+            <code>#000000</code>
+            <span>淺色背景上的字體色。</span>
+          </div>
+        </div>
+        <div class="brand-color">
+          <div class="brand-chip" style="background:#FFFFFF;border-bottom:1px solid var(--border)"></div>
+          <div class="brand-color-meta">
+            <strong>白</strong>
+            <code>#FFFFFF</code>
+            <span>標誌內的字母，以及深色背景上的字體色。</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-band">
+    <div class="cs-band-inner">
+      <div class="cs-band-head">
+        <div class="cs-band-num">03 &nbsp;間距與尺寸</div>
+        <h2 class="cs-band-title">留點空間，也設一個清晰度的底線。</h2>
+        <p class="cs-band-desc">
+          標誌很容易被擠壓——標題或其他標誌靠太近會分散視線，形狀就不再被記住。固定的留白與最小尺寸能同時解決這兩個問題。
+        </p>
+      </div>
+      <div class="brand-figs">
+        <figure class="brand-fig">
+          <img src="/images/brand/clearspace.png" alt="留白示意圖：四周留出圖示高度四分之一的邊界" />
+          <figcaption>
+            <h3>留白空間</h3>
+            <p>四周至少留出圖示高度 <code>¼</code> 的邊界。把文字、線條與其他標誌擋在這個範圍之外，標誌才不會和周圍的元素互相干擾。</p>
+          </figcaption>
+        </figure>
+        <figure class="brand-fig">
+          <img src="/images/brand/minsize.png" alt="最小尺寸示意圖：圖示 16px、橫式組合寬 120px" />
+          <figcaption>
+            <h3>最小尺寸</h3>
+            <p>圖示小於 <code>16px</code>、橫式組合小於 <code>120px</code> 時，字母會開始糊在一起。在 <code>16–32px</code> 區間請使用 <code>favicon.svg</code>，其筆畫略為加粗以維持清晰。</p>
+          </figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-band cs-band--alt">
+    <div class="cs-band-inner">
+      <div class="cs-band-head">
+        <div class="cs-band-num">04 &nbsp;使用方式</div>
+        <h2 class="cs-band-title">你想做的事，大多都沒問題。</h2>
+        <p class="cs-band-desc">
+          撰寫 CoStaff 相關內容或呈現標誌，都不需要事先詢問我們。右側列出的並非禁令，而是會適得其反的做法——它們都會削弱標誌原本要提供的辨識度。
+        </p>
+      </div>
+      <div class="brand-rules">
+        <div class="brand-rule ok">
+          <h3>這樣用最好</h3>
+          <ul>
+            <li><strong>撰寫 CoStaff 相關內容</strong>文章、教學、演講、簡報皆可，無需取得許可。</li>
+            <li><strong>連結回來</strong>用標誌連結至本網站或 GitHub 儲存庫。</li>
+            <li><strong>描述你做的東西</strong>「基於 CoStaff 建置」或「相容於 CoStaff」。</li>
+            <li><strong>社群素材</strong>聚會簡報、海報、社群貼文。</li>
+            <li><strong>縮放以配合版面</strong>任何尺寸都可以，只要維持等比例。</li>
+          </ul>
+        </div>
+        <div class="brand-rule no">
+          <h3>這樣會損及辨識度</h3>
+          <ul>
+            <li><strong>更改顏色</strong>那個單一綠色是人們最先認出的特徵。</li>
+            <li><strong>拉伸或壓扁</strong>比例本身就是清晰度的一部分。</li>
+            <li><strong>旋轉或裁切</strong>這個組合是以水平完整呈現為前提設計的。</li>
+            <li><strong>加上陰影或外框</strong>特效會讓輪廓變糊，小尺寸時特別明顯。</li>
+            <li><strong>複雜或同色調的背景</strong>標誌會無法從背景中分離出來。</li>
+            <li><strong>自行重製</strong>重打字體無法還原原本的字距——請直接使用檔案。</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-band">
+    <div class="cs-band-inner">
+      <div class="cs-band-head">
+        <div class="cs-band-num">05 &nbsp;一眼看懂</div>
+        <h2 class="cs-band-title">同樣六點，用圖說明。</h2>
+        <p class="cs-band-desc">用看的比用說的清楚——這些是我們最常遇到的情況。</p>
+      </div>
+      <div class="brand-avoid">
+        <figure>
+          <img src="/images/brand/misuse-stretch.png" alt="被拉伸變形的標誌" />
+          <figcaption><strong>拉伸變形</strong>請等比例縮放。</figcaption>
+        </figure>
+        <figure>
+          <img src="/images/brand/misuse-recolor.png" alt="被改色的標誌" />
+          <figcaption><strong>更改顏色</strong>綠色是固定的——請改用淺色或深色版檔案。</figcaption>
+        </figure>
+        <figure>
+          <img src="/images/brand/misuse-rotate.png" alt="被旋轉的標誌" />
+          <figcaption><strong>旋轉</strong>這個組合應保持水平。</figcaption>
+        </figure>
+        <figure>
+          <img src="/images/brand/misuse-shadow.png" alt="加了陰影的標誌" />
+          <figcaption><strong>陰影與特效</strong>小尺寸時會讓形狀變糊。</figcaption>
+        </figure>
+        <figure>
+          <img src="/images/brand/misuse-lowcontrast.png" alt="放在相近綠色背景上的標誌" />
+          <figcaption><strong>對比不足</strong>綠色背景會把標誌吃掉。</figcaption>
+        </figure>
+        <figure>
+          <img src="/images/brand/misuse-busy.png" alt="放在複雜花紋背景上的標誌" />
+          <figcaption><strong>複雜背景</strong>請給它一塊乾淨的區域。</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-band cs-band--alt">
+    <div class="cs-band-inner">
+      <p class="brand-note">
+        <strong>關於程式碼與品牌。</strong>CoStaff 的原始碼以 AGPL&nbsp;v3 開源——歡迎 fork、發布、拿去做產品。標誌與名稱不在這份授權範圍內，原因很實際：它們是人們用來分辨官方版本與 fork 的依據。所以如果你要發布自己基於 CoStaff 做的東西，請給它自己的名稱與標誌，並註明<em>基於 CoStaff 建置</em>——這正是上面這份指引想幫你做好的事。
+      </p>
+      <p class="brand-note">
+        有這裡沒提到的情況，或是不太符合指引的想法嗎？歡迎來信 <a href="mailto:simonliuyuwei@gmail.com">simonliuyuwei@gmail.com</a>——與其讓你自行猜測，我們更樂意幫你把它做對。
+      </p>
+    </div>
+  </section>
+
+  <div id="cs-footer"></div>
+  <script src="/assets/site.js?v=17" defer></script>
+</body>
+</html>

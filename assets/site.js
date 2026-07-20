@@ -18,7 +18,7 @@
   else if (/\/pricing(\/|$)/.test(path)) active = 'pricing';
   else if (/\/partners(\/|$)/.test(path)) active = 'partners';
   else if (/\/docs(\/|$)/.test(path)) active = 'docs';
-  else if (/\/(architecture|user-flow)(\/|$)/.test(path)) active = 'resources';
+  else if (/\/(architecture|user-flow|brand)(\/|$)/.test(path)) active = 'resources';
   else if (/\/(manager|agents|channels|platforms|identity)(\/|$)/.test(path)) active = 'product';
 
   // language toggle → same page in the other language
@@ -42,7 +42,7 @@
     // group headers
     managerHead: 'CoStaff Manager 員工', expertHead: 'CoStaff Expert 員工', identityHead: 'CoStaff Identity',
     clientHead: 'CoStaff Client', platformHead: 'CoStaff App 應用平台',
-    archHead: '運作原理', getStartedHead: '快速上手', thirdHead: '第三方資源',
+    archHead: '運作原理', getStartedHead: '快速上手', thirdHead: '第三方資源', brandHead: '品牌',
     communityHead: '社群夥伴', enterpriseHead: '企業夥伴',
     // items [title, description]
     manager: ['CoStaff Manager', '統籌調度的核心，你直接對話的對象'],
@@ -57,6 +57,7 @@
     cli: ['CLI 指令', '用終端機管理一切'],
     arch: ['技術架構', '六層架構，各自獨立可替換'],
     flow: ['應用架構', '一次交辦的完整流程'],
+    brand: ['品牌規範', 'Logo 下載與使用規則'],
     adk: ['ADK', '打造 Agent 的開源框架（Google）'],
     a2a: ['A2A Protocol', 'Agent 之間互通的開放協定'],
     twinkle: ['Twinkle AI', '開源 AI 社群夥伴'],
@@ -71,7 +72,7 @@
     bannerCta: 'Join waitlist →',
     managerHead: 'CoStaff Manager', expertHead: 'CoStaff Experts', identityHead: 'CoStaff Identity',
     clientHead: 'CoStaff Client', platformHead: 'CoStaff Apps',
-    archHead: 'Under the hood', getStartedHead: 'Get started', thirdHead: 'Third-party',
+    archHead: 'Under the hood', getStartedHead: 'Get started', thirdHead: 'Third-party', brandHead: 'Brand',
     communityHead: 'Community', enterpriseHead: 'Enterprise',
     manager: ['CoStaff Manager', 'The orchestrating core — the one you chat with'],
     aiStaff: ['CoStaff AI Staff', 'Directory of AI agents'],
@@ -85,6 +86,7 @@
     cli: ['CLI reference', 'Manage everything from the terminal'],
     arch: ['System architecture', 'Six layers, independently replaceable'],
     flow: ['User flow', 'One hand-off, end to end'],
+    brand: ['Brand guidelines', 'Logo downloads and usage rules'],
     adk: ['ADK', "Google's open framework for building agents"],
     a2a: ['A2A Protocol', 'Open protocol for agent-to-agent interop'],
     twinkle: ['Twinkle AI', 'Open-source AI community partner'],
@@ -131,7 +133,8 @@
     '<div class="csnav-dd csnav-dd--mega csnav-dd--3">' +
       col(group(T.archHead, link(B + '/architecture/', T.arch) + link(B + '/user-flow/', T.flow))) +
       col(group(T.getStartedHead, link(B + '/docs/start/', T.quickstart) + link(B + '/docs/install/', T.install) + link(B + '/docs/cli/', T.cli))) +
-      col(group(T.thirdHead, link(ADK, T.adk, true) + link(A2A, T.a2a, true))) +
+      col(group(T.thirdHead, link(ADK, T.adk, true) + link(A2A, T.a2a, true)) +
+          group(T.brandHead, link(B + '/brand/', T.brand))) +
     '</div>';
 
   var partnersDD =
@@ -153,7 +156,9 @@
       '<a href="' + WAITLIST + '" target="_blank" rel="noopener">' + T.bannerCta + '</a>' +
     '</div>' +
     '<nav class="csnav">' +
-      '<a class="csnav-logo" href="' + HOME + '">Co<span>Staff</span></a>' +
+      '<a class="csnav-logo" href="' + HOME + '">' +
+        '<img class="csnav-mark" src="/images/logo/mark.svg" alt="" width="22" height="22" />' +
+        'Co<span>Staff</span></a>' +
       '<div class="csnav-links" id="cs-primary-nav">' +
         '<a class="csnav-home" href="' + HOME + '">' + T.home + '</a>' +
         ddItem(T.product, active === 'product', productDD) +
@@ -176,11 +181,14 @@
   var footerHTML =
     '<footer class="csfoot">' +
       '<div class="csfoot-inner">' +
-        '<div class="csfoot-logo">Co<span>Staff</span></div>' +
+        '<div class="csfoot-logo">' +
+          '<img class="csfoot-mark" src="/images/logo/mark.svg" alt="" width="20" height="20" />' +
+          'Co<span>Staff</span></div>' +
         '<div class="csfoot-text">© 2026 CoStaffAI</div>' +
         '<div class="csfoot-links">' +
           '<a href="' + GH + '" target="_blank" rel="noopener">GitHub</a>' +
           '<a href="' + WAITLIST + '" target="_blank" rel="noopener">' + T.cta + '</a>' +
+          '<a href="' + B + '/brand/">' + T.brand[0] + '</a>' +
           '<a href="' + MAIL + '">' + T.contact + '</a>' +
         '</div>' +
       '</div>' +
