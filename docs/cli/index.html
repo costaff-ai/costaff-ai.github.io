@@ -204,10 +204,10 @@
 <p>Agents, channels, and the core itself can all be pinned to a specific git tag, branch, or SHA. Once pinned, <code>rebuild</code> stays on that ref instead of pulling the latest <code>main</code>.</p>
 <pre class="code"><span class="c"># Install pinned to a specific tag</span>
 costaff agent add ba --github https://github.com/costaff-ai/costaff-agent-business-analysis \
-  --tag v0.1.0-beta-3
+  --tag v0.1.0
 
-costaff channel add telegram --tag v0.1.0-beta-3
-costaff update --tag v0.1.0-beta-3   <span class="c"># pin the core too</span>
+costaff channel add telegram --tag v0.1.0
+costaff update --tag v0.1.0   <span class="c"># pin the core too</span>
 
 <span class="c"># Subsequent rebuilds stay on the pinned ref</span>
 costaff agent rebuild ba

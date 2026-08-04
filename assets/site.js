@@ -36,9 +36,9 @@
   var T = isZh ? {
     product: '產品', resources: '資源', docs: '文件', pricing: '方案', blog: '部落格',
     partners: '合作夥伴', home: '首頁', contact: '聯絡我們', cta: '搶先預約', soon: '敬請期待',
-    bannerLabel: '🎉 已開源 · v0.1.0-beta-3',
-    bannerSub: '— 加入候補名單，正式版上線第一時間通知',
-    bannerCta: '加入候補 →',
+    bannerLabel: '🎉 開源正式版 · v0.1.0',
+    bannerSub: '— 核心已可正式部署，企業版開放搶先預約',
+    bannerCta: '搶先預約 →',
     // group headers
     managerHead: 'CoStaff Manager 員工', expertHead: 'CoStaff Expert 員工', identityHead: 'CoStaff Identity',
     clientHead: 'CoStaff Client', platformHead: 'CoStaff App 應用平台',
@@ -67,9 +67,9 @@
   } : {
     product: 'Product', resources: 'Resources', docs: 'Docs', pricing: 'Plans', blog: 'Blog',
     partners: 'Partners', home: 'Home', contact: 'Contact', cta: 'Get early access', soon: 'Coming soon',
-    bannerLabel: '🎉 Now open source · v0.1.0-beta-3',
-    bannerSub: '— Join the waitlist for GA notifications',
-    bannerCta: 'Join waitlist →',
+    bannerLabel: '🎉 Open source · v0.1.0 stable',
+    bannerSub: '— The core is ready to deploy; enterprise early access is open',
+    bannerCta: 'Get early access →',
     managerHead: 'CoStaff Manager', expertHead: 'CoStaff Experts', identityHead: 'CoStaff Identity',
     clientHead: 'CoStaff Client', platformHead: 'CoStaff Apps',
     archHead: 'Under the hood', getStartedHead: 'Get started', thirdHead: 'Third-party', brandHead: 'Brand',
