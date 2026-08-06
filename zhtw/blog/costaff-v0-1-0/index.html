@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CoStaff v0.1.0 — 自架的 AI 員工團隊，第一個正式版</title>
+  <link rel="icon" href="/images/logo/favicon.ico" sizes="any" />
+  <link rel="icon" href="/images/logo/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/images/logo/apple-touch-icon.png" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="CoStaff" />
+  <meta property="og:title" content="CoStaff v0.1.0 — 自架的 AI 員工團隊，第一個正式版" />
+  <meta property="og:description" content="CoStaff 是一套自架的多 Agent 系統。工具是一般的 Python 函式，MCP 自動把它們註冊出去，Agent 專心推理 —— 這篇談這三層怎麼分工，以及 v0.1.0 帶了哪些東西。" />
+  <meta property="og:url" content="https://costaffs.app/zhtw/blog/costaff-v0-1-0/" />
+  <meta property="og:image" content="https://costaffs.app/images/logo/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="article:published_time" content="2026-08-04" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://costaffs.app/images/logo/og.png" />
+
+  <meta name="description" content="CoStaff 是一套自架的多 Agent 系統。工具是一般的 Python 函式，MCP 自動把它們註冊出去，Agent 專心推理 —— 這篇談這三層怎麼分工，以及 v0.1.0 帶了哪些東西。" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="canonical" href="https://costaffs.app/zhtw/blog/costaff-v0-1-0/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;500&family=Noto+Sans+TC:wght@300;400;500&family=Noto+Serif+JP:wght@300;400;500&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:#faf9f7; --bg-alt:#f3f2ef; --ink:#1a1917; --ink-2:#5a5855;
+      --ink-3:#9a9895; --border:#e4e2de; --accent:#2d3a2e; --accent-2:#4a6741;
+      --serif:'Noto Serif TC','Noto Serif JP',Georgia,serif; --sans:'Noto Sans TC','Inter',system-ui,sans-serif;
+      --mono:'JetBrains Mono',monospace; --max:720px;
+    }
+    html { scroll-behavior:smooth; }
+    body { background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:15px; line-height:1.8; -webkit-font-smoothing:antialiased; }
+
+    .post-wrap { max-width:var(--max); margin:0 auto; padding:150px 24px 120px; }
+    .post-back { display:inline-block; font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
+      color:var(--ink-3); text-decoration:none; margin-bottom:28px; transition:color 0.2s; }
+    .post-back:hover { color:var(--accent-2); }
+    .post-eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent-2); margin-bottom:16px; }
+    .post-title { font-family:var(--serif); font-weight:300; font-size:clamp(28px,5vw,44px); line-height:1.32; color:var(--ink); margin-bottom:18px; }
+    .post-meta { font-family:var(--mono); font-size:12px; color:var(--ink-3); letter-spacing:0.04em;
+      padding-bottom:32px; border-bottom:1px solid var(--border); margin-bottom:40px; }
+    .post-lede { font-size:17px; line-height:1.95; color:var(--ink-2); margin-bottom:40px; }
+
+    .post-body h2 { font-family:var(--serif); font-weight:400; font-size:23px; line-height:1.45; color:var(--ink); margin:52px 0 16px; }
+    .post-body h3 { font-weight:500; font-size:15px; color:var(--ink); margin:32px 0 10px; }
+    .post-body p { color:var(--ink-2); margin-bottom:18px; line-height:1.95; }
+    .post-body ul { margin:0 0 20px; padding-left:20px; }
+    .post-body li { color:var(--ink-2); margin-bottom:10px; line-height:1.9; }
+    .post-body strong { color:var(--ink); font-weight:500; }
+    .post-body a { color:var(--accent-2); text-decoration:none; border-bottom:1px solid rgba(74,103,65,0.3); }
+    .post-body a:hover { border-bottom-color:var(--accent-2); }
+    .post-body code { font-family:var(--mono); font-size:12.5px; background:var(--bg-alt);
+      border:1px solid var(--border); border-radius:3px; padding:1px 5px; color:var(--ink); word-break:break-all; }
+
+    .code { font-family:var(--mono); font-size:12.5px; line-height:1.85; background:#1a1917; color:#e8e6e1;
+      border-radius:8px; padding:20px 22px; overflow-x:auto; margin:0 0 24px; white-space:pre; }
+    .code code { background:none; border:none; padding:0; color:inherit; font-size:inherit; word-break:normal; }
+
+
+    .feat { display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--border);
+      border:1px solid var(--border); border-radius:12px; overflow:hidden; margin:0 0 26px; }
+    .feat-item { background:#fff; padding:22px 24px; }
+    .feat-name { font-size:14px; font-weight:500; color:var(--ink); margin-bottom:7px; }
+    .feat-text { font-size:13px; color:var(--ink-2); line-height:1.85; }
+
+    .callout { border:1px solid var(--border); border-left:2px solid var(--accent-2); background:#fff;
+      border-radius:0 10px 10px 0; padding:22px 24px; margin:0 0 26px; }
+    .callout-head { font-family:var(--mono); font-size:10px; letter-spacing:0.18em; text-transform:uppercase;
+      color:var(--accent-2); margin-bottom:10px; }
+    .callout p:last-child { margin-bottom:0; }
+
+    .post-end { margin-top:56px; padding-top:32px; border-top:1px solid var(--border); }
+    .post-actions { display:flex; gap:12px; flex-wrap:wrap; margin-top:20px; }
+    .post-btn { font-size:13px; padding:12px 24px; border-radius:4px; text-decoration:none; transition:all 0.2s; }
+    .post-btn.primary { background:var(--accent); color:#fff; }
+    .post-btn.primary:hover { background:var(--accent-2); }
+    .post-btn.ghost { background:transparent; color:var(--ink); border:1px solid var(--border); }
+    .post-btn.ghost:hover { border-color:var(--ink-3); background:var(--bg-alt); }
+
+    @media (max-width:720px) {
+      .post-wrap { padding:120px 20px 88px; }
+      .post-lede { font-size:16px; }
+      .code { font-size:11.5px; padding:16px 18px; }
+      .feat { grid-template-columns:1fr; }
+    }
+  </style>
+  <link rel="stylesheet" href="/assets/site.css?v=17" />
+</head>
+<body>
+  <div id="cs-header"></div>
+
+  <main class="post-wrap">
+    <a class="post-back" href="/zhtw/blog/">← 部落格</a>
+    <div class="post-eyebrow">Release</div>
+    <h1 class="post-title">CoStaff v0.1.0 — 自架的 AI 員工團隊，第一個正式版</h1>
+    <div class="post-meta">2026 年 8 月 4 日 · Simon Liu</div>
+
+    <p class="post-lede">
+      多 Agent 系統這一年的討論，多半集中在編排層 —— ADK、LangGraph
+      各自定義了 Agent 之間怎麼協作、狀態怎麼傳遞。但真的要把這套東西放進日常工作流程，
+      會發現缺的往往不是編排能力，而是<strong>「交付」這一段</strong>：
+      誰負責把中間結果變成一份可以直接寄出去的檔案。
+    </p>
+
+    <div class="post-body">
+      <p>
+        CoStaff 就是我針對這一段所做的系統。它由一個 Manager Agent 與數個專職 Agent 組成，
+        彼此透過 <strong>A2A protocol</strong> 溝通，工具整合走 <strong>MCP</strong>，
+        每個 Agent 各自跑在獨立的 Docker container 裡。
+        今天要向大家宣布，第一個 CoStaff 正式版本 <strong>v0.1.0</strong> 已經上線到 GitHub。
+      </p>
+
+      <div class="callout">
+        <div class="callout-head">TL;DR</div>
+        <p>
+          CoStaff 是一套自架的多 Agent 系統：你在聊天軟體裡交辦，
+          Manager Agent 拆解後分派給專職 Agent，完成的檔案送回你的對話裡，
+          全部跑在自己的機器上。
+        </p>
+        <p>
+          這次是第一個正式版本，11 個 repo 的版本全部拉齊，
+          只要下 <code>costaff update --all --tag v0.1.0</code>，
+          裝到的就是一組已經驗證過的組合。
+          想直接動手的話可以跳到<a href="#install">第 VI 節</a>；
+          中間幾節談的是架構上的取捨。
+        </p>
+      </div>
+
+      <h2>I. 交付這一段為什麼會缺</h2>
+      <p>
+        以「幫我做南區第三季的銷售報告」這個需求為例，它其實橫跨了三種能力：
+        知道資料在哪張表、能把查詢結果轉成合適的圖表、能把圖表跟敘述組成一份帶字型的 PDF。
+        要一個 Agent 同時做到這三件，代價就是 instruction 無限膨脹、工具集互相干擾。
+      </p>
+      <p>
+        拆成多個專職 Agent 是自然的解法。但拆完馬上要回答兩個問題：
+        <strong>每位專員手上的工具從哪裡來</strong>，
+        以及<strong>他們之間怎麼交接產出的檔案</strong>。
+        這兩題答得好不好，決定了整套系統到頭來能不能真的交件，
+        也是 CoStaff 架構上最主要的兩個取捨。
+      </p>
+
+      <h2>II. Agent ↔ MCP ↔ 工具：三層各自負責什麼</h2>
+      <p>
+        一個 Agent 要能真的動手，前提是它手上得有工具。
+        這些工具從哪裡來、由誰定義，決定了整套系統的形狀。
+        CoStaff 的做法是把它拆成三層。
+      </p>
+      <p>
+        <strong>工具層</strong>是實際會動到檔案、資料庫、指令的那些函式。
+        以開源的 database agent 為例，它就四個：
+        <code>get_connected_databases</code>、<code>inspect_database</code>、
+        <code>inspect_table</code>、<code>query</code> ——
+        先看有哪些連線、再看 schema、最後才查。
+        coding agent 則有 56 個，涵蓋檔案讀寫、git、執行、lint 與環境管理。
+      </p>
+      <p>
+        <strong>MCP 層</strong>把這些函式暴露出去。
+        coding agent 的 MCP server 是自動註冊的：
+        掃過 <code>tools/</code> 底下每個模組，把所有非底線開頭的公開函式
+        直接註冊成工具。要加一項能力，就是在 <code>tools/</code> 新增一個函式，
+        <strong>不必碰 server、也不必改 Agent 的 instruction</strong>。
+      </p>
+      <p>
+        <strong>Agent 層</strong>只負責推理與判斷。它透過環境變數
+        （像 <code>BUSINESS_ANALYSIS_AGENT_MCP_URLS</code>）指到一組 MCP endpoint，
+        能做到哪些事完全看那組 MCP 開放了什麼。
+        最上面才是 Manager Agent，透過 A2A protocol 把任務分派給對應的專員。
+      </p>
+
+      <h3>為什麼這樣拆有差</h3>
+      <p>
+        <strong>一、加能力不用動模型。</strong>
+        工具是一般的 Python 函式，寫完放進 <code>tools/</code> 就生效。
+        不用重訓、不用調 prompt，Agent 下次就會用了。
+      </p>
+      <p>
+        <strong>二、專員是真的能動手，不只是回話。</strong>
+        coding agent 的工具裡有 <code>write_file</code>、<code>patch_file</code>、
+        <code>git_commit</code>、<code>run_pytest</code>；
+        database agent 有 <code>query</code>。
+        它是真的去改檔案、真的跑測試，不是告訴你「你可以這樣改」。
+      </p>
+      <p>
+        <strong>三、交付這一段有人負責。</strong>
+        business-analysis agent 的 11 個工具裡，有一半在處理輸出：
+        <code>create_report_from_markdown</code>、<code>create_html_report</code>、
+        <code>export_pdf</code>，還有一個 <code>inject_noto_font</code> ——
+        專門處理中日文在 PDF 裡變成豆腐方塊的問題。
+        這種東西不迷人，但少了它，最後那份檔案就不能直接寄出去。
+      </p>
+
+      <h2>III. 專員之間，交接的是檔案</h2>
+      <p>
+        第二個問題更實際：一件事經手三位專員，中間產出的檔案要怎麼傳？
+        把整份 CSV 塞進訊息裡傳來傳去顯然不合理。
+      </p>
+      <p>
+        CoStaff 的做法是所有容器共掛一個 <code>costaff_data</code> volume 到
+        <code>/app/data</code>，每個專員有自己的工作目錄
+        <code>/app/data/agent-{id}/</code>。
+      </p>
+      <p>
+        這樣一來，隔離跟共享就不衝突：專員各寫各的目錄，不會互相踩到，
+        但需要的時候，business-analysis agent 可以直接讀 coding agent 的產出，
+        不必把檔案 base64 塞進 A2A 的訊息裡傳來傳去。
+        一條「資料庫撈數 → 程式對帳 → 分析出報告」的鏈路，
+        中間傳的是路徑，不是內容。
+      </p>
+
+      <h2>IV. 為什麼堅持它要能自己架</h2>
+      <p>
+        整套跑在你自己的機器上，裝在 Docker 裡。這是刻意的設計前提，不是還沒做雲端版。
+      </p>
+
+      <div class="feat">
+        <div class="feat-item">
+          <div class="feat-name">資料邊界很清楚</div>
+          <div class="feat-text">檔案、對話、以及自架模型時的 inference，都在你的硬體內。要評估導入不必先跑一輪資料外流審查。</div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-name">每層可獨立替換</div>
+          <div class="feat-text">六層架構各自在容器裡，模型、通訊管道、專職 Agent 都能單獨換掉或擴充，不動到其他層。</div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-name">插件式擴充</div>
+          <div class="feat-text">Agent 與 Channel 透過外部 network 接上核心，用 <code>costaff agent add</code> 掛載，不必改核心程式碼。</div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-name">開源</div>
+          <div class="feat-text">核心 AGPL v3，Agent 與 Channel 是 Apache 2.0。可以讀、可以改，也可以從 template 寫自己的 Agent。</div>
+        </div>
+      </div>
+
+      <h2>V. v0.1.0 帶了什麼</h2>
+      <ul>
+        <li><strong>Manager Agent</strong> —— 對話入口，負責拆解與路由。</li>
+        <li><strong>專職 Agent</strong> —— business-analysis（分析與報告輸出）、coding（檔案、git、測試）、database（schema 探索與查詢），另外還有 twinkle-hub 與 wrenai-oss。</li>
+        <li><strong>Agent template</strong> —— 要寫自己的專員就從這份開始。</li>
+        <li><strong>通訊管道</strong> —— Telegram 與 WebChat（OSS 版支援 SSE 非同步推送，長任務完成後主動送回）。</li>
+        <li><strong>CLI</strong> —— <code>costaff start</code>、<code>costaff agent add</code>、<code>costaff channel add</code>、<code>costaff update</code>。</li>
+      </ul>
+
+
+      <h2 id="install">VI. 安裝與啟動</h2>
+      <p>前置是 Python 3.10+ 與 Docker：</p>
+      <pre class="code"><code>curl -fsSL https://raw.githubusercontent.com/costaff-ai/costaff/main/install.sh | bash</code></pre>
+      <p>
+        <code>onboard</code> 是互動式精靈，問完模型、通訊管道與對應的 token 之後寫進
+        <code>.env</code>；<code>start</code> 會依序拉起 Postgres、Agents、Manager、Channels：
+      </p>
+      <pre class="code"><code>costaff onboard
+costaff start</code></pre>
+      <p>
+        要加專員或通道，指定 tag 就能 pin 住版本：
+      </p>
+      <pre class="code"><code>costaff agent add business-analysis \
+  --github https://github.com/costaff-ai/costaff-agent-business-analysis --tag v0.1.0
+costaff channel add telegram --tag v0.1.0</code></pre>
+      <p>
+        更完整的流程在<a href="/zhtw/docs/start/">快速開始</a>，
+        Agent、Channel 與 CLI 的細節在<a href="/zhtw/docs/">說明文件</a>。
+      </p>
+
+      <h2>總結</h2>
+      <p>
+        CoStaff 的定位不在編排層本身，而在把編排的結果真的交付出來。
+        工具就是一般的 Python 函式，MCP 把它們自動註冊出去，
+        Agent 則專心推理 —— 所以加一項能力只是多寫一個函式，
+        而且專員是真的去改檔案、跑測試、把 PDF 產出來，不是建議你自己去做。
+        再加上共享卷讓專員之間交接的是檔案而不是字串，
+        整條鏈路都在你自己的資料邊界內完成。
+      </p>
+      <p>
+        到了 v0.1.0，我才敢請大家直接裝來用。
+        裝了之後如果哪裡不對，<a href="https://github.com/costaff-ai/costaff/issues" target="_blank" rel="noopener">開 issue</a> 告訴我 ——
+        版本剛發出來的時候，這種回報最有價值。
+      </p>
+
+      <div class="post-end">
+        <p>開源，自架，跑在你自己的機器上。從核心開始，只加你需要的專員。</p>
+        <div class="post-actions">
+          <a class="post-btn primary" href="/zhtw/docs/start/">開始使用</a>
+          <a class="post-btn ghost" href="https://github.com/costaff-ai/costaff" target="_blank" rel="noopener">在 GitHub 上檢視</a>
+          <a class="post-btn ghost" href="https://forms.gle/9UVdi527sYUBuqcm6" target="_blank" rel="noopener">搶先預約</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="cs-footer"></div>
+  <script src="/assets/site.js?v=17" defer></script>
+</body>
+</html>

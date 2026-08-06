@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CoStaff v0.1.0 — a self-hosted AI staff, first stable release</title>
+  <link rel="icon" href="/images/logo/favicon.ico" sizes="any" />
+  <link rel="icon" href="/images/logo/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/images/logo/apple-touch-icon.png" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="CoStaff" />
+  <meta property="og:title" content="CoStaff v0.1.0 — a self-hosted AI staff, first stable release" />
+  <meta property="og:description" content="CoStaff is a self-hosted multi-agent system. Tools are ordinary Python functions, MCP registers them automatically, the agent only reasons — how those three layers divide up, and what v0.1.0 ships with." />
+  <meta property="og:url" content="https://costaffs.app/blog/costaff-v0-1-0/" />
+  <meta property="og:image" content="https://costaffs.app/images/logo/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="article:published_time" content="2026-08-04" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://costaffs.app/images/logo/og.png" />
+
+  <meta name="description" content="CoStaff is a self-hosted multi-agent system. Tools are ordinary Python functions, MCP registers them automatically, the agent only reasons — how those three layers divide up, and what v0.1.0 ships with." />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="canonical" href="https://costaffs.app/blog/costaff-v0-1-0/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg:#faf9f7; --bg-alt:#f3f2ef; --ink:#1a1917; --ink-2:#5a5855;
+      --ink-3:#9a9895; --border:#e4e2de; --accent:#2d3a2e; --accent-2:#4a6741;
+      --serif:'Noto Serif JP',Georgia,serif; --sans:'Inter',system-ui,sans-serif;
+      --mono:'JetBrains Mono',monospace; --max:720px;
+    }
+    html { scroll-behavior:smooth; }
+    body { background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:15px; line-height:1.7; -webkit-font-smoothing:antialiased; }
+
+    .post-wrap { max-width:var(--max); margin:0 auto; padding:150px 24px 120px; }
+    .post-back { display:inline-block; font-family:var(--mono); font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
+      color:var(--ink-3); text-decoration:none; margin-bottom:28px; transition:color 0.2s; }
+    .post-back:hover { color:var(--accent-2); }
+    .post-eyebrow { font-family:var(--mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--accent-2); margin-bottom:16px; }
+    .post-title { font-family:var(--serif); font-weight:300; font-size:clamp(30px,5vw,46px); line-height:1.22; color:var(--ink); margin-bottom:18px; }
+    .post-meta { font-family:var(--mono); font-size:12px; color:var(--ink-3); letter-spacing:0.04em;
+      padding-bottom:32px; border-bottom:1px solid var(--border); margin-bottom:40px; }
+    .post-lede { font-size:17px; line-height:1.85; color:var(--ink-2); margin-bottom:40px; }
+
+    .post-body h2 { font-family:var(--serif); font-weight:400; font-size:23px; line-height:1.35; color:var(--ink); margin:52px 0 16px; }
+    .post-body h3 { font-weight:500; font-size:15px; color:var(--ink); margin:32px 0 10px; }
+    .post-body p { color:var(--ink-2); margin-bottom:18px; line-height:1.85; }
+    .post-body ul { margin:0 0 20px; padding-left:20px; }
+    .post-body li { color:var(--ink-2); margin-bottom:10px; line-height:1.8; }
+    .post-body strong { color:var(--ink); font-weight:500; }
+    .post-body a { color:var(--accent-2); text-decoration:none; border-bottom:1px solid rgba(74,103,65,0.3); }
+    .post-body a:hover { border-bottom-color:var(--accent-2); }
+    .post-body code { font-family:var(--mono); font-size:12.5px; background:var(--bg-alt);
+      border:1px solid var(--border); border-radius:3px; padding:1px 5px; color:var(--ink); word-break:break-all; }
+
+    .code { font-family:var(--mono); font-size:12.5px; line-height:1.85; background:#1a1917; color:#e8e6e1;
+      border-radius:8px; padding:20px 22px; overflow-x:auto; margin:0 0 24px; white-space:pre; }
+    .code code { background:none; border:none; padding:0; color:inherit; font-size:inherit; word-break:normal; }
+
+
+    .feat { display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--border);
+      border:1px solid var(--border); border-radius:12px; overflow:hidden; margin:0 0 26px; }
+    .feat-item { background:#fff; padding:22px 24px; }
+    .feat-name { font-size:14px; font-weight:500; color:var(--ink); margin-bottom:7px; }
+    .feat-text { font-size:13px; color:var(--ink-2); line-height:1.75; }
+
+    .callout { border:1px solid var(--border); border-left:2px solid var(--accent-2); background:#fff;
+      border-radius:0 10px 10px 0; padding:22px 24px; margin:0 0 26px; }
+    .callout-head { font-family:var(--mono); font-size:10px; letter-spacing:0.18em; text-transform:uppercase;
+      color:var(--accent-2); margin-bottom:10px; }
+    .callout p:last-child { margin-bottom:0; }
+
+    .post-end { margin-top:56px; padding-top:32px; border-top:1px solid var(--border); }
+    .post-actions { display:flex; gap:12px; flex-wrap:wrap; margin-top:20px; }
+    .post-btn { font-size:13px; padding:12px 24px; border-radius:4px; text-decoration:none; transition:all 0.2s; }
+    .post-btn.primary { background:var(--accent); color:#fff; }
+    .post-btn.primary:hover { background:var(--accent-2); }
+    .post-btn.ghost { background:transparent; color:var(--ink); border:1px solid var(--border); }
+    .post-btn.ghost:hover { border-color:var(--ink-3); background:var(--bg-alt); }
+
+    @media (max-width:720px) {
+      .post-wrap { padding:120px 20px 88px; }
+      .post-lede { font-size:16px; }
+      .code { font-size:11.5px; padding:16px 18px; }
+      .feat { grid-template-columns:1fr; }
+    }
+  </style>
+  <link rel="stylesheet" href="/assets/site.css?v=17" />
+</head>
+<body>
+  <div id="cs-header"></div>
+
+  <main class="post-wrap">
+    <a class="post-back" href="/blog/">← Blog</a>
+    <div class="post-eyebrow">Release</div>
+    <h1 class="post-title">CoStaff v0.1.0 — a self-hosted AI staff, first stable release</h1>
+    <div class="post-meta">4 August 2026 · Simon Liu</div>
+
+    <p class="post-lede">
+      Most of the multi-agent conversation this year has centred on the
+      orchestration layer — ADK and LangGraph each defining how agents coordinate
+      and how state moves between them. Put any of it into a real working process,
+      though, and what's usually missing isn't orchestration. It's
+      <strong>delivery</strong>: who turns the intermediate results into a file you
+      can actually send.
+    </p>
+
+    <div class="post-body">
+      <p>
+        CoStaff is the system I built for that stretch. One Manager Agent plus a set
+        of specialists, communicating over <strong>A2A protocol</strong>, integrating
+        tools through <strong>MCP</strong>, each running in its own Docker container.
+        Today it goes to <strong>v0.1.0</strong>, the first stable release.
+      </p>
+
+      <div class="callout">
+        <div class="callout-head">TL;DR</div>
+        <p>
+          CoStaff is a self-hosted multi-agent system: you hand a task off in a chat
+          app, the Manager Agent decomposes it and dispatches to specialists, and the
+          finished file comes back into your conversation — all on your own machine.
+        </p>
+        <p>
+          v0.1.0 is the first stable release, with all 11 repos aligned on one
+          version, so <code>costaff update --all --tag v0.1.0</code> installs a
+          combination that was tested together. If you'd rather just try it, skip to
+          <a href="#install">section VI</a>; the sections in between are about the
+          architectural trade-offs.
+        </p>
+      </div>
+
+      <h2>I. Why delivery is the part that goes missing</h2>
+      <p>
+        Take one request — "give me the Q3 sales report for the southern region" —
+        and it spans three separate competencies: knowing which tables hold the data,
+        turning a result set into the right chart, and assembling charts and narrative
+        into a properly typeset PDF. Ask a single agent to hold all three and the
+        instruction balloons while the tool sets start interfering with each other.
+      </p>
+      <p>
+        Splitting into specialists is the obvious answer, and it immediately raises
+        two questions: <strong>where each specialist's tools come from</strong>, and
+        <strong>how they pass finished artifacts between themselves</strong>. Those
+        two answers decide whether the system can really deliver, and they're the
+        main architectural trade-offs in CoStaff.
+      </p>
+
+      <h2>II. Agent ↔ MCP ↔ tools: what each layer owns</h2>
+      <p>
+        For an agent to actually do anything, it needs tools. Where those tools come
+        from, and who defines them, shapes the whole system. CoStaff splits it into
+        three layers.
+      </p>
+      <p>
+        The <strong>tool layer</strong> is the functions that genuinely touch files,
+        databases and commands. The open-source database agent has four:
+        <code>get_connected_databases</code>, <code>inspect_database</code>,
+        <code>inspect_table</code>, <code>query</code> — see what's connected, read
+        the schema, then run the query. The coding agent has 56, covering file
+        read/write, git, execution, linting and environment management.
+      </p>
+      <p>
+        The <strong>MCP layer</strong> exposes them. The coding agent's MCP server
+        registers tools automatically: it walks every module under
+        <code>tools/</code> and registers each public function that doesn't start
+        with an underscore. Adding a capability means adding a function to
+        <code>tools/</code> — <strong>no server changes, no edits to the agent's
+        instruction</strong>.
+      </p>
+      <p>
+        The <strong>agent layer</strong> only reasons. It points at a set of MCP
+        endpoints through an environment variable (such as
+        <code>BUSINESS_ANALYSIS_AGENT_MCP_URLS</code>), and what it can do is
+        entirely what those endpoints expose. Above it sits the Manager Agent,
+        dispatching over A2A protocol to whichever specialist fits.
+      </p>
+
+      <h3>Why the split matters</h3>
+      <p>
+        <strong>1. New capabilities don't touch the model.</strong>
+        Tools are ordinary Python functions; write one, drop it in
+        <code>tools/</code>, done. No retraining, no prompt surgery — the agent picks
+        it up next run.
+      </p>
+      <p>
+        <strong>2. Specialists actually act, they don't just reply.</strong>
+        The coding agent's tools include <code>write_file</code>,
+        <code>patch_file</code>, <code>git_commit</code> and <code>run_pytest</code>;
+        the database agent has <code>query</code>. It edits the file and runs the
+        tests, rather than telling you how you could.
+      </p>
+      <p>
+        <strong>3. Someone owns the delivery step.</strong>
+        Half of the business-analysis agent's eleven tools are about output:
+        <code>create_report_from_markdown</code>, <code>create_html_report</code>,
+        <code>export_pdf</code> — and <code>inject_noto_font</code>, which exists
+        purely so CJK text doesn't come out of a PDF as tofu boxes. Unglamorous, but
+        without it the final file isn't something you can send.
+      </p>
+
+      <h2>III. Specialists hand each other files</h2>
+      <p>
+        The second problem is more practical: when one job passes through three
+        specialists, how do the intermediate files travel? Stuffing a whole CSV
+        through the messaging layer isn't reasonable.
+      </p>
+      <p>
+        Every container mounts a shared <code>costaff_data</code> volume at
+        <code>/app/data</code>, and each specialist gets its own working directory at
+        <code>/app/data/agent-{id}/</code>.
+      </p>
+      <p>
+        Isolation and sharing hold at the same time: specialists write to their own
+        directories without stepping on each other, but when it's needed the
+        business-analysis agent can read the coding agent's output directly, instead
+        of base64-ing files through A2A messages. Across a chain of
+        "query the database → reconcile in code → produce the report", what moves
+        between agents is a path, not the contents.
+      </p>
+
+      <h2>IV. Why it has to be self-hosted</h2>
+      <p>
+        The whole thing runs on your own machine, in Docker. That's a deliberate
+        premise, not a cloud version I haven't got around to.
+      </p>
+
+      <div class="feat">
+        <div class="feat-item">
+          <div class="feat-name">A clear data boundary</div>
+          <div class="feat-text">Files, conversations, and — with a self-hosted model — inference too, all inside your own hardware. Evaluating it doesn't start with a data-egress review.</div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-name">Every layer swappable</div>
+          <div class="feat-text">Six layers, each in its own container. Model, channel or specialist can be replaced or extended without touching the others.</div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-name">Plugin-style extension</div>
+          <div class="feat-text">Agents and channels attach to the core over an external network and are mounted with <code>costaff agent add</code> — no core changes needed.</div>
+        </div>
+        <div class="feat-item">
+          <div class="feat-name">Open source</div>
+          <div class="feat-text">Core under AGPL v3, agents and channels Apache 2.0. Read it, change it, or write your own agent from the template.</div>
+        </div>
+      </div>
+
+      <h2>V. What v0.1.0 ships</h2>
+      <ul>
+        <li><strong>Manager Agent</strong> — the conversational entry point; decomposes and routes.</li>
+        <li><strong>Specialists</strong> — business-analysis (analysis and report output), coding (files, git, tests), database (schema exploration and queries), plus twinkle-hub and wrenai-oss.</li>
+        <li><strong>Agent template</strong> — the starting point for writing your own specialist.</li>
+        <li><strong>Channels</strong> — Telegram and WebChat (the OSS build takes async pushes over SSE, so long-running tasks report back on completion).</li>
+        <li><strong>The CLI</strong> — <code>costaff start</code>, <code>costaff agent add</code>, <code>costaff channel add</code>, <code>costaff update</code>.</li>
+      </ul>
+
+
+      <h2 id="install">VI. Install and start</h2>
+      <p>Python 3.10+ and Docker are the prerequisites:</p>
+      <pre class="code"><code>curl -fsSL https://raw.githubusercontent.com/costaff-ai/costaff/main/install.sh | bash</code></pre>
+      <p>
+        <code>onboard</code> is an interactive wizard — model, channel, the matching
+        token — writing straight to <code>.env</code>. <code>start</code> brings up
+        Postgres, agents, Manager and channels in order:
+      </p>
+      <pre class="code"><code>costaff onboard
+costaff start</code></pre>
+      <p>Adding a specialist or a channel, pinned to a tag:</p>
+      <pre class="code"><code>costaff agent add business-analysis \
+  --github https://github.com/costaff-ai/costaff-agent-business-analysis --tag v0.1.0
+costaff channel add telegram --tag v0.1.0</code></pre>
+      <p>
+        The <a href="/docs/start/">quickstart</a> covers the flow in full; agents,
+        channels and the CLI are in the <a href="/docs/">docs</a>.
+      </p>
+
+      <h2>Wrapping up</h2>
+      <p>
+        CoStaff isn't positioned at the orchestration layer itself, but at getting
+        what orchestration produces actually delivered. Tools are ordinary Python
+        functions, MCP registers them automatically, and the agent only reasons — so
+        a new capability is one more function, and specialists genuinely edit the
+        file, run the tests and produce the PDF rather than advising you to. Add the
+        shared volume, where specialists hand each other files instead of strings,
+        and the whole chain completes inside your own data boundary.
+      </p>
+      <p>
+        v0.1.0 is the first release I'm willing to tell people to go install. If
+        something isn't right once you've installed it,
+        <a href="https://github.com/costaff-ai/costaff/issues" target="_blank" rel="noopener">open an issue</a>
+        — right after a release, that feedback is worth the most.
+      </p>
+
+      <div class="post-end">
+        <p>Open source, self-hosted, running on your own machine. Start with the core, add only the specialists you need.</p>
+        <div class="post-actions">
+          <a class="post-btn primary" href="/docs/start/">Get started</a>
+          <a class="post-btn ghost" href="https://github.com/costaff-ai/costaff" target="_blank" rel="noopener">View on GitHub</a>
+          <a class="post-btn ghost" href="https://forms.gle/9UVdi527sYUBuqcm6" target="_blank" rel="noopener">Get early access</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="cs-footer"></div>
+  <script src="/assets/site.js?v=17" defer></script>
+</body>
+</html>
