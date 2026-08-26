@@ -37,7 +37,9 @@
     body { font-family:var(--sans); font-size:15px; line-height:1.7; -webkit-font-smoothing:antialiased; }
     ::selection { background:var(--t-accent); color:#fff; }
   </style>
-  <link rel="stylesheet" href="/assets/tool-page.css?v=2" />
+  <!-- site.css 只為了 site.js 注入的 footer；它全是 class 選擇器，不會影響下面這份 -->
+  <link rel="stylesheet" href="/assets/site.css?v=17" />
+  <link rel="stylesheet" href="/assets/tool-page.css?v=3" />
 </head>
 <body class="tp">
 
@@ -69,7 +71,7 @@
         <span class="s">The recording studio</span>
         <span class="m">built for <em>agents</em>.</span>
       </h1>
-      <p class="tp-lede">瀏覽器優先的錄音工具。分頁持有麥克風，伺服器持有 session。whisper.cpp 在你的機器上轉錄。沒有任何東西被上傳。</p>
+      <p class="tp-lede">瀏覽器優先的錄音工具。分頁拿著麥克風，伺服器管著 session，轉錄交給你電腦裡的 whisper.cpp。音檔不會離開這台機器。</p>
       <div class="tp-cmd"><span class="p">$</span> npx open-recording dev --mcp</div>
 
       <div class="tp-shot" id="demo">
@@ -78,34 +80,43 @@
       <p class="tp-cap">工作室 — 每段錄音都是一張卡片，帶著逐字稿的開頭幾句</p>
     </section>
 
+    <section class="tp-moment">
+      <div class="tp-prompt">
+        <span class="tp-prompt-slash">start_recording</span>
+        <span class="tp-prompt-text">{ title: "產品同步會議" }</span>
+        <span class="tp-prompt-cursor"></span>
+      </div>
+      <p class="tp-moment-out">→ 等瀏覽器確認麥克風 · 已開始錄音</p>
+    </section>
+
     <section class="tp-sec">
       <div class="tp-eyebrow">01 · 為什麼</div>
       <h2 class="tp-h2">
-        <span class="s">麥克風在分頁裡。</span>
-        <span class="m">狀態在伺服器上。</span>
+        <span class="s">你按停止，</span>
+        <span class="m">agent 立刻就知道。</span>
       </h2>
-      <p class="tp-body">只有真實的分頁拿得到麥克風。所以錄音發生在瀏覽器，session、檔案與逐字稿留在 dev server。人跟 agent 因此能操作同一台錄音機。</p>
+      <p class="tp-body">只有真的瀏覽器分頁拿得到麥克風，所以錄音一定發生在瀏覽器。但 session、檔案和逐字稿都放在 dev server——這樣人跟 agent 才是在操作同一台錄音機，而不是各自一台。</p>
       <div class="tp-cards">
         <div class="tp-card">
           <div class="tp-card-n">01 · 本機</div>
-          <h3>沒有東西被上傳。</h3>
-          <p>whisper.cpp 跑在你的 CPU 上。音檔、逐字稿與筆記都是你資料夾裡的檔案。</p>
+          <h3>音檔不會離開這台電腦</h3>
+          <p>whisper.cpp 在你的 CPU 上跑完整個轉錄。不用 API key，斷網也照轉。</p>
         </div>
         <div class="tp-card">
           <div class="tp-card-n">02 · 共用</div>
-          <h3>一台錄音機，兩個操作者。</h3>
-          <p>人跟 agent 共用同一個 session。誰按停止，另一邊立刻看得到。</p>
+          <h3>誰按停止，另一邊都看得到</h3>
+          <p>你在頁面上按停止，agent 那邊的狀態立刻跟著變。反過來也一樣。</p>
         </div>
         <div class="tp-card">
           <div class="tp-card-n">03 · 檔案</div>
-          <h3>一段錄音就是一個資料夾。</h3>
-          <p>音檔、帶時間的片段、Markdown 逐字稿、筆記。沒有資料庫，沒有索引。</p>
+          <h3>打開資料夾就看得到全部</h3>
+          <p>音檔、逐字稿、字幕、筆記都在同一個目錄裡。不需要透過這個工具，才讀得到自己的東西。</p>
           <div class="tp-term"><span class="p">$</span> ls recordings/&lt;id&gt;/<br/><span class="ok">audio.webm   transcript.md<br/>meta.json    notes.md</span></div>
         </div>
         <div class="tp-card">
           <div class="tp-card-n">04 · 字體</div>
-          <h3>要繁體就給繁體。</h3>
-          <p>Whisper 一律寫簡體。設定字體後由 OpenCC 逐詞轉換，<code>软件</code> 變成 <code>軟體</code>，時間戳原封不動。</p>
+          <h3>台北開的會，寫出來是繁體</h3>
+          <p>Whisper 不管你講什麼都輸出簡體。設定之後 OpenCC 會逐詞轉過來，<code>软件</code> 變<code>軟體</code>不是<code>軟件</code>，時間戳一格都不動。</p>
         </div>
       </div>
     </section>
@@ -116,29 +127,29 @@
         <span class="s">用 MCP 按下錄音。</span>
         <span class="m">六個工具，一個 endpoint。</span>
       </h2>
-      <p class="tp-body">把 agent 指到 <code>localhost:5274/mcp</code>。開始錄音、停止時順便轉錄、讀回逐字稿、把摘要寫在音檔旁邊。</p>
+      <p class="tp-body">把 agent 指到 <code>localhost:5274/mcp</code> 就好。開會前叫它開始錄，散會叫它停止並轉錄，然後請它把摘要寫在音檔旁邊。</p>
       <table class="tp-table">
-        <tr><td>start_recording</td><td>按下錄音。瀏覽器確認麥克風開了才回傳。</td></tr>
+        <tr><td>start_recording</td><td>按下錄音。要等瀏覽器確認麥克風開了才回傳。</td></tr>
         <tr><td>stop_recording</td><td>停止並收尾。帶 <code>transcribe: true</code> 就順便跑 whisper。</td></tr>
         <tr><td>read_transcript</td><td>帶時間戳的 Markdown、純文字，或帶時間的片段。</td></tr>
         <tr><td>search_transcripts</td><td>跨所有逐字稿搜尋，附毫秒位移。</td></tr>
         <tr><td>write_notes</td><td>把摘要或待辦寫在音檔旁邊。</td></tr>
         <tr><td>recorder_status</td><td>現在有沒有在錄，以及有沒有工作室能錄。</td></tr>
       </table>
-      <p class="tp-note"><strong>它拒絕，而不是謊報。</strong> <code>start_recording</code> 會等 <code>MediaRecorder</code> 確認才回傳。分頁關了、麥克風被擋，agent 拿到的是講明原因的拒絕，不是一句「好了」。</p>
+      <p class="tp-note"><strong>它會拒絕，不會裝作有在錄。</strong> 分頁關掉了、麥克風被擋了，<code>start_recording</code> 回給 agent 的是講明原因的拒絕。散會才發現根本沒錄到，這種事只要發生一次就夠了。</p>
       <div class="tp-shot tp-shot--cut" style="margin-top:44px">
         <img src="/images/tools/open-recording-detail.png" alt="單一錄音：可拖曳的播放器、集中在一起的四種下載，以及 agent 寫進 notes.md 的摘要。" width="1512" height="693" loading="lazy" />
       </div>
       <p class="tp-cap">錄完的會議 — 以及 agent 寫進 notes.md 的摘要</p>
     </section>
 
-    <section class="tp-sec" id="start">
+    <section class="tp-end" id="start">
       <div class="tp-eyebrow">03 · 開始使用</div>
       <h2 class="tp-h2">
         <span class="s">錄下你的下一場會議。</span>
         <span class="m">一個指令，麥克風授權一次。</span>
       </h2>
-      <p class="tp-body">不裝其他東西也能錄。轉錄需要 whisper.cpp 與 ffmpeg，缺哪個 <code>doctor</code> 會連修法一起印出來。</p>
+      <p class="tp-body">什麼都不裝也能錄。要轉錄才需要 whisper.cpp 跟 ffmpeg——缺哪個，<code>doctor</code> 會把安裝指令一起印給你。</p>
 <pre class="tp-pre"><span class="c"># 工作室在 :5274，MCP endpoint 在 /mcp</span>
 <span class="p">$</span> npx open-recording dev --mcp
 
@@ -153,6 +164,12 @@
       </div>
       <p class="tp-lineage">MIT 授權，免費開源。架構與 <a href="/zhtw/tools/open-doc/">open-doc</a> 同源，兩者的 <code>ops</code> 層與 Vite plugin dev server 都來自 <a href="https://github.com/1weiho/open-slide" target="_blank" rel="noopener">open-slide</a>。</p>
     </section>
+
+    <section class="tp-claim">
+      <h2><span class="s">音訊不離開這台機器。</span><span class="m">沒有上傳，沒有 API key。</span></h2>
+      <p>whisper.cpp 在你的 CPU 上跑完整個轉錄。斷網也能用。</p>
+    </section>
+
 
   </div>
 

@@ -37,7 +37,9 @@
     body { font-family:var(--sans); font-size:15px; line-height:1.7; -webkit-font-smoothing:antialiased; }
     ::selection { background:#1a1a1a; color:#fff; }
   </style>
-  <link rel="stylesheet" href="/assets/tool-page.css?v=2" />
+  <!-- site.css 只為了 site.js 注入的 footer；它全是 class 選擇器，不會影響下面這份 -->
+  <link rel="stylesheet" href="/assets/site.css?v=17" />
+  <link rel="stylesheet" href="/assets/tool-page.css?v=3" />
 </head>
 <body class="tp">
 
@@ -70,7 +72,7 @@
         <span class="s">The doc framework</span>
         <span class="m">built for <em>agents</em>.</span>
       </h1>
-      <p class="tp-lede">A React-first document framework. Every page renders to a real A4 sheet. Outline, contents and page numbers maintain themselves. Export a PDF that looks designed.</p>
+      <p class="tp-lede">A React-first document framework. Every page is a real A4 sheet, written by your agent in React. Contents, page numbers, pagination — the tedious half — handle themselves.</p>
       <div class="tp-cmd"><span class="p">$</span> npx @open-document/cli init my-docs</div>
 
       <div class="tp-shot" id="demo">
@@ -79,33 +81,42 @@
       <p class="tp-cap">The viewer — page thumbnails, a real A4 sheet, and the design panel</p>
     </section>
 
+    <section class="tp-moment">
+      <div class="tp-prompt">
+        <span class="tp-prompt-slash">/create-doc</span>
+        <span class="tp-prompt-text">our Q3 infrastructure review, for engineering leads</span>
+        <span class="tp-prompt-cursor"></span>
+      </div>
+      <p class="tp-moment-out">→ 9 pages · contents and numbering done · q3-review.pdf</p>
+    </section>
+
     <section class="tp-sec">
       <div class="tp-eyebrow">01 · Why</div>
       <h2 class="tp-h2">
-        <span class="s">A page is a sheet.</span>
-        <span class="m">Not an approximation.</span>
+        <span class="s">What you see on screen</span>
+        <span class="m">is what comes off the printer.</span>
       </h2>
-      <p class="tp-body">An agent hands you Markdown; you need a file you can send. The layout layer in between cannot be handled through conversation. Let the agent write React, and leave the paper to the framework.</p>
+      <p class="tp-body">An agent hands you a block of Markdown; you need a file you can send to someone. The layout layer in between is not something you can dictate through chat — so let the agent write React, and leave the paper to the framework.</p>
       <div class="tp-cards">
         <div class="tp-card">
           <div class="tp-card-n">01 · PAPER</div>
-          <h3>A4 is A4.</h3>
-          <p>794 × 1123 px @96dpi. The <code>@page</code> size matches, so screen and printer produce the same document.</p>
+          <h3>It prints the way it looks</h3>
+          <p>A4 is 794 × 1123 px — the same size your printer thinks it is. No "looked fine on screen, fell apart on paper".</p>
         </div>
         <div class="tp-card">
           <div class="tp-card-n">02 · NUMBERING</div>
-          <h3>Numbering maintains itself.</h3>
-          <p>Outline, contents and page numbers update as the document changes. Nobody has to remember.</p>
+          <h3>Add a section, contents follows</h3>
+          <p>Drop in a new section and the contents page and numbering renumber immediately. You never go back to check a figure.</p>
         </div>
         <div class="tp-card">
           <div class="tp-card-n">03 · PAGINATION</div>
-          <h3>Pagination knows what not to break.</h3>
-          <p>Content flows to the next sheet on its own. Headings stay with their text, tables stay whole.</p>
+          <h3>Tables never split in half</h3>
+          <p>Fill a page and it flows to the next one — but a heading travels with its paragraph, and a table stays in one piece.</p>
         </div>
         <div class="tp-card">
           <div class="tp-card-n">04 · CHECKS</div>
-          <h3>Layout problems come back as words.</h3>
-          <p>Overflow, a missing image, a broken table — reported in a form the agent can read.</p>
+          <h3>It tells you what broke, and where</h3>
+          <p>Your agent cannot see the page, so open-doc says it outright: the table on page 7 overflows by 40px, the image on page 3 never loaded.</p>
         </div>
       </div>
     </section>
@@ -121,19 +132,19 @@
         <div class="tp-card">
           <div class="tp-card-n">01 · INIT</div>
           <h3>Spin up a workspace</h3>
-          <p>Creates the document workspace. Every report you author lives inside it.</p>
+          <p>Creates the document workspace. Every report you write from now on lives in that folder.</p>
           <div class="tp-term"><span class="p">$</span> npx @open-document/cli init my-docs<br/><span class="ok">✓ ready</span></div>
         </div>
         <div class="tp-card">
           <div class="tp-card-n">02 · PROMPT</div>
           <h3>Ask your agent</h3>
-          <p>Your agent drafts pages as React components. You guide with prompts. It will not invent your numbers.</p>
+          <p>Your agent drafts each page as a React component; you steer it with a sentence. Ask for figures and it asks where they come from rather than inventing them.</p>
           <div class="tp-term"><span class="p">/create-doc</span> our Q3 infrastructure review</div>
         </div>
         <div class="tp-card">
           <div class="tp-card-n">03 · EXPORT</div>
           <h3>Download the PDF</h3>
-          <p>One menu: PDF or HTML. Headless export runs the same path in CI.</p>
+          <p>One click for a PDF or HTML. Wiring it into CI? Headless export takes the same path.</p>
           <div class="tp-term"><span class="p">$</span> open-doc export --pdf<br/><span class="ok">→ q3-review.pdf</span></div>
         </div>
       </div>
@@ -149,34 +160,40 @@
       <div class="tp-cards">
         <div class="tp-card">
           <div class="tp-card-n">01 · ONE SOURCE</div>
-          <h3>Stale writes get a 409.</h3>
-          <p>People and agents share one implementation. <code>write_document</code> takes the version you last read and never overwrites whoever got there first.</p>
+          <h3>Two of you editing, nothing lost</h3>
+          <p>You tweak text on the page while the agent is writing — it will happen. It takes the version you last read and answers a conflict with <code>409</code> rather than overwriting you.</p>
         </div>
         <div class="tp-card">
           <div class="tp-card-n">02 · CONTEXT</div>
-          <h3>It edits the page you are reading.</h3>
-          <p>The dev server publishes where you are reading. The agent picks up that sheet without asking which one.</p>
+          <h3>Say "this page" and it knows</h3>
+          <p>The dev server knows which sheet you are looking at. Say "swap the chart on this page" and the agent does not ask which page you meant.</p>
         </div>
         <div class="tp-card">
           <div class="tp-card-n">03 · INSPECT</div>
-          <h3>Click. Edit. Saved.</h3>
-          <p>Toggle inspect, click any element, change the text. The edit is written back through an AST replacement and the page reloads.</p>
+          <h3>Click any word and change it</h3>
+          <p>Toggle inspect, click an element, type. The edit is written back into the source and the page reloads — no hunting for which file, which line.</p>
         </div>
         <div class="tp-card">
           <div class="tp-card-n">04 · COMMENTS</div>
-          <h3>Leave a comment. Run /apply-comments.</h3>
-          <p>Notes are pinned as markers in your source. The agent edits exactly what you flagged, then clears them.</p>
+          <h3>Not in the mood? Leave a note</h3>
+          <p>Leave notes on the page as you read; they pin into the source. Run <code>/apply-comments</code> and the agent works through every one of them.</p>
         </div>
       </div>
     </section>
 
-    <section class="tp-sec" id="start">
+    <section class="tp-claim">
+      <h2><span class="s">A document is a file.</span><span class="m">Just React, nothing else.</span></h2>
+      <p><code>docs/&lt;id&gt;/index.tsx</code> is the report. No proprietary format, it diffs in git, and your agent can read it.</p>
+    </section>
+
+
+    <section class="tp-end" id="start">
       <div class="tp-eyebrow">04 · Get started</div>
       <h2 class="tp-h2">
         <span class="s">Ship a report in the next minute.</span>
         <span class="m">One command, zero config.</span>
       </h2>
-      <p class="tp-body">Free and open source under the MIT license, published on npm. Your agent takes it from here.</p>
+      <p class="tp-body">One command, zero config. MIT licensed and on npm — your agent takes it from here.</p>
 <pre class="tp-pre"><span class="c"># scaffold a workspace</span>
 <span class="p">$</span> npx @open-document/cli init my-docs
 

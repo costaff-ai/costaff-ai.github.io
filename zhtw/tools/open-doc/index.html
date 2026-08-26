@@ -37,7 +37,9 @@
     body { font-family:var(--sans); font-size:15px; line-height:1.7; -webkit-font-smoothing:antialiased; }
     ::selection { background:#1a1a1a; color:#fff; }
   </style>
-  <link rel="stylesheet" href="/assets/tool-page.css?v=2" />
+  <!-- site.css 只為了 site.js 注入的 footer；它全是 class 選擇器，不會影響下面這份 -->
+  <link rel="stylesheet" href="/assets/site.css?v=17" />
+  <link rel="stylesheet" href="/assets/tool-page.css?v=3" />
 </head>
 <body class="tp">
 
@@ -70,7 +72,7 @@
         <span class="s">The doc framework</span>
         <span class="m">built for <em>agents</em>.</span>
       </h1>
-      <p class="tp-lede">React 優先的文件框架。每一頁都渲染成真正的 A4 紙。大綱、目錄與頁碼自己維持正確。匯出一份像設計師做的 PDF。</p>
+      <p class="tp-lede">React 優先的文件框架。每一頁都是一張真的 A4 紙，你的 agent 用 React 寫它。目錄、頁碼、分頁這些煩人的事，它自己會處理。</p>
       <div class="tp-cmd"><span class="p">$</span> npx @open-document/cli init my-docs</div>
 
       <div class="tp-shot" id="demo">
@@ -79,33 +81,42 @@
       <p class="tp-cap">檢視器 — 左側頁面縮圖，中間一張真正的 A4 紙，右側是設計面板</p>
     </section>
 
+    <section class="tp-moment">
+      <div class="tp-prompt">
+        <span class="tp-prompt-slash">/create-doc</span>
+        <span class="tp-prompt-text">第三季基礎架構回顧，給工程主管看</span>
+        <span class="tp-prompt-cursor"></span>
+      </div>
+      <p class="tp-moment-out">→ 9 頁 · 目錄與頁碼已編好 · q3-review.pdf</p>
+    </section>
+
     <section class="tp-sec">
       <div class="tp-eyebrow">01 · 為什麼</div>
       <h2 class="tp-h2">
-        <span class="s">一頁就是一張紙。</span>
-        <span class="m">不是近似值。</span>
+        <span class="s">螢幕上是什麼，</span>
+        <span class="m">印出來就是什麼。</span>
       </h2>
-      <p class="tp-body">Agent 給你的是 Markdown，你要的是能寄出去的檔案。中間那層版面工作，用對話處理不完。讓 agent 寫 React，紙張交給框架。</p>
+      <p class="tp-body">Agent 給你的是一段 Markdown，你要的是能直接寄出去的檔案。中間那層版面工作沒辦法用對話交代清楚——所以讓 agent 寫 React，紙張的事交給框架。</p>
       <div class="tp-cards">
         <div class="tp-card">
           <div class="tp-card-n">01 · 紙張</div>
-          <h3>A4 就是 A4。</h3>
-          <p>794 × 1123 px @96dpi。<code>@page</code> 尺寸跟著對齊，螢幕上與印出來的是同一份。</p>
+          <h3>印出來就是你看到的樣子</h3>
+          <p>A4 就是 794 × 1123 px，跟印表機認的同一個尺寸。不會發生「螢幕上好好的，印出來整個跑掉」這種事。</p>
         </div>
         <div class="tp-card">
           <div class="tp-card-n">02 · 頁碼</div>
-          <h3>頁碼自己會算。</h3>
-          <p>大綱、目錄與頁碼隨內容變動自動更新。不必有人記得回頭改。</p>
+          <h3>加一節，目錄自己跟上</h3>
+          <p>插入一個章節，目錄和頁碼立刻重編。你不用回頭檢查任何一個數字。</p>
         </div>
         <div class="tp-card">
           <div class="tp-card-n">03 · 分頁</div>
-          <h3>分頁知道什麼不該斷。</h3>
-          <p>內容自己流到下一頁。標題不跟內文分家，表格不從中間裂開。</p>
+          <h3>表格不會被切成兩半</h3>
+          <p>寫滿了就自己換頁，但標題會跟著它的段落走，表格不會從中間裂開。</p>
         </div>
         <div class="tp-card">
           <div class="tp-card-n">04 · 檢查</div>
-          <h3>版面問題用文字回報。</h3>
-          <p>溢出、圖片沒載入、表格破版——open-doc 用 agent 讀得懂的方式講出來。</p>
+          <h3>哪裡爆版，它會直接說</h3>
+          <p>Agent 看不到頁面，所以 open-doc 直接告訴它：第 7 頁的表格超出 40px、第 3 頁有張圖沒載入。</p>
         </div>
       </div>
     </section>
@@ -121,19 +132,19 @@
         <div class="tp-card">
           <div class="tp-card-n">01 · INIT</div>
           <h3>建一個工作區</h3>
-          <p>建立文件工作區。之後每一份報告都住在裡面。</p>
+          <p>建好文件工作區。之後每一份報告都住在這個資料夾裡。</p>
           <div class="tp-term"><span class="p">$</span> npx @open-document/cli init my-docs<br/><span class="ok">✓ 就緒</span></div>
         </div>
         <div class="tp-card">
           <div class="tp-card-n">02 · PROMPT</div>
           <h3>交給你的 agent</h3>
-          <p>Agent 把每一頁寫成 React 元件，你用 prompt 引導。它不會替你編數字。</p>
+          <p>Agent 把每一頁寫成 React 元件，你用一句話引導。要它引用數據，它會問你要來源，不會自己編。</p>
           <div class="tp-term"><span class="p">/create-doc</span> 第三季基礎架構回顧</div>
         </div>
         <div class="tp-card">
           <div class="tp-card-n">03 · EXPORT</div>
           <h3>下載 PDF</h3>
-          <p>一個選單：PDF 或 HTML。CI 上的 headless 匯出走同一條路徑。</p>
+          <p>按一下就下載 PDF 或 HTML。要接 CI 的話，headless 匯出走的是同一條路。</p>
           <div class="tp-term"><span class="p">$</span> open-doc export --pdf<br/><span class="ok">→ q3-review.pdf</span></div>
         </div>
       </div>
@@ -149,34 +160,40 @@
       <div class="tp-cards">
         <div class="tp-card">
           <div class="tp-card-n">01 · 一致</div>
-          <h3>過期的寫入會拿到 409。</h3>
-          <p>人與 agent 共用同一份實作。<code>write_document</code> 認你最後讀到的版本，不會蓋掉先到的人。</p>
+          <h3>兩邊同時改，不會蓋掉對方</h3>
+          <p>你在頁面上改字的同時 agent 也在寫，這種事一定會發生。它認你最後讀到的版本，衝突時回 <code>409</code> 而不是安靜覆蓋。</p>
         </div>
         <div class="tp-card">
           <div class="tp-card-n">02 · 定位</div>
-          <h3>它改你正在看的那一頁。</h3>
-          <p>Dev server 會公開你讀到哪一頁，agent 直接接手，不必問你指的是第幾頁。</p>
+          <h3>說「這一頁」它就知道是哪頁</h3>
+          <p>Dev server 知道你正在讀第幾頁。所以你說「這頁的圖換掉」，agent 不會反問你是哪一頁。</p>
         </div>
         <div class="tp-card">
           <div class="tp-card-n">03 · 編輯</div>
-          <h3>點一下，改，存檔。</h3>
-          <p>開啟 Inspect，點任一元素改文字。改動透過 AST 寫回原始碼，頁面即時更新。</p>
+          <h3>點一下就能改字</h3>
+          <p>開 Inspect 模式，點任何一個元素直接改。改完寫回原始碼，頁面即時更新——不用去翻是哪個檔案第幾行。</p>
         </div>
         <div class="tp-card">
           <div class="tp-card-n">04 · 註記</div>
-          <h3>留一則註記，讓 agent 去改。</h3>
-          <p>註記以標記形式存在原始碼裡。跑 <code>/apply-comments</code>，agent 逐一改完並清掉標記。</p>
+          <h3>懶得改？留一句話就好</h3>
+          <p>在頁面上留註記，它會釘在原始碼裡。之後跑 <code>/apply-comments</code>，agent 一次改完你標的每一處。</p>
         </div>
       </div>
     </section>
 
-    <section class="tp-sec" id="start">
+    <section class="tp-claim">
+      <h2><span class="s">一份文件就是一個檔案。</span><span class="m">就是 React，沒別的。</span></h2>
+      <p><code>docs/&lt;id&gt;/index.tsx</code> 就是那份報告本身。沒有專有格式，git diff 得出來，你的 agent 也讀得懂。</p>
+    </section>
+
+
+    <section class="tp-end" id="start">
       <div class="tp-eyebrow">04 · 開始使用</div>
       <h2 class="tp-h2">
         <span class="s">一分鐘後交出一份報告。</span>
         <span class="m">一個指令，零設定。</span>
       </h2>
-      <p class="tp-body">開源、MIT 授權、已發佈在 npm。每一行都能讀、能改、能拿去用。</p>
+      <p class="tp-body">一個指令就開始，不用設定任何東西。MIT 授權，已經在 npm 上，接下來交給你的 agent。</p>
 <pre class="tp-pre"><span class="c"># 建立工作區</span>
 <span class="p">$</span> npx @open-document/cli init my-docs
 

@@ -37,7 +37,9 @@
     body { font-family:var(--sans); font-size:15px; line-height:1.7; -webkit-font-smoothing:antialiased; }
     ::selection { background:var(--t-accent); color:#fff; }
   </style>
-  <link rel="stylesheet" href="/assets/tool-page.css?v=2" />
+  <!-- site.css 只為了 site.js 注入的 footer；它全是 class 選擇器，不會影響下面這份 -->
+  <link rel="stylesheet" href="/assets/site.css?v=17" />
+  <link rel="stylesheet" href="/assets/tool-page.css?v=3" />
 </head>
 <body class="tp">
 
@@ -69,7 +71,7 @@
         <span class="s">The recording studio</span>
         <span class="m">built for <em>agents</em>.</span>
       </h1>
-      <p class="tp-lede">A browser-first recorder. The tab holds the microphone, the server holds the session. whisper.cpp transcribes on your machine. Nothing is uploaded.</p>
+      <p class="tp-lede">A browser-first recorder. The tab holds the microphone, the server keeps the session, and whisper.cpp on your own machine does the transcription. The audio stays put.</p>
       <div class="tp-cmd"><span class="p">$</span> npx open-recording dev --mcp</div>
 
       <div class="tp-shot" id="demo">
@@ -78,34 +80,43 @@
       <p class="tp-cap">The studio — every recording is a card carrying the opening words of its transcript</p>
     </section>
 
+    <section class="tp-moment">
+      <div class="tp-prompt">
+        <span class="tp-prompt-slash">start_recording</span>
+        <span class="tp-prompt-text">{ title: "Product sync" }</span>
+        <span class="tp-prompt-cursor"></span>
+      </div>
+      <p class="tp-moment-out">→ waiting for the browser to confirm the mic · recording</p>
+    </section>
+
     <section class="tp-sec">
       <div class="tp-eyebrow">01 · Why</div>
       <h2 class="tp-h2">
-        <span class="s">The mic is in the tab.</span>
-        <span class="m">The state is on the server.</span>
+        <span class="s">You press stop,</span>
+        <span class="m">the agent knows at once.</span>
       </h2>
-      <p class="tp-body">Only a real tab can reach a microphone. So recording happens in the browser, while the session, the files and the transcript stay on the dev server. That is what lets a person and an agent drive the same recorder.</p>
+      <p class="tp-body">Only a real browser tab can reach a microphone, so recording has to happen there. But the session, the files and the transcript live on the dev server — which is what makes it one recorder two people can drive, instead of two recorders.</p>
       <div class="tp-cards">
         <div class="tp-card">
           <div class="tp-card-n">01 · LOCAL</div>
-          <h3>Nothing is uploaded.</h3>
-          <p>whisper.cpp runs on your CPU. The audio, transcript and notes are files in your own folder.</p>
+          <h3>The audio stays on your machine</h3>
+          <p>whisper.cpp does the whole transcription on your CPU. No API key, and it still works with the wifi off.</p>
         </div>
         <div class="tp-card">
           <div class="tp-card-n">02 · SHARED</div>
-          <h3>One recorder. Two drivers.</h3>
-          <p>A person and an agent share one session. Whoever presses stop, the other sees it immediately.</p>
+          <h3>Either of you can stop it</h3>
+          <p>Press stop in the page and the agent sees it immediately. It works the other way round too.</p>
         </div>
         <div class="tp-card">
           <div class="tp-card-n">03 · FILES</div>
-          <h3>A recording is a directory.</h3>
-          <p>Audio, timed segments, a Markdown transcript, notes. No database, no index.</p>
+          <h3>Open the folder, it is all there</h3>
+          <p>Audio, transcript, subtitles and notes sit in one directory. You never need this tool to read your own files.</p>
           <div class="tp-term"><span class="p">$</span> ls recordings/&lt;id&gt;/<br/><span class="ok">audio.webm   transcript.md<br/>meta.json    notes.md</span></div>
         </div>
         <div class="tp-card">
           <div class="tp-card-n">04 · SCRIPT</div>
-          <h3>Traditional Chinese on request.</h3>
-          <p>Whisper always writes Simplified. Set the script and OpenCC converts it phrase by phrase — <code>软件</code> becomes <code>軟體</code> — timestamps intact.</p>
+          <h3>A meeting in Taipei reads like one</h3>
+          <p>Whisper writes Simplified no matter what was spoken. Set the script and OpenCC converts it phrase by phrase — <code>软件</code> becomes <code>軟體</code>, not <code>軟件</code> — every timestamp intact.</p>
         </div>
       </div>
     </section>
@@ -116,7 +127,7 @@
         <span class="s">Press record over MCP.</span>
         <span class="m">Six tools, one endpoint.</span>
       </h2>
-      <p class="tp-body">Point the agent at <code>localhost:5274/mcp</code>. Start the recording, stop it with <code>transcribe: true</code>, read the transcript back, park the summary beside the audio.</p>
+      <p class="tp-body">Point the agent at <code>localhost:5274/mcp</code>. Ask it to start recording before the meeting, stop and transcribe after, then write the summary next to the audio.</p>
       <table class="tp-table">
         <tr><td>start_recording</td><td>Press record. Returns once the browser confirms the mic is open.</td></tr>
         <tr><td>stop_recording</td><td>Stop and finalize. Pass <code>transcribe: true</code> to run whisper too.</td></tr>
@@ -125,20 +136,20 @@
         <tr><td>write_notes</td><td>Park a summary or action items beside the audio.</td></tr>
         <tr><td>recorder_status</td><td>Is anything recording, and is a studio connected to record through.</td></tr>
       </table>
-      <p class="tp-note"><strong>It refuses instead of lying.</strong> <code>start_recording</code> waits for <code>MediaRecorder</code> to confirm. Tab closed or mic blocked, the agent gets a refusal that says which — not a "done".</p>
+      <p class="tp-note"><strong>It refuses rather than pretend.</strong> Tab closed, microphone blocked — <code>start_recording</code> hands the agent a refusal that names the reason. Finding out after the meeting that nothing was recorded only has to happen once.</p>
       <div class="tp-shot tp-shot--cut" style="margin-top:44px">
         <img src="/images/tools/open-recording-detail.png" alt="One recording: a seekable player, the four downloads grouped together, and the summary an agent wrote into notes.md." width="1512" height="693" loading="lazy" />
       </div>
       <p class="tp-cap">A finished meeting — and the summary the agent wrote into notes.md</p>
     </section>
 
-    <section class="tp-sec" id="start">
+    <section class="tp-end" id="start">
       <div class="tp-eyebrow">03 · Get started</div>
       <h2 class="tp-h2">
         <span class="s">Record your next meeting.</span>
         <span class="m">One command. Arm the mic once.</span>
       </h2>
-      <p class="tp-body">Recording works with nothing else installed. Transcription needs whisper.cpp and ffmpeg; <code>doctor</code> prints the fix for whatever is missing.</p>
+      <p class="tp-body">Recording needs nothing else installed. Transcription wants whisper.cpp and ffmpeg — whichever is missing, <code>doctor</code> hands you the install command.</p>
 <pre class="tp-pre"><span class="c"># studio at :5274, MCP endpoint at /mcp</span>
 <span class="p">$</span> npx open-recording dev --mcp
 
@@ -153,6 +164,12 @@
       </div>
       <p class="tp-lineage">Free and open source under the MIT license. Same architecture as <a href="/tools/open-doc/">open-doc</a>; the <code>ops</code> layer and the Vite-plugin dev server both come from <a href="https://github.com/1weiho/open-slide" target="_blank" rel="noopener">open-slide</a>.</p>
     </section>
+
+    <section class="tp-claim">
+      <h2><span class="s">The audio never leaves.</span><span class="m">No upload, no API key.</span></h2>
+      <p>whisper.cpp does the whole transcription on your CPU. It works offline.</p>
+    </section>
+
 
   </div>
 
