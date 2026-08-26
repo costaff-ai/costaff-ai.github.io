@@ -36,8 +36,10 @@
       transition:border-color 0.2s, box-shadow 0.2s, transform 0.2s; }
     .tool:hover { border-color:var(--ink-3); box-shadow:0 16px 44px rgba(26,25,23,0.10); transform:translateY(-2px); }
     /* 兩張截圖比例不同，靠容器裁下緣讓卡片等高——cover 會放大裁掉內容 */
-    .tool-frame { aspect-ratio:1.75/1; overflow:hidden; border-bottom:1px solid var(--border); background:var(--bg-alt); }
-    .tool-shot { display:block; width:100%; }
+    /* 用較寬那張截圖的精確比例（1512/693），較高的那張裁下緣，兩張都不留白也不變形 */
+    .tool-frame { aspect-ratio:1512/693; overflow:hidden; border-bottom:1px solid var(--border); background:var(--bg-alt); }
+    /* height:auto 一定要寫——HTML 上的 height 屬性會被當固定高度，圖片就壓扁了 */
+    .tool-shot { display:block; width:100%; height:auto; }
     .tool-body { padding:24px 26px 26px; }
     .tool-name { font-family:var(--mono); font-size:14px; font-weight:500; color:var(--ink); margin-bottom:8px; }
     .tool-desc { font-size:13.5px; color:var(--ink-2); line-height:1.75; margin-bottom:16px; }
@@ -73,7 +75,7 @@
           <div class="tool-frame"><img class="tool-shot" src="/images/tools/open-doc-design.png" alt="open-doc — the document framework built for agents." width="1280" height="640" loading="lazy" /></div>
           <div class="tool-body">
             <div class="tool-name">open-doc</div>
-            <p class="tool-desc">The document framework built for agents. Describe the report you need; your coding agent writes the React. open-doc handles page geometry, the outline, page numbers, print layout and the PDF.</p>
+            <p class="tool-desc">Every page is a real A4 sheet, written by your agent in React. Contents, page numbers and pagination handle themselves.</p>
             <div class="tool-meta">
               <span class="tool-pill">@open-document/core</span>
               <span class="tool-pill">MIT</span>
@@ -87,7 +89,7 @@
           <div class="tool-frame"><img class="tool-shot" src="/images/tools/open-recording-studio.png" alt="open-recording — the recording studio an agent can drive." width="1512" height="693" loading="lazy" /></div>
           <div class="tool-body">
             <div class="tool-name">open-recording</div>
-            <p class="tool-desc">A real record button for an agent. It presses start, a studio page in your browser takes the microphone, and on stop the audio lands on your disk and is transcribed by whisper.cpp — no audio leaves the machine.</p>
+            <p class="tool-desc">The tab holds the microphone, the server keeps the session, and whisper.cpp transcribes on your own machine. The audio stays put.</p>
             <div class="tool-meta">
               <span class="tool-pill">@open-recording/core</span>
               <span class="tool-pill">MIT</span>

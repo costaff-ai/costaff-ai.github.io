@@ -55,7 +55,7 @@
 /* ---- the product shot, framed ---- */
 .tp-shot { margin-top:64px; border:1px solid var(--t-line); border-radius:12px; overflow:hidden;
   background:var(--t-surface); }
-.tp-shot img { display:block; width:100%; }
+.tp-shot img { display:block; width:100%; height:auto; }
 .tp-shot--cut { max-height:520px; }
 .tp-cap { font-family:var(--mono); font-size:11px; letter-spacing:0.06em; color:var(--t-ink-3);
   margin-top:14px; }
@@ -162,3 +162,7 @@
   .tp-prompt { min-width:0; width:100%; }
   .tp-claim, .tp-end { padding:70px 0; }
 }
+
+/* Never let a width/height attribute squash an image. Every shot on these
+   pages is cropped by its container, never scaled out of proportion. */
+.tp img, .tp-shot img, .tp-prompt img { height:auto; }

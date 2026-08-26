@@ -35,8 +35,10 @@
       transition:border-color 0.2s, box-shadow 0.2s, transform 0.2s; }
     .tool:hover { border-color:var(--ink-3); box-shadow:0 16px 44px rgba(26,25,23,0.10); transform:translateY(-2px); }
     /* 兩張截圖比例不同，靠容器裁下緣讓卡片等高——cover 會放大裁掉內容 */
-    .tool-frame { aspect-ratio:1.75/1; overflow:hidden; border-bottom:1px solid var(--border); background:var(--bg-alt); }
-    .tool-shot { display:block; width:100%; }
+    /* 用較寬那張截圖的精確比例（1512/693），較高的那張裁下緣，兩張都不留白也不變形 */
+    .tool-frame { aspect-ratio:1512/693; overflow:hidden; border-bottom:1px solid var(--border); background:var(--bg-alt); }
+    /* height:auto 一定要寫——HTML 上的 height 屬性會被當固定高度，圖片就壓扁了 */
+    .tool-shot { display:block; width:100%; height:auto; }
     .tool-body { padding:24px 26px 26px; }
     .tool-name { font-family:var(--mono); font-size:14px; font-weight:500; color:var(--ink); margin-bottom:8px; }
     .tool-desc { font-size:13.5px; color:var(--ink-2); line-height:1.85; margin-bottom:16px; }
@@ -72,7 +74,7 @@
           <div class="tool-frame"><img class="tool-shot" src="/images/tools/open-doc-design.png" alt="open-doc——為 agent 打造的文件框架。" width="1280" height="640" loading="lazy" /></div>
           <div class="tool-body">
             <div class="tool-name">open-doc</div>
-            <p class="tool-desc">為 agent 打造的文件框架。用自然語言描述你要的報告，你的 coding agent 負責寫 React，open-doc 負責頁面尺寸、大綱、目錄、頁碼、列印版面與匯出。</p>
+            <p class="tool-desc">每一頁都是一張真的 A4 紙，你的 agent 用 React 寫它。目錄、頁碼、分頁這些煩人的事，它自己會處理。</p>
             <div class="tool-meta">
               <span class="tool-pill">@open-document/core</span>
               <span class="tool-pill">MIT</span>
@@ -86,7 +88,7 @@
           <div class="tool-frame"><img class="tool-shot" src="/images/tools/open-recording-studio.png" alt="open-recording——agent 可以操作的錄音工作室。" width="1512" height="693" loading="lazy" /></div>
           <div class="tool-body">
             <div class="tool-name">open-recording</div>
-            <p class="tool-desc">給 agent 一顆真正的錄音鍵。它按下開始，瀏覽器裡的工作室接管麥克風；按下停止，音檔落在你的磁碟上，並由 whisper.cpp 轉錄——音訊完全不離開這台機器。</p>
+            <p class="tool-desc">分頁拿著麥克風，伺服器管著 session，轉錄交給你電腦裡的 whisper.cpp。音檔不會離開這台機器。</p>
             <div class="tool-meta">
               <span class="tool-pill">@open-recording/core</span>
               <span class="tool-pill">MIT</span>
