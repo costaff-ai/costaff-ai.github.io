@@ -17,50 +17,35 @@
   <meta property="og:image:height" content="640" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://costaffs.app/images/tools/open-doc-preview.png" />
-
   <meta name="description" content="Agent 寫得出報告，排不出版面。open-doc 把交付這一段接起來：你的 coding agent 寫 React，頁面尺寸、目錄、頁碼與列印交給框架。" />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
-    :root { --bg:#faf9f7; --bg-alt:#f3f2ef; --ink:#1a1917; --ink-2:#5a5855; --ink-3:#9a9895; --border:#e4e2de; --accent:#2d3a2e; --accent-2:#4a6741; --serif:'Noto Serif JP',Georgia,serif; --sans:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',monospace;
-      /* open-doc 自己的表面：零彩度中性色階，沒有強調色 */
-      --t-nav-bg:rgba(233,233,233,0.88); --t-line:#dcdcdc; --t-ink:#252525; --t-ink-2:#5a5a5a;
-      --t-ink-3:#8a8a8a; --t-mark-bg:#252525; --t-cta-bg:#252525; --t-cta-ink:#fff; }
+    :root {
+      --sans:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace;
+      /* open-doc 的 token 是零彩度色階，所以這裡沒有彩色重點色——重點靠深淺 */
+      --t-bg:#fbfbfb; --t-surface:#f1f1f1; --t-line:#e4e4e4;
+      --t-ink:#1a1a1a; --t-ink-2:#5c5c5c; --t-ink-3:#949494;
+      --t-accent:#1a1a1a;
+      --t-nav-bg:rgba(251,251,251,0.86); --t-mark-bg:#1a1a1a;
+      --t-cta-bg:#1a1a1a; --t-cta-ink:#fbfbfb;
+    }
     html { scroll-behavior:smooth; }
-    body { background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:15px; line-height:1.8; -webkit-font-smoothing:antialiased; }
-
-    .cs-hero.od-hero { background:#e9e9e9; border-bottom:1px solid #dcdcdc; padding-top:64px; }
-    .od-hero .cs-hero-inner { max-width:860px; }
-    .od-hero .cs-hero-title span { color:#252525; }
-    .od-shot-wrap { max-width:1000px; margin:52px auto 0; padding:0 24px; }
-    /* 出血：整張寬度保留，只切掉下緣 */
-    .od-frame { overflow:hidden; max-height:470px; border:1px solid var(--border); border-top:none;
-      border-radius:0 0 12px 12px; box-shadow:0 24px 60px -24px rgba(26,25,23,0.32); }
-    .od-frame img { display:block; width:100%; }
-    pre { background:#1e1e1e; color:#e8e8e8; border-radius:10px; padding:20px 22px; overflow-x:auto;
-      font-family:var(--mono); font-size:13px; line-height:1.75; }
-    pre .c { color:#8a8a8a; }
-    .step-row { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:16px; margin-bottom:28px; }
-    .step { border:1px solid var(--border); border-radius:12px; background:#fff; padding:22px 22px 24px; }
-    .step-n { font-family:var(--mono); font-size:10.5px; letter-spacing:0.14em; color:var(--accent-2); margin-bottom:10px; }
-    .step h3 { font-size:14.5px; font-weight:600; margin-bottom:7px; }
-    .step p { font-size:13px; color:var(--ink-2); line-height:1.8; }
-    .lineage { font-size:13.5px; color:var(--ink-3); line-height:1.9; margin-top:26px; }
-    .lineage a { color:var(--accent-2); }
+    body { font-family:var(--sans); font-size:15px; line-height:1.7; -webkit-font-smoothing:antialiased; }
+    ::selection { background:#1a1a1a; color:#fff; }
   </style>
-  <link rel="stylesheet" href="/assets/site.css?v=17" />
-  <link rel="stylesheet" href="/assets/tool-page.css?v=1" />
+  <link rel="stylesheet" href="/assets/tool-page.css?v=2" />
 </head>
-<body>
+<body class="tp">
 
   <header class="tnav">
     <div class="tnav-inner">
       <a class="tnav-brand" href="#top">
         <span class="tnav-mark">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fbfbfb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/>
             <path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/>
           </svg>
@@ -77,86 +62,135 @@
     </div>
   </header>
 
-  <header class="cs-hero od-hero" id="top" style="padding-bottom:0">
-    <div class="cs-hero-inner">
-      <div class="cs-tag">MIT · @open-document/core</div>
-      <h1 class="cs-hero-title">Agent 寫得出報告，<br/><span>排不出版面。</span></h1>
-      <p class="cs-hero-desc">缺的從來不是文筆。缺的是 A4 的實際尺寸、是目錄頁碼要跟著內容一起動、是標題不該落在頁尾。這些事沒有人想手動處理，但少了它們，那份檔案就不能直接寄出去。open-doc 補的就是這一段：你的 coding agent 寫 React，剩下的交給框架。</p>
-    </div>
-    <div class="od-shot-wrap" id="demo">
-      <div class="od-frame">
+  <div class="tp-wrap" id="top">
+
+    <section class="tp-hero">
+      <a class="tp-badge" href="https://www.npmjs.com/package/@open-document/core" target="_blank" rel="noopener">v0.3.0 已發佈到 npm →</a>
+      <h1 class="tp-h1">
+        <span class="s">The doc framework</span>
+        <span class="m">built for <em>agents</em>.</span>
+      </h1>
+      <p class="tp-lede">React 優先的文件框架。每一頁都渲染成真正的 A4 紙。大綱、目錄與頁碼自己維持正確。匯出一份像設計師做的 PDF。</p>
+      <div class="tp-cmd"><span class="p">$</span> npx @open-document/cli init my-docs</div>
+
+      <div class="tp-shot" id="demo">
         <img src="/images/tools/open-doc-design.png" alt="open-doc 檢視器：左側頁面縮圖，中間是真正的 A4 紙，右側是設計面板。" width="1600" height="1000" />
       </div>
-    </div>
-  </header>
+      <p class="tp-cap">檢視器 — 左側頁面縮圖，中間一張真正的 A4 紙，右側是設計面板</p>
+    </section>
 
-  <section class="cs-band">
-    <div class="cs-band-inner">
-      <div class="cs-band-head">
-        <div class="cs-band-num">01&nbsp;&nbsp;為什麼</div>
-        <h2 class="cs-band-title">問題不在生成，<br/>在那份要交出去的檔案。</h2>
-        <p class="cs-band-desc">請 agent 寫一份季度報告，它給你的多半是一段 Markdown。要變成能寄出去的東西，中間還隔著一整層版面工作——而那層工作，用對話是處理不完的。open-doc 的做法是換一個媒介：讓 agent 寫 React，因為那是它真正擅長的；紙張這件事，交給框架。</p>
+    <section class="tp-sec">
+      <div class="tp-eyebrow">01 · 為什麼</div>
+      <h2 class="tp-h2">
+        <span class="s">一頁就是一張紙。</span>
+        <span class="m">不是近似值。</span>
+      </h2>
+      <p class="tp-body">Agent 給你的是 Markdown，你要的是能寄出去的檔案。中間那層版面工作，用對話處理不完。讓 agent 寫 React，紙張交給框架。</p>
+      <div class="tp-cards">
+        <div class="tp-card">
+          <div class="tp-card-n">01 · 紙張</div>
+          <h3>A4 就是 A4。</h3>
+          <p>794 × 1123 px @96dpi。<code>@page</code> 尺寸跟著對齊，螢幕上與印出來的是同一份。</p>
+        </div>
+        <div class="tp-card">
+          <div class="tp-card-n">02 · 頁碼</div>
+          <h3>頁碼自己會算。</h3>
+          <p>大綱、目錄與頁碼隨內容變動自動更新。不必有人記得回頭改。</p>
+        </div>
+        <div class="tp-card">
+          <div class="tp-card-n">03 · 分頁</div>
+          <h3>分頁知道什麼不該斷。</h3>
+          <p>內容自己流到下一頁。標題不跟內文分家，表格不從中間裂開。</p>
+        </div>
+        <div class="tp-card">
+          <div class="tp-card-n">04 · 檢查</div>
+          <h3>版面問題用文字回報。</h3>
+          <p>溢出、圖片沒載入、表格破版——open-doc 用 agent 讀得懂的方式講出來。</p>
+        </div>
       </div>
-      <div class="cs-grid">
-        <div class="cs-card"><h3>頁面是真的紙</h3><p>A4 是 794 × 1123 px @96dpi，不是「差不多這麼大」。<code>@page</code> 尺寸跟著對齊，所以螢幕上看到的和列印出來的是同一份，中間不會被重新縮放。</p></div>
-        <div class="cs-card"><h3>頁碼自己會算</h3><p>大綱、目錄、頁碼隨內容變動自動維持正確。這是那種一旦要手動做，就一定會忘記更新的東西。</p></div>
-        <div class="cs-card"><h3>分頁知道什麼不該斷</h3><p>內容滿了會自己流到下一頁，而且知道標題不該跟內文分家、表格不該從中間裂開。</p></div>
-        <div class="cs-card"><h3>版面問題用文字回報</h3><p>Agent 看不到頁面。所以溢出、圖片沒載入、表格破版這些事，open-doc 用它讀得懂的方式講出來，而不是讓它猜。</p></div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <section class="cs-band cs-band--alt">
-    <div class="cs-band-inner">
-      <div class="cs-band-head">
-        <div class="cs-band-num">02&nbsp;&nbsp;怎麼用</div>
-        <h2 class="cs-band-title">三個指令，一份真的文件。</h2>
-        <p class="cs-band-desc">建工作區、描述你要的東西、把檔案拿走。中間那段 agent 自己會處理。</p>
+    <section class="tp-sec">
+      <div class="tp-eyebrow">02 · 怎麼用</div>
+      <h2 class="tp-h2">
+        <span class="s">和你的 agent 一起寫文件。</span>
+        <span class="m">從空資料夾到一份 PDF，三步。</span>
+      </h2>
+      <p class="tp-body">建工作區、描述你要的東西、把檔案拿走。</p>
+      <div class="tp-cards">
+        <div class="tp-card">
+          <div class="tp-card-n">01 · INIT</div>
+          <h3>建一個工作區</h3>
+          <p>建立文件工作區。之後每一份報告都住在裡面。</p>
+          <div class="tp-term"><span class="p">$</span> npx @open-document/cli init my-docs<br/><span class="ok">✓ 就緒</span></div>
+        </div>
+        <div class="tp-card">
+          <div class="tp-card-n">02 · PROMPT</div>
+          <h3>交給你的 agent</h3>
+          <p>Agent 把每一頁寫成 React 元件，你用 prompt 引導。它不會替你編數字。</p>
+          <div class="tp-term"><span class="p">/create-doc</span> 第三季基礎架構回顧</div>
+        </div>
+        <div class="tp-card">
+          <div class="tp-card-n">03 · EXPORT</div>
+          <h3>下載 PDF</h3>
+          <p>一個選單：PDF 或 HTML。CI 上的 headless 匯出走同一條路徑。</p>
+          <div class="tp-term"><span class="p">$</span> open-doc export --pdf<br/><span class="ok">→ q3-review.pdf</span></div>
+        </div>
       </div>
-      <div class="step-row">
-        <div class="step"><div class="step-n">01&nbsp;&nbsp;INIT</div><h3>建工作區</h3><p>一行指令，把工作區、dev server 與 agent 要讀的 skills 一起建好。</p></div>
-        <div class="step"><div class="step-n">02&nbsp;&nbsp;PROMPT</div><h3>描述你要的</h3><p><code>/create-doc</code> 會先問清楚主題、受眾與素材來源，確認過才動筆——它不會替你把數字編出來。</p></div>
-        <div class="step"><div class="step-n">03&nbsp;&nbsp;EXPORT</div><h3>把檔案拿走</h3><p>一個下載選單，PDF 或 HTML。要進 CI 的話，headless 匯出走的是同一條路徑。</p></div>
+    </section>
+
+    <section class="tp-sec">
+      <div class="tp-eyebrow">03 · 給 agent</div>
+      <h2 class="tp-h2">
+        <span class="s">換成你自己的 agent 也行。</span>
+        <span class="m">23 個工具，一個 endpoint。</span>
+      </h2>
+      <p class="tp-body">指向 <code>localhost:5273/mcp</code> 就結束了，無狀態 Streamable HTTP。工具涵蓋文件、文字修改、版面檢查、頁面截圖、Markdown 匯入、匯出、主題與資產。</p>
+      <div class="tp-cards">
+        <div class="tp-card">
+          <div class="tp-card-n">01 · 一致</div>
+          <h3>過期的寫入會拿到 409。</h3>
+          <p>人與 agent 共用同一份實作。<code>write_document</code> 認你最後讀到的版本，不會蓋掉先到的人。</p>
+        </div>
+        <div class="tp-card">
+          <div class="tp-card-n">02 · 定位</div>
+          <h3>它改你正在看的那一頁。</h3>
+          <p>Dev server 會公開你讀到哪一頁，agent 直接接手，不必問你指的是第幾頁。</p>
+        </div>
+        <div class="tp-card">
+          <div class="tp-card-n">03 · 編輯</div>
+          <h3>點一下，改，存檔。</h3>
+          <p>開啟 Inspect，點任一元素改文字。改動透過 AST 寫回原始碼，頁面即時更新。</p>
+        </div>
+        <div class="tp-card">
+          <div class="tp-card-n">04 · 註記</div>
+          <h3>留一則註記，讓 agent 去改。</h3>
+          <p>註記以標記形式存在原始碼裡。跑 <code>/apply-comments</code>，agent 逐一改完並清掉標記。</p>
+        </div>
       </div>
-<pre><span class="c"># 建立工作區</span>
-npx @open-document/cli init my-docs
+    </section>
+
+    <section class="tp-sec" id="start">
+      <div class="tp-eyebrow">04 · 開始使用</div>
+      <h2 class="tp-h2">
+        <span class="s">一分鐘後交出一份報告。</span>
+        <span class="m">一個指令，零設定。</span>
+      </h2>
+      <p class="tp-body">開源、MIT 授權、已發佈在 npm。每一行都能讀、能改、能拿去用。</p>
+<pre class="tp-pre"><span class="c"># 建立工作區</span>
+<span class="p">$</span> npx @open-document/cli init my-docs
 
 <span class="c"># 工作室在 :5273，MCP endpoint 就掛在旁邊</span>
-open-doc dev --mcp</pre>
-    </div>
-  </section>
+<span class="p">$</span> open-doc dev --mcp</pre>
+      <div class="tp-links">
+        <a class="tp-link solid" href="https://github.com/simonliu-ai-product/open-doc" target="_blank" rel="noopener">在 GitHub 上查看</a>
+        <a class="tp-link ghost" href="https://www.npmjs.com/package/@open-document/core" target="_blank" rel="noopener">@open-document/core</a>
+        <a class="tp-link ghost" href="/zhtw/tools/">其他工具</a>
+      </div>
+      <p class="tp-lineage">open-doc 的骨架來自 <a href="https://github.com/1weiho" target="_blank" rel="noopener">@1weiho</a> 的 <a href="https://github.com/1weiho/open-slide" target="_blank" rel="noopener">open-slide</a>——dev API 與 MCP server 共用的 <code>ops</code> 層、以 Vite plugin 存在的 dev server、雙欄外殼，都是從那裡來的。如果 open-slide 是給 agent 用的 Google Slides，open-doc 就是 Google Docs：同一個想法，換一種媒介。同一套架構也用在 <a href="/zhtw/tools/open-recording/">open-recording</a> 上。</p>
+    </section>
 
-  <section class="cs-band">
-    <div class="cs-band-inner">
-      <div class="cs-band-head">
-        <div class="cs-band-num">03&nbsp;&nbsp;給 agent</div>
-        <h2 class="cs-band-title">23 個工具，一個 endpoint。</h2>
-        <p class="cs-band-desc">把 agent 指到 <code>http://localhost:5273/mcp</code> 就結束了——無狀態的 Streamable HTTP，沒有 session 握手這回事。工具涵蓋文件本身、精準的文字修改、版面檢查與頁面截圖、Markdown 匯入、匯出、主題、資產與資料夾。</p>
-      </div>
-      <div class="cs-grid">
-        <div class="cs-card"><h3>人跟 agent 共用同一份實作</h3><p>不是兩套邏輯各改各的。所以 <code>write_document</code> 認你最後讀到的版本，遇到過期的寫入回 <code>409</code>，而不是安靜地蓋掉先到的人。</p></div>
-        <div class="cs-card"><h3>它改的是你正在看的那一頁</h3><p>Dev server 會把「你讀到哪」寫出來，agent 直接接手那一頁，省掉「你說的是第幾頁」這種來回。</p></div>
-        <div class="cs-card"><h3>看到哪裡不對就直接改</h3><p>Inspect 模式點下去就能改文字，改完透過 AST 寫回原始碼，頁面即時更新——不必回去翻是哪個檔案的第幾行。</p></div>
-        <div class="cs-card"><h3>也可以只留一句話</h3><p>註解存成原始碼裡的標記，等 <code>/apply-comments</code> 一次走完。適合看的時候懶得改、想一次交給 agent 的情況。</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section class="cs-band cs-band--alt" id="start">
-    <div class="cs-band-inner">
-      <div class="cs-band-head">
-        <div class="cs-band-num">04&nbsp;&nbsp;開始使用</div>
-        <h2 class="cs-band-title">開源，MIT，已經在 npm 上。</h2>
-        <p class="cs-band-desc">每一行都能讀、能改、能拿去用。</p>
-      </div>
-      <div class="cs-btn-row" style="margin-top:0">
-        <a class="cs-btn primary" href="https://github.com/simonliu-ai-product/open-doc" target="_blank" rel="noopener">在 GitHub 上查看</a>
-        <a class="cs-btn ghost" href="https://www.npmjs.com/package/@open-document/core" target="_blank" rel="noopener">npm 上的 @open-document/core</a>
-        <a class="cs-btn ghost" href="/zhtw/tools/">其他工具</a>
-      </div>
-      <p class="lineage">open-doc 的骨架來自 <a href="https://github.com/1weiho" target="_blank" rel="noopener">@1weiho</a> 的 <a href="https://github.com/1weiho/open-slide" target="_blank" rel="noopener">open-slide</a>——dev API 與 MCP server 共用的 <code>ops</code> 層、以 Vite plugin 存在的 dev server、雙欄外殼，都是從那裡來的。如果 open-slide 是給 agent 用的 Google Slides，open-doc 就是 Google Docs：同一個想法，換一種媒介。</p>
-    </div>
-  </section>
+  </div>
 
   <div id="cs-footer"></div>
   <script src="/assets/site.js?v=17" defer></script>

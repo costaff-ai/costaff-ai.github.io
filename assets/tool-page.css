@@ -1,31 +1,125 @@
 /* ============================================================
-   Tool pages — each tool gets its own header instead of the
-   CoStaff nav. A reader who lands here came for the tool, not
-   for the suite; the only tie back is the wordmark on the left.
-   Themed per tool through --t-* variables set on the page.
+   Tool pages — laid out the way a framework's own site is laid
+   out: left-aligned, rails down both sides, headings that mix a
+   heavy sans with mono, and terminals shown as terminals.
+   Every colour comes from --t-* set per page, so open-doc's
+   neutral ramp and open-recording's dark studio share one
+   structure without sharing a palette.
    ============================================================ */
 
+.tp { background:var(--t-bg); color:var(--t-ink); }
+.tp-wrap { max-width:1180px; margin:0 auto; padding:0 40px; position:relative; }
+/* the rails: two hairlines the content sits between */
+.tp-wrap::before, .tp-wrap::after { content:''; position:absolute; top:0; bottom:0; width:1px;
+  background:var(--t-line); }
+.tp-wrap::before { left:0; } .tp-wrap::after { right:0; }
+
+/* ---- header ---- */
 .tnav { position:sticky; top:0; z-index:100; background:var(--t-nav-bg);
   border-bottom:1px solid var(--t-line); backdrop-filter:blur(14px); }
-.tnav-inner { max-width:1100px; margin:0 auto; padding:0 24px; height:62px;
-  display:flex; align-items:center; gap:26px; }
-.tnav-brand { display:flex; align-items:center; gap:11px; text-decoration:none; }
-.tnav-mark { width:30px; height:30px; border-radius:8px; background:var(--t-mark-bg);
+.tnav-inner { max-width:1180px; margin:0 auto; padding:0 40px; height:58px;
+  display:flex; align-items:center; gap:22px; }
+.tnav-brand { display:flex; align-items:center; gap:10px; text-decoration:none; }
+.tnav-mark { width:26px; height:26px; border-radius:7px; background:var(--t-mark-bg);
   display:flex; align-items:center; justify-content:center; flex-shrink:0; }
-.tnav-name { font-family:var(--mono); font-size:15px; font-weight:500; color:var(--t-ink); letter-spacing:-0.01em; }
-.tnav-from { font-family:var(--mono); font-size:11px; color:var(--t-ink-3); text-decoration:none;
-  padding-left:13px; margin-left:2px; border-left:1px solid var(--t-line); }
+.tnav-name { font-family:var(--mono); font-size:14px; font-weight:500; color:var(--t-ink); letter-spacing:-0.01em; }
+.tnav-from { font-family:var(--mono); font-size:10.5px; letter-spacing:0.08em; color:var(--t-ink-3);
+  text-decoration:none; padding-left:12px; border-left:1px solid var(--t-line); }
 .tnav-from:hover { color:var(--t-ink-2); }
-.tnav-links { display:flex; align-items:center; gap:24px; margin-left:auto; }
-.tnav-links a { font-size:13.5px; color:var(--t-ink-2); text-decoration:none; transition:color 0.18s;
-  display:inline-flex; align-items:center; gap:6px; }
+.tnav-links { display:flex; align-items:center; gap:22px; margin-left:auto; }
+.tnav-links a { font-size:13px; color:var(--t-ink-2); text-decoration:none; transition:color 0.18s; }
 .tnav-links a:hover { color:var(--t-ink); }
-.tnav-cta { font-size:13px; padding:8px 17px; border-radius:999px; text-decoration:none;
+.tnav-cta { font-size:12.5px; padding:7px 15px; border-radius:7px; text-decoration:none;
   background:var(--t-cta-bg); color:var(--t-cta-ink); transition:opacity 0.18s; white-space:nowrap; }
 .tnav-cta:hover { opacity:0.86; }
 
-@media (max-width:720px) {
-  .tnav-inner { height:56px; gap:16px; padding:0 16px; }
+/* ---- hero ---- */
+.tp-hero { padding:86px 0 76px; }
+.tp-badge { display:inline-flex; align-items:center; gap:8px; font-size:12.5px; color:var(--t-ink-2);
+  border:1px solid var(--t-line); border-radius:999px; padding:6px 14px; margin-bottom:34px;
+  text-decoration:none; transition:border-color 0.18s; }
+.tp-badge:hover { border-color:var(--t-ink-3); }
+.tp-badge::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--t-accent); }
+/* the heading: heavy sans over mono, accent on the last word */
+.tp-h1 { font-size:clamp(38px,5.6vw,62px); line-height:1.06; letter-spacing:-0.035em; margin-bottom:30px; }
+.tp-h1 .s { display:block; font-family:var(--sans); font-weight:700; color:var(--t-ink); }
+.tp-h1 .m { display:block; font-family:var(--mono); font-weight:400; color:var(--t-ink-3);
+  letter-spacing:-0.02em; margin-top:4px; }
+.tp-h1 .m em { font-style:normal; color:var(--t-accent); }
+.tp-lede { font-size:15.5px; line-height:1.8; color:var(--t-ink-2); max-width:430px; }
+.tp-cmd { display:inline-flex; align-items:center; gap:11px; margin-top:34px;
+  border:1px solid var(--t-line); border-radius:999px; padding:11px 20px; background:var(--t-surface);
+  font-family:var(--mono); font-size:13px; color:var(--t-ink); }
+.tp-cmd .p { color:var(--t-accent); }
+
+/* ---- the product shot, framed ---- */
+.tp-shot { margin-top:64px; border:1px solid var(--t-line); border-radius:12px; overflow:hidden;
+  background:var(--t-surface); }
+.tp-shot img { display:block; width:100%; }
+.tp-shot--cut { max-height:520px; }
+.tp-cap { font-family:var(--mono); font-size:11px; letter-spacing:0.06em; color:var(--t-ink-3);
+  margin-top:14px; }
+
+/* ---- sections ---- */
+.tp-sec { padding:80px 0; border-top:1px solid var(--t-line); }
+.tp-eyebrow { font-family:var(--mono); font-size:10.5px; letter-spacing:0.16em; text-transform:uppercase;
+  color:var(--t-ink-3); margin-bottom:22px; }
+.tp-h2 { font-size:clamp(26px,3.4vw,38px); line-height:1.14; letter-spacing:-0.03em; margin-bottom:20px; }
+.tp-h2 .s { display:block; font-family:var(--sans); font-weight:700; color:var(--t-ink); }
+.tp-h2 .m { display:block; font-family:var(--mono); font-weight:400; color:var(--t-ink-3); letter-spacing:-0.02em; }
+.tp-body { font-size:15px; line-height:1.85; color:var(--t-ink-2); max-width:620px; }
+.tp-body code, .tp-card p code, .tp-body strong { color:var(--t-ink); }
+.tp-body code, .tp-card code { font-family:var(--mono); font-size:0.92em; }
+
+/* ---- cards ---- */
+.tp-cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:1px;
+  margin-top:44px; background:var(--t-line); border:1px solid var(--t-line); border-radius:12px; overflow:hidden; }
+.tp-card { background:var(--t-bg); padding:28px 26px 30px; }
+.tp-card-n { font-family:var(--mono); font-size:10.5px; letter-spacing:0.14em; color:var(--t-ink-3); margin-bottom:14px; }
+.tp-card h3 { font-size:16px; font-weight:600; color:var(--t-ink); margin-bottom:9px; letter-spacing:-0.01em; }
+.tp-card p { font-size:13.5px; line-height:1.8; color:var(--t-ink-2); }
+/* a terminal inside a card, the way the real thing looks */
+.tp-term { margin-top:18px; border:1px solid var(--t-line); border-radius:8px; background:var(--t-surface);
+  padding:12px 14px; font-family:var(--mono); font-size:11.5px; line-height:1.75; color:var(--t-ink-2); }
+.tp-term .p { color:var(--t-accent); }
+.tp-term .ok { color:var(--t-ink-3); }
+
+/* ---- a plain table of tools ---- */
+.tp-table { width:100%; border-collapse:collapse; margin-top:40px; font-size:13.5px; }
+.tp-table td { padding:13px 0; border-bottom:1px solid var(--t-line); vertical-align:top; }
+.tp-table td:first-child { font-family:var(--mono); font-size:12.5px; color:var(--t-ink);
+  white-space:nowrap; padding-right:30px; width:1%; }
+.tp-table td:last-child { color:var(--t-ink-2); line-height:1.75; }
+
+/* ---- callout ---- */
+.tp-note { margin-top:34px; border-left:2px solid var(--t-accent); padding:2px 0 2px 20px;
+  font-size:14.5px; line-height:1.85; color:var(--t-ink-2); max-width:660px; }
+.tp-note strong { color:var(--t-ink); }
+
+/* ---- code block ---- */
+.tp-pre { margin-top:40px; border:1px solid var(--t-line); border-radius:10px; background:var(--t-surface);
+  padding:20px 22px; overflow-x:auto; font-family:var(--mono); font-size:12.5px; line-height:1.85;
+  color:var(--t-ink); }
+.tp-pre .c { color:var(--t-ink-3); }
+.tp-pre .p { color:var(--t-accent); }
+
+/* ---- links out ---- */
+.tp-links { display:flex; flex-wrap:wrap; gap:10px; margin-top:38px; }
+.tp-link { font-size:13.5px; padding:11px 20px; border-radius:8px; text-decoration:none; transition:opacity 0.18s, border-color 0.18s; }
+.tp-link.solid { background:var(--t-cta-bg); color:var(--t-cta-ink); }
+.tp-link.solid:hover { opacity:0.86; }
+.tp-link.ghost { border:1px solid var(--t-line); color:var(--t-ink-2); }
+.tp-link.ghost:hover { border-color:var(--t-ink-3); color:var(--t-ink); }
+.tp-lineage { font-size:13px; line-height:1.85; color:var(--t-ink-3); margin-top:34px; max-width:660px; }
+.tp-lineage a { color:var(--t-ink-2); }
+
+@media (max-width:860px) {
+  .tp-wrap { padding:0 22px; }
+  .tp-wrap::before, .tp-wrap::after { display:none; }
+  .tnav-inner { height:54px; gap:14px; padding:0 20px; }
   .tnav-from, .tnav-links a[data-optional] { display:none; }
   .tnav-links { gap:16px; }
+  .tp-hero { padding:56px 0 52px; }
+  .tp-sec { padding:56px 0; }
+  .tp-cards { grid-template-columns:1fr; }
 }

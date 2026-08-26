@@ -17,56 +17,35 @@
   <meta property="og:image:height" content="693" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:image" content="https://costaffs.app/images/tools/open-recording-studio.png" />
-
   <meta name="description" content="Node cannot open a microphone, and a transcription API means sending the room to somebody else's server. open-recording takes neither: the browser holds the mic, whisper.cpp transcribes locally." />
   <meta name="robots" content="index, follow, max-image-preview:large" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <style>
     *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
-    :root { --bg:#faf9f7; --bg-alt:#f3f2ef; --ink:#1a1917; --ink-2:#5a5855; --ink-3:#9a9895; --border:#e4e2de; --accent:#2d3a2e; --accent-2:#4a6741; --serif:'Noto Serif JP',Georgia,serif; --sans:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',monospace;
-      /* open-recording's own surface: a dark studio, vermillion reserved for anything live. */
-      --or-ink:#121212; --or-line:#2b2b2b; --or-brand:oklch(0.63 0.2 25);
-      --t-nav-bg:rgba(18,18,18,0.9); --t-line:#2b2b2b; --t-ink:#f4f4f4; --t-ink-2:#a9a9a9;
-      --t-ink-3:#7a7a7a; --t-mark-bg:#f4f4f4; --t-cta-bg:oklch(0.63 0.2 25); --t-cta-ink:#fff; }
+    :root {
+      --sans:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',ui-monospace,monospace;
+      /* open-recording's studio is dark; vermillion is reserved for anything live. */
+      --t-bg:#08090a; --t-surface:#0f1011; --t-line:#1e1f21;
+      --t-ink:#f7f8f8; --t-ink-2:#a0a1a3; --t-ink-3:#6b6c6e;
+      --t-accent:oklch(0.63 0.2 25);
+      --t-nav-bg:rgba(8,9,10,0.86); --t-mark-bg:#f7f8f8;
+      --t-cta-bg:#f7f8f8; --t-cta-ink:#08090a;
+    }
     html { scroll-behavior:smooth; }
-    body { background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:15px; line-height:1.7; -webkit-font-smoothing:antialiased; }
-
-    .cs-hero.or-hero { background:var(--or-ink); border-bottom:1px solid var(--or-line); padding-top:64px; }
-    .or-hero .cs-hero-inner { max-width:860px; }
-    .or-hero .cs-hero-title { color:#f4f4f4; }
-    .or-hero .cs-hero-title span { color:var(--or-brand); }
-    .or-hero .cs-hero-desc { color:#a9a9a9; }
-    .or-hero .cs-tag { color:var(--or-brand); border-color:var(--or-line); }
-    .or-shot-wrap { max-width:1000px; margin:52px auto 0; padding:0 24px; }
-    .or-shot { display:block; width:100%; border:1px solid var(--or-line); border-bottom:none;
-      border-radius:12px 12px 0 0; box-shadow:0 -2px 0 rgba(255,255,255,0.03), 0 24px 70px -20px rgba(0,0,0,0.8); }
-    .live { display:inline-flex; align-items:center; gap:7px; }
-    .live::before { content:''; width:7px; height:7px; border-radius:50%; background:var(--or-brand); }
-    .notes-frame { margin-top:38px; overflow:hidden; max-height:430px; border:1px solid var(--border);
-      border-radius:12px; box-shadow:0 20px 50px -22px rgba(26,25,23,0.30); }
-    .notes-frame img { display:block; width:100%; }
-    pre { background:#1e1e1e; color:#e8e8e8; border-radius:10px; padding:20px 22px; overflow-x:auto;
-      font-family:var(--mono); font-size:13px; line-height:1.75; }
-    pre .c { color:#8a8a8a; }
-    .tool-table { width:100%; border-collapse:collapse; font-size:13.5px; }
-    .tool-table td { padding:11px 0; border-bottom:1px solid var(--border); vertical-align:top; }
-    .tool-table td:first-child { font-family:var(--mono); font-size:12.5px; color:var(--ink); white-space:nowrap; padding-right:26px; }
-    .tool-table td:last-child { color:var(--ink-2); line-height:1.7; }
-    .refusal { border-left:2px solid var(--or-brand); padding:4px 0 4px 20px; margin-top:26px;
-      font-size:14px; color:var(--ink-2); line-height:1.85; }
+    body { font-family:var(--sans); font-size:15px; line-height:1.7; -webkit-font-smoothing:antialiased; }
+    ::selection { background:var(--t-accent); color:#fff; }
   </style>
-  <link rel="stylesheet" href="/assets/site.css?v=17" />
-  <link rel="stylesheet" href="/assets/tool-page.css?v=1" />
+  <link rel="stylesheet" href="/assets/tool-page.css?v=2" />
 </head>
-<body>
+<body class="tp">
 
   <header class="tnav">
     <div class="tnav-inner">
       <a class="tnav-brand" href="#top">
         <span class="tnav-mark">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#121212" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#08090a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/>
           </svg>
         </span>
@@ -82,76 +61,100 @@
     </div>
   </header>
 
-  <header class="cs-hero or-hero" id="top" style="padding-bottom:0">
-    <div class="cs-hero-inner">
-      <div class="cs-tag live">MIT · @open-recording/core</div>
-      <h1 class="cs-hero-title">The meeting is the part<br/><span>an agent could never reach.</span></h1>
-      <p class="cs-hero-desc">The reason is mundane: Node cannot open a microphone. And a transcription API means sending the conversation in the room to somebody else's server — which, for a lot of meetings, was never on the table. open-recording takes neither option: the browser holds the microphone, the dev server holds the state, and whisper.cpp does the transcription locally. The audio never leaves the machine.</p>
-    </div>
-    <div class="or-shot-wrap" id="demo">
-      <img class="or-shot" src="/images/tools/open-recording-studio.png" alt="The open-recording studio: every recording is a card carrying the opening words of its transcript." width="1512" height="693" />
-    </div>
-  </header>
+  <div class="tp-wrap" id="top">
 
-  <section class="cs-band">
-    <div class="cs-band-inner">
-      <div class="cs-band-head">
-        <div class="cs-band-num">01&nbsp;&nbsp;Why</div>
-        <h2 class="cs-band-title">The microphone is in the browser.<br/>The state is on the server.</h2>
-        <p class="cs-band-desc">That is the one design premise of the whole thing, not a backend version that has yet to be written. Only a real tab can reach a microphone, so recording has to happen in the browser — but if the session, the files and the transcript lived there too, closing the tab would take all of it. So the state stays on the dev server and the page only records. That split is also what lets a person and an agent drive the same recorder.</p>
-      </div>
-      <div class="cs-grid">
-        <div class="cs-card"><h3>Nothing leaves the machine</h3><p>whisper.cpp runs on your own CPU. The audio, the transcript and the notes are files in your own folder — not "we won't train on it", but no upload step at all.</p></div>
-        <div class="cs-card"><h3>One recorder, two drivers</h3><p>A person and an agent share the session. Whoever presses stop, the other sees it, because there is only ever one state machine — not two that drift.</p></div>
-        <div class="cs-card"><h3>Recordings are directories</h3><p>One recording is one directory: the audio, timed segments, a Markdown transcript, the notes. No database, no index — <code>ls</code> shows you everything there is.</p></div>
-        <div class="cs-card"><h3>Traditional Chinese, if you ask</h3><p>Whisper writes Simplified whatever was spoken; its training data is. Set the script and OpenCC converts phrase by phrase — <code>软件</code> becomes <code>軟體</code>, not <code>軟件</code> — and the timestamps survive it.</p></div>
-      </div>
-    </div>
-  </section>
+    <section class="tp-hero">
+      <a class="tp-badge" href="https://www.npmjs.com/package/@open-recording/core" target="_blank" rel="noopener">v0.2.0 is on npm →</a>
+      <h1 class="tp-h1">
+        <span class="s">The recording studio</span>
+        <span class="m">built for <em>agents</em>.</span>
+      </h1>
+      <p class="tp-lede">A browser-first recorder. The tab holds the microphone, the server holds the session. whisper.cpp transcribes on your machine. Nothing is uploaded.</p>
+      <div class="tp-cmd"><span class="p">$</span> npx open-recording dev --mcp</div>
 
-  <section class="cs-band cs-band--alt">
-    <div class="cs-band-inner">
-      <div class="cs-band-head">
-        <div class="cs-band-num">02&nbsp;&nbsp;For agents</div>
-        <h2 class="cs-band-title">Press record over MCP.</h2>
-        <p class="cs-band-desc">Point the agent at <code>http://localhost:5274/mcp</code>. A round usually looks like this: start the recording, let the meeting happen, stop it with <code>transcribe: true</code>, read the transcript back, write the summary into the notes beside the audio.</p>
+      <div class="tp-shot" id="demo">
+        <img src="/images/tools/open-recording-studio.png" alt="The open-recording studio: every recording is a card carrying the opening words of its transcript." width="1512" height="693" />
       </div>
-      <table class="tool-table">
-        <tr><td>start_recording</td><td>Press record. Returns only once the browser confirms the microphone is actually open.</td></tr>
-        <tr><td>stop_recording</td><td>Stop and finalize; pass <code>transcribe: true</code> to run whisper while it is at it.</td></tr>
+      <p class="tp-cap">The studio — every recording is a card carrying the opening words of its transcript</p>
+    </section>
+
+    <section class="tp-sec">
+      <div class="tp-eyebrow">01 · Why</div>
+      <h2 class="tp-h2">
+        <span class="s">The mic is in the tab.</span>
+        <span class="m">The state is on the server.</span>
+      </h2>
+      <p class="tp-body">Only a real tab can reach a microphone. So recording happens in the browser, while the session, the files and the transcript stay on the dev server. That is what lets a person and an agent drive the same recorder.</p>
+      <div class="tp-cards">
+        <div class="tp-card">
+          <div class="tp-card-n">01 · LOCAL</div>
+          <h3>Nothing is uploaded.</h3>
+          <p>whisper.cpp runs on your CPU. The audio, transcript and notes are files in your own folder.</p>
+        </div>
+        <div class="tp-card">
+          <div class="tp-card-n">02 · SHARED</div>
+          <h3>One recorder. Two drivers.</h3>
+          <p>A person and an agent share one session. Whoever presses stop, the other sees it immediately.</p>
+        </div>
+        <div class="tp-card">
+          <div class="tp-card-n">03 · FILES</div>
+          <h3>A recording is a directory.</h3>
+          <p>Audio, timed segments, a Markdown transcript, notes. No database, no index.</p>
+          <div class="tp-term"><span class="p">$</span> ls recordings/&lt;id&gt;/<br/><span class="ok">audio.webm   transcript.md<br/>meta.json    notes.md</span></div>
+        </div>
+        <div class="tp-card">
+          <div class="tp-card-n">04 · SCRIPT</div>
+          <h3>Traditional Chinese on request.</h3>
+          <p>Whisper always writes Simplified. Set the script and OpenCC converts it phrase by phrase — <code>软件</code> becomes <code>軟體</code> — timestamps intact.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="tp-sec">
+      <div class="tp-eyebrow">02 · For agents</div>
+      <h2 class="tp-h2">
+        <span class="s">Press record over MCP.</span>
+        <span class="m">Six tools, one endpoint.</span>
+      </h2>
+      <p class="tp-body">Point the agent at <code>localhost:5274/mcp</code>. Start the recording, stop it with <code>transcribe: true</code>, read the transcript back, park the summary beside the audio.</p>
+      <table class="tp-table">
+        <tr><td>start_recording</td><td>Press record. Returns once the browser confirms the mic is open.</td></tr>
+        <tr><td>stop_recording</td><td>Stop and finalize. Pass <code>transcribe: true</code> to run whisper too.</td></tr>
         <tr><td>read_transcript</td><td>Timestamped Markdown, plain text, or timed segments.</td></tr>
         <tr><td>search_transcripts</td><td>Search across every transcript, with millisecond offsets.</td></tr>
         <tr><td>write_notes</td><td>Park a summary or action items beside the audio.</td></tr>
         <tr><td>recorder_status</td><td>Is anything recording, and is a studio connected to record through.</td></tr>
       </table>
-      <div class="notes-frame">
+      <p class="tp-note"><strong>It refuses instead of lying.</strong> <code>start_recording</code> waits for <code>MediaRecorder</code> to confirm. Tab closed or mic blocked, the agent gets a refusal that says which — not a "done".</p>
+      <div class="tp-shot tp-shot--cut" style="margin-top:44px">
         <img src="/images/tools/open-recording-detail.png" alt="One recording: a seekable player, the four downloads grouped together, and the summary an agent wrote into notes.md." width="1512" height="693" loading="lazy" />
       </div>
-      <p class="cs-muted">A finished meeting — and the summary the agent wrote into <code>notes.md</code> afterwards.</p>
-      <p class="refusal"><strong>It will not lie about recording.</strong> <code>start_recording</code> waits until the studio reports that <code>MediaRecorder</code> is genuinely running. Tab closed, microphone blocked — the agent gets a refusal that says which. A tool that answers "done" for a recording nobody is making is the worst way this kind of thing can fail, so it refuses instead.</p>
-    </div>
-  </section>
+      <p class="tp-cap">A finished meeting — and the summary the agent wrote into notes.md</p>
+    </section>
 
-  <section class="cs-band" id="start">
-    <div class="cs-band-inner">
-      <div class="cs-band-head">
-        <div class="cs-band-num">03&nbsp;&nbsp;Get started</div>
-        <h2 class="cs-band-title">Two commands, then arm the microphone once.</h2>
-        <p class="cs-band-desc">Recording works with nothing else installed. Only transcription needs whisper.cpp and ffmpeg — and whatever is missing, <code>doctor</code> prints the fix next to it.</p>
-      </div>
-<pre><span class="c"># studio at :5274, MCP endpoint at /mcp</span>
-npx open-recording dev --mcp
+    <section class="tp-sec" id="start">
+      <div class="tp-eyebrow">03 · Get started</div>
+      <h2 class="tp-h2">
+        <span class="s">Record your next meeting.</span>
+        <span class="m">One command. Arm the mic once.</span>
+      </h2>
+      <p class="tp-body">Recording works with nothing else installed. Transcription needs whisper.cpp and ffmpeg; <code>doctor</code> prints the fix for whatever is missing.</p>
+<pre class="tp-pre"><span class="c"># studio at :5274, MCP endpoint at /mcp</span>
+<span class="p">$</span> npx open-recording dev --mcp
 
 <span class="c"># optional — local transcription</span>
-brew install whisper-cpp ffmpeg
-npx open-recording doctor</pre>
-      <div class="cs-btn-row">
-        <a class="cs-btn primary" href="https://github.com/simonliu-ai-product/open-recording" target="_blank" rel="noopener">View on GitHub</a>
-        <a class="cs-btn ghost" href="https://www.npmjs.com/package/@open-recording/core" target="_blank" rel="noopener">@open-recording/core on npm</a>
-        <a class="cs-btn ghost" href="/tools/">Other tools</a>
+<span class="p">$</span> brew install whisper-cpp ffmpeg
+<span class="p">$</span> npx open-recording doctor
+<span class="c">✓ ffmpeg    ✓ whisper    ✓ model    ✓ script</span></pre>
+      <div class="tp-links">
+        <a class="tp-link solid" href="https://github.com/simonliu-ai-product/open-recording" target="_blank" rel="noopener">View on GitHub</a>
+        <a class="tp-link ghost" href="https://www.npmjs.com/package/@open-recording/core" target="_blank" rel="noopener">@open-recording/core</a>
+        <a class="tp-link ghost" href="/tools/">Other tools</a>
       </div>
-    </div>
-  </section>
+      <p class="tp-lineage">Free and open source under the MIT license. Same architecture as <a href="/tools/open-doc/">open-doc</a>; the <code>ops</code> layer and the Vite-plugin dev server both come from <a href="https://github.com/1weiho/open-slide" target="_blank" rel="noopener">open-slide</a>.</p>
+    </section>
+
+  </div>
 
   <div id="cs-footer"></div>
   <script src="/assets/site.js?v=17" defer></script>
