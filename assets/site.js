@@ -19,7 +19,7 @@
   else if (/\/partners(\/|$)/.test(path)) active = 'partners';
   else if (/\/docs(\/|$)/.test(path)) active = 'docs';
   else if (/\/(architecture|user-flow|brand)(\/|$)/.test(path)) active = 'resources';
-  else if (/\/(manager|agents|channels|platforms|identity)(\/|$)/.test(path)) active = 'product';
+  else if (/\/(manager|agents|channels|platforms|identity|tools)(\/|$)/.test(path)) active = 'product';
 
   // language toggle → same page in the other language
   var langHref, langLabel;
@@ -41,7 +41,7 @@
     bannerCta: '搶先預約 →',
     // group headers
     managerHead: 'CoStaff Manager 員工', expertHead: 'CoStaff Expert 員工', identityHead: 'CoStaff Identity',
-    clientHead: 'CoStaff Client', platformHead: 'CoStaff App 應用平台',
+    clientHead: 'CoStaff Client', platformHead: 'CoStaff App 應用平台', toolsHead: 'CoStaff Tools 開發工具',
     archHead: '運作原理', getStartedHead: '快速上手', thirdHead: '第三方資源', brandHead: '品牌',
     communityHead: '社群夥伴', enterpriseHead: '企業夥伴',
     // items [title, description]
@@ -52,6 +52,7 @@
     webchatOss: ['CoStaff WebChat OSS', '開源版網頁聊天'],
     webchatEnt: ['CoStaff WebChat Enterprise', '企業版網頁聊天'],
     platform: ['CoStaff 企業應用平台', '企業業務系統'],
+    tools: ['CoStaff Tools', '我們開源的 agent 產出工具'],
     quickstart: ['快速開始', '透過 CLI 指令快速建立 AI 員工團隊'],
     install: ['安裝部署', '在自己的機器上架設 CoStaff'],
     cli: ['CLI 指令', '用終端機管理一切'],
@@ -71,7 +72,7 @@
     bannerSub: '— The core is ready to deploy; enterprise early access is open',
     bannerCta: 'Get early access →',
     managerHead: 'CoStaff Manager', expertHead: 'CoStaff Experts', identityHead: 'CoStaff Identity',
-    clientHead: 'CoStaff Client', platformHead: 'CoStaff Apps',
+    clientHead: 'CoStaff Client', platformHead: 'CoStaff Apps', toolsHead: 'CoStaff Tools',
     archHead: 'Under the hood', getStartedHead: 'Get started', thirdHead: 'Third-party', brandHead: 'Brand',
     communityHead: 'Community', enterpriseHead: 'Enterprise',
     manager: ['CoStaff Manager', 'The orchestrating core — the one you chat with'],
@@ -81,6 +82,7 @@
     webchatOss: ['CoStaff WebChat OSS', 'Open-source web chat'],
     webchatEnt: ['CoStaff WebChat Enterprise', 'Enterprise web chat runtime'],
     platform: ['CoStaff Platforms', 'Ten business systems'],
+    tools: ['CoStaff Tools', 'The open-source tools we build for agents'],
     quickstart: ['Quickstart', 'Three commands to a working AI staff'],
     install: ['Install', 'Set up CoStaff on your own machine'],
     cli: ['CLI reference', 'Manage everything from the terminal'],
@@ -125,7 +127,8 @@
       ) +
       col(
         group(T.identityHead, link(B + '/identity/', T.identity)) +
-        group(T.platformHead, link(B + '/platforms/', T.platform))
+        group(T.platformHead, link(B + '/platforms/', T.platform)) +
+        group(T.toolsHead, link(B + '/tools/', T.tools))
       ) +
     '</div>';
 

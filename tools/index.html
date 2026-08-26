@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CoStaff — Tools</title>
+  <link rel="icon" href="/images/logo/favicon.ico" sizes="any" />
+  <link rel="icon" href="/images/logo/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/images/logo/apple-touch-icon.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="CoStaff" />
+  <meta property="og:title" content="CoStaff — Tools" />
+  <meta property="og:description" content="Open-source frameworks we build so an agent can produce real work — a document it can lay out, a recording it can transcribe." />
+  <meta property="og:url" content="https://costaffs.app/tools/" />
+  <meta property="og:image" content="https://costaffs.app/images/logo/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://costaffs.app/images/logo/og.png" />
+
+  <meta name="description" content="Open-source frameworks we build so an agent can produce real work — a document it can lay out, a recording it can transcribe." />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    :root { --bg:#faf9f7; --bg-alt:#f3f2ef; --ink:#1a1917; --ink-2:#5a5855; --ink-3:#9a9895; --border:#e4e2de; --accent:#2d3a2e; --accent-2:#4a6741; --serif:'Noto Serif JP',Georgia,serif; --sans:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',monospace; }
+    html { scroll-behavior:smooth; }
+    body { background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:15px; line-height:1.7; -webkit-font-smoothing:antialiased; }
+
+    /* A tool card is the whole link, so the shot is part of the target. */
+    .tool-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:22px; }
+    .tool { display:flex; flex-direction:column; border:1px solid var(--border); border-radius:12px;
+      background:#fff; overflow:hidden; text-decoration:none; color:inherit;
+      transition:border-color 0.2s, box-shadow 0.2s, transform 0.2s; }
+    .tool:hover { border-color:var(--ink-3); box-shadow:0 16px 44px rgba(26,25,23,0.10); transform:translateY(-2px); }
+    /* 兩張截圖比例不同，靠容器裁下緣讓卡片等高——cover 會放大裁掉內容 */
+    .tool-frame { aspect-ratio:2.1/1; overflow:hidden; border-bottom:1px solid var(--border); background:var(--bg-alt); }
+    .tool-shot { display:block; width:100%; }
+    .tool-body { padding:24px 26px 26px; }
+    .tool-name { font-family:var(--mono); font-size:14px; font-weight:500; color:var(--ink); margin-bottom:8px; }
+    .tool-desc { font-size:13.5px; color:var(--ink-2); line-height:1.75; margin-bottom:16px; }
+    .tool-meta { display:flex; flex-wrap:wrap; gap:8px; }
+    .tool-pill { font-family:var(--mono); font-size:10.5px; letter-spacing:0.06em; color:var(--ink-2);
+      border:1px solid var(--border); border-radius:999px; padding:4px 11px; background:var(--bg-alt); }
+    .tool-more { font-size:13px; color:var(--accent-2); margin-top:16px; display:inline-block; }
+  </style>
+  <link rel="stylesheet" href="/assets/site.css?v=17" />
+</head>
+<body>
+  <div id="cs-header"></div>
+
+  <header class="cs-hero">
+    <div class="cs-hero-inner">
+      <div class="cs-tag">Open source</div>
+      <div class="cs-hero-label">CoStaff Tools</div>
+      <h1 class="cs-hero-title">An agent can write.<br/><span>These let it deliver.</span></h1>
+      <p class="cs-hero-desc">Agents produce excellent prose and terrible artefacts. These are the frameworks we build so the work comes out as something you can actually hand over — a document with real page geometry, a recording that transcribes itself. Both are open source, both run on your own machine, and both are driven over MCP.</p>
+    </div>
+  </header>
+
+  <section class="cs-band">
+    <div class="cs-band-inner">
+      <div class="cs-band-head">
+        <div class="cs-band-num">01&nbsp;&nbsp;The tools</div>
+        <h2 class="cs-band-title">Two mediums, one idea.</h2>
+        <p class="cs-band-desc">Give the agent a medium it is genuinely good at — React, a real browser — and let the framework handle everything that medium has to survive: a printer, a transcript, a file someone else opens.</p>
+      </div>
+      <div class="tool-grid">
+
+        <a class="tool" href="/tools/open-doc/">
+          <div class="tool-frame"><img class="tool-shot" src="/images/tools/open-doc-preview.png" alt="open-doc — the document framework built for agents." width="1280" height="640" loading="lazy" /></div>
+          <div class="tool-body">
+            <div class="tool-name">open-doc</div>
+            <p class="tool-desc">The document framework built for agents. Describe the report you need; your coding agent writes the React. open-doc handles page geometry, the outline, page numbers, print layout and the PDF.</p>
+            <div class="tool-meta">
+              <span class="tool-pill">@open-document/core</span>
+              <span class="tool-pill">MIT</span>
+              <span class="tool-pill">MCP</span>
+            </div>
+            <span class="tool-more">Read more →</span>
+          </div>
+        </a>
+
+        <a class="tool" href="/tools/open-recording/">
+          <div class="tool-frame"><img class="tool-shot" src="/images/tools/open-recording-studio.png" alt="open-recording — the recording studio an agent can drive." width="1512" height="693" loading="lazy" /></div>
+          <div class="tool-body">
+            <div class="tool-name">open-recording</div>
+            <p class="tool-desc">A real record button for an agent. It presses start, a studio page in your browser takes the microphone, and on stop the audio lands on your disk and is transcribed by whisper.cpp — no audio leaves the machine.</p>
+            <div class="tool-meta">
+              <span class="tool-pill">@open-recording/core</span>
+              <span class="tool-pill">MIT</span>
+              <span class="tool-pill">MCP</span>
+            </div>
+            <span class="tool-more">Read more →</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-band cs-band--alt">
+    <div class="cs-band-inner">
+      <div class="cs-band-head">
+        <div class="cs-band-num">02&nbsp;&nbsp;Why they exist</div>
+        <h2 class="cs-band-title">The last mile is the artefact.</h2>
+        <p class="cs-band-desc">A CoStaff agent can already reason its way to an answer. What it could not do was hand you the answer in a form your colleague opens without asking questions. Each tool closes one of those gaps, and each ships an MCP server so any agent — ours or yours — can drive it.</p>
+      </div>
+      <div class="cs-grid">
+        <div class="cs-card"><h3>Runs on your machine</h3><p>Both are self-hosted. open-recording never sends audio anywhere — whisper.cpp transcribes locally, and the files stay in a folder you own.</p></div>
+        <div class="cs-card"><h3>Driven over MCP</h3><p>Each mounts an MCP endpoint next to its UI, so an agent and a person share one workspace rather than fighting over it.</p></div>
+        <div class="cs-card"><h3>Files, not databases</h3><p>Output is ordinary files on disk — a PDF, a WebM, a Markdown transcript. Nothing is locked inside a format only the tool can read.</p></div>
+        <div class="cs-card"><h3>Open source, MIT</h3><p>Read every line, fork it, ship it. Published on npm and developed in the open on GitHub.</p></div>
+      </div>
+      <div class="cs-btn-row">
+        <a class="cs-btn primary" href="/tools/open-doc/">Explore open-doc</a>
+        <a class="cs-btn ghost" href="/tools/open-recording/">Explore open-recording</a>
+      </div>
+    </div>
+  </section>
+
+  <div id="cs-footer"></div>
+  <script src="/assets/site.js?v=17" defer></script>
+</body>
+</html>

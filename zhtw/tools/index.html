@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CoStaff — 開發工具</title>
+  <link rel="icon" href="/images/logo/favicon.ico" sizes="any" />
+  <link rel="icon" href="/images/logo/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/images/logo/apple-touch-icon.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="CoStaff" />
+  <meta property="og:title" content="CoStaff — 開發工具" />
+  <meta property="og:description" content="我們開源的框架，讓 agent 產出真正能交付的東西——一份排版正確的文件、一段自己會轉錄的錄音。" />
+  <meta property="og:url" content="https://costaffs.app/zhtw/tools/" />
+  <meta property="og:image" content="https://costaffs.app/images/logo/og.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:image" content="https://costaffs.app/images/logo/og.png" />
+
+  <meta name="description" content="我們開源的框架，讓 agent 產出真正能交付的東西——一份排版正確的文件、一段自己會轉錄的錄音。" />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;500&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+    :root { --bg:#faf9f7; --bg-alt:#f3f2ef; --ink:#1a1917; --ink-2:#5a5855; --ink-3:#9a9895; --border:#e4e2de; --accent:#2d3a2e; --accent-2:#4a6741; --serif:'Noto Serif JP',Georgia,serif; --sans:'Inter',system-ui,sans-serif; --mono:'JetBrains Mono',monospace; }
+    html { scroll-behavior:smooth; }
+    body { background:var(--bg); color:var(--ink); font-family:var(--sans); font-size:15px; line-height:1.8; -webkit-font-smoothing:antialiased; }
+
+    .tool-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(320px,1fr)); gap:22px; }
+    .tool { display:flex; flex-direction:column; border:1px solid var(--border); border-radius:12px;
+      background:#fff; overflow:hidden; text-decoration:none; color:inherit;
+      transition:border-color 0.2s, box-shadow 0.2s, transform 0.2s; }
+    .tool:hover { border-color:var(--ink-3); box-shadow:0 16px 44px rgba(26,25,23,0.10); transform:translateY(-2px); }
+    /* 兩張截圖比例不同，靠容器裁下緣讓卡片等高——cover 會放大裁掉內容 */
+    .tool-frame { aspect-ratio:2.1/1; overflow:hidden; border-bottom:1px solid var(--border); background:var(--bg-alt); }
+    .tool-shot { display:block; width:100%; }
+    .tool-body { padding:24px 26px 26px; }
+    .tool-name { font-family:var(--mono); font-size:14px; font-weight:500; color:var(--ink); margin-bottom:8px; }
+    .tool-desc { font-size:13.5px; color:var(--ink-2); line-height:1.85; margin-bottom:16px; }
+    .tool-meta { display:flex; flex-wrap:wrap; gap:8px; }
+    .tool-pill { font-family:var(--mono); font-size:10.5px; letter-spacing:0.06em; color:var(--ink-2);
+      border:1px solid var(--border); border-radius:999px; padding:4px 11px; background:var(--bg-alt); }
+    .tool-more { font-size:13px; color:var(--accent-2); margin-top:16px; display:inline-block; }
+  </style>
+  <link rel="stylesheet" href="/assets/site.css?v=17" />
+</head>
+<body>
+  <div id="cs-header"></div>
+
+  <header class="cs-hero">
+    <div class="cs-hero-inner">
+      <div class="cs-tag">開源專案</div>
+      <div class="cs-hero-label">CoStaff Tools</div>
+      <h1 class="cs-hero-title">Agent 很會寫，<br/><span>但交付需要工具。</span></h1>
+      <p class="cs-hero-desc">Agent 寫得出漂亮的文字，卻做不出像樣的檔案。這兩套框架就是為了補上這一段：讓成果變成真正能交出去的東西——一份頁面尺寸正確的文件、一段自己會轉錄的錄音。兩者都是開源、都跑在你自己的機器上，也都能透過 MCP 交給 agent 操作。</p>
+    </div>
+  </header>
+
+  <section class="cs-band">
+    <div class="cs-band-inner">
+      <div class="cs-band-head">
+        <div class="cs-band-num">01&nbsp;&nbsp;工具</div>
+        <h2 class="cs-band-title">兩種媒介，同一個想法。</h2>
+        <p class="cs-band-desc">給 agent 一個它真正擅長的媒介——React、一個真實的瀏覽器——剩下那些這個媒介必須經得起的考驗，就交給框架：印表機、逐字稿、以及別人打開得了的檔案。</p>
+      </div>
+      <div class="tool-grid">
+
+        <a class="tool" href="/zhtw/tools/open-doc/">
+          <div class="tool-frame"><img class="tool-shot" src="/images/tools/open-doc-preview.png" alt="open-doc——為 agent 打造的文件框架。" width="1280" height="640" loading="lazy" /></div>
+          <div class="tool-body">
+            <div class="tool-name">open-doc</div>
+            <p class="tool-desc">為 agent 打造的文件框架。用自然語言描述你要的報告，你的 coding agent 負責寫 React，open-doc 負責頁面尺寸、大綱、目錄、頁碼、列印版面與匯出。</p>
+            <div class="tool-meta">
+              <span class="tool-pill">@open-document/core</span>
+              <span class="tool-pill">MIT</span>
+              <span class="tool-pill">MCP</span>
+            </div>
+            <span class="tool-more">了解更多 →</span>
+          </div>
+        </a>
+
+        <a class="tool" href="/zhtw/tools/open-recording/">
+          <div class="tool-frame"><img class="tool-shot" src="/images/tools/open-recording-studio.png" alt="open-recording——agent 可以操作的錄音工作室。" width="1512" height="693" loading="lazy" /></div>
+          <div class="tool-body">
+            <div class="tool-name">open-recording</div>
+            <p class="tool-desc">給 agent 一顆真正的錄音鍵。它按下開始，瀏覽器裡的工作室接管麥克風；按下停止，音檔落在你的磁碟上，並由 whisper.cpp 轉錄——音訊完全不離開這台機器。</p>
+            <div class="tool-meta">
+              <span class="tool-pill">@open-recording/core</span>
+              <span class="tool-pill">MIT</span>
+              <span class="tool-pill">MCP</span>
+            </div>
+            <span class="tool-more">了解更多 →</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="cs-band cs-band--alt">
+    <div class="cs-band-inner">
+      <div class="cs-band-head">
+        <div class="cs-band-num">02&nbsp;&nbsp;為什麼做這些</div>
+        <h2 class="cs-band-title">最後一哩，是那個檔案。</h2>
+        <p class="cs-band-desc">CoStaff 的 agent 早就能推理出答案，做不到的是把答案交成一個同事打開就懂、不必再問的形式。每一套工具補上其中一個缺口，而且都附自己的 MCP server——不論是我們的 agent 還是你的，都能直接操作。</p>
+      </div>
+      <div class="cs-grid">
+        <div class="cs-card"><h3>跑在你自己的機器上</h3><p>兩者都是自架。open-recording 不會把音訊送到任何地方——whisper.cpp 在本機轉錄，檔案就留在你自己的資料夾裡。</p></div>
+        <div class="cs-card"><h3>用 MCP 操作</h3><p>每一套都在 UI 旁邊掛上 MCP endpoint，讓 agent 和人共用同一個工作區，而不是互相搶。</p></div>
+        <div class="cs-card"><h3>產出是檔案，不是資料庫</h3><p>輸出就是磁碟上的一般檔案——PDF、WebM、Markdown 逐字稿。沒有任何東西被鎖在只有這個工具讀得懂的格式裡。</p></div>
+        <div class="cs-card"><h3>開源，MIT 授權</h3><p>每一行都能讀、能改、能拿去用。發佈在 npm，並在 GitHub 上公開開發。</p></div>
+      </div>
+      <div class="cs-btn-row">
+        <a class="cs-btn primary" href="/zhtw/tools/open-doc/">認識 open-doc</a>
+        <a class="cs-btn ghost" href="/zhtw/tools/open-recording/">認識 open-recording</a>
+      </div>
+    </div>
+  </section>
+
+  <div id="cs-footer"></div>
+  <script src="/assets/site.js?v=17" defer></script>
+</body>
+</html>
