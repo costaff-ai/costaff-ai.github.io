@@ -1,0 +1,31 @@
+/* ============================================================
+   Tool pages — each tool gets its own header instead of the
+   CoStaff nav. A reader who lands here came for the tool, not
+   for the suite; the only tie back is the wordmark on the left.
+   Themed per tool through --t-* variables set on the page.
+   ============================================================ */
+
+.tnav { position:sticky; top:0; z-index:100; background:var(--t-nav-bg);
+  border-bottom:1px solid var(--t-line); backdrop-filter:blur(14px); }
+.tnav-inner { max-width:1100px; margin:0 auto; padding:0 24px; height:62px;
+  display:flex; align-items:center; gap:26px; }
+.tnav-brand { display:flex; align-items:center; gap:11px; text-decoration:none; }
+.tnav-mark { width:30px; height:30px; border-radius:8px; background:var(--t-mark-bg);
+  display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+.tnav-name { font-family:var(--mono); font-size:15px; font-weight:500; color:var(--t-ink); letter-spacing:-0.01em; }
+.tnav-from { font-family:var(--mono); font-size:11px; color:var(--t-ink-3); text-decoration:none;
+  padding-left:13px; margin-left:2px; border-left:1px solid var(--t-line); }
+.tnav-from:hover { color:var(--t-ink-2); }
+.tnav-links { display:flex; align-items:center; gap:24px; margin-left:auto; }
+.tnav-links a { font-size:13.5px; color:var(--t-ink-2); text-decoration:none; transition:color 0.18s;
+  display:inline-flex; align-items:center; gap:6px; }
+.tnav-links a:hover { color:var(--t-ink); }
+.tnav-cta { font-size:13px; padding:8px 17px; border-radius:999px; text-decoration:none;
+  background:var(--t-cta-bg); color:var(--t-cta-ink); transition:opacity 0.18s; white-space:nowrap; }
+.tnav-cta:hover { opacity:0.86; }
+
+@media (max-width:720px) {
+  .tnav-inner { height:56px; gap:16px; padding:0 16px; }
+  .tnav-from, .tnav-links a[data-optional] { display:none; }
+  .tnav-links { gap:16px; }
+}

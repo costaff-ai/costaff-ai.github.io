@@ -35,7 +35,7 @@
       transition:border-color 0.2s, box-shadow 0.2s, transform 0.2s; }
     .tool:hover { border-color:var(--ink-3); box-shadow:0 16px 44px rgba(26,25,23,0.10); transform:translateY(-2px); }
     /* 兩張截圖比例不同，靠容器裁下緣讓卡片等高——cover 會放大裁掉內容 */
-    .tool-frame { aspect-ratio:2.1/1; overflow:hidden; border-bottom:1px solid var(--border); background:var(--bg-alt); }
+    .tool-frame { aspect-ratio:1.75/1; overflow:hidden; border-bottom:1px solid var(--border); background:var(--bg-alt); }
     .tool-shot { display:block; width:100%; }
     .tool-body { padding:24px 26px 26px; }
     .tool-name { font-family:var(--mono); font-size:14px; font-weight:500; color:var(--ink); margin-bottom:8px; }
@@ -69,7 +69,7 @@
       <div class="tool-grid">
 
         <a class="tool" href="/zhtw/tools/open-doc/">
-          <div class="tool-frame"><img class="tool-shot" src="/images/tools/open-doc-preview.png" alt="open-doc——為 agent 打造的文件框架。" width="1280" height="640" loading="lazy" /></div>
+          <div class="tool-frame"><img class="tool-shot" src="/images/tools/open-doc-design.png" alt="open-doc——為 agent 打造的文件框架。" width="1280" height="640" loading="lazy" /></div>
           <div class="tool-body">
             <div class="tool-name">open-doc</div>
             <p class="tool-desc">為 agent 打造的文件框架。用自然語言描述你要的報告，你的 coding agent 負責寫 React，open-doc 負責頁面尺寸、大綱、目錄、頁碼、列印版面與匯出。</p>
