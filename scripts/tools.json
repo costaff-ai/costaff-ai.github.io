@@ -1,0 +1,584 @@
+{
+  "open-doc": {
+    "init": "npx @open-document/cli init my-docs",
+    "dev": "cd my-docs && pnpm dev",
+    "en": {
+      "display": "Documents your agent writes",
+      "lede": "A document framework for coding agents: describe the report, your agent writes React, and open-doc handles page size, contents, page numbers, print layout and export. For anyone who needs a PDF that survives a printer.",
+      "features": [
+        [
+          "pdf",
+          "Real page sizes",
+          "Pages render at true A4, JIS B4 or A3 size, so the PDF matches what you see on screen."
+        ],
+        [
+          "layers",
+          "Pagination that knows the rules",
+          "flow() measures content in the real DOM: headings never end a page and tables move whole."
+        ],
+        [
+          "check",
+          "Layout checks",
+          "open-doc check reports clipped content, stranded headings and missing images, with the source line."
+        ],
+        [
+          "click",
+          "Edit on the page",
+          "Inspect mode rewrites text straight into the source, or leaves a note for your agent."
+        ],
+        [
+          "table",
+          "Tables from data files",
+          "Import a .csv or .tsv file and it becomes a captioned, numbered table that updates with the file."
+        ],
+        [
+          "agent",
+          "Skills and an MCP server",
+          "Every workspace ships with authoring skills, and open-doc dev --mcp exposes 26 tools."
+        ]
+      ],
+      "prompt": "Turn notes.md into a Q3 infrastructure review with a cover page and contents"
+    },
+    "zh": {
+      "display": "讓 Agent 寫的文件",
+      "lede": "為 Coding Agent 打造的文件框架：你描述要的報告，Agent 寫 React，open-doc 處理頁面尺寸、目錄、頁碼、列印版面與匯出。適合需要一份經得起印表機考驗的 PDF 的人。",
+      "features": [
+        [
+          "pdf",
+          "真實的頁面尺寸",
+          "頁面以真正的 A4、JIS B4 或 A3 尺寸呈現，PDF 與螢幕上看到的一致。"
+        ],
+        [
+          "layers",
+          "懂規矩的自動分頁",
+          "flow() 在真實 DOM 中量測內容：標題不會落在頁尾，表格整張移動。"
+        ],
+        [
+          "check",
+          "版面體檢",
+          "open-doc check 會列出被裁切的內容、落單的標題與載入失敗的圖片，並附上原始碼行號。"
+        ],
+        [
+          "click",
+          "直接在頁面上編輯",
+          "Inspect 模式把改寫的文字直接寫回原始碼，或留一則註記給 Agent。"
+        ],
+        [
+          "table",
+          "表格來自資料檔",
+          "匯入 .csv 或 .tsv 檔就成為有編號與標題的表格，檔案一改表格就跟著改。"
+        ],
+        [
+          "agent",
+          "Skills 與 MCP server",
+          "每個工作區都附上撰寫用的 Skills，open-doc dev --mcp 提供 26 個工具。"
+        ]
+      ],
+      "prompt": "把 notes.md 整理成一份第三季基礎架構檢討報告，要有封面和目錄"
+    },
+    "image": {
+      "file": "open-doc.png",
+      "w": 1600,
+      "h": 1000,
+      "alt": {
+        "en": "The open-doc viewer: a Q3 infrastructure review, page by page",
+        "zh": "open-doc 檢視器：一份第三季基礎架構檢討報告"
+      }
+    }
+  },
+  "open-dashboard": {
+    "init": "npx @open-dashboard/cli init my-dashboards",
+    "dev": "cd my-dashboards && pnpm install && pnpm dev",
+    "en": {
+      "display": "Dashboards your agent builds",
+      "lede": "A dashboard framework for coding agents: your agent writes the SQL and the panels, and open-dashboard runs every query read-only against your own database and renders the charts. For teams who want dashboards as reviewable files instead of a BI tool.",
+      "features": [
+        [
+          "shield",
+          "Read-only by design",
+          "The browser names a query and never sends SQL; every engine runs it read-only."
+        ],
+        [
+          "code",
+          "Two files per dashboard",
+          "queries.sql defines the numbers and index.tsx lays out the panels, so a diff shows what changed."
+        ],
+        [
+          "chart",
+          "41 built-in panels",
+          "Hand-written SVG charts, from stat tiles and line charts to Sankey diagrams and maps."
+        ],
+        [
+          "layers",
+          "Databases, APIs and files",
+          "Postgres, MySQL, BigQuery, Snowflake, SQLite and more, plus HTTP APIs, MCP servers and CSV or JSON files."
+        ],
+        [
+          "check",
+          "A check before done",
+          "open-dashboard check runs every query and verifies each column and parameter a panel names."
+        ],
+        [
+          "click",
+          "Inspect and leave notes",
+          "See a panel's SQL, rows and timing, and leave a note your agent turns into the next edit."
+        ]
+      ],
+      "prompt": "Add weekly signups by plan and the 20 most active accounts from our Postgres"
+    },
+    "zh": {
+      "display": "讓 Agent 做的 Dashboard",
+      "lede": "為 Coding Agent 打造的 Dashboard 框架：Agent 寫 SQL 與面板，open-dashboard 以唯讀方式在你自己的資料庫上執行每條查詢並畫出圖表。適合想把 Dashboard 當成可審查的檔案、而不是 BI 工具的團隊。",
+      "features": [
+        [
+          "shield",
+          "設計上就是唯讀",
+          "瀏覽器只能點名查詢，永遠不送 SQL；每種資料庫都以唯讀方式執行。"
+        ],
+        [
+          "code",
+          "一張 Dashboard 兩個檔案",
+          "queries.sql 定義數字，index.tsx 排面板，diff 一看就知道改了什麼。"
+        ],
+        [
+          "chart",
+          "41 種內建面板",
+          "手寫 SVG 圖表，從數字卡、折線圖到 Sankey 圖與地圖。"
+        ],
+        [
+          "layers",
+          "資料庫、API 與檔案",
+          "Postgres、MySQL、BigQuery、Snowflake、SQLite 等，也能接 HTTP API、MCP server 與 CSV、JSON 檔。"
+        ],
+        [
+          "check",
+          "完成前先 check",
+          "open-dashboard check 執行每條查詢，並驗證面板用到的每個欄位與參數。"
+        ],
+        [
+          "click",
+          "檢視面板、留備註",
+          "看面板的 SQL、筆數與耗時，留一則備註讓 Agent 接著改。"
+        ]
+      ],
+      "prompt": "從我們的 Postgres 加上各方案每週註冊數，以及用量最多的 20 個帳號"
+    },
+    "image": {
+      "file": "open-dashboard.png",
+      "w": 1600,
+      "h": 1000,
+      "alt": {
+        "en": "An open-dashboard sales overview over a fictional coffee shop",
+        "zh": "open-dashboard 銷售總覽（虛構的咖啡店資料）"
+      }
+    }
+  },
+  "open-spreadsheet": {
+    "init": "npx open-spreadsheet init my-sheets",
+    "dev": "cd my-sheets && pnpm install && pnpm dev",
+    "en": {
+      "display": "Spreadsheets for agents and people",
+      "lede": "An Excel-like spreadsheet where each workbook is one JSON file of what people typed, so a person edits it in a real grid and an agent edits the file. For teams who want their numbers in git.",
+      "features": [
+        [
+          "code",
+          "Its own formula engine",
+          "337 functions following Excel's rules, with no spreadsheet library underneath."
+        ],
+        [
+          "table",
+          "A grid like Excel",
+          "Formula bar, number formats, merges, frozen panes, filters, notes and sheet tabs."
+        ],
+        [
+          "folder",
+          "One JSON file per workbook",
+          "Cells store what was typed, including formulas, so git shows every change."
+        ],
+        [
+          "open",
+          "CSV and Excel import, export",
+          "Import .csv, .tsv or .xlsx and download .xlsx or CSV, without uploading anything."
+        ],
+        [
+          "shield",
+          "Protected ranges",
+          "Locked cells refuse typing, pasting and MCP writes, so an agent cannot change them."
+        ],
+        [
+          "agent",
+          "MCP server with 29 tools",
+          "Every write recalculates and is refused if the file changed since it was read."
+        ]
+      ],
+      "prompt": "Build a 2026 budget sheet with monthly totals and a running balance"
+    },
+    "zh": {
+      "display": "人和 Agent 共用的試算表",
+      "lede": "用起來像 Excel 的試算表，每份活頁簿都是一個 JSON 檔，存的是人輸入的內容：人在格子裡編輯，Agent 直接改檔案。適合想把數字放進 git 的團隊。",
+      "features": [
+        [
+          "code",
+          "自己寫的公式引擎",
+          "337 個函數，照 Excel 的規則計算，底層沒有任何試算表套件。"
+        ],
+        [
+          "table",
+          "像 Excel 的格子介面",
+          "公式列、數值格式、合併儲存格、凍結窗格、篩選、註解與工作表分頁。"
+        ],
+        [
+          "folder",
+          "一份活頁簿一個 JSON 檔",
+          "儲存格存的是輸入的內容（包含公式），git 看得到每一處修改。"
+        ],
+        [
+          "open",
+          "CSV 與 Excel 匯入匯出",
+          "匯入 .csv、.tsv 或 .xlsx，下載 .xlsx 或 CSV，什麼都不會上傳。"
+        ],
+        [
+          "shield",
+          "保護範圍",
+          "鎖定的儲存格拒絕輸入、貼上與 MCP 寫入，Agent 改不了人鎖住的內容。"
+        ],
+        [
+          "agent",
+          "29 個工具的 MCP server",
+          "每次寫入都會重算，檔案在讀取後被改過就拒絕寫入。"
+        ]
+      ],
+      "prompt": "做一份 2026 年預算表，要有每月合計和累計餘額"
+    }
+  },
+  "open-form": {
+    "init": "git clone https://github.com/simonliu-ai-product/open-form.git && cd open-form && pnpm install",
+    "dev": "pnpm dev",
+    "en": {
+      "display": "Forms and surveys your agent writes",
+      "lede": "A form framework for coding agents: describe the survey, registration or quiz, your agent writes the TSX, and open-form handles layout, logic, validation and response storage. For anyone collecting answers without a hosted form service.",
+      "features": [
+        [
+          "form",
+          "Three ways to present",
+          "One TSX file renders as a single page, a step-by-step wizard or one question at a time."
+        ],
+        [
+          "layers",
+          "15 field types",
+          "Text, number, date, choices, ranking, rating, scale, matrix, file upload and signature."
+        ],
+        [
+          "check",
+          "Conditional logic and quizzes",
+          "Show fields based on earlier answers with when, or grade a form with points and explanations."
+        ],
+        [
+          "chart",
+          "Responses stored locally",
+          "Submissions go to SQLite and JSONL, with charts and CSV or JSON export in the Responses tab."
+        ],
+        [
+          "shield",
+          "Signed webhooks",
+          "Forward each submission over HTTP POST with an optional HMAC-SHA256 signature."
+        ],
+        [
+          "click",
+          "Edit mode writes source",
+          "Change labels, options or required flags in the browser and they are saved into the TSX."
+        ]
+      ],
+      "prompt": "Make a registration form for our AI meetup with a dietary needs question"
+    },
+    "zh": {
+      "display": "讓 Agent 寫的表單與問卷",
+      "lede": "為 Coding Agent 打造的表單框架：描述你要的問卷、報名表或測驗，Agent 寫 TSX，open-form 處理版面、條件邏輯、驗證與回覆儲存。適合不想依賴線上表單服務收集回覆的人。",
+      "features": [
+        [
+          "form",
+          "三種呈現方式",
+          "同一份 TSX 可以是單頁表單、分步精靈，或一次一題的對話卡片。"
+        ],
+        [
+          "layers",
+          "15 種題型",
+          "文字、數字、日期、選擇、排序、評分、量表、矩陣、檔案上傳與簽名。"
+        ],
+        [
+          "check",
+          "條件跳題與測驗計分",
+          "用 when 依前面的回答顯示題目，或以配分與解析把表單變成測驗。"
+        ],
+        [
+          "chart",
+          "回覆存在本機",
+          "提交內容寫入 SQLite 與 JSONL，回覆分頁有統計圖表，可匯出 CSV 或 JSON。"
+        ],
+        [
+          "shield",
+          "附簽章的 Webhook",
+          "每筆回覆可用 HTTP POST 轉發，並可加上 HMAC-SHA256 簽章。"
+        ],
+        [
+          "click",
+          "編輯模式改的是原始碼",
+          "在瀏覽器改標題、選項或必填，直接寫回 TSX。"
+        ]
+      ],
+      "prompt": "幫我們的 AI 聚會做一份報名表，要問飲食需求"
+    }
+  },
+  "open-map": {
+    "init": "git clone https://github.com/simonliu-ai-product/open-map.git && cd open-map && pnpm install",
+    "dev": "pnpm dev:demo",
+    "en": {
+      "display": "Maps and story maps for agents",
+      "lede": "A map framework for coding agents: your agent writes each map as a React component, and open-map handles projections, layers, guided story chapters and export. For people telling stories with places and routes.",
+      "features": [
+        [
+          "map",
+          "Map layers as components",
+          "Choropleth, route, arc, point and heatmap layers, plus markers and callouts, in plain TSX."
+        ],
+        [
+          "layers",
+          "Three projections",
+          "Web Mercator, equirectangular and an orthographic globe, with scale bar, north arrow and inset map."
+        ],
+        [
+          "folder",
+          "GeoJSON and CSV imports",
+          "Spatial files import as modules, and open-map import builds a new map from one."
+        ],
+        [
+          "live",
+          "Story mode",
+          "StoryChapter stops turn a map into a guided tour with camera fly-to and keyboard navigation."
+        ],
+        [
+          "click",
+          "Inspect and comment",
+          "Click a feature to see its source line, leave a note, or save the current camera to source."
+        ],
+        [
+          "agent",
+          "MCP server",
+          "open-map dev --mcp exposes tools to list, read, write, check and import maps."
+        ]
+      ],
+      "prompt": "Map Taiwan's high-voltage grid with a story chapter for each region"
+    },
+    "zh": {
+      "display": "讓 Agent 寫的地圖與敘事地圖",
+      "lede": "為 Coding Agent 打造的地圖框架：Agent 把每張地圖寫成 React 元件，open-map 處理投影、圖層、故事導覽章節與匯出。適合用地點與路線說故事的人。",
+      "features": [
+        [
+          "map",
+          "圖層就是元件",
+          "分層設色、路線、弧線、點位與熱力圖層，加上標記與標註，都用 TSX 寫。"
+        ],
+        [
+          "layers",
+          "三種投影",
+          "麥卡托、等距圓柱與正射地球儀，附比例尺、指北針與鷹眼圖。"
+        ],
+        [
+          "folder",
+          "匯入 GeoJSON 與 CSV",
+          "空間資料可直接當模組匯入，open-map import 也能從檔案產生新地圖。"
+        ],
+        [
+          "live",
+          "故事模式",
+          "用 StoryChapter 把地圖變成導覽，鏡頭平滑飛移，可用鍵盤切換。"
+        ],
+        [
+          "click",
+          "檢視與留註解",
+          "點任一圖徵看它的原始碼行號、留註解，或把目前視角存回原始碼。"
+        ],
+        [
+          "agent",
+          "MCP server",
+          "open-map dev --mcp 提供列出、讀取、寫入、檢查與匯入地圖的工具。"
+        ]
+      ],
+      "prompt": "畫一張台灣高壓電網地圖，每個區域一個故事章節"
+    }
+  },
+  "open-recording": {
+    "init": "npx -p @open-recording/core open-recording init my-recordings",
+    "dev": "cd my-recordings && pnpm add -D @open-recording/core @open-recording/mcp && pnpm exec open-recording dev --mcp",
+    "en": {
+      "display": "A recording studio for agents",
+      "lede": "Record in the browser, transcribe locally with whisper.cpp, and let an agent drive both over MCP. For meetings and talks you want transcribed without sending audio anywhere.",
+      "features": [
+        [
+          "mic",
+          "Record in the browser",
+          "A studio tab holds the microphone, and an agent can start and stop a recording."
+        ],
+        [
+          "shield",
+          "Local transcription",
+          "whisper.cpp transcribes on your machine, so no audio leaves it."
+        ],
+        [
+          "agent",
+          "MCP tools for agents",
+          "Start, stop, transcribe, search transcripts and write notes beside the audio."
+        ],
+        [
+          "tab",
+          "Record a browser tab",
+          "Capture a tab's picture and sound into one recording, transcribed and subtitled."
+        ],
+        [
+          "folder",
+          "Plain folders on disk",
+          "Each recording is a folder of audio, transcript and notes, with no database."
+        ],
+        [
+          "open",
+          "Subtitles and Markdown",
+          "Download the audio, SRT, VTT or a timestamped Markdown transcript."
+        ]
+      ],
+      "prompt": "Record this meeting, then write a summary with action items next to it"
+    },
+    "zh": {
+      "display": "給 Agent 用的錄音工作室",
+      "lede": "在瀏覽器錄音，用 whisper.cpp 在本機轉錄，讓 Agent 透過 MCP 兩件都能自己來。適合想把會議或演講轉成逐字稿、又不想把音檔送出去的人。",
+      "features": [
+        [
+          "mic",
+          "在瀏覽器錄音",
+          "工作室分頁負責麥克風，Agent 可以自己開始與停止錄音。"
+        ],
+        [
+          "shield",
+          "本機轉錄",
+          "whisper.cpp 在你的電腦上轉錄，音訊不離開這台機器。"
+        ],
+        [
+          "agent",
+          "給 Agent 的 MCP 工具",
+          "開始、停止、轉錄、搜尋逐字稿，並在音檔旁寫筆記。"
+        ],
+        [
+          "tab",
+          "錄瀏覽器分頁",
+          "把一個分頁的畫面與聲音錄成一段，一樣轉錄、一樣有字幕。"
+        ],
+        [
+          "folder",
+          "磁碟上的普通資料夾",
+          "每段錄音是一個資料夾，裡面是音檔、逐字稿與筆記，沒有資料庫。"
+        ],
+        [
+          "open",
+          "字幕與 Markdown",
+          "下載音檔、SRT、VTT，或帶時間戳的 Markdown 逐字稿。"
+        ]
+      ],
+      "prompt": "幫我錄這場會議，結束後在旁邊寫一份摘要和待辦事項"
+    },
+    "image": {
+      "file": "open-recording.png",
+      "w": 1512,
+      "h": 693,
+      "alt": {
+        "en": "The open-recording studio: a list of recordings",
+        "zh": "open-recording 錄音室：錄音清單"
+      }
+    }
+  },
+  "open-design-frame": {
+    "init": "npx @open-design-frame/core init my-frames",
+    "dev": "cd my-frames && pnpm install && pnpm dev",
+    "en": {
+      "display": "Design frames, written as components",
+      "lede": "Each frame is a fixed-size artboard, such as a desktop screen, a phone screen or a poster, that your agent writes in TSX. The canvas draws it at true size and the inspector edits it by rewriting the file. For designers and developers who want the design and the code in one place.",
+      "features": [
+        [
+          "frame",
+          "Frames at true size",
+          "Each frame carries its own size, and the canvas scales the view, never the contents."
+        ],
+        [
+          "click",
+          "Canvas edits write source",
+          "Click any element, adjust it in the inspector, and Save rewrites the TSX."
+        ],
+        [
+          "live",
+          "Play it like a site",
+          "Click through frames in a simulated browser or phone, following the links each frame declares."
+        ],
+        [
+          "theme",
+          "Themes with a DESIGN.md",
+          "Tokens become CSS variables, beside a DESIGN.md that tells an agent the rules tokens cannot hold."
+        ],
+        [
+          "open",
+          "One zip export",
+          "Self-contained HTML, PNG at 1x, 2x and 3x, and SVG, each frame drawn at its own size."
+        ],
+        [
+          "agent",
+          "MCP server",
+          "open-design-frame dev --mcp exposes 32 tools, and stale writes are refused."
+        ]
+      ],
+      "prompt": "Design a mobile onboarding screen and a desktop pricing page"
+    },
+    "zh": {
+      "display": "用元件寫設計稿",
+      "lede": "每張 frame 都是固定尺寸的畫板，例如桌機畫面、手機畫面或海報，由 Agent 用 TSX 寫成；畫布以實際尺寸呈現，檢視器直接改寫原始檔。適合想讓設計稿與程式碼放在同一處的設計師與開發者。",
+      "features": [
+        [
+          "frame",
+          "以實際尺寸呈現",
+          "每張 frame 帶著自己的尺寸，畫布縮放的是外框，不是內容。"
+        ],
+        [
+          "click",
+          "改畫布就是改原始碼",
+          "點任一元素、在檢視器調整，按 Save 就寫回 TSX。"
+        ],
+        [
+          "live",
+          "像網站一樣播放",
+          "在模擬的瀏覽器或手機裡點過一張張 frame，依 frame 自己宣告的連結走。"
+        ],
+        [
+          "theme",
+          "主題附帶 DESIGN.md",
+          "token 變成 CSS 變數，旁邊的 DESIGN.md 寫下 token 裝不下的規則給 Agent 看。"
+        ],
+        [
+          "open",
+          "一個 zip 匯出",
+          "可獨立開啟的 HTML、1x／2x／3x 的 PNG 與 SVG，每張 frame 都以自己的尺寸輸出。"
+        ],
+        [
+          "agent",
+          "MCP server",
+          "open-design-frame dev --mcp 提供 32 個工具，過期的寫入會被拒絕。"
+        ]
+      ],
+      "prompt": "設計一個手機版引導頁和一個桌機版價格頁"
+    },
+    "image": {
+      "file": "open-design-frame.png",
+      "w": 2880,
+      "h": 1800,
+      "alt": {
+        "en": "The open-design-frame canvas with the inspector open",
+        "zh": "open-design-frame 畫布與檢視面板"
+      }
+    }
+  }
+}

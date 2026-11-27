@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>open-design-frame — 用元件寫設計稿</title>
+<meta name="description" content="每張 frame 都是固定尺寸的畫板，例如桌機畫面、手機畫面或海報，由 Agent 用 TSX 寫成；畫布以實際尺寸呈現，檢視器直接改寫原始檔。適合想讓設計稿與程式碼放在同一處的設計師與開發者。" />
+<link rel="canonical" href="https://costaffs.app/zhtw/open-design-frame/" />
+<link rel="alternate" hreflang="zh-TW" href="https://costaffs.app/zhtw/open-design-frame/" />
+<link rel="alternate" hreflang="en" href="https://costaffs.app/open-design-frame/" />
+<link rel="icon" href="/images/logo/favicon.ico" sizes="any" />
+<link rel="icon" href="/images/logo/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/images/logo/apple-touch-icon.png" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="CoStaff Workspace" />
+<meta property="og:title" content="open-design-frame — 用元件寫設計稿" />
+<meta property="og:description" content="每張 frame 都是固定尺寸的畫板，例如桌機畫面、手機畫面或海報，由 Agent 用 TSX 寫成；畫布以實際尺寸呈現，檢視器直接改寫原始檔。適合想讓設計稿與程式碼放在同一處的設計師與開發者。" />
+<meta property="og:url" content="https://costaffs.app/zhtw/open-design-frame/" />
+<meta property="og:image" content="https://costaffs.app/images/logo/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="/assets/ws.css?v=16" />
+</head>
+<body>
+<header class="gnav">
+<div class="wrap">
+<a class="gnav-logo" href="/zhtw/"><img src="/images/logo/mark.svg" alt="" width="20" height="20" />CoStaff Workspace</a>
+<nav class="gnav-links" id="gnav-links" aria-label="Primary">
+<a href="/zhtw/plugin/">Workspace</a>
+<a href="/zhtw/toolsets/" aria-current="page">生產力工具</a>
+</nav>
+<div class="gnav-right">
+<div class="lang-switch" data-active="zh" role="group" aria-label="語言"><span class="lang-thumb" aria-hidden="true"></span><a href="/open-design-frame/" lang="en" hreflang="en">EN</a><a href="/zhtw/open-design-frame/" lang="zh-TW" hreflang="zh-TW" aria-current="true">繁中</a></div>
+<a class="gh" href="https://github.com/costaff-ai" target="_blank" rel="noopener">GitHub</a>
+<a class="gnav-cta" href="/zhtw/plugin/#start">安裝</a>
+<button class="gnav-menu" type="button" aria-label="選單" aria-expanded="false" aria-controls="gnav-links"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg></button>
+</div>
+</div>
+</header>
+<div class="ribbon">CoStaff Agent 平台將於 2026 年 11 月 30 日封存。<a class="more" href="/zhtw/notice/">閱讀公告</a></div>
+
+<main>
+<section class="hero tool-hero" style="--tool:#a16207">
+<div class="wrap">
+<span class="kind tool-mark" style="background:#a16207"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5.5" y="5.5" width="13" height="13" rx="1"/><path d="M3 5.5h2.5M18.5 5.5H21M3 18.5h2.5M18.5 18.5H21M5.5 3v2.5M5.5 18.5V21M18.5 3v2.5M18.5 18.5V21"/></svg></span>
+<p class="kicker">open-design-frame</p>
+<h1 class="display">用元件寫設計稿</h1>
+<p class="lede">每張 frame 都是固定尺寸的畫板，例如桌機畫面、手機畫面或海報，由 Agent 用 TSX 寫成；畫布以實際尺寸呈現，檢視器直接改寫原始檔。適合想讓設計稿與程式碼放在同一處的設計師與開發者。</p>
+<div class="tool-actions">
+<div class="cmd hero-cmd"><code><span class="nowrap">npx</span> <span class="nowrap">@open-design-frame/core</span> <span class="nowrap">init</span> <span class="nowrap">my-frames</span></code><button type="button" data-copy="npx @open-design-frame/core init my-frames">複製</button></div>
+<a class="btn ghost" href="https://github.com/simonliu-ai-product/open-design-frame" target="_blank" rel="noopener">在 GitHub 查看</a>
+</div>
+<div class="window real tool-shot"><img src="/images/tools/open-design-frame.png" alt="open-design-frame 畫布與檢視面板" width="2880" height="1800" /></div>
+</div>
+</section>
+<section class="band grey">
+<div class="wrap">
+<h2 class="headline center">能做什麼</h2>
+<div class="facts">
+<div class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5.5" y="5.5" width="13" height="13" rx="1"/><path d="M3 5.5h2.5M18.5 5.5H21M3 18.5h2.5M18.5 18.5H21M5.5 3v2.5M5.5 18.5V21M18.5 3v2.5M18.5 18.5V21"/></svg><h3>以實際尺寸呈現</h3><p>每張 frame 帶著自己的尺寸，畫布縮放的是外框，不是內容。</p></div>
+<div class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M5.6 5.6l2.1 2.1M3 12h3M18.4 5.6l-2.1 2.1"/><path d="M10 10l9 4-4 1.5L13.5 20z"/></svg><h3>改畫布就是改原始碼</h3><p>點任一元素、在檢視器調整，按 Save 就寫回 TSX。</p></div>
+<div class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 0 1 13.7-5.6M20 12a8 8 0 0 1-13.7 5.6"/><path d="M18 3v4h-4M6 21v-4h4"/></svg><h3>像網站一樣播放</h3><p>在模擬的瀏覽器或手機裡點過一張張 frame，依 frame 自己宣告的連結走。</p></div>
+<div class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4v16a8 8 0 0 0 0-16z" fill="currentColor"/></svg><h3>主題附帶 DESIGN.md</h3><p>token 變成 CSS 變數，旁邊的 DESIGN.md 寫下 token 裝不下的規則給 Agent 看。</p></div>
+<div class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6.5h-3a1.5 1.5 0 0 0-1.5 1.5v11A1.5 1.5 0 0 0 5 20.5h11a1.5 1.5 0 0 0 1.5-1.5v-3"/><path d="M13 3.5h7.5V11M20.5 3.5L11 13"/></svg><h3>一個 zip 匯出</h3><p>可獨立開啟的 HTML、1x／2x／3x 的 PNG 與 SVG，每張 frame 都以自己的尺寸輸出。</p></div>
+<div class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 17.5l-1.5 3 3.5-1.5h11a2 2 0 0 0 2-2v-11a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2V17z"/><path d="M8 10h8M8 13.5h5"/></svg><h3>MCP server</h3><p>open-design-frame dev --mcp 提供 32 個工具，過期的寫入會被拒絕。</p></div>
+</div>
+</div>
+</section>
+<section class="band" id="start">
+<div class="wrap">
+<h2 class="headline center">開始使用</h2>
+<div class="steps">
+<div class="step"><h3>建立工作區</h3><p>一個指令建立新的資料夾。</p><div class="cmd"><code><span class="nowrap">npx</span> <span class="nowrap">@open-design-frame/core</span> <span class="nowrap">init</span> <span class="nowrap">my-frames</span></code><button type="button" data-copy="npx @open-design-frame/core init my-frames">複製</button></div></div>
+<div class="step"><h3>啟動</h3><p>在瀏覽器打開即時預覽。</p><div class="cmd"><code><span class="nowrap">cd</span> <span class="nowrap">my-frames</span> <span class="nowrap">&amp;&amp;</span> <span class="nowrap">pnpm</span> <span class="nowrap">install</span> <span class="nowrap">&amp;&amp;</span> <span class="nowrap">pnpm</span> <span class="nowrap">dev</span></code><button type="button" data-copy="cd my-frames &amp;&amp; pnpm install &amp;&amp; pnpm dev">複製</button></div></div>
+<div class="step"><h3>交給 Agent</h3><p>說出你要什麼，Agent 寫檔案，你看著畫面跟著變。</p><div class="say">設計一個手機版引導頁和一個桌機版價格頁</div></div>
+</div>
+</div>
+</section>
+<section class="band night center">
+<div class="wrap">
+<h2 class="headline">在 CoStaff Workspace 裡打開</h2>
+<p class="lede">Agent 的每一次修改，都即時出現在對話旁邊。支援 Antigravity App 與 VS Code。</p>
+<div class="actions"><a class="btn light" href="/zhtw/plugin/">認識 CoStaff Workspace</a></div>
+</div>
+</section>
+<section class="band grey center">
+<div class="wrap">
+<h2 class="headline">其他工具</h2>
+<div class="tool-chips">
+<a class="tool-chip" href="/zhtw/open-doc/"><span class="kind" style="background:#0f766e"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3.5h7l4 4V20a.5.5 0 0 1-.5.5h-10A.5.5 0 0 1 7 20z"/><path d="M14 3.5V8h4"/><path d="M9.5 12.5h5M9.5 15.5h5"/></svg></span><span>open-doc</span></a>
+<a class="tool-chip" href="/zhtw/open-dashboard/"><span class="kind" style="background:#2563eb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16"/><path d="M7 16.5V11M12 16.5V6.5M17 16.5v-7"/></svg></span><span>open-dashboard</span></a>
+<a class="tool-chip" href="https://open-slide.dev/" target="_blank" rel="noopener"><span class="kind" style="background:#c2410c"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="11" rx="1.5"/><path d="M12 16v3.5M8.5 19.5h7"/></svg></span><span>open-slide</span></a>
+<a class="tool-chip" href="/zhtw/open-spreadsheet/"><span class="kind" style="background:#217346"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="1.5"/><path d="M3.5 9.5h17M3.5 14.5h17M9.5 4.5v15"/></svg></span><span>open-spreadsheet</span></a>
+<a class="tool-chip" href="/zhtw/open-form/"><span class="kind" style="background:#7c3aed"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3.5" width="14" height="17" rx="1.5"/><path d="M8.5 8.5h7M8.5 12h7M8.5 15.5h4"/></svg></span><span>open-form</span></a>
+<a class="tool-chip" href="/zhtw/open-map/"><span class="kind" style="background:#0e7490"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 6.5l5.5-2 6 2 5.5-2v13l-5.5 2-6-2-5.5 2z"/><path d="M9 4.5v13M15 6.5v13"/></svg></span><span>open-map</span></a>
+<a class="tool-chip" href="/zhtw/open-recording/"><span class="kind" style="background:#be123c"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="6.5" width="12" height="11" rx="2"/><path d="M15.5 10.5l5-3v9l-5-3z"/></svg></span><span>open-recording</span></a>
+<a class="tool-chip" href="https://open-sheet.dev/" target="_blank" rel="noopener"><span class="kind" style="background:#334155"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="1.5"/><path d="M3.5 9.5h17M9.5 4.5v15"/><path d="M12.5 14.5h5M15.5 12.5l2 2-2 2"/></svg></span><span>open-sheet</span></a>
+</div>
+<div class="actions"><a class="more" href="/zhtw/toolsets/">全部工具</a></div>
+</div>
+</section>
+</main>
+<footer class="foot">
+<div class="wrap">
+<div class="foot-cols">
+<div><div class="foot-brand"><img src="/images/logo/mark.svg" alt="" width="20" height="20" />CoStaff Workspace</div><p class="foot-tag">和 Agent 並肩，在同一份檔案上工作。</p></div>
+<div><h4>CoStaff Workspace</h4><ul><li><a href="/zhtw/plugin/">Workspace</a></li><li><a href="/zhtw/toolsets/">生產力工具</a></li></ul></div>
+<div><h4>生產力工具</h4><ul><li><a href="https://github.com/simonliu-ai-product/open-doc" target="_blank" rel="noopener">open-doc</a></li><li><a href="https://github.com/simonliu-ai-product/open-spreadsheet" target="_blank" rel="noopener">open-spreadsheet</a></li><li><a href="/zhtw/toolsets/">全部工具</a></li></ul></div>
+<div><h4>其他</h4><ul><li><a href="https://github.com/costaff-ai" target="_blank" rel="noopener">GitHub</a></li><li><a href="https://github.com/costaff-ai/costaff-workspace-oss" target="_blank" rel="noopener">CoStaff Workspace CLI</a></li><li><a href="/zhtw/brand/">品牌規範</a></li></ul></div>
+</div>
+<div class="foot-base"><span>Copyright © 2026 CoStaff.</span><a href="/">EN</a></div>
+</div>
+</footer>
+<script>
+(function () {
+  var b = document.querySelector('.gnav-menu'), l = document.getElementById('gnav-links');
+  if (b) b.addEventListener('click', function () { var o = l.classList.toggle('open'); b.setAttribute('aria-expanded', String(o)); });
+  var ls = document.querySelector('.lang-switch');
+  if (ls) ls.addEventListener('click', function (e) {
+    var a = e.target.closest('a');
+    if (!a || a.hasAttribute('aria-current') || e.metaKey || e.ctrlKey || e.shiftKey) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    e.preventDefault();
+    ls.setAttribute('data-active', a.getAttribute('lang') === 'en' ? 'en' : 'zh');
+    setTimeout(function () { location.href = a.href; }, 200);
+  });
+  var pick = document.querySelector('.demo-pick');
+  if (pick) {
+    var tabs = [].slice.call(pick.querySelectorAll('[role=tab]'));
+    var show = function (t) {
+      tabs.forEach(function (o) {
+        var on = o === t;
+        o.setAttribute('aria-selected', String(on));
+        o.tabIndex = on ? 0 : -1;
+        document.getElementById(o.getAttribute('aria-controls')).hidden = !on;
+      });
+    };
+    tabs.forEach(function (t, i) {
+      t.addEventListener('click', function () { show(t); });
+      t.addEventListener('keydown', function (e) {
+        var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+        if (!d) return;
+        e.preventDefault();
+        var n = tabs[(i + d + tabs.length) % tabs.length]; show(n); n.focus();
+      });
+    });
+  }
+  document.querySelectorAll('[data-copy]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      navigator.clipboard && navigator.clipboard.writeText(btn.getAttribute('data-copy')).then(function () {
+        var t = btn.textContent; btn.textContent = "已複製"; setTimeout(function () { btn.textContent = t; }, 1400);
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>

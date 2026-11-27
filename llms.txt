@@ -1,3 +1,19 @@
+# CoStaff Workspace
+
+> CoStaff Workspace puts workspaces (documents, dashboards, slides and spreadsheets) in a panel beside a coding agent, in the Antigravity App, VS Code, Cursor and the Antigravity IDE. The agent edits the files; the person sees the result at once and can edit it. Free, open source, local only.
+
+## Current focus
+
+- **CoStaff Workspace Plugin** (coming soon): an Antigravity App plugin and a VS Code-family extension. Supports open-doc, open-dashboard, open-slide and open-spreadsheet.
+- **Productivity tools**: open-source productivity tools built for agents: open-doc, open-dashboard, open-slide, open-spreadsheet, open-form, open-map, open-recording, open-design-frame. See https://costaffs.app/toolsets/.
+- Markdown version of the home page: https://costaffs.app/index.md
+
+## Archive notice
+
+The CoStaff Agent platform described below will be archived on November 30, 2026. Its repositories become read-only and receive no further updates. What follows is kept for reference.
+
+---
+
 # CoStaff
 
 > Open-source, self-hosted multi-agent system. Build your own AI Agent workforce — hand off tasks in your chat app, your specialist agents collaborate to get the work done, all running on your own machine.

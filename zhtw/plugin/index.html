@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CoStaff Workspace — 支援 VS Code 與 Antigravity</title>
+<meta name="description" content="把你的工作區放在 coding Agent 旁邊的面板，支援 Antigravity App、VS Code、Cursor 與 Antigravity IDE。" />
+<link rel="canonical" href="https://costaffs.app/zhtw/plugin/" />
+<link rel="alternate" hreflang="zh-TW" href="https://costaffs.app/zhtw/plugin/" />
+<link rel="alternate" hreflang="en" href="https://costaffs.app/plugin/" />
+<link rel="icon" href="/images/logo/favicon.ico" sizes="any" />
+<link rel="icon" href="/images/logo/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/images/logo/apple-touch-icon.png" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="CoStaff Workspace" />
+<meta property="og:title" content="CoStaff Workspace — 支援 VS Code 與 Antigravity" />
+<meta property="og:description" content="把你的工作區放在 coding Agent 旁邊的面板，支援 Antigravity App、VS Code、Cursor 與 Antigravity IDE。" />
+<meta property="og:url" content="https://costaffs.app/zhtw/plugin/" />
+<meta property="og:image" content="https://costaffs.app/images/logo/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="/assets/ws.css?v=16" />
+</head>
+<body>
+<header class="gnav">
+<div class="wrap">
+<a class="gnav-logo" href="/zhtw/"><img src="/images/logo/mark.svg" alt="" width="20" height="20" />CoStaff Workspace</a>
+<nav class="gnav-links" id="gnav-links" aria-label="Primary">
+<a href="/zhtw/plugin/" aria-current="page">Workspace</a>
+<a href="/zhtw/toolsets/">生產力工具</a>
+</nav>
+<div class="gnav-right">
+<div class="lang-switch" data-active="zh" role="group" aria-label="語言"><span class="lang-thumb" aria-hidden="true"></span><a href="/plugin/" lang="en" hreflang="en">EN</a><a href="/zhtw/plugin/" lang="zh-TW" hreflang="zh-TW" aria-current="true">繁中</a></div>
+<a class="gh" href="https://github.com/costaff-ai" target="_blank" rel="noopener">GitHub</a>
+<a class="gnav-cta" href="/zhtw/plugin/#start">安裝</a>
+<button class="gnav-menu" type="button" aria-label="選單" aria-expanded="false" aria-controls="gnav-links"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg></button>
+</div>
+</div>
+</header>
+<div class="ribbon">CoStaff Agent 平台將於 2026 年 11 月 30 日封存。<a class="more" href="/zhtw/notice/">閱讀公告</a></div>
+
+<main>
+<section class="hero" id="overview">
+<div class="wrap">
+<p class="kicker">CoStaff Workspace</p>
+<h1 class="display">讓文書工作<span class="nowrap">快速完成</span></h1>
+<p class="lede">你的 AI 同事就在眼前現場辦公。<br />工作區與 Agent 並排同步，每一次工具操作與修改都即時呈現。</p>
+<div class="window real"><img src="/images/workspace/agent-done.png" alt="Antigravity App：Agent 加上毛利率欄，CoStaff Workspace 在對話旁邊即時顯示，低於 30% 標紅" width="1984" height="1172" /></div>
+</div>
+</section>
+<section class="band">
+<div class="wrap">
+<div class="split">
+<div class="split-text"><h2 class="title">Agent 一改，畫面就變</h2><p class="body">請 Agent 加一欄、畫一張圖、多做一頁投影片。Agent 改檔案，你正在看的畫面跟著變。不用重新整理、不用匯出，也不用「打開檔案看看」。</p></div>
+<div class="shot"><img src="/images/workspace/agent-live-panel.png" alt="Agent 修改時，試算表跟著更新：「已從檔案更新」" loading="lazy" /></div>
+</div>
+</div>
+</section>
+<section class="band grey">
+<div class="wrap">
+<div class="split flip">
+<div class="split-text"><h2 class="title">所有工作區，一份清單</h2><p class="body">專案裡的、你加過的、在 CoStaff Desktop 用過的，全部合成一份。最近修改的排前面，可以依類型篩選、用名稱搜尋。</p></div>
+<div class="shot"><img src="/images/workspace/list.png" alt="工作區清單" loading="lazy" /></div>
+</div>
+</div>
+</section>
+<section class="band">
+<div class="wrap">
+<h2 class="headline center">像編輯器原本就有的功能</h2>
+<div class="facts">
+<div class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="15" rx="2"/><path d="M3 9h18M8 5v4"/></svg><h3>每個工作區一個分頁</h3><p>可以和程式碼並排開好幾個。關掉分頁，伺服器就停止。</p></div>
+<div class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 4v16a8 8 0 0 0 0-16z" fill="currentColor"/></svg><h3>跟著你的主題</h3><p>深色或淺色，工作區跟著編輯器，而不是跟著系統。</p></div>
+<div class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M5.6 5.6l2.1 2.1M3 12h3M18.4 5.6l-2.1 2.1"/><path d="M10 10l9 4-4 1.5L13.5 20z"/></svg><h3>一鍵就緒</h3><p>還沒裝套件、框架有新版，按一下就安裝或更新。</p></div>
+<div class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 17.5l-1.5 3 3.5-1.5h11a2 2 0 0 0 2-2v-11a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2V17z"/><path d="M8 10h8M8 13.5h5"/></svg><h3>能複製貼上</h3><p>複製一個範圍、貼上一整列，在工作區裡也行，連 VS Code 裡都可以。</p></div>
+<div class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6.5h-3a1.5 1.5 0 0 0-1.5 1.5v11A1.5 1.5 0 0 0 5 20.5h11a1.5 1.5 0 0 0 1.5-1.5v-3"/><path d="M13 3.5h7.5V11M20.5 3.5L11 13"/></svg><h3>指令面板</h3><p>在 ⌘⇧P 直接打開任何工作區，不用先回清單。</p></div>
+<div class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6h4.4l2 2.2h8.6A1.5 1.5 0 0 1 21 9.7v8.8a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 18.5z"/></svg><h3>你的檔案，你的資料夾</h3><p>在 Finder 顯示、開啟資料夾、查看伺服器紀錄，都在同一個選單。</p></div>
+</div>
+</div>
+</section>
+<section class="band night center">
+<div class="wrap">
+<svg style="width:44px;height:44px;margin:0 auto 22px;color:#f5f5f7" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>
+<h2 class="headline">一切都留在你的電腦</h2>
+<p class="lede">不需要帳號，只在本機執行、只有你連得到。</p>
+</div>
+</section>
+<section class="band grey">
+<div class="wrap">
+<h2 class="headline center">兩種使用方式</h2>
+<div class="hosts">
+<div class="host"><figure class="host-shot"><img src="/images/workspace/agent-done.png" alt="畫面：Antigravity App，試算表就在 Agent 旁邊" loading="lazy" /><figcaption>畫面：Antigravity App</figcaption></figure><h3 class="title">Antigravity App 版</h3><p>以 plugin 形式，在 Agent 對話旁邊開一個自己的分頁。</p><div class="stores"><a class="btn small" href="https://github.com/costaff-ai/costaff-workspace-antigravity" target="_blank" rel="noopener">安裝說明</a></div></div>
+<div class="host"><figure class="host-shot"><img src="/images/workspace/antigravity-ide.png" alt="畫面：Antigravity IDE，open-doc 文件開在編輯區分頁，旁邊是 Agent" loading="lazy" /><figcaption>畫面：Antigravity IDE</figcaption></figure><h3 class="title">VS Code 版</h3><p>以擴充套件形式，支援 VS Code、Cursor 與 Antigravity IDE。每個工作區開在編輯區分頁，放在檔案與 Agent 之間。</p><div class="stores"><a class="btn small" href="https://marketplace.visualstudio.com/items?itemName=costaff.costaff-workspace-vscode" target="_blank" rel="noopener">VS Code Marketplace</a><a class="btn small" href="https://open-vsx.org/extension/costaff/costaff-workspace-vscode" target="_blank" rel="noopener">Open VSX</a></div></div>
+</div>
+</div>
+</section>
+<section class="band" id="start">
+<div class="wrap">
+<h2 class="headline center">開始使用</h2>
+<p class="lede center">擴充套件已經上架 VS Code Marketplace，Cursor 與 Antigravity IDE 可以從 Open VSX 安裝。Antigravity App 版用一行 agy 指令安裝。</p>
+<div class="demo-pick" role="tablist" aria-label="你想做什麼？"><button type="button" role="tab" id="demo-tab-open-doc" aria-controls="demo-open-doc" aria-selected="false" tabindex="-1"><span class="kind" style="background:#0f766e"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3.5h7l4 4V20a.5.5 0 0 1-.5.5h-10A.5.5 0 0 1 7 20z"/><path d="M14 3.5V8h4"/><path d="M9.5 12.5h5M9.5 15.5h5"/></svg></span><span>文件</span></button><button type="button" role="tab" id="demo-tab-open-dashboard" aria-controls="demo-open-dashboard" aria-selected="false" tabindex="-1"><span class="kind" style="background:#2563eb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16"/><path d="M7 16.5V11M12 16.5V6.5M17 16.5v-7"/></svg></span><span>儀表板</span></button><button type="button" role="tab" id="demo-tab-open-slide" aria-controls="demo-open-slide" aria-selected="false" tabindex="-1"><span class="kind" style="background:#c2410c"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="11" rx="1.5"/><path d="M12 16v3.5M8.5 19.5h7"/></svg></span><span>簡報</span></button><button type="button" role="tab" id="demo-tab-open-spreadsheet" aria-controls="demo-open-spreadsheet" aria-selected="true" tabindex="0"><span class="kind" style="background:#217346"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="1.5"/><path d="M3.5 9.5h17M3.5 14.5h17M9.5 4.5v15"/></svg></span><span>試算表</span></button><button type="button" role="tab" id="demo-tab-open-design-frame" aria-controls="demo-open-design-frame" aria-selected="false" tabindex="-1"><span class="kind" style="background:#a16207"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5.5" y="5.5" width="13" height="13" rx="1"/><path d="M3 5.5h2.5M18.5 5.5H21M3 18.5h2.5M18.5 18.5H21M5.5 3v2.5M5.5 18.5V21M18.5 3v2.5M18.5 18.5V21"/></svg></span><span>設計稿</span></button></div>
+<div class="steps" role="tabpanel" id="demo-open-doc" aria-labelledby="demo-tab-open-doc" hidden>
+<div class="step"><h3>建立工作區</h3><p>一個指令建立新的資料夾。</p><div class="cmd"><code><span class="nowrap">npx</span> <span class="nowrap">@open-document/cli</span> <span class="nowrap">init</span> <span class="nowrap">my-docs</span></code><button type="button" data-copy="npx @open-document/cli init my-docs">複製</button></div></div>
+<div class="step"><h3>安裝 CoStaff Workspace</h3><p>在 VS Code、Cursor 或 Antigravity IDE 的擴充功能搜尋。</p><div class="cmd search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg><strong>CoStaff Workspace</strong></div></div>
+<div class="step"><h3>交給 Agent</h3><p>在面板打開工作區，告訴 Agent 你要什麼。</p><div class="say">幫我寫一份兩頁的 Q1 上市企劃書</div></div>
+</div>
+<div class="steps" role="tabpanel" id="demo-open-dashboard" aria-labelledby="demo-tab-open-dashboard" hidden>
+<div class="step"><h3>建立工作區</h3><p>一個指令建立新的資料夾。</p><div class="cmd"><code><span class="nowrap">npx</span> <span class="nowrap">@open-dashboard/cli</span> <span class="nowrap">init</span> <span class="nowrap">my-dashboards</span></code><button type="button" data-copy="npx @open-dashboard/cli init my-dashboards">複製</button></div></div>
+<div class="step"><h3>安裝 CoStaff Workspace</h3><p>在 VS Code、Cursor 或 Antigravity IDE 的擴充功能搜尋。</p><div class="cmd search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg><strong>CoStaff Workspace</strong></div></div>
+<div class="step"><h3>交給 Agent</h3><p>在面板打開工作區，告訴 Agent 你要什麼。</p><div class="say">用 orders.csv 做一個每月、各區的業績儀表板</div></div>
+</div>
+<div class="steps" role="tabpanel" id="demo-open-slide" aria-labelledby="demo-tab-open-slide" hidden>
+<div class="step"><h3>建立工作區</h3><p>一個指令建立新的資料夾。</p><div class="cmd"><code><span class="nowrap">npx</span> <span class="nowrap">@open-slide/cli</span> <span class="nowrap">init</span> <span class="nowrap">my-slides</span></code><button type="button" data-copy="npx @open-slide/cli init my-slides">複製</button></div></div>
+<div class="step"><h3>安裝 CoStaff Workspace</h3><p>在 VS Code、Cursor 或 Antigravity IDE 的擴充功能搜尋。</p><div class="cmd search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg><strong>CoStaff Workspace</strong></div></div>
+<div class="step"><h3>交給 Agent</h3><p>在面板打開工作區，告訴 Agent 你要什麼。</p><div class="say">把 Q1 企劃書做成十頁簡報</div></div>
+</div>
+<div class="steps" role="tabpanel" id="demo-open-spreadsheet" aria-labelledby="demo-tab-open-spreadsheet">
+<div class="step"><h3>建立工作區</h3><p>一個指令建立新的資料夾。</p><div class="cmd"><code><span class="nowrap">npx</span> <span class="nowrap">open-spreadsheet</span> <span class="nowrap">init</span> <span class="nowrap">my-sheets</span></code><button type="button" data-copy="npx open-spreadsheet init my-sheets">複製</button></div></div>
+<div class="step"><h3>安裝 CoStaff Workspace</h3><p>在 VS Code、Cursor 或 Antigravity IDE 的擴充功能搜尋。</p><div class="cmd search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg><strong>CoStaff Workspace</strong></div></div>
+<div class="step"><h3>交給 Agent</h3><p>在面板打開工作區，告訴 Agent 你要什麼。</p><div class="say">幫 Q1 業績表加一欄毛利率</div></div>
+</div>
+<div class="steps" role="tabpanel" id="demo-open-design-frame" aria-labelledby="demo-tab-open-design-frame" hidden>
+<div class="step"><h3>建立工作區</h3><p>一個指令建立新的資料夾。</p><div class="cmd"><code><span class="nowrap">npx</span> <span class="nowrap">@open-design-frame/core</span> <span class="nowrap">init</span> <span class="nowrap">my-frames</span></code><button type="button" data-copy="npx @open-design-frame/core init my-frames">複製</button></div></div>
+<div class="step"><h3>安裝 CoStaff Workspace</h3><p>在 VS Code、Cursor 或 Antigravity IDE 的擴充功能搜尋。</p><div class="cmd search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg><strong>CoStaff Workspace</strong></div></div>
+<div class="step"><h3>交給 Agent</h3><p>在面板打開工作區，告訴 Agent 你要什麼。</p><div class="say">用我們的品牌色設計一張上市海報</div></div>
+</div>
+</div>
+</section>
+</main>
+<footer class="foot">
+<div class="wrap">
+<div class="foot-cols">
+<div><div class="foot-brand"><img src="/images/logo/mark.svg" alt="" width="20" height="20" />CoStaff Workspace</div><p class="foot-tag">和 Agent 並肩，在同一份檔案上工作。</p></div>
+<div><h4>CoStaff Workspace</h4><ul><li><a href="/zhtw/plugin/">Workspace</a></li><li><a href="/zhtw/toolsets/">生產力工具</a></li></ul></div>
+<div><h4>生產力工具</h4><ul><li><a href="https://github.com/simonliu-ai-product/open-doc" target="_blank" rel="noopener">open-doc</a></li><li><a href="https://github.com/simonliu-ai-product/open-spreadsheet" target="_blank" rel="noopener">open-spreadsheet</a></li><li><a href="/zhtw/toolsets/">全部工具</a></li></ul></div>
+<div><h4>其他</h4><ul><li><a href="https://github.com/costaff-ai" target="_blank" rel="noopener">GitHub</a></li><li><a href="https://github.com/costaff-ai/costaff-workspace-oss" target="_blank" rel="noopener">CoStaff Workspace CLI</a></li><li><a href="/zhtw/brand/">品牌規範</a></li></ul></div>
+</div>
+<div class="foot-base"><span>Copyright © 2026 CoStaff.</span><a href="/">EN</a></div>
+</div>
+</footer>
+<script>
+(function () {
+  var b = document.querySelector('.gnav-menu'), l = document.getElementById('gnav-links');
+  if (b) b.addEventListener('click', function () { var o = l.classList.toggle('open'); b.setAttribute('aria-expanded', String(o)); });
+  var ls = document.querySelector('.lang-switch');
+  if (ls) ls.addEventListener('click', function (e) {
+    var a = e.target.closest('a');
+    if (!a || a.hasAttribute('aria-current') || e.metaKey || e.ctrlKey || e.shiftKey) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    e.preventDefault();
+    ls.setAttribute('data-active', a.getAttribute('lang') === 'en' ? 'en' : 'zh');
+    setTimeout(function () { location.href = a.href; }, 200);
+  });
+  var pick = document.querySelector('.demo-pick');
+  if (pick) {
+    var tabs = [].slice.call(pick.querySelectorAll('[role=tab]'));
+    var show = function (t) {
+      tabs.forEach(function (o) {
+        var on = o === t;
+        o.setAttribute('aria-selected', String(on));
+        o.tabIndex = on ? 0 : -1;
+        document.getElementById(o.getAttribute('aria-controls')).hidden = !on;
+      });
+    };
+    tabs.forEach(function (t, i) {
+      t.addEventListener('click', function () { show(t); });
+      t.addEventListener('keydown', function (e) {
+        var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+        if (!d) return;
+        e.preventDefault();
+        var n = tabs[(i + d + tabs.length) % tabs.length]; show(n); n.focus();
+      });
+    });
+  }
+  document.querySelectorAll('[data-copy]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      navigator.clipboard && navigator.clipboard.writeText(btn.getAttribute('data-copy')).then(function () {
+        var t = btn.textContent; btn.textContent = "已複製"; setTimeout(function () { btn.textContent = t; }, 1400);
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>

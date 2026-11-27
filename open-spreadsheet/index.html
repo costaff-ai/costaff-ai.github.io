@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>open-spreadsheet — Spreadsheets for agents and people</title>
+<meta name="description" content="An Excel-like spreadsheet where each workbook is one JSON file of what people typed, so a person edits it in a real grid and an agent edits the file. For teams who want their numbers in git." />
+<link rel="canonical" href="https://costaffs.app/open-spreadsheet/" />
+<link rel="alternate" hreflang="en" href="https://costaffs.app/open-spreadsheet/" />
+<link rel="alternate" hreflang="zh-TW" href="https://costaffs.app/zhtw/open-spreadsheet/" />
+<link rel="icon" href="/images/logo/favicon.ico" sizes="any" />
+<link rel="icon" href="/images/logo/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/images/logo/apple-touch-icon.png" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="CoStaff Workspace" />
+<meta property="og:title" content="open-spreadsheet — Spreadsheets for agents and people" />
+<meta property="og:description" content="An Excel-like spreadsheet where each workbook is one JSON file of what people typed, so a person edits it in a real grid and an agent edits the file. For teams who want their numbers in git." />
+<meta property="og:url" content="https://costaffs.app/open-spreadsheet/" />
+<meta property="og:image" content="https://costaffs.app/images/logo/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="/assets/ws.css?v=16" />
+</head>
+<body>
+<header class="gnav">
+<div class="wrap">
+<a class="gnav-logo" href="/"><img src="/images/logo/mark.svg" alt="" width="20" height="20" />CoStaff Workspace</a>
+<nav class="gnav-links" id="gnav-links" aria-label="Primary">
+<a href="/plugin/">Workspace</a>
+<a href="/toolsets/" aria-current="page">Tools</a>
+</nav>
+<div class="gnav-right">
+<div class="lang-switch" data-active="en" role="group" aria-label="Language"><span class="lang-thumb" aria-hidden="true"></span><a href="/open-spreadsheet/" lang="en" hreflang="en" aria-current="true">EN</a><a href="/zhtw/open-spreadsheet/" lang="zh-TW" hreflang="zh-TW">繁中</a></div>
+<a class="gh" href="https://github.com/costaff-ai" target="_blank" rel="noopener">GitHub</a>
+<a class="gnav-cta" href="/plugin/#start">Install</a>
+<button class="gnav-menu" type="button" aria-label="Menu" aria-expanded="false" aria-controls="gnav-links"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg></button>
+</div>
+</div>
+</header>
+<div class="ribbon">The CoStaff Agent platform will be archived on November 30, 2026.<a class="more" href="/notice/">Read the notice</a></div>
+
+<main>
+<section class="hero tool-hero" style="--tool:#217346">
+<div class="wrap">
+<span class="kind tool-mark" style="background:#217346"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="1.5"/><path d="M3.5 9.5h17M3.5 14.5h17M9.5 4.5v15"/></svg></span>
+<p class="kicker">open-spreadsheet</p>
+<h1 class="display">Spreadsheets for agents and people</h1>
+<p class="lede">An Excel-like spreadsheet where each workbook is one JSON file of what people typed, so a person edits it in a real grid and an agent edits the file. For teams who want their numbers in git.</p>
+<div class="tool-actions">
+<div class="cmd hero-cmd"><code><span class="nowrap">npx</span> <span class="nowrap">open-spreadsheet</span> <span class="nowrap">init</span> <span class="nowrap">my-sheets</span></code><button type="button" data-copy="npx open-spreadsheet init my-sheets">Copy</button></div>
+<a class="btn ghost" href="https://github.com/simonliu-ai-product/open-spreadsheet" target="_blank" rel="noopener">View on GitHub</a>
+</div>
+
+</div>
+</section>
+<section class="band grey">
+<div class="wrap">
+<h2 class="headline center">What it does.</h2>
+<div class="facts">
+<div class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.5 7.5L4 12l4.5 4.5M15.5 7.5L20 12l-4.5 4.5M13.5 5l-3 14"/></svg><h3>Its own formula engine</h3><p>337 functions following Excel's rules, with no spreadsheet library underneath.</p></div>
+<div class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="1.5"/><path d="M3.5 9.5h17M3.5 14.5h17M9.5 4.5v15"/></svg><h3>A grid like Excel</h3><p>Formula bar, number formats, merges, frozen panes, filters, notes and sheet tabs.</p></div>
+<div class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6h4.4l2 2.2h8.6A1.5 1.5 0 0 1 21 9.7v8.8a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 18.5z"/></svg><h3>One JSON file per workbook</h3><p>Cells store what was typed, including formulas, so git shows every change.</p></div>
+<div class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6.5h-3a1.5 1.5 0 0 0-1.5 1.5v11A1.5 1.5 0 0 0 5 20.5h11a1.5 1.5 0 0 0 1.5-1.5v-3"/><path d="M13 3.5h7.5V11M20.5 3.5L11 13"/></svg><h3>CSV and Excel import, export</h3><p>Import .csv, .tsv or .xlsx and download .xlsx or CSV, without uploading anything.</p></div>
+<div class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l7 2.5v5.5c0 4.3-2.9 7.6-7 9-4.1-1.4-7-4.7-7-9V6z"/></svg><h3>Protected ranges</h3><p>Locked cells refuse typing, pasting and MCP writes, so an agent cannot change them.</p></div>
+<div class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 17.5l-1.5 3 3.5-1.5h11a2 2 0 0 0 2-2v-11a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2V17z"/><path d="M8 10h8M8 13.5h5"/></svg><h3>MCP server with 29 tools</h3><p>Every write recalculates and is refused if the file changed since it was read.</p></div>
+</div>
+</div>
+</section>
+<section class="band" id="start">
+<div class="wrap">
+<h2 class="headline center">Get started.</h2>
+<div class="steps">
+<div class="step"><h3>Create a workspace</h3><p>One command makes a new folder for your work.</p><div class="cmd"><code><span class="nowrap">npx</span> <span class="nowrap">open-spreadsheet</span> <span class="nowrap">init</span> <span class="nowrap">my-sheets</span></code><button type="button" data-copy="npx open-spreadsheet init my-sheets">Copy</button></div></div>
+<div class="step"><h3>Start it</h3><p>The live preview opens in your browser.</p><div class="cmd"><code><span class="nowrap">cd</span> <span class="nowrap">my-sheets</span> <span class="nowrap">&amp;&amp;</span> <span class="nowrap">pnpm</span> <span class="nowrap">install</span> <span class="nowrap">&amp;&amp;</span> <span class="nowrap">pnpm</span> <span class="nowrap">dev</span></code><button type="button" data-copy="cd my-sheets &amp;&amp; pnpm install &amp;&amp; pnpm dev">Copy</button></div></div>
+<div class="step"><h3>Ask your agent</h3><p>Say what you need. The agent writes the files and you watch them change.</p><div class="say">Build a 2026 budget sheet with monthly totals and a running balance</div></div>
+</div>
+</div>
+</section>
+<section class="band night center">
+<div class="wrap">
+<h2 class="headline">Open it in CoStaff Workspace.</h2>
+<p class="lede">See every edit beside the conversation, in the Antigravity App or VS Code.</p>
+<div class="actions"><a class="btn light" href="/plugin/">Meet CoStaff Workspace</a></div>
+</div>
+</section>
+<section class="band grey center">
+<div class="wrap">
+<h2 class="headline">More tools.</h2>
+<div class="tool-chips">
+<a class="tool-chip" href="/open-doc/"><span class="kind" style="background:#0f766e"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3.5h7l4 4V20a.5.5 0 0 1-.5.5h-10A.5.5 0 0 1 7 20z"/><path d="M14 3.5V8h4"/><path d="M9.5 12.5h5M9.5 15.5h5"/></svg></span><span>open-doc</span></a>
+<a class="tool-chip" href="/open-dashboard/"><span class="kind" style="background:#2563eb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16"/><path d="M7 16.5V11M12 16.5V6.5M17 16.5v-7"/></svg></span><span>open-dashboard</span></a>
+<a class="tool-chip" href="https://open-slide.dev/" target="_blank" rel="noopener"><span class="kind" style="background:#c2410c"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="11" rx="1.5"/><path d="M12 16v3.5M8.5 19.5h7"/></svg></span><span>open-slide</span></a>
+<a class="tool-chip" href="/open-form/"><span class="kind" style="background:#7c3aed"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3.5" width="14" height="17" rx="1.5"/><path d="M8.5 8.5h7M8.5 12h7M8.5 15.5h4"/></svg></span><span>open-form</span></a>
+<a class="tool-chip" href="/open-map/"><span class="kind" style="background:#0e7490"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 6.5l5.5-2 6 2 5.5-2v13l-5.5 2-6-2-5.5 2z"/><path d="M9 4.5v13M15 6.5v13"/></svg></span><span>open-map</span></a>
+<a class="tool-chip" href="/open-recording/"><span class="kind" style="background:#be123c"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="6.5" width="12" height="11" rx="2"/><path d="M15.5 10.5l5-3v9l-5-3z"/></svg></span><span>open-recording</span></a>
+<a class="tool-chip" href="/open-design-frame/"><span class="kind" style="background:#a16207"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5.5" y="5.5" width="13" height="13" rx="1"/><path d="M3 5.5h2.5M18.5 5.5H21M3 18.5h2.5M18.5 18.5H21M5.5 3v2.5M5.5 18.5V21M18.5 3v2.5M18.5 18.5V21"/></svg></span><span>open-design-frame</span></a>
+<a class="tool-chip" href="https://open-sheet.dev/" target="_blank" rel="noopener"><span class="kind" style="background:#334155"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="1.5"/><path d="M3.5 9.5h17M9.5 4.5v15"/><path d="M12.5 14.5h5M15.5 12.5l2 2-2 2"/></svg></span><span>open-sheet</span></a>
+</div>
+<div class="actions"><a class="more" href="/toolsets/">All tools</a></div>
+</div>
+</section>
+</main>
+<footer class="foot">
+<div class="wrap">
+<div class="foot-cols">
+<div><div class="foot-brand"><img src="/images/logo/mark.svg" alt="" width="20" height="20" />CoStaff Workspace</div><p class="foot-tag">Work beside your agent, on the same files.</p></div>
+<div><h4>CoStaff Workspace</h4><ul><li><a href="/plugin/">Workspace</a></li><li><a href="/toolsets/">Tools</a></li></ul></div>
+<div><h4>Tools</h4><ul><li><a href="https://github.com/simonliu-ai-product/open-doc" target="_blank" rel="noopener">open-doc</a></li><li><a href="https://github.com/simonliu-ai-product/open-spreadsheet" target="_blank" rel="noopener">open-spreadsheet</a></li><li><a href="/toolsets/">All tools</a></li></ul></div>
+<div><h4>Elsewhere</h4><ul><li><a href="https://github.com/costaff-ai" target="_blank" rel="noopener">GitHub</a></li><li><a href="https://github.com/costaff-ai/costaff-workspace-oss" target="_blank" rel="noopener">CoStaff Workspace CLI</a></li><li><a href="/brand/">Brand guidelines</a></li></ul></div>
+</div>
+<div class="foot-base"><span>Copyright © 2026 CoStaff.</span><a href="/zhtw/">繁中</a></div>
+</div>
+</footer>
+<script>
+(function () {
+  var b = document.querySelector('.gnav-menu'), l = document.getElementById('gnav-links');
+  if (b) b.addEventListener('click', function () { var o = l.classList.toggle('open'); b.setAttribute('aria-expanded', String(o)); });
+  var ls = document.querySelector('.lang-switch');
+  if (ls) ls.addEventListener('click', function (e) {
+    var a = e.target.closest('a');
+    if (!a || a.hasAttribute('aria-current') || e.metaKey || e.ctrlKey || e.shiftKey) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    e.preventDefault();
+    ls.setAttribute('data-active', a.getAttribute('lang') === 'en' ? 'en' : 'zh');
+    setTimeout(function () { location.href = a.href; }, 200);
+  });
+  var pick = document.querySelector('.demo-pick');
+  if (pick) {
+    var tabs = [].slice.call(pick.querySelectorAll('[role=tab]'));
+    var show = function (t) {
+      tabs.forEach(function (o) {
+        var on = o === t;
+        o.setAttribute('aria-selected', String(on));
+        o.tabIndex = on ? 0 : -1;
+        document.getElementById(o.getAttribute('aria-controls')).hidden = !on;
+      });
+    };
+    tabs.forEach(function (t, i) {
+      t.addEventListener('click', function () { show(t); });
+      t.addEventListener('keydown', function (e) {
+        var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+        if (!d) return;
+        e.preventDefault();
+        var n = tabs[(i + d + tabs.length) % tabs.length]; show(n); n.focus();
+      });
+    });
+  }
+  document.querySelectorAll('[data-copy]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      navigator.clipboard && navigator.clipboard.writeText(btn.getAttribute('data-copy')).then(function () {
+        var t = btn.textContent; btn.textContent = "Copied"; setTimeout(function () { btn.textContent = t; }, 1400);
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>

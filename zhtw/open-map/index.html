@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>open-map — 讓 Agent 寫的地圖與敘事地圖</title>
+<meta name="description" content="為 Coding Agent 打造的地圖框架：Agent 把每張地圖寫成 React 元件，open-map 處理投影、圖層、故事導覽章節與匯出。適合用地點與路線說故事的人。" />
+<link rel="canonical" href="https://costaffs.app/zhtw/open-map/" />
+<link rel="alternate" hreflang="zh-TW" href="https://costaffs.app/zhtw/open-map/" />
+<link rel="alternate" hreflang="en" href="https://costaffs.app/open-map/" />
+<link rel="icon" href="/images/logo/favicon.ico" sizes="any" />
+<link rel="icon" href="/images/logo/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/images/logo/apple-touch-icon.png" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="CoStaff Workspace" />
+<meta property="og:title" content="open-map — 讓 Agent 寫的地圖與敘事地圖" />
+<meta property="og:description" content="為 Coding Agent 打造的地圖框架：Agent 把每張地圖寫成 React 元件，open-map 處理投影、圖層、故事導覽章節與匯出。適合用地點與路線說故事的人。" />
+<meta property="og:url" content="https://costaffs.app/zhtw/open-map/" />
+<meta property="og:image" content="https://costaffs.app/images/logo/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="/assets/ws.css?v=16" />
+</head>
+<body>
+<header class="gnav">
+<div class="wrap">
+<a class="gnav-logo" href="/zhtw/"><img src="/images/logo/mark.svg" alt="" width="20" height="20" />CoStaff Workspace</a>
+<nav class="gnav-links" id="gnav-links" aria-label="Primary">
+<a href="/zhtw/plugin/">Workspace</a>
+<a href="/zhtw/toolsets/" aria-current="page">生產力工具</a>
+</nav>
+<div class="gnav-right">
+<div class="lang-switch" data-active="zh" role="group" aria-label="語言"><span class="lang-thumb" aria-hidden="true"></span><a href="/open-map/" lang="en" hreflang="en">EN</a><a href="/zhtw/open-map/" lang="zh-TW" hreflang="zh-TW" aria-current="true">繁中</a></div>
+<a class="gh" href="https://github.com/costaff-ai" target="_blank" rel="noopener">GitHub</a>
+<a class="gnav-cta" href="/zhtw/plugin/#start">安裝</a>
+<button class="gnav-menu" type="button" aria-label="選單" aria-expanded="false" aria-controls="gnav-links"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg></button>
+</div>
+</div>
+</header>
+<div class="ribbon">CoStaff Agent 平台將於 2026 年 11 月 30 日封存。<a class="more" href="/zhtw/notice/">閱讀公告</a></div>
+
+<main>
+<section class="hero tool-hero" style="--tool:#0e7490">
+<div class="wrap">
+<span class="kind tool-mark" style="background:#0e7490"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 6.5l5.5-2 6 2 5.5-2v13l-5.5 2-6-2-5.5 2z"/><path d="M9 4.5v13M15 6.5v13"/></svg></span>
+<p class="kicker">open-map</p>
+<h1 class="display">讓 Agent 寫的地圖與敘事地圖</h1>
+<p class="lede">為 Coding Agent 打造的地圖框架：Agent 把每張地圖寫成 React 元件，open-map 處理投影、圖層、故事導覽章節與匯出。適合用地點與路線說故事的人。</p>
+<div class="tool-actions">
+<div class="cmd hero-cmd"><code><span class="nowrap">git</span> <span class="nowrap">clone</span> https://github.com/simonliu-ai-product/open-map.git <span class="nowrap">&amp;&amp;</span> <span class="nowrap">cd</span> <span class="nowrap">open-map</span> <span class="nowrap">&amp;&amp;</span> <span class="nowrap">pnpm</span> <span class="nowrap">install</span></code><button type="button" data-copy="git clone https://github.com/simonliu-ai-product/open-map.git &amp;&amp; cd open-map &amp;&amp; pnpm install">複製</button></div>
+<a class="btn ghost" href="https://github.com/simonliu-ai-product/open-map" target="_blank" rel="noopener">在 GitHub 查看</a>
+</div>
+
+</div>
+</section>
+<section class="band grey">
+<div class="wrap">
+<h2 class="headline center">能做什麼</h2>
+<div class="facts">
+<div class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 6.5l5.5-2 6 2 5.5-2v13l-5.5 2-6-2-5.5 2z"/><path d="M9 4.5v13M15 6.5v13"/></svg><h3>圖層就是元件</h3><p>分層設色、路線、弧線、點位與熱力圖層，加上標記與標註，都用 TSX 寫。</p></div>
+<div class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4l8.5 4.5L12 13 3.5 8.5z"/><path d="M3.5 12.5L12 17l8.5-4.5M3.5 16.5L12 21l8.5-4.5"/></svg><h3>三種投影</h3><p>麥卡托、等距圓柱與正射地球儀，附比例尺、指北針與鷹眼圖。</p></div>
+<div class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6h4.4l2 2.2h8.6A1.5 1.5 0 0 1 21 9.7v8.8a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 18.5z"/></svg><h3>匯入 GeoJSON 與 CSV</h3><p>空間資料可直接當模組匯入，open-map import 也能從檔案產生新地圖。</p></div>
+<div class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 12a8 8 0 0 1 13.7-5.6M20 12a8 8 0 0 1-13.7 5.6"/><path d="M18 3v4h-4M6 21v-4h4"/></svg><h3>故事模式</h3><p>用 StoryChapter 把地圖變成導覽，鏡頭平滑飛移，可用鍵盤切換。</p></div>
+<div class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M5.6 5.6l2.1 2.1M3 12h3M18.4 5.6l-2.1 2.1"/><path d="M10 10l9 4-4 1.5L13.5 20z"/></svg><h3>檢視與留註解</h3><p>點任一圖徵看它的原始碼行號、留註解，或把目前視角存回原始碼。</p></div>
+<div class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 17.5l-1.5 3 3.5-1.5h11a2 2 0 0 0 2-2v-11a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2V17z"/><path d="M8 10h8M8 13.5h5"/></svg><h3>MCP server</h3><p>open-map dev --mcp 提供列出、讀取、寫入、檢查與匯入地圖的工具。</p></div>
+</div>
+</div>
+</section>
+<section class="band" id="start">
+<div class="wrap">
+<h2 class="headline center">開始使用</h2>
+<div class="steps">
+<div class="step"><h3>建立工作區</h3><p>一個指令建立新的資料夾。</p><div class="cmd"><code><span class="nowrap">git</span> <span class="nowrap">clone</span> https://github.com/simonliu-ai-product/open-map.git <span class="nowrap">&amp;&amp;</span> <span class="nowrap">cd</span> <span class="nowrap">open-map</span> <span class="nowrap">&amp;&amp;</span> <span class="nowrap">pnpm</span> <span class="nowrap">install</span></code><button type="button" data-copy="git clone https://github.com/simonliu-ai-product/open-map.git &amp;&amp; cd open-map &amp;&amp; pnpm install">複製</button></div></div>
+<div class="step"><h3>啟動</h3><p>在瀏覽器打開即時預覽。</p><div class="cmd"><code><span class="nowrap">pnpm</span> <span class="nowrap">dev:demo</span></code><button type="button" data-copy="pnpm dev:demo">複製</button></div></div>
+<div class="step"><h3>交給 Agent</h3><p>說出你要什麼，Agent 寫檔案，你看著畫面跟著變。</p><div class="say">畫一張台灣高壓電網地圖，每個區域一個故事章節</div></div>
+</div>
+</div>
+</section>
+<section class="band grey center">
+<div class="wrap">
+<h2 class="headline">其他工具</h2>
+<div class="tool-chips">
+<a class="tool-chip" href="/zhtw/open-doc/"><span class="kind" style="background:#0f766e"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3.5h7l4 4V20a.5.5 0 0 1-.5.5h-10A.5.5 0 0 1 7 20z"/><path d="M14 3.5V8h4"/><path d="M9.5 12.5h5M9.5 15.5h5"/></svg></span><span>open-doc</span></a>
+<a class="tool-chip" href="/zhtw/open-dashboard/"><span class="kind" style="background:#2563eb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16"/><path d="M7 16.5V11M12 16.5V6.5M17 16.5v-7"/></svg></span><span>open-dashboard</span></a>
+<a class="tool-chip" href="https://open-slide.dev/" target="_blank" rel="noopener"><span class="kind" style="background:#c2410c"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="11" rx="1.5"/><path d="M12 16v3.5M8.5 19.5h7"/></svg></span><span>open-slide</span></a>
+<a class="tool-chip" href="/zhtw/open-spreadsheet/"><span class="kind" style="background:#217346"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="1.5"/><path d="M3.5 9.5h17M3.5 14.5h17M9.5 4.5v15"/></svg></span><span>open-spreadsheet</span></a>
+<a class="tool-chip" href="/zhtw/open-form/"><span class="kind" style="background:#7c3aed"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3.5" width="14" height="17" rx="1.5"/><path d="M8.5 8.5h7M8.5 12h7M8.5 15.5h4"/></svg></span><span>open-form</span></a>
+<a class="tool-chip" href="/zhtw/open-recording/"><span class="kind" style="background:#be123c"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="6.5" width="12" height="11" rx="2"/><path d="M15.5 10.5l5-3v9l-5-3z"/></svg></span><span>open-recording</span></a>
+<a class="tool-chip" href="/zhtw/open-design-frame/"><span class="kind" style="background:#a16207"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5.5" y="5.5" width="13" height="13" rx="1"/><path d="M3 5.5h2.5M18.5 5.5H21M3 18.5h2.5M18.5 18.5H21M5.5 3v2.5M5.5 18.5V21M18.5 3v2.5M18.5 18.5V21"/></svg></span><span>open-design-frame</span></a>
+<a class="tool-chip" href="https://open-sheet.dev/" target="_blank" rel="noopener"><span class="kind" style="background:#334155"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="1.5"/><path d="M3.5 9.5h17M9.5 4.5v15"/><path d="M12.5 14.5h5M15.5 12.5l2 2-2 2"/></svg></span><span>open-sheet</span></a>
+</div>
+<div class="actions"><a class="more" href="/zhtw/toolsets/">全部工具</a></div>
+</div>
+</section>
+</main>
+<footer class="foot">
+<div class="wrap">
+<div class="foot-cols">
+<div><div class="foot-brand"><img src="/images/logo/mark.svg" alt="" width="20" height="20" />CoStaff Workspace</div><p class="foot-tag">和 Agent 並肩，在同一份檔案上工作。</p></div>
+<div><h4>CoStaff Workspace</h4><ul><li><a href="/zhtw/plugin/">Workspace</a></li><li><a href="/zhtw/toolsets/">生產力工具</a></li></ul></div>
+<div><h4>生產力工具</h4><ul><li><a href="https://github.com/simonliu-ai-product/open-doc" target="_blank" rel="noopener">open-doc</a></li><li><a href="https://github.com/simonliu-ai-product/open-spreadsheet" target="_blank" rel="noopener">open-spreadsheet</a></li><li><a href="/zhtw/toolsets/">全部工具</a></li></ul></div>
+<div><h4>其他</h4><ul><li><a href="https://github.com/costaff-ai" target="_blank" rel="noopener">GitHub</a></li><li><a href="https://github.com/costaff-ai/costaff-workspace-oss" target="_blank" rel="noopener">CoStaff Workspace CLI</a></li><li><a href="/zhtw/brand/">品牌規範</a></li></ul></div>
+</div>
+<div class="foot-base"><span>Copyright © 2026 CoStaff.</span><a href="/">EN</a></div>
+</div>
+</footer>
+<script>
+(function () {
+  var b = document.querySelector('.gnav-menu'), l = document.getElementById('gnav-links');
+  if (b) b.addEventListener('click', function () { var o = l.classList.toggle('open'); b.setAttribute('aria-expanded', String(o)); });
+  var ls = document.querySelector('.lang-switch');
+  if (ls) ls.addEventListener('click', function (e) {
+    var a = e.target.closest('a');
+    if (!a || a.hasAttribute('aria-current') || e.metaKey || e.ctrlKey || e.shiftKey) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    e.preventDefault();
+    ls.setAttribute('data-active', a.getAttribute('lang') === 'en' ? 'en' : 'zh');
+    setTimeout(function () { location.href = a.href; }, 200);
+  });
+  var pick = document.querySelector('.demo-pick');
+  if (pick) {
+    var tabs = [].slice.call(pick.querySelectorAll('[role=tab]'));
+    var show = function (t) {
+      tabs.forEach(function (o) {
+        var on = o === t;
+        o.setAttribute('aria-selected', String(on));
+        o.tabIndex = on ? 0 : -1;
+        document.getElementById(o.getAttribute('aria-controls')).hidden = !on;
+      });
+    };
+    tabs.forEach(function (t, i) {
+      t.addEventListener('click', function () { show(t); });
+      t.addEventListener('keydown', function (e) {
+        var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+        if (!d) return;
+        e.preventDefault();
+        var n = tabs[(i + d + tabs.length) % tabs.length]; show(n); n.focus();
+      });
+    });
+  }
+  document.querySelectorAll('[data-copy]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      navigator.clipboard && navigator.clipboard.writeText(btn.getAttribute('data-copy')).then(function () {
+        var t = btn.textContent; btn.textContent = "已複製"; setTimeout(function () { btn.textContent = t; }, 1400);
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>
