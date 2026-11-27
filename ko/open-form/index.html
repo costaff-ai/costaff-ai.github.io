@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>open-form — 에이전트가 쓰는 폼과 설문</title>
+<meta name="description" content="코딩 에이전트를 위한 폼 프레임워크입니다. 원하는 설문, 신청서, 퀴즈를 설명하면 에이전트가 TSX를 작성하고, open-form이 레이아웃, 조건 로직, 유효성 검사, 응답 저장을 처리합니다. 온라인 폼 서비스 없이 응답을 모으고 싶은 분께 맞습니다." />
+<link rel="canonical" href="https://costaffs.app/ko/open-form/" />
+<link rel="alternate" hreflang="en" href="https://costaffs.app/open-form/" />
+<link rel="alternate" hreflang="zh-TW" href="https://costaffs.app/zhtw/open-form/" />
+<link rel="alternate" hreflang="zh-CN" href="https://costaffs.app/zhcn/open-form/" />
+<link rel="alternate" hreflang="ja" href="https://costaffs.app/ja/open-form/" />
+<link rel="alternate" hreflang="ko" href="https://costaffs.app/ko/open-form/" />
+<link rel="alternate" hreflang="x-default" href="https://costaffs.app/open-form/" />
+<link rel="icon" href="/images/logo/favicon.ico" sizes="any" />
+<link rel="icon" href="/images/logo/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/images/logo/apple-touch-icon.png" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="CoStaff Workspace" />
+<meta property="og:title" content="open-form — 에이전트가 쓰는 폼과 설문" />
+<meta property="og:description" content="코딩 에이전트를 위한 폼 프레임워크입니다. 원하는 설문, 신청서, 퀴즈를 설명하면 에이전트가 TSX를 작성하고, open-form이 레이아웃, 조건 로직, 유효성 검사, 응답 저장을 처리합니다. 온라인 폼 서비스 없이 응답을 모으고 싶은 분께 맞습니다." />
+<meta property="og:url" content="https://costaffs.app/ko/open-form/" />
+<meta property="og:image" content="https://costaffs.app/images/logo/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="/assets/ws.css?v=17" />
+</head>
+<body>
+<header class="gnav">
+<div class="wrap">
+<a class="gnav-logo" href="/ko/"><img src="/images/logo/mark.svg" alt="" width="20" height="20" />CoStaff Workspace</a>
+<nav class="gnav-links" id="gnav-links" aria-label="Primary">
+<a href="/ko/plugin/">워크스페이스</a>
+<a href="/ko/toolsets/" aria-current="page">도구</a>
+</nav>
+<div class="gnav-right">
+<details class="lang-menu"><summary aria-label="언어"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.4 2.3 3.6 5.1 3.6 8.5s-1.2 6.2-3.6 8.5c-2.4-2.3-3.6-5.1-3.6-8.5s1.2-6.2 3.6-8.5z"/></svg><span>한국어</span></summary><div class="lang-list"><a href="/open-form/" lang="en" hreflang="en">English</a><a href="/zhtw/open-form/" lang="zh-TW" hreflang="zh-TW">繁體中文</a><a href="/zhcn/open-form/" lang="zh-CN" hreflang="zh-CN">简体中文</a><a href="/ja/open-form/" lang="ja" hreflang="ja">日本語</a><a href="/ko/open-form/" lang="ko" hreflang="ko" aria-current="true">한국어</a></div></details>
+<a class="gh" href="https://github.com/costaff-ai" target="_blank" rel="noopener">GitHub</a>
+<a class="gnav-cta" href="/ko/plugin/#start">설치</a>
+<button class="gnav-menu" type="button" aria-label="메뉴" aria-expanded="false" aria-controls="gnav-links"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg></button>
+</div>
+</div>
+</header>
+<div class="ribbon">CoStaff Agent 플랫폼은 2026년 11월 30일에 보관 처리됩니다.<a class="more" href="/ko/notice/">공지 읽기</a></div>
+
+<main>
+<section class="hero tool-hero" style="--tool:#7c3aed">
+<div class="wrap">
+<span class="kind tool-mark" style="background:#7c3aed"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3.5" width="14" height="17" rx="1.5"/><path d="M8.5 8.5h7M8.5 12h7M8.5 15.5h4"/></svg></span>
+<p class="kicker">open-form</p>
+<h1 class="display">에이전트가 쓰는 폼과 설문</h1>
+<p class="lede">코딩 에이전트를 위한 폼 프레임워크입니다. 원하는 설문, 신청서, 퀴즈를 설명하면 에이전트가 TSX를 작성하고, open-form이 레이아웃, 조건 로직, 유효성 검사, 응답 저장을 처리합니다. 온라인 폼 서비스 없이 응답을 모으고 싶은 분께 맞습니다.</p>
+<div class="tool-actions">
+<div class="cmd hero-cmd"><code><span class="nowrap">git</span> <span class="nowrap">clone</span> https://github.com/simonliu-ai-product/open-form.git <span class="nowrap">&amp;&amp;</span> <span class="nowrap">cd</span> <span class="nowrap">open-form</span> <span class="nowrap">&amp;&amp;</span> <span class="nowrap">pnpm</span> <span class="nowrap">install</span></code><button type="button" data-copy="git clone https://github.com/simonliu-ai-product/open-form.git &amp;&amp; cd open-form &amp;&amp; pnpm install">복사</button></div>
+<a class="btn ghost" href="https://github.com/simonliu-ai-product/open-form" target="_blank" rel="noopener">GitHub에서 보기</a>
+</div>
+
+</div>
+</section>
+<section class="band grey">
+<div class="wrap">
+<h2 class="headline center">할 수 있는 일</h2>
+<div class="facts">
+<div class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3.5" width="14" height="17" rx="1.5"/><path d="M8.5 8.5h7M8.5 12h7M8.5 15.5h4"/></svg><h3>세 가지 표시 방식</h3><p>TSX 파일 하나를 한 페이지 폼, 단계별 마법사, 한 번에 한 질문씩 보여 주는 형태로 렌더링합니다.</p></div>
+<div class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4l8.5 4.5L12 13 3.5 8.5z"/><path d="M3.5 12.5L12 17l8.5-4.5M3.5 16.5L12 21l8.5-4.5"/></svg><h3>15가지 질문 유형</h3><p>텍스트, 숫자, 날짜, 선택, 순위, 평점, 척도, 행렬, 파일 업로드, 서명.</p></div>
+<div class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 12.2l2.4 2.4 4.8-5"/></svg><h3>조건 로직과 퀴즈</h3><p>when으로 앞선 답변에 따라 질문을 보여 주거나, 배점과 해설로 폼을 퀴즈로 만듭니다.</p></div>
+<div class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16"/><path d="M7 16.5V11M12 16.5V6.5M17 16.5v-7"/></svg><h3>응답은 로컬에 저장</h3><p>제출 내용은 SQLite와 JSONL에 저장되고, 응답 탭에서 차트와 CSV·JSON 내보내기를 제공합니다.</p></div>
+<div class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l7 2.5v5.5c0 4.3-2.9 7.6-7 9-4.1-1.4-7-4.7-7-9V6z"/></svg><h3>서명된 Webhook</h3><p>각 제출을 HTTP POST로 전달하며, 선택적으로 HMAC-SHA256 서명을 붙입니다.</p></div>
+<div class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M5.6 5.6l2.1 2.1M3 12h3M18.4 5.6l-2.1 2.1"/><path d="M10 10l9 4-4 1.5L13.5 20z"/></svg><h3>편집 모드는 소스를 고칩니다</h3><p>브라우저에서 라벨, 선택지, 필수 여부를 바꾸면 TSX에 그대로 저장됩니다.</p></div>
+</div>
+</div>
+</section>
+<section class="band" id="start">
+<div class="wrap">
+<h2 class="headline center">시작하기</h2>
+<div class="steps">
+<div class="step"><h3>워크스페이스 만들기</h3><p>명령어 하나로 작업용 새 폴더를 만듭니다.</p><div class="cmd"><code><span class="nowrap">git</span> <span class="nowrap">clone</span> https://github.com/simonliu-ai-product/open-form.git <span class="nowrap">&amp;&amp;</span> <span class="nowrap">cd</span> <span class="nowrap">open-form</span> <span class="nowrap">&amp;&amp;</span> <span class="nowrap">pnpm</span> <span class="nowrap">install</span></code><button type="button" data-copy="git clone https://github.com/simonliu-ai-product/open-form.git &amp;&amp; cd open-form &amp;&amp; pnpm install">복사</button></div></div>
+<div class="step"><h3>실행하기</h3><p>브라우저에서 실시간 미리보기가 열립니다.</p><div class="cmd"><code><span class="nowrap">pnpm</span> <span class="nowrap">dev</span></code><button type="button" data-copy="pnpm dev">복사</button></div></div>
+<div class="step"><h3>에이전트에게 요청하기</h3><p>원하는 것을 말하세요. 에이전트가 파일을 작성하고, 화면이 바뀌는 모습을 바로 볼 수 있습니다.</p><div class="say">AI 밋업 참가 신청서 만들어 줘. 식이 제한 질문도 넣어 줘</div></div>
+</div>
+</div>
+</section>
+<section class="band grey center">
+<div class="wrap">
+<h2 class="headline">다른 도구</h2>
+<div class="tool-chips">
+<a class="tool-chip" href="/ko/open-doc/"><span class="kind" style="background:#0f766e"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3.5h7l4 4V20a.5.5 0 0 1-.5.5h-10A.5.5 0 0 1 7 20z"/><path d="M14 3.5V8h4"/><path d="M9.5 12.5h5M9.5 15.5h5"/></svg></span><span>open-doc</span></a>
+<a class="tool-chip" href="/ko/open-dashboard/"><span class="kind" style="background:#2563eb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16"/><path d="M7 16.5V11M12 16.5V6.5M17 16.5v-7"/></svg></span><span>open-dashboard</span></a>
+<a class="tool-chip" href="https://open-slide.dev/" target="_blank" rel="noopener"><span class="kind" style="background:#c2410c"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="11" rx="1.5"/><path d="M12 16v3.5M8.5 19.5h7"/></svg></span><span>open-slide</span></a>
+<a class="tool-chip" href="/ko/open-spreadsheet/"><span class="kind" style="background:#217346"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="1.5"/><path d="M3.5 9.5h17M3.5 14.5h17M9.5 4.5v15"/></svg></span><span>open-spreadsheet</span></a>
+<a class="tool-chip" href="/ko/open-map/"><span class="kind" style="background:#0e7490"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 6.5l5.5-2 6 2 5.5-2v13l-5.5 2-6-2-5.5 2z"/><path d="M9 4.5v13M15 6.5v13"/></svg></span><span>open-map</span></a>
+<a class="tool-chip" href="/ko/open-recording/"><span class="kind" style="background:#be123c"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="6.5" width="12" height="11" rx="2"/><path d="M15.5 10.5l5-3v9l-5-3z"/></svg></span><span>open-recording</span></a>
+<a class="tool-chip" href="/ko/open-design-frame/"><span class="kind" style="background:#a16207"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5.5" y="5.5" width="13" height="13" rx="1"/><path d="M3 5.5h2.5M18.5 5.5H21M3 18.5h2.5M18.5 18.5H21M5.5 3v2.5M5.5 18.5V21M18.5 3v2.5M18.5 18.5V21"/></svg></span><span>open-design-frame</span></a>
+<a class="tool-chip" href="https://open-sheet.dev/" target="_blank" rel="noopener"><span class="kind" style="background:#334155"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="1.5"/><path d="M3.5 9.5h17M9.5 4.5v15"/><path d="M12.5 14.5h5M15.5 12.5l2 2-2 2"/></svg></span><span>open-sheet</span></a>
+</div>
+<div class="actions"><a class="more" href="/ko/toolsets/">전체 도구</a></div>
+</div>
+</section>
+</main>
+<footer class="foot">
+<div class="wrap">
+<div class="foot-cols">
+<div><div class="foot-brand"><img src="/images/logo/mark.svg" alt="" width="20" height="20" />CoStaff Workspace</div><p class="foot-tag">에이전트와 나란히, 같은 파일에서 일하세요.</p></div>
+<div><h4>CoStaff Workspace</h4><ul><li><a href="/ko/plugin/">워크스페이스</a></li><li><a href="/ko/toolsets/">도구</a></li></ul></div>
+<div><h4>도구</h4><ul><li><a href="/ko/open-doc/">open-doc</a></li><li><a href="/ko/open-dashboard/">open-dashboard</a></li><li><a href="/ko/open-spreadsheet/">open-spreadsheet</a></li><li><a href="/ko/open-design-frame/">open-design-frame</a></li><li><a href="/ko/toolsets/">전체 도구</a></li></ul></div>
+<div><h4>기타</h4><ul><li><a href="https://github.com/costaff-ai" target="_blank" rel="noopener">GitHub</a></li><li><a href="/ko/brand/">브랜드 가이드라인</a></li></ul></div>
+</div>
+<div class="foot-base"><span>Copyright © 2026 CoStaff.</span><nav class="foot-langs" aria-label="언어"><a href="/" lang="en" hreflang="en">English</a><a href="/zhtw/" lang="zh-TW" hreflang="zh-TW">繁體中文</a><a href="/zhcn/" lang="zh-CN" hreflang="zh-CN">简体中文</a><a href="/ja/" lang="ja" hreflang="ja">日本語</a><a href="/ko/" lang="ko" hreflang="ko" aria-current="true">한국어</a></nav></div>
+</div>
+</footer>
+<script>
+(function () {
+  var b = document.querySelector('.gnav-menu'), l = document.getElementById('gnav-links');
+  if (b) b.addEventListener('click', function () { var o = l.classList.toggle('open'); b.setAttribute('aria-expanded', String(o)); });
+  var lm = document.querySelector('.lang-menu');
+  if (lm) {
+    document.addEventListener('click', function (e) { if (!lm.contains(e.target)) lm.open = false; });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && lm.open) { lm.open = false; lm.querySelector('summary').focus(); } });
+  }
+  var pick = document.querySelector('.demo-pick');
+  if (pick) {
+    var tabs = [].slice.call(pick.querySelectorAll('[role=tab]'));
+    var show = function (t) {
+      tabs.forEach(function (o) {
+        var on = o === t;
+        o.setAttribute('aria-selected', String(on));
+        o.tabIndex = on ? 0 : -1;
+        document.getElementById(o.getAttribute('aria-controls')).hidden = !on;
+      });
+    };
+    tabs.forEach(function (t, i) {
+      t.addEventListener('click', function () { show(t); });
+      t.addEventListener('keydown', function (e) {
+        var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+        if (!d) return;
+        e.preventDefault();
+        var n = tabs[(i + d + tabs.length) % tabs.length]; show(n); n.focus();
+      });
+    });
+  }
+  document.querySelectorAll('[data-copy]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      navigator.clipboard && navigator.clipboard.writeText(btn.getAttribute('data-copy')).then(function () {
+        var t = btn.textContent; btn.textContent = "복사됨"; setTimeout(function () { btn.textContent = t; }, 1400);
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>

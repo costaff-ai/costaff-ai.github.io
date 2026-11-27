@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>open-dashboard — エージェントが作るダッシュボード</title>
+<meta name="description" content="コーディングエージェントのためのダッシュボードフレームワーク。エージェントが SQL とパネルを書き、open-dashboard があなたのデータベースに対してすべてのクエリを読み取り専用で実行し、グラフを描きます。BI ツールではなく、レビューできるファイルとしてダッシュボードを持ちたいチームに。" />
+<link rel="canonical" href="https://costaffs.app/ja/open-dashboard/" />
+<link rel="alternate" hreflang="en" href="https://costaffs.app/open-dashboard/" />
+<link rel="alternate" hreflang="zh-TW" href="https://costaffs.app/zhtw/open-dashboard/" />
+<link rel="alternate" hreflang="zh-CN" href="https://costaffs.app/zhcn/open-dashboard/" />
+<link rel="alternate" hreflang="ja" href="https://costaffs.app/ja/open-dashboard/" />
+<link rel="alternate" hreflang="ko" href="https://costaffs.app/ko/open-dashboard/" />
+<link rel="alternate" hreflang="x-default" href="https://costaffs.app/open-dashboard/" />
+<link rel="icon" href="/images/logo/favicon.ico" sizes="any" />
+<link rel="icon" href="/images/logo/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/images/logo/apple-touch-icon.png" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="CoStaff Workspace" />
+<meta property="og:title" content="open-dashboard — エージェントが作るダッシュボード" />
+<meta property="og:description" content="コーディングエージェントのためのダッシュボードフレームワーク。エージェントが SQL とパネルを書き、open-dashboard があなたのデータベースに対してすべてのクエリを読み取り専用で実行し、グラフを描きます。BI ツールではなく、レビューできるファイルとしてダッシュボードを持ちたいチームに。" />
+<meta property="og:url" content="https://costaffs.app/ja/open-dashboard/" />
+<meta property="og:image" content="https://costaffs.app/images/logo/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="/assets/ws.css?v=17" />
+</head>
+<body>
+<header class="gnav">
+<div class="wrap">
+<a class="gnav-logo" href="/ja/"><img src="/images/logo/mark.svg" alt="" width="20" height="20" />CoStaff Workspace</a>
+<nav class="gnav-links" id="gnav-links" aria-label="Primary">
+<a href="/ja/plugin/">ワークスペース</a>
+<a href="/ja/toolsets/" aria-current="page">ツール</a>
+</nav>
+<div class="gnav-right">
+<details class="lang-menu"><summary aria-label="言語"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.4 2.3 3.6 5.1 3.6 8.5s-1.2 6.2-3.6 8.5c-2.4-2.3-3.6-5.1-3.6-8.5s1.2-6.2 3.6-8.5z"/></svg><span>日本語</span></summary><div class="lang-list"><a href="/open-dashboard/" lang="en" hreflang="en">English</a><a href="/zhtw/open-dashboard/" lang="zh-TW" hreflang="zh-TW">繁體中文</a><a href="/zhcn/open-dashboard/" lang="zh-CN" hreflang="zh-CN">简体中文</a><a href="/ja/open-dashboard/" lang="ja" hreflang="ja" aria-current="true">日本語</a><a href="/ko/open-dashboard/" lang="ko" hreflang="ko">한국어</a></div></details>
+<a class="gh" href="https://github.com/costaff-ai" target="_blank" rel="noopener">GitHub</a>
+<a class="gnav-cta" href="/ja/plugin/#start">インストール</a>
+<button class="gnav-menu" type="button" aria-label="メニュー" aria-expanded="false" aria-controls="gnav-links"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg></button>
+</div>
+</div>
+</header>
+<div class="ribbon">CoStaff Agent プラットフォームは 2026年11月30日 にアーカイブされます。<a class="more" href="/ja/notice/">お知らせを読む</a></div>
+
+<main>
+<section class="hero tool-hero" style="--tool:#2563eb">
+<div class="wrap">
+<span class="kind tool-mark" style="background:#2563eb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16"/><path d="M7 16.5V11M12 16.5V6.5M17 16.5v-7"/></svg></span>
+<p class="kicker">open-dashboard</p>
+<h1 class="display">エージェントが作るダッシュボード</h1>
+<p class="lede">コーディングエージェントのためのダッシュボードフレームワーク。エージェントが SQL とパネルを書き、open-dashboard があなたのデータベースに対してすべてのクエリを読み取り専用で実行し、グラフを描きます。BI ツールではなく、レビューできるファイルとしてダッシュボードを持ちたいチームに。</p>
+<div class="tool-actions">
+<div class="cmd hero-cmd"><code><span class="nowrap">npx</span> <span class="nowrap">@open-dashboard/cli</span> <span class="nowrap">init</span> <span class="nowrap">my-dashboards</span></code><button type="button" data-copy="npx @open-dashboard/cli init my-dashboards">コピー</button></div>
+<a class="btn ghost" href="https://github.com/simonliu-ai-product/open-dashboard" target="_blank" rel="noopener">GitHub で見る</a>
+</div>
+<div class="window real tool-shot"><img src="/images/tools/open-dashboard.png" alt="open-dashboard の売上概要（架空のコーヒーショップのデータ）" width="1600" height="1000" /></div>
+</div>
+</section>
+<section class="band grey">
+<div class="wrap">
+<h2 class="headline center">できること</h2>
+<div class="facts">
+<div class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l7 2.5v5.5c0 4.3-2.9 7.6-7 9-4.1-1.4-7-4.7-7-9V6z"/></svg><h3>設計から読み取り専用</h3><p>ブラウザはクエリの名前を指定するだけで、SQL は送りません。どのエンジンでも読み取り専用で実行します。</p></div>
+<div class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.5 7.5L4 12l4.5 4.5M15.5 7.5L20 12l-4.5 4.5M13.5 5l-3 14"/></svg><h3>ダッシュボードごとに 2 ファイル</h3><p>queries.sql で数値を定義し、index.tsx でパネルを並べます。diff を見れば何が変わったかわかります。</p></div>
+<div class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16"/><path d="M7 16.5V11M12 16.5V6.5M17 16.5v-7"/></svg><h3>41 種類の組み込みパネル</h3><p>数値タイルや折れ線グラフから、サンキー図や地図まで、手書きの SVG グラフ。</p></div>
+<div class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4l8.5 4.5L12 13 3.5 8.5z"/><path d="M3.5 12.5L12 17l8.5-4.5M3.5 16.5L12 21l8.5-4.5"/></svg><h3>データベース、API、ファイル</h3><p>Postgres、MySQL、BigQuery、Snowflake、SQLite など。HTTP API、MCP サーバー、CSV や JSON ファイルにも対応します。</p></div>
+<div class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M8.5 12.2l2.4 2.4 4.8-5"/></svg><h3>完成前にチェック</h3><p>open-dashboard check がすべてのクエリを実行し、パネルが参照する列とパラメータを一つずつ確認します。</p></div>
+<div class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M5.6 5.6l2.1 2.1M3 12h3M18.4 5.6l-2.1 2.1"/><path d="M10 10l9 4-4 1.5L13.5 20z"/></svg><h3>中身を見て、メモを残す</h3><p>パネルの SQL、行数、実行時間を確認し、メモを残せば、エージェントがそれを次の修正につなげます。</p></div>
+</div>
+</div>
+</section>
+<section class="band" id="start">
+<div class="wrap">
+<h2 class="headline center">はじめる</h2>
+<div class="steps">
+<div class="step"><h3>ワークスペースを作成</h3><p>コマンドひとつで作業用のフォルダができます。</p><div class="cmd"><code><span class="nowrap">npx</span> <span class="nowrap">@open-dashboard/cli</span> <span class="nowrap">init</span> <span class="nowrap">my-dashboards</span></code><button type="button" data-copy="npx @open-dashboard/cli init my-dashboards">コピー</button></div></div>
+<div class="step"><h3>起動する</h3><p>ブラウザでライブプレビューが開きます。</p><div class="cmd"><code><span class="nowrap">cd</span> <span class="nowrap">my-dashboards</span> <span class="nowrap">&amp;&amp;</span> <span class="nowrap">pnpm</span> <span class="nowrap">install</span> <span class="nowrap">&amp;&amp;</span> <span class="nowrap">pnpm</span> <span class="nowrap">dev</span></code><button type="button" data-copy="cd my-dashboards &amp;&amp; pnpm install &amp;&amp; pnpm dev">コピー</button></div></div>
+<div class="step"><h3>エージェントに頼む</h3><p>ほしいものを伝えるだけ。エージェントがファイルを書き、画面がその場で変わっていきます。</p><div class="say">うちの Postgres から、プラン別の週次サインアップ数と、最もアクティブな 20 アカウントを追加して</div></div>
+</div>
+</div>
+</section>
+<section class="band night center">
+<div class="wrap">
+<h2 class="headline">CoStaff Workspace で開く</h2>
+<p class="lede">エージェントによる編集のひとつひとつを、会話のすぐ横で確認できます。Antigravity App と VS Code に対応しています。</p>
+<div class="actions"><a class="btn light" href="/ja/plugin/">CoStaff Workspace を見る</a></div>
+</div>
+</section>
+<section class="band grey center">
+<div class="wrap">
+<h2 class="headline">ほかのツール</h2>
+<div class="tool-chips">
+<a class="tool-chip" href="/ja/open-doc/"><span class="kind" style="background:#0f766e"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3.5h7l4 4V20a.5.5 0 0 1-.5.5h-10A.5.5 0 0 1 7 20z"/><path d="M14 3.5V8h4"/><path d="M9.5 12.5h5M9.5 15.5h5"/></svg></span><span>open-doc</span></a>
+<a class="tool-chip" href="https://open-slide.dev/" target="_blank" rel="noopener"><span class="kind" style="background:#c2410c"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="11" rx="1.5"/><path d="M12 16v3.5M8.5 19.5h7"/></svg></span><span>open-slide</span></a>
+<a class="tool-chip" href="/ja/open-spreadsheet/"><span class="kind" style="background:#217346"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="1.5"/><path d="M3.5 9.5h17M3.5 14.5h17M9.5 4.5v15"/></svg></span><span>open-spreadsheet</span></a>
+<a class="tool-chip" href="/ja/open-form/"><span class="kind" style="background:#7c3aed"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3.5" width="14" height="17" rx="1.5"/><path d="M8.5 8.5h7M8.5 12h7M8.5 15.5h4"/></svg></span><span>open-form</span></a>
+<a class="tool-chip" href="/ja/open-map/"><span class="kind" style="background:#0e7490"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 6.5l5.5-2 6 2 5.5-2v13l-5.5 2-6-2-5.5 2z"/><path d="M9 4.5v13M15 6.5v13"/></svg></span><span>open-map</span></a>
+<a class="tool-chip" href="/ja/open-recording/"><span class="kind" style="background:#be123c"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="6.5" width="12" height="11" rx="2"/><path d="M15.5 10.5l5-3v9l-5-3z"/></svg></span><span>open-recording</span></a>
+<a class="tool-chip" href="/ja/open-design-frame/"><span class="kind" style="background:#a16207"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5.5" y="5.5" width="13" height="13" rx="1"/><path d="M3 5.5h2.5M18.5 5.5H21M3 18.5h2.5M18.5 18.5H21M5.5 3v2.5M5.5 18.5V21M18.5 3v2.5M18.5 18.5V21"/></svg></span><span>open-design-frame</span></a>
+<a class="tool-chip" href="https://open-sheet.dev/" target="_blank" rel="noopener"><span class="kind" style="background:#334155"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="1.5"/><path d="M3.5 9.5h17M9.5 4.5v15"/><path d="M12.5 14.5h5M15.5 12.5l2 2-2 2"/></svg></span><span>open-sheet</span></a>
+</div>
+<div class="actions"><a class="more" href="/ja/toolsets/">すべてのツール</a></div>
+</div>
+</section>
+</main>
+<footer class="foot">
+<div class="wrap">
+<div class="foot-cols">
+<div><div class="foot-brand"><img src="/images/logo/mark.svg" alt="" width="20" height="20" />CoStaff Workspace</div><p class="foot-tag">エージェントと並んで、同じファイルで仕事を。</p></div>
+<div><h4>CoStaff Workspace</h4><ul><li><a href="/ja/plugin/">ワークスペース</a></li><li><a href="/ja/toolsets/">ツール</a></li></ul></div>
+<div><h4>ツール</h4><ul><li><a href="/ja/open-doc/">open-doc</a></li><li><a href="/ja/open-dashboard/">open-dashboard</a></li><li><a href="/ja/open-spreadsheet/">open-spreadsheet</a></li><li><a href="/ja/open-design-frame/">open-design-frame</a></li><li><a href="/ja/toolsets/">すべてのツール</a></li></ul></div>
+<div><h4>その他</h4><ul><li><a href="https://github.com/costaff-ai" target="_blank" rel="noopener">GitHub</a></li><li><a href="/ja/brand/">ブランドガイドライン</a></li></ul></div>
+</div>
+<div class="foot-base"><span>Copyright © 2026 CoStaff.</span><nav class="foot-langs" aria-label="言語"><a href="/" lang="en" hreflang="en">English</a><a href="/zhtw/" lang="zh-TW" hreflang="zh-TW">繁體中文</a><a href="/zhcn/" lang="zh-CN" hreflang="zh-CN">简体中文</a><a href="/ja/" lang="ja" hreflang="ja" aria-current="true">日本語</a><a href="/ko/" lang="ko" hreflang="ko">한국어</a></nav></div>
+</div>
+</footer>
+<script>
+(function () {
+  var b = document.querySelector('.gnav-menu'), l = document.getElementById('gnav-links');
+  if (b) b.addEventListener('click', function () { var o = l.classList.toggle('open'); b.setAttribute('aria-expanded', String(o)); });
+  var lm = document.querySelector('.lang-menu');
+  if (lm) {
+    document.addEventListener('click', function (e) { if (!lm.contains(e.target)) lm.open = false; });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && lm.open) { lm.open = false; lm.querySelector('summary').focus(); } });
+  }
+  var pick = document.querySelector('.demo-pick');
+  if (pick) {
+    var tabs = [].slice.call(pick.querySelectorAll('[role=tab]'));
+    var show = function (t) {
+      tabs.forEach(function (o) {
+        var on = o === t;
+        o.setAttribute('aria-selected', String(on));
+        o.tabIndex = on ? 0 : -1;
+        document.getElementById(o.getAttribute('aria-controls')).hidden = !on;
+      });
+    };
+    tabs.forEach(function (t, i) {
+      t.addEventListener('click', function () { show(t); });
+      t.addEventListener('keydown', function (e) {
+        var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+        if (!d) return;
+        e.preventDefault();
+        var n = tabs[(i + d + tabs.length) % tabs.length]; show(n); n.focus();
+      });
+    });
+  }
+  document.querySelectorAll('[data-copy]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      navigator.clipboard && navigator.clipboard.writeText(btn.getAttribute('data-copy')).then(function () {
+        var t = btn.textContent; btn.textContent = "コピーしました"; setTimeout(function () { btn.textContent = t; }, 1400);
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>

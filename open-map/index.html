@@ -8,6 +8,10 @@
 <link rel="canonical" href="https://costaffs.app/open-map/" />
 <link rel="alternate" hreflang="en" href="https://costaffs.app/open-map/" />
 <link rel="alternate" hreflang="zh-TW" href="https://costaffs.app/zhtw/open-map/" />
+<link rel="alternate" hreflang="zh-CN" href="https://costaffs.app/zhcn/open-map/" />
+<link rel="alternate" hreflang="ja" href="https://costaffs.app/ja/open-map/" />
+<link rel="alternate" hreflang="ko" href="https://costaffs.app/ko/open-map/" />
+<link rel="alternate" hreflang="x-default" href="https://costaffs.app/open-map/" />
 <link rel="icon" href="/images/logo/favicon.ico" sizes="any" />
 <link rel="icon" href="/images/logo/favicon.svg" type="image/svg+xml" />
 <link rel="apple-touch-icon" href="/images/logo/apple-touch-icon.png" />
@@ -18,7 +22,7 @@
 <meta property="og:url" content="https://costaffs.app/open-map/" />
 <meta property="og:image" content="https://costaffs.app/images/logo/og.png" />
 <meta name="twitter:card" content="summary_large_image" />
-<link rel="stylesheet" href="/assets/ws.css?v=16" />
+<link rel="stylesheet" href="/assets/ws.css?v=17" />
 </head>
 <body>
 <header class="gnav">
@@ -29,7 +33,7 @@
 <a href="/toolsets/" aria-current="page">Tools</a>
 </nav>
 <div class="gnav-right">
-<div class="lang-switch" data-active="en" role="group" aria-label="Language"><span class="lang-thumb" aria-hidden="true"></span><a href="/open-map/" lang="en" hreflang="en" aria-current="true">EN</a><a href="/zhtw/open-map/" lang="zh-TW" hreflang="zh-TW">繁中</a></div>
+<details class="lang-menu"><summary aria-label="Language"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.4 2.3 3.6 5.1 3.6 8.5s-1.2 6.2-3.6 8.5c-2.4-2.3-3.6-5.1-3.6-8.5s1.2-6.2 3.6-8.5z"/></svg><span>English</span></summary><div class="lang-list"><a href="/open-map/" lang="en" hreflang="en" aria-current="true">English</a><a href="/zhtw/open-map/" lang="zh-TW" hreflang="zh-TW">繁體中文</a><a href="/zhcn/open-map/" lang="zh-CN" hreflang="zh-CN">简体中文</a><a href="/ja/open-map/" lang="ja" hreflang="ja">日本語</a><a href="/ko/open-map/" lang="ko" hreflang="ko">한국어</a></div></details>
 <a class="gh" href="https://github.com/costaff-ai" target="_blank" rel="noopener">GitHub</a>
 <a class="gnav-cta" href="/plugin/#start">Install</a>
 <button class="gnav-menu" type="button" aria-label="Menu" aria-expanded="false" aria-controls="gnav-links"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg></button>
@@ -97,25 +101,21 @@
 <div class="foot-cols">
 <div><div class="foot-brand"><img src="/images/logo/mark.svg" alt="" width="20" height="20" />CoStaff Workspace</div><p class="foot-tag">Work beside your agent, on the same files.</p></div>
 <div><h4>CoStaff Workspace</h4><ul><li><a href="/plugin/">Workspace</a></li><li><a href="/toolsets/">Tools</a></li></ul></div>
-<div><h4>Tools</h4><ul><li><a href="https://github.com/simonliu-ai-product/open-doc" target="_blank" rel="noopener">open-doc</a></li><li><a href="https://github.com/simonliu-ai-product/open-spreadsheet" target="_blank" rel="noopener">open-spreadsheet</a></li><li><a href="/toolsets/">All tools</a></li></ul></div>
-<div><h4>Elsewhere</h4><ul><li><a href="https://github.com/costaff-ai" target="_blank" rel="noopener">GitHub</a></li><li><a href="https://github.com/costaff-ai/costaff-workspace-oss" target="_blank" rel="noopener">CoStaff Workspace CLI</a></li><li><a href="/brand/">Brand guidelines</a></li></ul></div>
+<div><h4>Tools</h4><ul><li><a href="/open-doc/">open-doc</a></li><li><a href="/open-dashboard/">open-dashboard</a></li><li><a href="/open-spreadsheet/">open-spreadsheet</a></li><li><a href="/open-design-frame/">open-design-frame</a></li><li><a href="/toolsets/">All tools</a></li></ul></div>
+<div><h4>Elsewhere</h4><ul><li><a href="https://github.com/costaff-ai" target="_blank" rel="noopener">GitHub</a></li><li><a href="/brand/">Brand guidelines</a></li></ul></div>
 </div>
-<div class="foot-base"><span>Copyright © 2026 CoStaff.</span><a href="/zhtw/">繁中</a></div>
+<div class="foot-base"><span>Copyright © 2026 CoStaff.</span><nav class="foot-langs" aria-label="Language"><a href="/" lang="en" hreflang="en" aria-current="true">English</a><a href="/zhtw/" lang="zh-TW" hreflang="zh-TW">繁體中文</a><a href="/zhcn/" lang="zh-CN" hreflang="zh-CN">简体中文</a><a href="/ja/" lang="ja" hreflang="ja">日本語</a><a href="/ko/" lang="ko" hreflang="ko">한국어</a></nav></div>
 </div>
 </footer>
 <script>
 (function () {
   var b = document.querySelector('.gnav-menu'), l = document.getElementById('gnav-links');
   if (b) b.addEventListener('click', function () { var o = l.classList.toggle('open'); b.setAttribute('aria-expanded', String(o)); });
-  var ls = document.querySelector('.lang-switch');
-  if (ls) ls.addEventListener('click', function (e) {
-    var a = e.target.closest('a');
-    if (!a || a.hasAttribute('aria-current') || e.metaKey || e.ctrlKey || e.shiftKey) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    e.preventDefault();
-    ls.setAttribute('data-active', a.getAttribute('lang') === 'en' ? 'en' : 'zh');
-    setTimeout(function () { location.href = a.href; }, 200);
-  });
+  var lm = document.querySelector('.lang-menu');
+  if (lm) {
+    document.addEventListener('click', function (e) { if (!lm.contains(e.target)) lm.open = false; });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && lm.open) { lm.open = false; lm.querySelector('summary').focus(); } });
+  }
   var pick = document.querySelector('.demo-pick');
   if (pick) {
     var tabs = [].slice.call(pick.querySelectorAll('[role=tab]'));

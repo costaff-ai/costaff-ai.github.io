@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>open-recording — 给 Agent 用的录音工作室</title>
+<meta name="description" content="在浏览器中录音，用 whisper.cpp 在本地转写，让 Agent 通过 MCP 自己完成这两件事。适合想把会议或演讲转成文字稿、又不想把音频发送出去的人。" />
+<link rel="canonical" href="https://costaffs.app/zhcn/open-recording/" />
+<link rel="alternate" hreflang="en" href="https://costaffs.app/open-recording/" />
+<link rel="alternate" hreflang="zh-TW" href="https://costaffs.app/zhtw/open-recording/" />
+<link rel="alternate" hreflang="zh-CN" href="https://costaffs.app/zhcn/open-recording/" />
+<link rel="alternate" hreflang="ja" href="https://costaffs.app/ja/open-recording/" />
+<link rel="alternate" hreflang="ko" href="https://costaffs.app/ko/open-recording/" />
+<link rel="alternate" hreflang="x-default" href="https://costaffs.app/open-recording/" />
+<link rel="icon" href="/images/logo/favicon.ico" sizes="any" />
+<link rel="icon" href="/images/logo/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/images/logo/apple-touch-icon.png" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="CoStaff Workspace" />
+<meta property="og:title" content="open-recording — 给 Agent 用的录音工作室" />
+<meta property="og:description" content="在浏览器中录音，用 whisper.cpp 在本地转写，让 Agent 通过 MCP 自己完成这两件事。适合想把会议或演讲转成文字稿、又不想把音频发送出去的人。" />
+<meta property="og:url" content="https://costaffs.app/zhcn/open-recording/" />
+<meta property="og:image" content="https://costaffs.app/images/logo/og.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="stylesheet" href="/assets/ws.css?v=17" />
+</head>
+<body>
+<header class="gnav">
+<div class="wrap">
+<a class="gnav-logo" href="/zhcn/"><img src="/images/logo/mark.svg" alt="" width="20" height="20" />CoStaff Workspace</a>
+<nav class="gnav-links" id="gnav-links" aria-label="Primary">
+<a href="/zhcn/plugin/">工作区</a>
+<a href="/zhcn/toolsets/" aria-current="page">工具</a>
+</nav>
+<div class="gnav-right">
+<details class="lang-menu"><summary aria-label="语言"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.4 2.3 3.6 5.1 3.6 8.5s-1.2 6.2-3.6 8.5c-2.4-2.3-3.6-5.1-3.6-8.5s1.2-6.2 3.6-8.5z"/></svg><span>简体中文</span></summary><div class="lang-list"><a href="/open-recording/" lang="en" hreflang="en">English</a><a href="/zhtw/open-recording/" lang="zh-TW" hreflang="zh-TW">繁體中文</a><a href="/zhcn/open-recording/" lang="zh-CN" hreflang="zh-CN" aria-current="true">简体中文</a><a href="/ja/open-recording/" lang="ja" hreflang="ja">日本語</a><a href="/ko/open-recording/" lang="ko" hreflang="ko">한국어</a></div></details>
+<a class="gh" href="https://github.com/costaff-ai" target="_blank" rel="noopener">GitHub</a>
+<a class="gnav-cta" href="/zhcn/plugin/#start">安装</a>
+<button class="gnav-menu" type="button" aria-label="菜单" aria-expanded="false" aria-controls="gnav-links"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg></button>
+</div>
+</div>
+</header>
+<div class="ribbon">CoStaff Agent 平台将于 2026 年 11 月 30 日归档。<a class="more" href="/zhcn/notice/">查看公告</a></div>
+
+<main>
+<section class="hero tool-hero" style="--tool:#be123c">
+<div class="wrap">
+<span class="kind tool-mark" style="background:#be123c"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="6.5" width="12" height="11" rx="2"/><path d="M15.5 10.5l5-3v9l-5-3z"/></svg></span>
+<p class="kicker">open-recording</p>
+<h1 class="display">给 Agent 用的录音工作室</h1>
+<p class="lede">在浏览器中录音，用 whisper.cpp 在本地转写，让 Agent 通过 MCP 自己完成这两件事。适合想把会议或演讲转成文字稿、又不想把音频发送出去的人。</p>
+<div class="tool-actions">
+<div class="cmd hero-cmd"><code><span class="nowrap">npx</span> <span class="nowrap">-p</span> <span class="nowrap">@open-recording/core</span> <span class="nowrap">open-recording</span> <span class="nowrap">init</span> <span class="nowrap">my-recordings</span></code><button type="button" data-copy="npx -p @open-recording/core open-recording init my-recordings">复制</button></div>
+<a class="btn ghost" href="https://github.com/simonliu-ai-product/open-recording" target="_blank" rel="noopener">在 GitHub 上查看</a>
+</div>
+<div class="window real tool-shot"><img src="/images/tools/open-recording.png" alt="open-recording 录音工作室：录音列表" width="1512" height="693" /></div>
+</div>
+</section>
+<section class="band grey">
+<div class="wrap">
+<h2 class="headline center">能做什么</h2>
+<div class="facts">
+<div class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="3.5" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v2.5"/></svg><h3>在浏览器中录音</h3><p>工作室标签页负责麦克风，Agent 可以自己开始和停止录音。</p></div>
+<div class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l7 2.5v5.5c0 4.3-2.9 7.6-7 9-4.1-1.4-7-4.7-7-9V6z"/></svg><h3>本地转写</h3><p>whisper.cpp 在你的电脑上转写，音频不会离开这台设备。</p></div>
+<div class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 17.5l-1.5 3 3.5-1.5h11a2 2 0 0 0 2-2v-11a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2V17z"/><path d="M8 10h8M8 13.5h5"/></svg><h3>给 Agent 的 MCP 工具</h3><p>开始、停止、转写、搜索文字稿，并在音频旁边写笔记。</p></div>
+<div class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="15" rx="2"/><path d="M3 9h18M8 5v4"/></svg><h3>录制浏览器标签页</h3><p>把一个标签页的画面和声音录成一段，同样能转写、生成字幕。</p></div>
+<div class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7.5A1.5 1.5 0 0 1 4.5 6h4.4l2 2.2h8.6A1.5 1.5 0 0 1 21 9.7v8.8a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 18.5z"/></svg><h3>磁盘上的普通文件夹</h3><p>每段录音是一个文件夹，里面是音频、文字稿和笔记，不需要数据库。</p></div>
+<div class="fact"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6.5h-3a1.5 1.5 0 0 0-1.5 1.5v11A1.5 1.5 0 0 0 5 20.5h11a1.5 1.5 0 0 0 1.5-1.5v-3"/><path d="M13 3.5h7.5V11M20.5 3.5L11 13"/></svg><h3>字幕与 Markdown</h3><p>下载音频、SRT、VTT，或带时间戳的 Markdown 文字稿。</p></div>
+</div>
+</div>
+</section>
+<section class="band" id="start">
+<div class="wrap">
+<h2 class="headline center">快速开始</h2>
+<div class="steps">
+<div class="step"><h3>创建工作区</h3><p>一条命令新建一个文件夹。</p><div class="cmd"><code><span class="nowrap">npx</span> <span class="nowrap">-p</span> <span class="nowrap">@open-recording/core</span> <span class="nowrap">open-recording</span> <span class="nowrap">init</span> <span class="nowrap">my-recordings</span></code><button type="button" data-copy="npx -p @open-recording/core open-recording init my-recordings">复制</button></div></div>
+<div class="step"><h3>启动</h3><p>在浏览器中打开实时预览。</p><div class="cmd"><code><span class="nowrap">cd</span> <span class="nowrap">my-recordings</span> <span class="nowrap">&amp;&amp;</span> <span class="nowrap">pnpm</span> <span class="nowrap">add</span> <span class="nowrap">-D</span> <span class="nowrap">@open-recording/core</span> <span class="nowrap">@open-recording/mcp</span> <span class="nowrap">&amp;&amp;</span> <span class="nowrap">pnpm</span> <span class="nowrap">exec</span> <span class="nowrap">open-recording</span> <span class="nowrap">dev</span> <span class="nowrap">--mcp</span></code><button type="button" data-copy="cd my-recordings &amp;&amp; pnpm add -D @open-recording/core @open-recording/mcp &amp;&amp; pnpm exec open-recording dev --mcp">复制</button></div></div>
+<div class="step"><h3>交给 Agent</h3><p>说出你的需求，Agent 来写文件，你看着页面随之变化。</p><div class="say">帮我录下这场会议，结束后在旁边写一份摘要和待办事项</div></div>
+</div>
+</div>
+</section>
+<section class="band grey center">
+<div class="wrap">
+<h2 class="headline">更多工具</h2>
+<div class="tool-chips">
+<a class="tool-chip" href="/zhcn/open-doc/"><span class="kind" style="background:#0f766e"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 3.5h7l4 4V20a.5.5 0 0 1-.5.5h-10A.5.5 0 0 1 7 20z"/><path d="M14 3.5V8h4"/><path d="M9.5 12.5h5M9.5 15.5h5"/></svg></span><span>open-doc</span></a>
+<a class="tool-chip" href="/zhcn/open-dashboard/"><span class="kind" style="background:#2563eb"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20h16"/><path d="M7 16.5V11M12 16.5V6.5M17 16.5v-7"/></svg></span><span>open-dashboard</span></a>
+<a class="tool-chip" href="https://open-slide.dev/" target="_blank" rel="noopener"><span class="kind" style="background:#c2410c"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="11" rx="1.5"/><path d="M12 16v3.5M8.5 19.5h7"/></svg></span><span>open-slide</span></a>
+<a class="tool-chip" href="/zhcn/open-spreadsheet/"><span class="kind" style="background:#217346"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="1.5"/><path d="M3.5 9.5h17M3.5 14.5h17M9.5 4.5v15"/></svg></span><span>open-spreadsheet</span></a>
+<a class="tool-chip" href="/zhcn/open-form/"><span class="kind" style="background:#7c3aed"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3.5" width="14" height="17" rx="1.5"/><path d="M8.5 8.5h7M8.5 12h7M8.5 15.5h4"/></svg></span><span>open-form</span></a>
+<a class="tool-chip" href="/zhcn/open-map/"><span class="kind" style="background:#0e7490"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 6.5l5.5-2 6 2 5.5-2v13l-5.5 2-6-2-5.5 2z"/><path d="M9 4.5v13M15 6.5v13"/></svg></span><span>open-map</span></a>
+<a class="tool-chip" href="/zhcn/open-design-frame/"><span class="kind" style="background:#a16207"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5.5" y="5.5" width="13" height="13" rx="1"/><path d="M3 5.5h2.5M18.5 5.5H21M3 18.5h2.5M18.5 18.5H21M5.5 3v2.5M5.5 18.5V21M18.5 3v2.5M18.5 18.5V21"/></svg></span><span>open-design-frame</span></a>
+<a class="tool-chip" href="https://open-sheet.dev/" target="_blank" rel="noopener"><span class="kind" style="background:#334155"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="4.5" width="17" height="15" rx="1.5"/><path d="M3.5 9.5h17M9.5 4.5v15"/><path d="M12.5 14.5h5M15.5 12.5l2 2-2 2"/></svg></span><span>open-sheet</span></a>
+</div>
+<div class="actions"><a class="more" href="/zhcn/toolsets/">全部工具</a></div>
+</div>
+</section>
+</main>
+<footer class="foot">
+<div class="wrap">
+<div class="foot-cols">
+<div><div class="foot-brand"><img src="/images/logo/mark.svg" alt="" width="20" height="20" />CoStaff Workspace</div><p class="foot-tag">与 Agent 并肩，在同一份文件上工作。</p></div>
+<div><h4>CoStaff Workspace</h4><ul><li><a href="/zhcn/plugin/">工作区</a></li><li><a href="/zhcn/toolsets/">工具</a></li></ul></div>
+<div><h4>效率工具</h4><ul><li><a href="/zhcn/open-doc/">open-doc</a></li><li><a href="/zhcn/open-dashboard/">open-dashboard</a></li><li><a href="/zhcn/open-spreadsheet/">open-spreadsheet</a></li><li><a href="/zhcn/open-design-frame/">open-design-frame</a></li><li><a href="/zhcn/toolsets/">全部工具</a></li></ul></div>
+<div><h4>其他</h4><ul><li><a href="https://github.com/costaff-ai" target="_blank" rel="noopener">GitHub</a></li><li><a href="/zhcn/brand/">品牌规范</a></li></ul></div>
+</div>
+<div class="foot-base"><span>Copyright © 2026 CoStaff.</span><nav class="foot-langs" aria-label="语言"><a href="/" lang="en" hreflang="en">English</a><a href="/zhtw/" lang="zh-TW" hreflang="zh-TW">繁體中文</a><a href="/zhcn/" lang="zh-CN" hreflang="zh-CN" aria-current="true">简体中文</a><a href="/ja/" lang="ja" hreflang="ja">日本語</a><a href="/ko/" lang="ko" hreflang="ko">한국어</a></nav></div>
+</div>
+</footer>
+<script>
+(function () {
+  var b = document.querySelector('.gnav-menu'), l = document.getElementById('gnav-links');
+  if (b) b.addEventListener('click', function () { var o = l.classList.toggle('open'); b.setAttribute('aria-expanded', String(o)); });
+  var lm = document.querySelector('.lang-menu');
+  if (lm) {
+    document.addEventListener('click', function (e) { if (!lm.contains(e.target)) lm.open = false; });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && lm.open) { lm.open = false; lm.querySelector('summary').focus(); } });
+  }
+  var pick = document.querySelector('.demo-pick');
+  if (pick) {
+    var tabs = [].slice.call(pick.querySelectorAll('[role=tab]'));
+    var show = function (t) {
+      tabs.forEach(function (o) {
+        var on = o === t;
+        o.setAttribute('aria-selected', String(on));
+        o.tabIndex = on ? 0 : -1;
+        document.getElementById(o.getAttribute('aria-controls')).hidden = !on;
+      });
+    };
+    tabs.forEach(function (t, i) {
+      t.addEventListener('click', function () { show(t); });
+      t.addEventListener('keydown', function (e) {
+        var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+        if (!d) return;
+        e.preventDefault();
+        var n = tabs[(i + d + tabs.length) % tabs.length]; show(n); n.focus();
+      });
+    });
+  }
+  document.querySelectorAll('[data-copy]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      navigator.clipboard && navigator.clipboard.writeText(btn.getAttribute('data-copy')).then(function () {
+        var t = btn.textContent; btn.textContent = "已复制"; setTimeout(function () { btn.textContent = t; }, 1400);
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>

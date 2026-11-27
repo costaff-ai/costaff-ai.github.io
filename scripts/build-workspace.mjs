@@ -4,7 +4,8 @@
 //
 //   node scripts/build-workspace.mjs
 //
-// Writes index.html, plugin/, toolsets/, one page per tool, notice/, brand/ and the same under zhtw/.
+// Writes index.html, plugin/, toolsets/, one page per tool, notice/, brand/ and the same under zhtw/,
+// zhcn/, ja/ and ko/ (see LANGS).
 // open-x/ is kept as a redirect to toolsets/.
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
@@ -16,7 +17,7 @@ const GH = 'https://github.com/costaff-ai';
 const MARKETPLACE = 'https://marketplace.visualstudio.com/items?itemName=costaff.costaff-workspace-vscode';
 const AGY_PLUGIN = 'https://github.com/costaff-ai/costaff-workspace-antigravity';
 const OPEN_VSX = 'https://open-vsx.org/extension/costaff/costaff-workspace-vscode';
-const VERSION = 16; // bump to refresh cached CSS
+const VERSION = 17; // bump to refresh cached CSS
 
 // ---------- pictures ----------
 
@@ -80,12 +81,21 @@ const FRAMEWORKS = [
 
 // ---------- copy ----------
 
+/** The site's languages: `key` names the copy (and a tool's text in tools.json), `prefix` the folder. */
+const LANGS = [
+  { key: 'en', lang: 'en', prefix: '', label: 'English' },
+  { key: 'zh', lang: 'zh-TW', prefix: '/zhtw', label: '繁體中文' },
+  { key: 'zhcn', lang: 'zh-CN', prefix: '/zhcn', label: '简体中文' },
+  { key: 'ja', lang: 'ja', prefix: '/ja', label: '日本語' },
+  { key: 'ko', lang: 'ko', prefix: '/ko', label: '한국어' },
+];
+
 const COPY = {
   en: {
+    key: 'en',
     lang: 'en',
     prefix: '',
-    other: { label: '繁中', prefix: '/zhtw' },
-    nav: { home: 'Home', plugin: 'Workspace', openx: 'Tools', notice: 'Notice', menu: 'Menu', cta: 'Install' },
+    nav: { home: 'Home', plugin: 'Workspace', openx: 'Tools', notice: 'Notice', menu: 'Menu', cta: 'Install', language: 'Language' },
     ribbon: ['The CoStaff Agent platform will be archived on November 30, 2026.', 'Read the notice'],
     soon: 'Coming soon',
     inPlugin: 'Opens in Workspace',
@@ -107,8 +117,8 @@ const COPY = {
       tag: 'Work beside your agent, on the same files.',
       cols: [
         ['CoStaff Workspace', [['Workspace', 'plugin/'], ['Tools', 'toolsets/']]],
-        ['Tools', [['open-doc', 'https://github.com/simonliu-ai-product/open-doc'], ['open-spreadsheet', 'https://github.com/simonliu-ai-product/open-spreadsheet'], ['All tools', 'toolsets/']]],
-        ['Elsewhere', [['GitHub', GH], ['CoStaff Workspace CLI', `${GH}/costaff-workspace-oss`], ['Brand guidelines', 'brand/']]],
+        ['Tools', [['open-doc', 'open-doc/'], ['open-dashboard', 'open-dashboard/'], ['open-spreadsheet', 'open-spreadsheet/'], ['open-design-frame', 'open-design-frame/'], ['All tools', 'toolsets/']]],
+        ['Elsewhere', [['GitHub', GH], ['Brand guidelines', 'brand/']]],
       ],
       base: 'Copyright © 2026 CoStaff.',
     },
@@ -150,8 +160,8 @@ const COPY = {
       privacy: ['Everything stays on your computer.', 'No account. It runs only on your computer, and only you can reach it.'],
       hostsTitle: 'Two ways to use it.',
       hosts: [
-        ['For the Antigravity App', 'A plugin with its own tab, beside the agent’s conversation.', 'agent-done.png', 'Shown in the Antigravity App, with a workbook beside the agent', [['Install guide', AGY_PLUGIN]]],
-        ['For VS Code', 'An extension for VS Code, Cursor and the Antigravity IDE. Each workspace opens in an editor tab, between your files and the agent.', 'antigravity-ide.png', 'Shown in the Antigravity IDE, with an open-doc guide in an editor tab beside the agent', [['VS Code Marketplace', MARKETPLACE], ['Open VSX', OPEN_VSX]]],
+        ['For the Antigravity App', 'A plugin. Your workspace opens in a tab of its own, right beside the agent’s conversation.', 'agent-done.png', 'Shown in the Antigravity App, with a workbook beside the agent', [['Install guide', AGY_PLUGIN]], 'Installs with one agy command.'],
+        ['For VS Code', 'An extension for VS Code, Cursor and the Antigravity IDE. Each workspace opens in an editor tab.', 'antigravity-ide.png', 'Shown in the Antigravity IDE, with an open-doc guide in an editor tab beside the agent', [['VS Code Marketplace', MARKETPLACE], ['Open VSX', OPEN_VSX]], 'Open VSX is the marketplace of Cursor and the Antigravity IDE.'],
       ],
       startTitle: 'Get started.',
       startLede: 'The extension is on the VS Code Marketplace, and on Open VSX for Cursor and the Antigravity IDE. For the Antigravity App, install the plugin with one agy command.',
@@ -207,7 +217,7 @@ const COPY = {
         ['h2', 'What changes'],
         ['ul', ['Its repositories on GitHub become read-only.', 'They will not receive updates or fixes.', 'Issues and pull requests will not be answered.']],
         ['h2', 'What stays'],
-        ['ul', ['The code and its history stay public, to read, fork and use under each repository’s license.', 'The CoStaff pages on this site stay up for reference.', 'The CoStaff Workspace CLI and this site carry on.']],
+        ['ul', ['The code and its history stay public, to read, fork and use under each repository’s license.', 'The CoStaff pages on this site stay up for reference.', 'This site carries on.']],
         ['keep', 'Thank you to everyone who used CoStaff, gave feedback, or contributed. What we learned building AI staff is what CoStaff Workspace is made of.'],
       ],
       next: ['What comes next', 'CoStaff Workspace puts your workspaces beside your agent.', 'Meet CoStaff Workspace'],
@@ -274,10 +284,10 @@ const COPY = {
     },
   },
   zh: {
+    key: 'zh',
     lang: 'zh-TW',
     prefix: '/zhtw',
-    other: { label: 'EN', prefix: '' },
-    nav: { home: '首頁', plugin: 'Workspace', openx: '生產力工具', notice: '公告', menu: '選單', cta: '安裝' },
+    nav: { home: '首頁', plugin: '工作區', openx: '工具', notice: '公告', menu: '選單', cta: '安裝', language: '語言' },
     ribbon: ['CoStaff Agent 平台將於 2026 年 11 月 30 日封存。', '閱讀公告'],
     soon: '即將推出',
     inPlugin: '可在 Workspace 開啟',
@@ -298,9 +308,9 @@ const COPY = {
     foot: {
       tag: '和 Agent 並肩，在同一份檔案上工作。',
       cols: [
-        ['CoStaff Workspace', [['Workspace', 'plugin/'], ['生產力工具', 'toolsets/']]],
-        ['生產力工具', [['open-doc', 'https://github.com/simonliu-ai-product/open-doc'], ['open-spreadsheet', 'https://github.com/simonliu-ai-product/open-spreadsheet'], ['全部工具', 'toolsets/']]],
-        ['其他', [['GitHub', GH], ['CoStaff Workspace CLI', `${GH}/costaff-workspace-oss`], ['品牌規範', 'brand/']]],
+        ['CoStaff Workspace', [['工作區', 'plugin/'], ['工具', 'toolsets/']]],
+        ['生產力工具', [['open-doc', 'open-doc/'], ['open-dashboard', 'open-dashboard/'], ['open-spreadsheet', 'open-spreadsheet/'], ['open-design-frame', 'open-design-frame/'], ['全部工具', 'toolsets/']]],
+        ['其他', [['GitHub', GH], ['品牌規範', 'brand/']]],
       ],
       base: 'Copyright © 2026 CoStaff.',
     },
@@ -342,8 +352,8 @@ const COPY = {
       privacy: ['一切都留在你的電腦', '不需要帳號，只在本機執行、只有你連得到。'],
       hostsTitle: '兩種使用方式',
       hosts: [
-        ['Antigravity App 版', '以 plugin 形式，在 Agent 對話旁邊開一個自己的分頁。', 'agent-done.png', '畫面：Antigravity App，試算表就在 Agent 旁邊', [['安裝說明', AGY_PLUGIN]]],
-        ['VS Code 版', '以擴充套件形式，支援 VS Code、Cursor 與 Antigravity IDE。每個工作區開在編輯區分頁，放在檔案與 Agent 之間。', 'antigravity-ide.png', '畫面：Antigravity IDE，open-doc 文件開在編輯區分頁，旁邊是 Agent', [['VS Code Marketplace', MARKETPLACE], ['Open VSX', OPEN_VSX]]],
+        ['Antigravity App 版', '以 plugin 形式安裝。工作區開在自己的分頁，就在 Agent 對話旁邊。', 'agent-done.png', '畫面：Antigravity App，試算表就在 Agent 旁邊', [['安裝說明', AGY_PLUGIN]], '用一行 agy 指令安裝。'],
+        ['VS Code 版', '以擴充套件形式，支援 VS Code、Cursor 與 Antigravity IDE。每個工作區開在編輯區分頁。', 'antigravity-ide.png', '畫面：Antigravity IDE，open-doc 文件開在編輯區分頁，旁邊是 Agent', [['VS Code Marketplace', MARKETPLACE], ['Open VSX', OPEN_VSX]], 'Open VSX 是 Cursor 與 Antigravity IDE 的擴充套件商店。'],
       ],
       startTitle: '開始使用',
       startLede: '擴充套件已經上架 VS Code Marketplace，Cursor 與 Antigravity IDE 可以從 Open VSX 安裝。Antigravity App 版用一行 agy 指令安裝。',
@@ -398,7 +408,7 @@ const COPY = {
         ['h2', '會改變的'],
         ['ul', ['GitHub 上的相關 repo 將改為唯讀。', '之後不會再更新或修正問題。', '不再回覆 issue 與 pull request。']],
         ['h2', '會保留的'],
-        ['ul', ['程式碼與歷史紀錄維持公開，可以閱讀、fork，並依各 repo 的授權使用。', '本站原有的 CoStaff 頁面保留供參考。', 'CoStaff Workspace CLI 與本站會繼續維護。']],
+        ['ul', ['程式碼與歷史紀錄維持公開，可以閱讀、fork，並依各 repo 的授權使用。', '本站原有的 CoStaff 頁面保留供參考。', '本站會繼續維護。']],
         ['keep', '謝謝每一位使用過、回饋過、貢獻過 CoStaff 的朋友。打造 AI 員工時學到的一切，正是 CoStaff Workspace 的基礎。'],
       ],
       next: ['接下來', 'CoStaff Workspace 把你的工作區放在 Agent 旁邊。', '認識 CoStaff Workspace'],
@@ -466,6 +476,14 @@ const COPY = {
   },
 };
 
+// Simplified Chinese, Japanese and Korean live in scripts/i18n/<key>.mjs: each exports a
+// function of the shared links that returns copy shaped like COPY.zh.
+for (const l of LANGS) {
+  if (COPY[l.key]) continue;
+  const mod = await import(`./i18n/${l.key}.mjs`);
+  COPY[l.key] = { ...mod.default({ GH, MARKETPLACE, OPEN_VSX, AGY_PLUGIN }), key: l.key, lang: l.lang, prefix: l.prefix };
+}
+
 // ---------- shared parts ----------
 
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -474,7 +492,6 @@ const ext = (url) => (/^https?:/.test(url) ? ' target="_blank" rel="noopener"' :
 
 function head(c, page, title, desc, slug) {
   const url = `${SITE}${c.prefix}/${slug}`;
-  const otherUrl = `${SITE}${c.other.prefix}/${slug}`;
   return `<!DOCTYPE html>
 <html lang="${c.lang}">
 <head>
@@ -483,8 +500,8 @@ function head(c, page, title, desc, slug) {
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(desc)}" />
 <link rel="canonical" href="${url}" />
-<link rel="alternate" hreflang="${c.lang}" href="${url}" />
-<link rel="alternate" hreflang="${c.lang === 'en' ? 'zh-TW' : 'en'}" href="${otherUrl}" />
+${LANGS.map((l) => `<link rel="alternate" hreflang="${l.lang}" href="${SITE}${l.prefix}/${slug}" />`).join('\n')}
+<link rel="alternate" hreflang="x-default" href="${SITE}/${slug}" />
 <link rel="icon" href="/images/logo/favicon.ico" sizes="any" />
 <link rel="icon" href="/images/logo/favicon.svg" type="image/svg+xml" />
 <link rel="apple-touch-icon" href="/images/logo/apple-touch-icon.png" />
@@ -501,11 +518,13 @@ ${page === 'home' ? '<link rel="alternate" type="text/markdown" href="/index.md"
 `;
 }
 
-/** EN | 繁中 as one switch; the thumb slides to the language picked, then the page changes. */
+/** The same page in each language: a menu under a globe, each name in its own language. */
+const langLinks = (c, slug) => LANGS
+  .map((l) => `<a href="${l.prefix}/${slug}" lang="${l.lang}" hreflang="${l.lang}"${l.key === c.key ? ' aria-current="true"' : ''}>${l.label}</a>`)
+  .join('');
 function langSwitch(c, slug) {
-  const en = c.lang === 'en';
-  const link = (isEn) => `<a href="${isEn ? '' : '/zhtw'}/${slug}" lang="${isEn ? 'en' : 'zh-TW'}" hreflang="${isEn ? 'en' : 'zh-TW'}"${isEn === en ? ' aria-current="true"' : ''}>${isEn ? 'EN' : '繁中'}</a>`;
-  return `<div class="lang-switch" data-active="${en ? 'en' : 'zh'}" role="group" aria-label="${en ? 'Language' : '語言'}"><span class="lang-thumb" aria-hidden="true"></span>${link(true)}${link(false)}</div>`;
+  const here = LANGS.find((l) => l.key === c.key);
+  return `<details class="lang-menu"><summary aria-label="${esc(c.nav.language)}">${svg('<circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17M12 3.5c2.4 2.3 3.6 5.1 3.6 8.5s-1.2 6.2-3.6 8.5c-2.4-2.3-3.6-5.1-3.6-8.5s1.2-6.2 3.6-8.5z"/>')}<span>${here.label}</span></summary><div class="lang-list">${langLinks(c, slug)}</div></details>`;
 }
 
 function nav(c, page, slug) {
@@ -538,22 +557,18 @@ function foot(c) {
 <div><div class="foot-brand"><img src="/images/logo/mark.svg" alt="" width="20" height="20" />CoStaff Workspace</div><p class="foot-tag">${esc(c.foot.tag)}</p></div>
 ${cols}
 </div>
-<div class="foot-base"><span>${esc(c.foot.base)}</span><a href="${c.other.prefix}/">${c.other.label}</a></div>
+<div class="foot-base"><span>${esc(c.foot.base)}</span><nav class="foot-langs" aria-label="${esc(c.nav.language)}">${langLinks(c, '')}</nav></div>
 </div>
 </footer>
 <script>
 (function () {
   var b = document.querySelector('.gnav-menu'), l = document.getElementById('gnav-links');
   if (b) b.addEventListener('click', function () { var o = l.classList.toggle('open'); b.setAttribute('aria-expanded', String(o)); });
-  var ls = document.querySelector('.lang-switch');
-  if (ls) ls.addEventListener('click', function (e) {
-    var a = e.target.closest('a');
-    if (!a || a.hasAttribute('aria-current') || e.metaKey || e.ctrlKey || e.shiftKey) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-    e.preventDefault();
-    ls.setAttribute('data-active', a.getAttribute('lang') === 'en' ? 'en' : 'zh');
-    setTimeout(function () { location.href = a.href; }, 200);
-  });
+  var lm = document.querySelector('.lang-menu');
+  if (lm) {
+    document.addEventListener('click', function (e) { if (!lm.contains(e.target)) lm.open = false; });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && lm.open) { lm.open = false; lm.querySelector('summary').focus(); } });
+  }
   var pick = document.querySelector('.demo-pick');
   if (pick) {
     var tabs = [].slice.call(pick.querySelectorAll('[role=tab]'));
@@ -658,7 +673,7 @@ function plugin(c) {
 </section>`)
     .join('\n');
   const facts = p.facts.map(([icon, h3, body]) => `<div class="fact">${svg(ICON[icon])}<h3>${esc(h3)}</h3><p>${esc(body)}</p></div>`).join('\n');
-  const hosts = p.hosts.map(([h3, body, file, alt, stores]) => `<div class="host"><figure class="host-shot"><img src="/images/workspace/${file}" alt="${esc(alt)}" loading="lazy" /><figcaption>${esc(alt.split(/[,，]/)[0])}</figcaption></figure><h3 class="title">${esc(h3)}</h3><p>${esc(body)}</p>${stores.length ? `<div class="stores">${stores.map(([t, u]) => `<a class="btn small" href="${u}" target="_blank" rel="noopener">${esc(t)}</a>`).join('')}</div>` : `<span class="badge">${esc(c.soon)}</span>`}</div>`).join('\n');
+  const hosts = p.hosts.map(([h3, body, file, alt, stores, note]) => `<div class="host"><figure class="host-shot"><img src="/images/workspace/${file}" alt="${esc(alt)}" loading="lazy" /><figcaption>${esc(alt.split(/[,，]/)[0])}</figcaption></figure><h3 class="title">${esc(h3)}</h3><p>${esc(body)}</p>${stores.length ? `<div class="stores">${stores.map(([t, u]) => `<a class="btn small" href="${u}" target="_blank" rel="noopener">${esc(t)}</a>`).join('')}</div>` : `<span class="badge">${esc(c.soon)}</span>`}${note ? `<p class="store-note">${esc(note)}</p>` : ''}</div>`).join('\n');
   const pickDefault = 'open-spreadsheet';
   const demoTabs = p.demos
     .map(([id, label]) => `<button type="button" role="tab" id="demo-tab-${id}" aria-controls="demo-${id}" aria-selected="${id === pickDefault}" tabindex="${id === pickDefault ? 0 : -1}">${kind(id)}<span>${esc(label)}</span></button>`)
@@ -857,12 +872,15 @@ ${foot(c)}`;
 
 /** Content per tool (headline, features, commands, screenshot), from each tool's own README. */
 const TOOLS = JSON.parse(readFileSync(path.join(ROOT, 'scripts', 'tools.json'), 'utf8'));
+/** A tool's text in the other languages: scripts/i18n/tools.<key>.json, { [tool]: { display, lede, features, prompt, alt } }. */
+const TOOLS_I18N = Object.fromEntries(LANGS.filter((l) => !['en', 'zh'].includes(l.key))
+  .map((l) => [l.key, JSON.parse(readFileSync(path.join(ROOT, 'scripts', 'i18n', `tools.${l.key}.json`), 'utf8'))]));
 /** Where a tool's page lives: ours on this site, open-slide on its own. */
 const toolHref = (c, f) => (TOOLS[f.id] ? href(c, `${f.id}/`) : f.site ?? `https://github.com/${f.repo}`);
 
 function toolPage(c, f) {
   const d = TOOLS[f.id];
-  const t = d[c.lang === 'en' ? 'en' : 'zh'];
+  const t = d[c.key] ?? TOOLS_I18N[c.key]?.[f.id] ?? d.en;
   const ui = c.tool;
   const facts = t.features.map(([icon, h3, body]) => `<div class="fact">${svg(ICON[icon] ?? ICON.check)}<h3>${esc(h3)}</h3><p>${esc(body)}</p></div>`).join('\n');
   const steps = stepsHtml(c, [
@@ -870,7 +888,7 @@ function toolPage(c, f) {
     [ui.steps[1][0], ui.steps[1][1], ['cmd', d.dev]],
     [ui.steps[2][0], ui.steps[2][1], ['say', t.prompt]],
   ]);
-  const shot = d.image ? `<div class="window real tool-shot"><img src="/images/tools/${esc(d.image.file)}" alt="${esc(d.image.alt[c.lang === 'en' ? 'en' : 'zh'])}" width="${d.image.w}" height="${d.image.h}" /></div>` : '';
+  const shot = d.image ? `<div class="window real tool-shot"><img src="/images/tools/${esc(d.image.file)}" alt="${esc(d.image.alt[c.key] ?? t.alt ?? d.image.alt.en)}" width="${d.image.w}" height="${d.image.h}" /></div>` : '';
   const others = FRAMEWORKS.filter((o) => o.id !== f.id)
     .map((o) => `<a class="tool-chip" href="${toolHref(c, o)}"${TOOLS[o.id] ? '' : ' target="_blank" rel="noopener"'}>${kind(o.id)}<span>${o.id}</span></a>`).join('\n');
   const slug = `${f.id}/`;

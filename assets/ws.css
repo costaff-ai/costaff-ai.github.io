@@ -358,3 +358,28 @@ a:hover { text-decoration: underline; }
 .gallery.three .fw h3 { font-size: 16px; margin: 0 0 2px; }
 .gallery.three .fw p { font-size: 13px; line-height: 1.45; }
 .gallery.external:has(> .fw:only-child) { grid-template-columns: 1fr; max-width: 360px; }
+/* host cards: the store buttons sit on one line across both cards */
+.host { display: flex; flex-direction: column; }
+.host .stores, .host .badge { margin-top: auto; }
+.host .badge { align-self: flex-start; }
+@media (min-width: 1000px) { .stores { flex-wrap: nowrap; } .stores .btn.small { padding: 0 14px; white-space: nowrap; } }
+.host .store-note { margin: 10px 24px 0; font-size: 13px; color: var(--ink-3); }
+
+/* ---------- language menu (replaces the EN | 繁中 switch) ---------- */
+.lang-menu { position: relative; }
+.lang-menu summary { list-style: none; display: inline-flex; align-items: center; gap: 6px; cursor: pointer; padding: 5px 10px; border-radius: 999px;
+  font-size: 12px; font-weight: 500; color: rgba(0, 0, 0, 0.72); background: rgba(0, 0, 0, 0.06); }
+.lang-menu summary::-webkit-details-marker { display: none; }
+.lang-menu summary:hover, .lang-menu[open] summary { color: var(--ink); background: rgba(0, 0, 0, 0.1); }
+.lang-menu summary svg { width: 14px; height: 14px; }
+.lang-list { position: absolute; right: 0; top: calc(100% + 8px); min-width: 150px; padding: 6px; border-radius: 14px; background: #fff;
+  box-shadow: 0 12px 32px -8px rgba(0, 0, 0, 0.22), 0 0 0 1px rgba(0, 0, 0, 0.06); display: flex; flex-direction: column; z-index: 60; }
+.gnav-right .lang-list a { display: block; padding: 8px 12px; border-radius: 9px; font-size: 14px; color: var(--ink); }
+.gnav-right .lang-list a:hover { background: var(--band); text-decoration: none; }
+.gnav-right .lang-list a[aria-current] { font-weight: 600; color: var(--green-ink); }
+.foot-langs { display: flex; flex-wrap: wrap; gap: 6px 14px; }
+.foot-langs a[aria-current] { color: var(--ink); font-weight: 600; }
+@media (max-width: 620px) { .gnav-right .lang-menu summary span { display: none; } }
+/* Japanese breaks between phrases, not mid-word (Chrome); Korean between words */
+:lang(ja) .lede, :lang(ja) .display, :lang(ja) .headline, :lang(ja) .title { word-break: auto-phrase; }
+:lang(ko) { word-break: keep-all; }
